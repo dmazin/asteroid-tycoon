@@ -22,9 +22,9 @@ function init() {
 
     stage = new createjs.Stage("mainCanvas");
 
-    for (var j = 0; j < height; j++) {
+    for (var i = 0; i < width; i++) {
       var line = [];
-      for (var i = 0; i < width; i++) {
+      for (var j = 0; j < height; j++) {
         var g = new GridElem(i*size,start_at+j*size, size);
         line.push(g);
       }
@@ -33,3 +33,5 @@ function init() {
 
     stage.update();
 }
+
+init();
