@@ -2,21 +2,21 @@ var Robot = function(baseAttrs) {
     this.energy = baseAttrs.baseEnergy;
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; //The stuff you pick up
-    
+
     this.position = {'x': 0, 'y': 0};
-    
+
     this.goTo = function (destX, destY, grid) {
         // let's do Uniform Cost Search?
-        
+
         var startNode = {
-            'x': this.position.x, 
-            'y': this.position.y, 
-            'pathCost': 0, 
+            'x': this.position.x,
+            'y': this.position.y,
+            'pathCost': 0,
             'path' = []
         };
         var frontier = [startNode]
         var explored = [];
-        
+
         while (true) {
             if (frontier.length == 0) {
                 return false; // failure :-(
@@ -28,20 +28,20 @@ var Robot = function(baseAttrs) {
             explored.push(node.x + ',' + node.y);
             [[-1,0], [1,0], [0,-1], [0,1]].forEach(function (dir) {
                 var dest = {'x': node.x + dir[0], 'y': node.y + dir[1]};
-                
+
                 var tile = grid.getTileFromPos(dest); // TODO: add this probably through grid
-                
+
                 if(!canPassTile(tile)) { return; } // cause the tile is impassable
-                
+
                 var child = {
                     'x': dest.x,
                     'y': dest.y,
                     'pathCost': node.pathCost + getTileCost(tile), // TODO: implement such a function
                     'path': path.concat(dir)
                 }
-                
+
                 if (explored.indexOf(node.x + ',' + node.y) == -1 &&
-                        !frontier.some(function (node) {node.x == child.x && node.y == child.y}) {
+                        !frontier.some(function (node) {node.x == child.x && node.y == child.y})) {
                     // if child state is not in explored or frontier,
                     // insert into frontier
                     frontier.push(child);
@@ -60,16 +60,16 @@ var Robot = function(baseAttrs) {
             });
         }
     };
-    
+
     this.move = function(xDelta, yDelta) {
         if (!this.canMove) {
             return;
         }
-        
+
         this.position.x += xDelta;
         this.position.y += yDelta;
     };
-    
+
     this.hit = function(tile) {
         // Amount harvested based per frame on harvest efficiency
         // amount resource broken down per frame based on drill hardness vs resource hardness
@@ -79,7 +79,7 @@ var Robot = function(baseAttrs) {
         this.canMove = (tile.amount === 0); //You can move if you're not blocked by a tile.
         //Can you move if you can't pick up stuff on a tile.
     };
-    
+
     var updateTileAndResources = function(tile) {
         //The math should totally be double checked here, but here's a rough draft
         var changePercentage = tile.getHardness() / baseAttrs.hardness;
@@ -90,7 +90,7 @@ var Robot = function(baseAttrs) {
         }
         tile.amount -= changeAmount; //Reduce the amount left on the tile
     }
-    
+
     var addResources = function(changeAmount, resourceType) {
         var amountHarvested = Math.min(changeAmount, this.storage);
         this.storage -= amountHarvested;
@@ -99,7 +99,7 @@ var Robot = function(baseAttrs) {
         //i.e { name: amount }
         this.resourceAmountByType[tile.type] = resourceAmount + amountHarvested;
     };
-    
+
     //If the tile is passable in multiple turns (including whether it can get
     // everything on the tile).
     var canPassTile = function(tile) {
