@@ -1,5 +1,12 @@
+
+/* global constants */
+
 var stage;
 var grid = [];
+
+var grid_size = 20;
+var game_width = 50;
+var game_height = 60;
 
 function GridElem(pixel_x, pixel_y, size) {
 
@@ -25,21 +32,16 @@ GridElem.prototype.changeTerrainType = function(new_type) {
      */
 }
 
-function init() {
-
-    var width = 100;
-    var height = 30;
-
-    var start_at = 100;
-
-    var size = 10;
+function init_stage(width, height, size, surface_px) {
 
     stage = new createjs.Stage("mainCanvas");
 
     for (var i = 0; i < width; i++) {
       var line = [];
       for (var j = 0; j < height; j++) {
-        var g = new GridElem(i*size,start_at+j*size, size);
+        var g = new GridElem(i*size,
+                             surface_px + j * size,
+                             size);
         line.push(g);
       }
       grid.push(line);
@@ -48,4 +50,4 @@ function init() {
     stage.update();
 }
 
-init();
+init_stage(game_width, game_height, grid_size, 100);
