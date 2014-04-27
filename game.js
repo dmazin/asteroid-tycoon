@@ -3,6 +3,7 @@
 
 var stage;
 var grid = [];
+var spawn = {};
 
 var grid_size = 40;
 var game_width = 25;
@@ -15,10 +16,30 @@ var FPS = 30;
 var colors = {
     'dirt': '#292426',
     'rock': 'gray',
-    'iron': 'black',
+    'iron': '#0D0B0C',
     'backfill': 'pink',
-    'unexplored': '#0D0B0C'
+    'unexplored': 'black'
 };
+
+function createSpawn(xpos){
+    spawn.shape = new createjs.Shape();
+    spawn.shape.graphics.beginFill('#22B709')
+                       .drawCircle(0,0,8);                       
+    spawn.shape.x = grid_size*(xpos + 0.5);
+    spawn.shape.y = grid_size*(0 + 0.5) + surface_height;
+    stage.addChild(spawn.shape);
+}
+
+function moveSpawn(direction){
+  if (direction=="left"){
+    spawn.shape.x = spawn.shape.x - grid_size;
+
+  }
+  else if (direction=="right"){
+    spawn.shape.x = spawn.shape.x + grid_size;
+
+  }
+}
 
 function Tile(pixel_x, pixel_y, size, type, amount) {
     /* create the easeljs shape object that
@@ -35,7 +56,7 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
         this.amount = amount;
         this.baseAmount = amount;
         this.type = type;
-        this.explored = false;
+        this.explored = false; // true to disable for of war
 
         this.refresh();
     };
@@ -65,7 +86,7 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
 
 function tick() {
     activeBots.forEach(function(bot) {
-        bot.moveToward(20, 20);
+        bot.moveToward(bot.destX, bot.destY);
     });
 
     stage.update();
@@ -73,12 +94,13 @@ function tick() {
 
 function init_stage(width, height, size, surface_px) {
 
-    stage = new createjs.Stage("mainCanvas");
+    window.stage = new createjs.Stage("mainCanvas");
+
 
     for (var i = 0; i < width; i++) {
       var line = [];
       for (var j = 0; j < height; j++) {
-        var resourceName = generate_terrain(j);
+        var resourceName = generate_terrain(j, height);
         if (j === 0) {
             resourceName = "dirt";
         }
@@ -88,6 +110,8 @@ function init_stage(width, height, size, surface_px) {
                              size,
                              resourceName,
                              amount);
+
+        //Backbone.trigger('stageClick
 
         // Mouseover crap - bad
         //stage.enableMouseOver();
@@ -102,14 +126,37 @@ function init_stage(width, height, size, surface_px) {
       }
       grid.push(line);
     }
-
+    createSpawn(Math.floor(width/2));
     stage.update();
 
     createjs.Ticker.addEventListener("tick", tick);
     createjs.Ticker.setFPS(FPS);
 }
 
-function generate_terrain(depth){
+/* maps resources to function from depth to prob at depth */
+var resource_weights = {
+    'iron': {p: 0.01, d_weight: 0.2},
+    'stone': {p: 0.1, d_weight: 0.1},
+    'dirt': {p: 1, d_weight: 0}
+}
+
+function normalize(array) {
+    var total = _.reduce(array,
+            function(m, n) { return m + n;},
+            0);
+    return _.map(array, function(x) { return x / total; });
+}
+
+function generate_terrain(depth) {
+
+  var probs = _.map(resource_weights, function(x) {
+      return x.p * Math.exp(x.d_weight * depth);
+  });
+
+  probs = normalize(probs);
+  var rand = Math.random();
+
+
   var dirtProbability = 1;
   var stoneProbability = 0.1*Math.exp(depth*0.1);
   var ironProbability = 0.01*Math.exp(depth*0.2);
@@ -131,3 +178,23 @@ function generate_terrain(depth){
 
 
 init_stage(game_width, game_height, grid_size, surface_height);
+
+
+document.onkeydown = checkKey;
+
+
+
+function checkKey(key) {
+
+    key = key || window.event;
+
+    if (key.keyCode == '37') {
+        // left arrow
+        moveSpawn("left")
+    }
+    else if (key.keyCode == '39') {
+        // right arrow
+        moveSpawn("right")
+    }
+}
+
