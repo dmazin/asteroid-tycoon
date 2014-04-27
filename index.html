@@ -206,7 +206,6 @@ body {
         if (money > robots[robotType].cost) {
             spawnBot(robotType, Math.floor(spawn.shape.x/grid_size));
             playerState.changeResource('money', -robots[robotType].cost);
-            console.log(playerState.getResource('money'));
         }
     });
 </script>

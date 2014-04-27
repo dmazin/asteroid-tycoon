@@ -156,7 +156,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
             }
         }
 
-        this.energy -= 3;
+        this.energy -= 1;
         this.render();
     };
 
@@ -268,9 +268,10 @@ var spawnBot = function(type, startX) {
     var robotAttrs = robotLevels[type][state.getRobotLevel(type)];
 
     // Have stage listen to mouseup once and make a new bot based on that
-    stage.on('stagemouseup', function(stage) {
-        var destX = parseInt(stage.stageX / 40);
-        var destY = parseInt(stage.stageY / 40);
+    stage.on('stagemouseup', function(e) {
+        if(!stage.mouseInBounds) { return; }
+        var destX = parseInt(e.stageX / 40);
+        var destY = parseInt(e.stageY / 40);
         var bot = new Robot(robotAttrs, startX, destX, destY);
         activeBots.push(bot);
         return bot;
