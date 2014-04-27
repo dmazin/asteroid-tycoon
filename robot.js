@@ -98,10 +98,19 @@ var Robot = function(baseAttrs, startX) {
     };
 
     this.move = function(xDelta, yDelta) {
+        var currentTile = grid[this.position.x][this.position.y];
+        var newTile = grid[this.position.x + xDelta][this.position.y + yDelta];
+
         grid[this.position.x][this.position.y].setType('backfill');
 
-        this.position.x += xDelta;
-        this.position.y += yDelta;
+        if (canPassTile(newTile)) {
+            if (newTile.amount <= 0) {
+                this.position.x += xDelta;
+                this.position.y += yDelta;
+            } else {
+                this.hit(newTile);
+            }
+        }
 
         this.render();
     };
@@ -110,25 +119,26 @@ var Robot = function(baseAttrs, startX) {
         // Amount harvested based per frame on harvest efficiency
         // amount resource broken down per frame based on drill hardness vs resource hardness
         if (canPassTile(tile)) {
-            updateTileandResources(tile);
+            updateTileAndResources(tile);
         }
-        this.canMove = (tile.amount === 0); //You can move if you're not blocked by a tile.
+        this.canMove = (tile.amount <= 0); //You can move if you're not blocked by a tile.
         //Can you move if you can't pick up stuff on a tile.
     };
 
     var updateTileAndResources = function(tile) {
         _this.energy -= 1;
-        var changePercentage = baseAttrs.hardness - tile.getHardness();
-        var changeAmount = Math.ceil(tile.amount * changePercentage);
+
+        var resource = resources[tile.getType()];
+        var proportionMined = baseAttrs.hardness - resource.hardness;
+        var amountMined = tile.baseAmount * proportionMined;
         if (tile.harvestable && _this.storage > 0) {
-            addResouces(changeAmount, tile.getType());
+            addResources(amountMined, tile.getType());
         }
-        tile.amount -= changeAmount; //Reduce the amount left on the tile
-        if(tile.amount === 0) { tile.type = 'backfill'; }
+        tile.amount -= amountMined; //Reduce the amount left on the tile
     };
 
-    var addResources = function(changeAmount, resourceType) {
-        var amountHarvested = Math.min(changeAmount, _this.storage);
+    var addResources = function(amountMined, resourceType) {
+        var amountHarvested = Math.min(amountMined, _this.storage);
         _this.storage -= amountHarvested;
         var resourceAmount = _this.resourceAmountByType[resourceType] || 0;
         //Store the resources we've collected by the name to amount.
