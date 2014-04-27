@@ -21,9 +21,6 @@ var colors = {
     'unexplored': 'black'
 };
 
-// constants for scaling robot attributes for balancing purposes
-var energy_scale = .2;
-
 function createSpawn(xpos){
     spawn.shape = new createjs.Shape();
     spawn.shape.graphics.beginFill('#22B709')

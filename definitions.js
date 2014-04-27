@@ -8,11 +8,13 @@ var robots = {
         'wobble': 0.9,
         'harvestEfficiency': 0,
         'cost': 150,
+        'affinity': {
+            'dirt': 2
+        },
         'klass': SquirrelBot,
         'spriteSheet': 'pics/scout0_2x.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/scout0.gif'
-
     },
     'bearBot': {
         'description': 'BearBot 1.0 - All Around',
@@ -75,6 +77,8 @@ _.each(robots, function(val, key) {
     $('.controls .robot-spawn').append(rendered);
 });
 
+// constants for scaling robot attributes for balancing purposes
+var energy_scale = 0.1;
 var WobbleConstant = 0.5;
 
 var upgradeCosts = {

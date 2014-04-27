@@ -172,7 +172,12 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 
     var updateTileAndResources = function(tile) {
         var resource = resources[tile.getType()];
-        var proportionMined = baseAttrs.hardness - resource.hardness;
+        var hardness = baseAttrs.hardness;
+        if (baseAttrs.affinity[tile.getType()]) {
+            hardness *= baseAttrs.affinity[tile.getType()];
+        }
+        console.log(hardness);
+        var proportionMined = hardness - resource.hardness;
         var amountMined = tile.baseAmount * proportionMined;
         if (tile.harvestable && _this.storage > 0) {
             addResources(amountMined, tile.getType());
