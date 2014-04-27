@@ -119,6 +119,7 @@ var Robot = function(baseAttrs) {
             addResouces(changeAmount, tile.type);
         }
         tile.amount -= changeAmount; //Reduce the amount left on the tile
+        if(tile.amount === 0) { tile.type = 'backfill'; }
     };
 
     var addResources = function(changeAmount, resourceType) {

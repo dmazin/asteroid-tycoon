@@ -30,6 +30,11 @@ var robotLevels = {
 };
 
 var resources = {
+    'backfill': {
+        'hardness': 0,
+        'harvestable': false,
+        'value': 0
+    },
     'dirt': {
         'hardness': 0.1,
         'harvestable': false,
