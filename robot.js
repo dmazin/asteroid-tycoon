@@ -280,7 +280,7 @@ var spawnBot = function(type, startX) {
         if(!stage.mouseInBounds) { return; }
 
         //Update the player
-        updatePlayerAccourdingly(type);
+        updatePlayerMoney(type);
 
         // Make a new bot based on the position.
         var destX = parseInt(e.stageX / 40);
@@ -291,6 +291,6 @@ var spawnBot = function(type, startX) {
     }, null, true);
 };
 
-var updatePlayerAccourdingly = function(robotType) {
+var updatePlayerMoney = function(robotType) {
     playerState.changeResource('money', -robots[robotType].cost);
 };
