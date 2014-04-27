@@ -2,13 +2,91 @@
 <html>
 <head>
 <meta charset='utf-8'>
-<title>Asteroid Tycoon: Sending Robots to their Deaths!</title>
+<title>Asteroid Tycoon: Sending Robots to their Deaths</title>
 </head>
 <body>
 
-<canvas id='mainCanvas' width=1000 height=500
-    style='border: 1px solid black;'></canvas>
+<div id='game'>
+    <div id='menu'>
+        <pre class='title'>
+                ___   _____________________  ____  ________     ________  ____________  ____  _   __
+               /   | / ___/_  __/ ____/ __ \/ __ \/  _/ __ \   /_  __/\ \/ / ____/ __ \/ __ \/ | / /
+              / /| | \__ \ / / / __/ / /_/ / / / // // / / /    / /    \  / /   / / / / / / /  |/ / 
+             / ___ |___/ // / / /___/ _, _/ /_/ // // /_/ /    / /     / / /___/ /_/ / /_/ / /|  /  
+            /_/  |_/____//_/ /_____/_/ |_|\____/___/_____/    /_/     /_/\____/\____/\____/_/ |_/   
+        </pre>
+        <div class='robot-spawn'>
+            <span class='robot' data-robot='squirrelBot'>squirrel</span>
+            <span class='robot' data-robot='squirrelBot'>squirrel</span>
+            <span class='robot' data-robot='squirrelBot'>squirrel</span>
+            <span class='robot' data-robot='squirrelBot'>squirrel</span>
+            <span class='robot' data-robot='squirrelBot'>squirrel</span>
+        </div>
+    </div>
+    <canvas id='mainCanvas' width=1000 height=800></canvas>
+</div>
 
+<style>
+body {
+    font-family: 'Roboto', 'sans-serif';
+    background-color: #000;
+}
+
+.title {
+    color: #FFF;
+    width: 850px;
+    margin: 0 auto;
+}
+
+#game {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#menu {
+    position: relative;
+    font-weight: 200;
+    width: 980px;
+    height: 210px;
+    padding: 10px;
+    background-color: #060D22;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.robot-spawn {
+    width: 530px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -265px;
+}
+
+#mainCanvas {
+    background-color: #060D22;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.robot {
+    display: inline-block;
+    cursor: pointer;
+    color: #FFF;
+    width: 100px;
+    text-align: center;
+    opacity: .6;
+    padding: 1px 0 3px;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+}
+
+.robot:hover {
+    opacity: .8;
+}
+</style>
+
+
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <script src='lib/jquery.js'></script>
 <script src='lib/underscore.js'></script>
 <script src='lib/easeljs-0.7.1.min.js'></script>
@@ -16,5 +94,14 @@
 <script src='game.js'></script>
 <script src='state.js'></script>
 <script src='robot.js'></script>
+
+<script>
+    $('.robot').click(function() {
+        var $this = $(this);
+        var robotType = $this.data('robot');    
+
+        spawnBot(robotType, 0);
+    });
+</script>
 </body>
 </html>

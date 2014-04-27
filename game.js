@@ -8,16 +8,16 @@ var grid_size = 20;
 var game_width = 50;
 var game_height = 60;
 
-var surface_height = 100;
+var surface_height = 50;
 
 var FPS = 30;
 
 var colors = {
-    'dirt': 'brown',
+    'dirt': '#292426',
     'rock': 'gray',
     'iron': 'black',
-    'unexplored': 'purple',
-    'backfill': 'pink'
+    'backfill': 'pink',
+    'unexplored': '#0D0B0C'
 };
 
 function Tile(pixel_x, pixel_y, size, type, amount) {
