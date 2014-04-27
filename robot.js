@@ -56,7 +56,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         if (this.energy <= 0) {
             if (!this.dead) {
                 this.animation.gotoAndPlay('explode');
-                this.healthbar.visible = false;                
+                this.healthbar.visible = false;
                 this.salvageValue = 10;
             }
             this.dead = true;
@@ -66,7 +66,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         // If they have reached their destination they should do
         // default behavior.
         if (this.reachedDestination ||
-            (this.position.x === destX && this.position.y === destY)) {
+                (this.position.x === destX && this.position.y === destY)) {
             this.reachedDestination = this.reachedDestination || true;
             baseAttrs.klass.defaultBehavior(this);
             return;
@@ -82,12 +82,15 @@ var Robot = function(baseAttrs, startX, destX, destY) {
                 var canMoveToward = canPassTile(grid[destX][destY]); //checks if will be able to reach destination.  If hopeless, just move randomly.
                 if(canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
                     var randomVal = Math.random();
-                    if(randomVal > (baseAttrs.wobble * WobbleConstant)) { 
+                    if(randomVal > (baseAttrs.wobble * WobbleConstant)) {
                         this.goToward(destX, destY);
                     } else {
                         //changed wobble so robots will not move in the complete opposite direction
                         this.makeSemiRandomMove(destX,destY);
                     }
+                } else {
+                    // destination either already reached or unreachable
+                    this.reachedDestination = true;
                 }
             } else {
                 this.makeRandomMove();
@@ -100,28 +103,33 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         this.destY=destinY;
     };
 
-
     this.getHeading = function (destX, destY){
         //returns the direction and coordinates of the start of the path to our intended destination.
         var g = grid.map(function (row) {
             return row.map(function (tile) {
-                return canPassTile(tile) ? 1 : 0;
+                return canPassTile(tile) ? timeToPassTile(tile) : 0;
             });
         });
+
         var graph = new Graph(g);
         var start = graph.nodes[this.position.x][this.position.y];
         var end = graph.nodes[destX][destY];
         var result = astar.search(graph.nodes, start, end);
         if (result && result.length > 0) {
-            var direction ={'x': result[0].pos.x -this.position.x, 'y': result[0].pos.y - this.position.y}; 
+            var direction ={'x': result[0].pos.x -this.position.x, 'y': result[0].pos.y - this.position.y};
             var coordinates = {'x': result[0].pos.x, 'y': result[0].pos.y};
             var pathExists = true;
-        } else{
-            var direction ={};
-            var coordinates ={};
+        } else {
+            var direction = {};
+            var coordinates = {};
             var pathExists = false;
-        } 
-        return {'direction':direction, 'coordinates': coordinates, 'pathExists': pathExists};
+        }
+
+        return {
+            'direction': direction,
+            'coordinates': coordinates,
+            'pathExists': pathExists
+        };
     };
 
     this.goToward = function (destX, destY) {
@@ -136,7 +144,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         }
     };
 
-    this.makeSemiRandomMove =function(heading){
+    this.makeSemiRandomMove =function(destX, destY){
         //allows robots to veer off of heading, but not get totally lost by heading backwards
         var heading = this.getHeading(destX,destY);
         var reverseHeading = {'x': - heading.coordinates.x, 'y': - heading.coordinates.y};
@@ -165,7 +173,6 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         });
         return dirs;
     };
-
 
     this.makeRandomMove = function() {
         //moves the robot in a random direction
@@ -245,7 +252,6 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         if (baseAttrs.affinity[tile.getType()]) {
             hardness *= baseAttrs.affinity[tile.getType()];
         }
-        console.log(hardness);
         var proportionMined = hardness - resource.hardness;
         var amountMined = tile.baseAmount * proportionMined;
         if (tile.harvestable && _this.storage > 0) {
