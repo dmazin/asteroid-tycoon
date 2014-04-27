@@ -1,11 +1,13 @@
-var Robot = function(baseAttrs, startX) {
+var Robot = function(baseAttrs, startX, destX, destY) {
     var _this = this;
 
     this.energy = baseAttrs.baseEnergy;
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; // the stuff you pick up
     this.position = {'x': startX, 'y': 0};
-    this.destination = {'x': 0, 'y': 0}
+
+    this.destX = destX;
+    this.destY = destY;
 
     this.init = function () {
         this.render();
@@ -25,7 +27,7 @@ var Robot = function(baseAttrs, startX) {
         if(canMoveToward && !(this.position.x === destX && this.position.y === destY) &&
             (this.energy > 0)) {
             var randomVal = Math.random();
-            if(randomVal > (baseAttrs.wobble * WobbleConstant)) {
+            if(randomVal > (baseAttrs.wobble * WobbleConstant) || this.currentlyDigging) {
                 canMoveToward = this.goToward(destX, destY);
             } else {
                 canMoveToward = makeRandomMove();
@@ -33,12 +35,12 @@ var Robot = function(baseAttrs, startX) {
         }
     };
 
-    this.setDestination =function(destX, destY){
-        this.destination.x=destX;
-        this.destination.y=destY;
+    this.setDestination =function(destinX, destinY){
+        this.destX=destinX;
+        this.destY=destinY;
     }
 
-    this.setDestination(30,30);
+    this.setDestination(15,15);
 
     this.goToward = function (destX, destY) {
         var g = grid.map(function (row) {
@@ -63,10 +65,13 @@ var Robot = function(baseAttrs, startX) {
 
         if (canPassTile(newTile)) {
             if (newTile.amount <= 0) {
+                this.currentlyDigging = null;
                 this.position.x = newX;
                 this.position.y = newY;
+                grid[this.position.x][this.position.y].setType('backfill');
             } else {
                 this.hit(newTile);
+                this.currentlyDigging = {x: newX, y: newY};
             }
         }
 
@@ -97,6 +102,7 @@ var Robot = function(baseAttrs, startX) {
 
     var updateTileAndResources = function(tile) {
         _this.energy -= 1;
+        _this.shape.graphics.clear().beginFill('rgb(0,0,'+String(parseInt(_this.energy / 10 - 40))+')').drawCircle(0,0,8);
 
         var resource = resources[tile.getType()];
         var proportionMined = baseAttrs.hardness - resource.hardness;
@@ -134,8 +140,16 @@ var Robot = function(baseAttrs, startX) {
 };
 
 Robot.prototype.render = function() {
-    this.shape.x = grid_size*(this.position.x + 0.5);
-    this.shape.y = grid_size*(this.position.y + 0.5) + surface_height;
+    if (this.currentlyDigging) {
+        x = (this.position.x + this.currentlyDigging.x) / 2;
+        y = (this.position.y + this.currentlyDigging.y) / 2;
+    } else {
+        x = this.position.x;
+        y = this.position.y;
+    }
+
+    this.shape.x = grid_size*(x + 0.5);
+    this.shape.y = grid_size*(y + 0.5) + surface_height;
 
     var p = this.position;
     [p.x-1, p.x, p.x+1].forEach(function (x) {
@@ -160,7 +174,12 @@ var upgradeBot = function(type, level) {
 
 var spawnBot = function(type, startX) {
     var robotAttrs = robotLevels[type][state.getRobotLevel(type)];
-    var bot = new Robot(robotAttrs, startX);
-    activeBots.push(bot);
-    return bot;
+
+    stage.on('stagemouseup', function(stage) {
+        var destX = parseInt(stage.stageX / 40);
+        var destY = parseInt(stage.stageY / 40);
+        var bot = new Robot(robotAttrs, startX, destX, destY);
+        activeBots.push(bot);
+        return bot;
+    }, null, true);
 };
