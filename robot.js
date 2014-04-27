@@ -48,50 +48,70 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         }
     };
 
-    this.moveToward = function(destX, destY) {
+    // This is the basic move function that is called
+    // by the ticker to cause each bot to move appropriately
+    // or accept that it's dead.
+    this.handleMove = function(destX, destY) {
         //top level robot move function
         //move the robot in the general direction of destination, allowing for some veering off course
 
         //It can't move if it's dead.
         if (this.energy <= 0) {
             if (!this.dead) {
-                this.animation.gotoAndPlay('explode');
-                this.healthbar.visible = false;                
-                this.salvageValue = 10;
+                handleDeath();
             }
-            this.dead = true;
             return;
         }
+        this.makeMove(destX, destY);
+    };
 
+    // Actually triggers the move to happen.
+    this.makeMove = function(destX, destY) {
         // If they have reached their destination they should do
         // default behavior.
+        // If they are digging, keep digging.
+        // If they haven't reached their destination and aren't digging,
+        // try to go to the given destination.
         if (this.reachedDestination ||
             (this.position.x === destX && this.position.y === destY)) {
-            this.reachedDestination = this.reachedDestination || true;
-            baseAttrs.klass.defaultBehavior(this);
-            return;
-        }
-
-        //If they haven't reached their destination, try to
-        // go to the given destination
-        if (this.currentlyDigging && !this.giveUpDigging()){ //if digging continue to dig unless the robot decides to give up
+            this.makeDefaultMove();
+        } else if (this.currentlyDigging &&
+                    !this.giveUpDigging()){ //if digging continue to dig unless the robot decides to give up
             this.moveTo(this.currentlyDigging.x, this.currentlyDigging.y);
+        } else {
+            this.moveTowardDestination(destX, destY);
         }
-        else{
-            if (grid[destX] && grid[destX][destY]) {
-                var canMoveToward = canPassTile(grid[destX][destY]); //checks if will be able to reach destination.  If hopeless, just move randomly.
-                if(canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
-                    var randomVal = Math.random();
-                    if(randomVal > (baseAttrs.wobble * WobbleConstant)) { 
-                        this.goToward(destX, destY);
-                    } else {
-                        //changed wobble so robots will not move in the complete opposite direction
-                        this.makeSemiRandomMove(destX,destY);
-                    }
+    };
+
+    // Once a robot has reached its default destination,
+    // this gets called to make the default move for the bot.
+    this.makeDefaultMove = function() {
+        this.reachedDestination = this.reachedDestination || true;
+        baseAttrs.klass.defaultBehavior(this);
+    };
+
+    // While it's still trying to move to a destination,
+    // move toward that destination (with a little wobble
+    // and hopelessness).
+    this.moveTowardDestination = function(destX, destY) {
+        //checks if will be able to reach destination.  If hopeless, just move randomly.
+        if (grid[destX] && grid[destX][destY]) {
+            var canMoveToward = canPassTile(grid[destX][destY]);
+            if(canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
+                // Make random moves based on a robot's wobble
+                var randomVal = Math.random();
+                if(randomVal > (baseAttrs.wobble * WobbleConstant)) {
+                    this.goToward(destX, destY);
+                } else {
+                    //changed wobble so robots will not move in the complete opposite direction
+                    this.makeSemiRandomMove(destX,destY);
                 }
             } else {
-                this.makeRandomMove();
+                // destination either already reached or unreachable
+                this.reachedDestination = true;
             }
+        } else {
+            this.makeRandomMove();
         }
     };
 
@@ -100,28 +120,33 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         this.destY=destinY;
     };
 
-
     this.getHeading = function (destX, destY){
         //returns the direction and coordinates of the start of the path to our intended destination.
         var g = grid.map(function (row) {
             return row.map(function (tile) {
-                return canPassTile(tile) ? 1 : 0;
+                return canPassTile(tile) ? timeToPassTile(tile) : 0;
             });
         });
+
         var graph = new Graph(g);
         var start = graph.nodes[this.position.x][this.position.y];
         var end = graph.nodes[destX][destY];
         var result = astar.search(graph.nodes, start, end);
         if (result && result.length > 0) {
-            var direction ={'x': result[0].pos.x -this.position.x, 'y': result[0].pos.y - this.position.y}; 
+            var direction ={'x': result[0].pos.x -this.position.x, 'y': result[0].pos.y - this.position.y};
             var coordinates = {'x': result[0].pos.x, 'y': result[0].pos.y};
             var pathExists = true;
-        } else{
-            var direction ={};
-            var coordinates ={};
+        } else {
+            var direction = {};
+            var coordinates = {};
             var pathExists = false;
-        } 
-        return {'direction':direction, 'coordinates': coordinates, 'pathExists': pathExists};
+        }
+
+        return {
+            'direction': direction,
+            'coordinates': coordinates,
+            'pathExists': pathExists
+        };
     };
 
     this.goToward = function (destX, destY) {
@@ -136,7 +161,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         }
     };
 
-    this.makeSemiRandomMove =function(heading){
+    this.makeSemiRandomMove =function(destX, destY){
         //allows robots to veer off of heading, but not get totally lost by heading backwards
         var heading = this.getHeading(destX,destY);
         var reverseHeading = {'x': - heading.coordinates.x, 'y': - heading.coordinates.y};
@@ -166,7 +191,6 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         return dirs;
     };
 
-
     this.makeRandomMove = function() {
         //moves the robot in a random direction
         dirs = this.getViableDirections();
@@ -187,6 +211,8 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     };
 
     // in unable to move in chosen direction, move randomly
+    // This is currently only used by SquirrelBot's default
+    // behavior.
     this.moveInDirectionOrRandom = function(xDelta, yDelta) {
         dest = {'x': _this.position.x + xDelta, 'y': _this.position.y + yDelta};
         if (grid[dest.x] && grid[dest.x][dest.y] && canPassTile(grid[dest.x][dest.y])) {
@@ -239,13 +265,17 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         //Can you move if you can't pick up stuff on a tile.
     };
 
+
+    // This gets called as part of the hit function.
+    // It is used to update the tile's amount given
+    // the drill's strength and the tile's hardness.
+    // as well as the bots resources.
     var updateTileAndResources = function(tile) {
         var resource = resources[tile.getType()];
         var hardness = baseAttrs.hardness;
         if (baseAttrs.affinity[tile.getType()]) {
             hardness *= baseAttrs.affinity[tile.getType()];
         }
-        console.log(hardness);
         var proportionMined = hardness - resource.hardness;
         var amountMined = tile.baseAmount * proportionMined;
         if (tile.harvestable && _this.storage > 0) {
@@ -257,6 +287,9 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         playerState.changeResource('money', 1);
     };
 
+    // This gets called from the updateTileAndResources
+    // it is used to add resources to the bot if there are
+    // resources to be added.
     var addResources = function(amountMined, resourceType) {
         var amountHarvested = Math.min(amountMined, _this.storage);
         _this.storage -= amountHarvested;
@@ -277,6 +310,15 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     var timeToPassTile = function(tile) {
         var resource = resources[tile.getType()];
         return (baseAttrs.hardness - resource.hardness) * tile.amount;
+    };
+
+    // This is called when a robot's energy reaches
+    // 0 from the handleMove function.
+    var handleDeath = function() {
+        _this.animation.gotoAndPlay('explode');
+        _this.healthbar.visible = false;
+        _this.salvageValue = 10;
+        _this.dead = true;
     };
 
     this.init();

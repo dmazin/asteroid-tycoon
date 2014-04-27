@@ -91,7 +91,7 @@ function Tile(pixel_x, pixel_y, size, type, amount, pos) {
 
 function tick() {
     activeBots.forEach(function(bot) {
-        bot.moveToward(bot.destX, bot.destY);
+        bot.handleMove(bot.destX, bot.destY);
     });
 
     var gs = grid_size;
