@@ -62,7 +62,6 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         this.destY=destinY;
     };
 
-    this.setDestination(15,15);
 
     this.goToward = function (destX, destY) {
         var g = grid.map(function (row) {
