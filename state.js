@@ -13,6 +13,8 @@ var playerState = (function() {
         'money': 5000
     };
 
+    var currentAsteroid = null;
+
     state = {};
 
     state.getRobotLevel = function(robotType) {
@@ -35,9 +37,6 @@ var playerState = (function() {
         resourceAmounts[resource] = resourceAmounts[resource] || 0;
         resourceAmounts[resource] += amount;
 
-        // broken idk why
-        //resourceAmounts['money'] += resources[resource].value;
-
         $('.money-stats .amount').text(parseInt(resourceAmounts['money']));
         $('.notification.money .amount').text(parseInt(resourceAmounts['money']));
 
@@ -46,7 +45,7 @@ var playerState = (function() {
         }
 
         var statTemplate = _.template($('#mineral-stat-template').html());
-        
+
         if ($('.general-stats .' + resource).length > 0) {
             $('.general-stats .' + resource).html(statTemplate({
                 name: resource,
@@ -62,6 +61,14 @@ var playerState = (function() {
         if (resource === 'iron') {
             $('.notification.iron .amount').text(parseInt(resourceAmounts[resource]));
         }
+    };
+
+    state.getAsteroid = function() {
+        return currentAsteroid;
+    };
+
+    state.setAsteroid = function(asteroid) {
+        currentAsteroid = asteroid;
     };
 
     return state;

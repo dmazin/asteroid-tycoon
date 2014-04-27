@@ -246,12 +246,13 @@ var resources = {
     }
 };
 
-/* maps resources to function from depth to prob at depth */
-var resource_weights = {
-    'dirt': {pTop: 1, pBottom: 1, minDepth: 0},
-    'rock': {pTop: 0.1, pBottom: 0.4, minDepth: 1},
-    'iron': {pTop: 0.01, pBottom: 0.2, minDepth: 1},
-    'mintium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
-    'junipum': {pTop: 0.01, pBottom: 0.05, minDepth: 15},
-    'paprikum': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
-}
+var asteroids = {
+    "Bananasteroid": new Asteroid({
+        'dirt': {pTop: 1, pBottom: 1, minDepth: 0},
+        'rock': {pTop: 0.1, pBottom: 0.4, minDepth: 1},
+        'iron': {pTop: 0.01, pBottom: 0.2, minDepth: 1},
+        'mintium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
+        'junipum': {pTop: 0.01, pBottom: 0.05, minDepth: 15},
+        'paprikum': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
+    })
+};
