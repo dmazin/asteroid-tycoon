@@ -6,6 +6,18 @@
 </head>
 <body>
 
+<script id="robot-buy-button-template" type="text/html">
+    <span class='robot-container'>
+        <span class='robot' data-robot='<%= name %>'>
+            <img src='<%= spriteSheet %>'>
+            <%= description %>
+        </span>
+        <span class='money'>
+            <%= cost %>
+        </span>
+    </span>
+</script>
+
 <div id='game'>
     <div id='menu'>
         <div class='title-container'>
@@ -23,16 +35,11 @@
             <span class='alert'>PRODUCTION DECLINING, PICK UP SLACK OR FACE CORPORATE OVERSIGHT</span>
         </marquee>
         <div class='controls'>
-            <div class='robot-spawn'>
-                <span class='robot' data-robot='squirrelBot'>squirrel likes to scout</span>
-                <span class='robot' data-robot='bearBot'>bear likes to dig</span>
-                <span class='robot' data-robot='antBot'>ant likes to harvest</span>
-                <span class='robot' data-robot='goatBot'>goat likes to smash</span>
-                <span class='robot' data-robot='vultureBot'>vulture likes to scavenge</span>
+            <div class='stats'>
+                Dollars: <span class='money'></span><br>
+                Irons: <span class='iron'></span>
             </div>
-        <div class='stats'>
-            Dollars: <div class='money'></div>Irons: <div class='iron'></div>
-        </div>
+            <div class='robot-spawn'></div>
         </div>
     </div>
     <canvas id='mainCanvas' width=1000 height=1250></canvas>
@@ -40,9 +47,15 @@
 
 <style>
 .stats {
-    background-color: green;
+    background-color: #008000;
     width: 200px;
     font-size: 13px;
+    border: 2px inset #83AF83;
+    border-radius: 3px;
+    padding: 7px;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: top;
 }
 
 body {
@@ -113,6 +126,8 @@ body {
 }
 
 .robot-spawn {
+    display: inline-block;
+    vertical-align: top;
     width: 560px;
 }
 
@@ -122,22 +137,36 @@ body {
     border-bottom-right-radius: 5px;
 }
 
-.robot {
+.robot-container {
     display: inline-block;
     cursor: pointer;
-    color: #FFF;
     width: 100px;
+    opacity: .9;
+    vertical-align: top;
+}
+
+.robot-container .money {
+    width: 92px;
+    display: inline-block;
     text-align: center;
-    opacity: .6;
     padding: 1px 0 3px;
     border: 4px outset #BDBDBD;
     border-radius: 10px;
-    vertical-align: top;
     background-color: #8B8B8B;
 }
 
-.robot:hover {
-    opacity: .8;
+.robot {
+    display: inline-block;
+    color: #FFF;
+    text-align: center;
+    padding: 1px 0 3px;
+    border: 4px outset #BDBDBD;
+    border-radius: 10px;
+    background-color: #8B8B8B;
+}
+
+.robot-container:hover {
+    opacity: 1;
 }
 </style>
 
