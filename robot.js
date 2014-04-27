@@ -20,14 +20,16 @@ var Robot = function(baseAttrs, startX) {
 
     //This is incompatible with the tick function
     this.moveToward = function(destX, destY) {
-        var canHitTile = canPassTile(grid[destX][destY]);
-        while(canHitTile && !(this.position.x === destX && this.position.y === destY)) {
+        this.canMoveToward = canPassTile(grid[destX][destY]);
+        if(this.canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
             var randomVal = Math.random();
             if(randomVal > baseAttrs.wobble) {
-                canHitTile = this.goToward(destX, destY);
+                this.canMoveToward = this.goToward(destX, destY);
             } else {
-                canHitTile = makeRandomMove();
+                this.canMoveToward = makeRandomMove();
             }
+        } else {
+            this.canMoveToward = false;
         }
     };
 
@@ -113,6 +115,7 @@ var Robot = function(baseAttrs, startX) {
     this.move = function(xDelta, yDelta) {
         grid[this.position.x][this.position.y].setType('backfill');
 
+        this.energy -= 1;
         this.position.x += xDelta;
         this.position.y += yDelta;
 
