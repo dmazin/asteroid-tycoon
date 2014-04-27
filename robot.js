@@ -7,19 +7,21 @@ var Robot = function(baseAttrs) {
     this.position = {x: 0, y: 0};
 
     // should return [xDelta, yDelta] (one of [-1,0], [1,0], [0,-1], [0,1])
-    this.goTo = function (destX, destY, grid) {
+    this.goTo = function (destX, destY) {
         // let's do Uniform Cost Search?
 
         function popMinNode(frontier) {
             var bestCost = 9999;
             var bestNode = null;
-            frontier.forEach(function (node) {
+            var bestIndex = null;
+            frontier.forEach(function (node, idx) {
                 if (node.pathCost < bestCost) {
                     bestNode = node;
                     bestCost = node.pathCost;
+                    bestIndex = idx;
                 }
             });
-            frontier.splice(frontier.indexOf(bestNode), 1);
+            frontier.splice(bestIndex, 1);
             return bestNode;
         }
 
@@ -44,9 +46,13 @@ var Robot = function(baseAttrs) {
             [[-1,0], [1,0], [0,-1], [0,1]].forEach(function (dir) {
                 var dest = {'x': node.x + dir[0], 'y': node.y + dir[1]};
 
-                var tile = grid[dest.x][dest.y];
+                if (!grid[dest.x] || !grid[dest.x][dest.y] ||
+                        !canPassTile(grid[dest.x][dest.y])) {
+                    // dest is out of bounds or impassable
+                    return;
+                }
 
-                if(!canPassTile(tile)) { return; } // cause the tile is impassable
+                var tile = grid[dest.x][dest.y];
 
                 var child = {
                     'x': dest.x,
@@ -117,14 +123,15 @@ var Robot = function(baseAttrs) {
     //If the tile is passable in multiple turns (including whether it can get
     // everything on the tile).
     var canPassTile = function(tile) {
-        var tileHardness = tile.getHardness();
+        var resource = resources[tile.type];
         var drillHardness = baseAttrs.hardness;
-        return (drillHardness > tileHardness);
-    };
+        return (drillHardness > resource.hardness);
+    }
 
     var timeToPassTile = function(tile) {
-        return (baseAttrs.hardness - tile.getHardness()) * tile.resistance;
-    };
+        var resource = resources[tile.type];
+        return (baseAttrs.hardness - resource.hardness) * resource.resistance;
+    }
 
     return this;
 };
@@ -144,4 +151,5 @@ var spawnBot = function(type) {
     var robotAttrs = robotLevels[type][state.getRobotLevel(type)];
     var bot = new Robot(robotAttrs);
     activeBots.push(bot);
+    return bot;
 };
