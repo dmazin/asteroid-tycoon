@@ -10,7 +10,7 @@ BearBot.defaultBehavior = function(_this) {
 	otherBehaviors[randomChoice].defaultBehavior(_this);
 };
 
-//Sseeks out nearest minerals to harvestable
+//Sseeks out nearest minerals to harvest
 AntBot.defaultBehavior = function(_this) {
 	var harvestableSelectionCallback = function(tile) {
 		return resources[tile.getType()].harvestable === true;
@@ -23,7 +23,7 @@ AntBot.defaultBehavior = function(_this) {
 	}
 };
 
-//seeks out nearest hard rocks to smash rocks
+//seeks out nearest hard rocks to smash
 GoatBot.defaultBehavior = function(_this) {
 	var rockSelectionCallback = function(tile) {
 		return tile.getType() === 'rock';
@@ -36,8 +36,9 @@ GoatBot.defaultBehavior = function(_this) {
 	}
 };
 
+//seeks out rubble to suck up
 VultureBot.defaultBehavior = function(_this) {
-	var dest = findNearestBot(_this.position);
+	var dest = findNearestBot(_this.position);  // TODO: find nearest rubble vs. nearest bot?
 	if(dest) {
 		_this.goToward(dest.x, dest.y);
 	} else {

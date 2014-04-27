@@ -1,7 +1,7 @@
 // Definitions of base-level robots - spawn using robotLevels, not robots
 var robots = {
     'squirrelBot': {
-        'description': 'Basic scout robot',
+        'description': 'SquirrelBot 1.0 - Scout',
         'hardness': 0.13,
         'baseEnergy': 2000,
         'storage': 0,
@@ -10,10 +10,12 @@ var robots = {
         'cost': 150,
         'klass': SquirrelBot,
         'spriteSheet': 'pics/scout0_2x.png',
-        'spriteSpeed': 0.3
+        'spriteSpeed': 0.3,
+        'gif': 'pics/scout0.gif'
+
     },
     'bearBot': {
-        'description': 'All-around robot',
+        'description': 'BearBot 1.0 - All Around',
         'hardness': 0.25,
         'baseEnergy': 1200,
         'storage': 100,
@@ -22,10 +24,11 @@ var robots = {
         'cost': 300,
         'klass': BearBot,
         'spriteSheet': 'pics/allaround0_2x.png',
-        'spriteSpeed': 0.3
+        'spriteSpeed': 0.3,
+        'gif': 'pics/allaround0.gif'
     },
     'antBot': {
-        'description': 'Harvester robot',
+        'description': 'AntBot 1000 - Harvester',
         'hardness': 0.35,
         'baseEnergy': 1000,
         'storage': 200,
@@ -34,10 +37,11 @@ var robots = {
         'cost': 550,
         'klass': AntBot,
         'spriteSheet': 'pics/harvester0_2x.png',
-        'spriteSpeed': 0.3
+        'spriteSpeed': 0.3,
+        'gif': 'pics/harvester0.gif'
     },
     'goatBot': {
-        'description': 'Smasher robot',
+        'description': 'GoatBot 1000 - Smasher',
         'hardness': 0.55,
         'baseEnergy': 1000,
         'storage': 0,
@@ -46,10 +50,11 @@ var robots = {
         'cost': 1050,
         'klass': GoatBot,
         'spriteSheet': 'pics/smasher0_2x.png',
-        'spriteSpeed': 0.3
+        'spriteSpeed': 0.3,
+        'gif': 'pics/smasher0.gif'
     },
     'vultureBot': {
-        'description': 'Rubble scavenger',
+        'description': 'VultureBot 1000 - Scavenger',
         'hardness': 0.1,
         'baseEnergy': 1500,
         'storage': 200,
@@ -58,7 +63,8 @@ var robots = {
         'cost': 650,
         'klass': VultureBot,
         'spriteSheet': 'pics/vulture0_2x.png',
-        'spriteSpeed': 0.3
+        'spriteSpeed': 0.3,
+        'gif': 'pics/scavenger0.gif'
     }
 };
 
