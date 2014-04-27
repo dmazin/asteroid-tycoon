@@ -2,6 +2,7 @@ var Robot = function(baseAttrs) {
     this.energy = baseAttrs.baseEnergy;
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; //The stuff you pick up
+    var _this = this;
 
     this.position = {x: 0, y: 0};
 
@@ -82,22 +83,22 @@ var Robot = function(baseAttrs) {
 
     var updateTileAndResources = function(tile) {
         //The math should totally be double checked here, but here's a rough draft
-        var changePercentage = tile.getHardness() / baseAttrs.hardness;
-        this.energy -= 1;
+        var changePercentage = baseAttrs.hardness - tile.getHardness();
+        _this.energy -= 1;
         var changeAmount = Math.ceil(tile.amount * changePercentage);
-        if (tile.harvestable && this.storage > 0) {
+        if (tile.harvestable && _this.storage > 0) {
             addResouces(changeAmount, tile.type);
         }
         tile.amount -= changeAmount; //Reduce the amount left on the tile
     };
 
     var addResources = function(changeAmount, resourceType) {
-        var amountHarvested = Math.min(changeAmount, this.storage);
-        this.storage -= amountHarvested;
-        var resourceAmount = this.resourceAmountByType[tile.type] || 0;
+        var amountHarvested = Math.min(changeAmount, _this.storage);
+        _this.storage -= amountHarvested;
+        var resourceAmount = _this.resourceAmountByType[tile.type] || 0;
         //Store the resources we've collected by the name to amount.
         //i.e { name: amount }
-        this.resourceAmountByType[tile.type] = resourceAmount + amountHarvested;
+        _this.resourceAmountByType[tile.type] = resourceAmount + amountHarvested;
     };
 
     //If the tile is passable in multiple turns (including whether it can get
