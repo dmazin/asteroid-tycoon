@@ -18,6 +18,19 @@ var Robot = function(baseAttrs, startX) {
     stage.addChild(this.shape);
     this.render();
 
+    //This is incompatible with the tick function
+    this.moveToward = function(destX, destY) {
+        var canHitTile = canPassTile(grid[destX][destY]);
+        while(canHitTile && !(this.position.x === destX && this.position.y === destY)) {
+            var randomVal = Math.random();
+            if(randomVal > baseAttrs.wobble) {
+                canHitTile = this.goToward(destX, destY);
+            } else {
+                canHitTile = makeRandomMove();
+            }
+        }
+    };
+
     // should return [xDelta, yDelta] (one of [-1,0], [1,0], [0,-1], [0,1])
     this.goToward = function (destX, destY) {
         // let's do Uniform Cost Search?
@@ -55,7 +68,7 @@ var Robot = function(baseAttrs, startX) {
                 // path to destination found
                 var dirFound = node.path[0];
                 this.move(dirFound[0], dirFound[1]);
-                return;
+                return true;
             }
             explored.push(node.x + ',' + node.y);
             [[-1,0], [1,0], [0,-1], [0,1]].forEach(function (dir) {
@@ -114,6 +127,18 @@ var Robot = function(baseAttrs, startX) {
         }
         this.canMove = (tile.amount === 0); //You can move if you're not blocked by a tile.
         //Can you move if you can't pick up stuff on a tile.
+    };
+
+    var makeRandomMove = function() {
+        var dirs = [[-1,0], [1,0], [0,-1], [0,1]].filter(function(dir) {
+            var dest = {'x': _this.position.x + dir[0], 'y': _this.position.y + dir[1]};
+            return grid[dest.x] && grid[dest.x][dest.y] && canPassTile(grid[dest.x][dest.y]);
+        });
+        if(dirs.length === 0) { return false; } //In case it's trapped somehow
+        var randomDir = Math.floor(Math.random() * dirs.length);
+        chosenDir = dirs[randomDir];
+        _this.move(chosenDir[0], chosenDir[1]);
+        return true;
     };
 
     var updateTileAndResources = function(tile) {

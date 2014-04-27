@@ -37,13 +37,13 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
         this.explored = false;
 
         this.refresh();
-    }
+    };
 
     this.refresh = function () {
         this.shape.graphics.clear();
         this.shape.graphics.beginFill(colors[this.getType()]);
         this.shape.graphics.rect(0, 0, size, size);
-    }
+    };
 
     this.getType = function() {
         return this.explored ? (this.type || type) : "unexplored";
@@ -54,12 +54,14 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
         this.refresh();
     };
 
-    this.setType = function (newType) {
-        this.type = newType;
-        this.refresh();
-    }
+    this.shape = new createjs.Shape();
+    this.shape.x = pixel_x;
+    this.shape.y = pixel_y;
+    stage.addChild(this.shape);
 
-    this.init();
+    this.amount = amount;
+    this.type = type;
+    this.explored = false;
 }
 
 function tick() {
@@ -77,7 +79,7 @@ function init_stage(width, height, size, surface_px) {
     for (var i = 0; i < width; i++) {
       var line = [];
       for (var j = 0; j < height; j++) {
-        var resourceName = ["dirt", "rock", "iron"][Math.floor(Math.random() * 3)];
+        var resourceName = generate_terrain(j);
         if (j === 0) {
             resourceName = "dirt";
         }
@@ -107,5 +109,26 @@ function init_stage(width, height, size, surface_px) {
     createjs.Ticker.addEventListener("tick", tick);
     createjs.Ticker.setFPS(FPS);
 }
+
+function generate_terrain(depth){
+  var dirtProbability = 1;
+  var stoneProbability = 0.1*Math.exp(depth*0.1);
+  var ironProbability = 0.01*Math.exp(depth*0.2);
+  var normalization = dirtProbability+stoneProbability+ironProbability;
+  dirtProbability = dirtProbability/normalization;
+  stoneProbability = stoneProbability/normalization;
+  ironProbability = ironProbability/normalization;
+  var mineralSelect = Math.random();
+  if(mineralSelect <=ironProbability){
+    return "iron";
+  }
+  else if (mineralSelect <=ironProbability + stoneProbability){
+    return "stone";
+  }
+  else {
+    return "dirt";
+  }
+}
+
 
 init_stage(game_width, game_height, grid_size, surface_height);
