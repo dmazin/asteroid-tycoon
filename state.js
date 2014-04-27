@@ -49,5 +49,7 @@ var playerState = (function() {
         }
     };
 
+    state.asteroid = new Asteroid();
+
     return state;
 })();

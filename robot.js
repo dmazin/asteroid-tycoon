@@ -1,5 +1,6 @@
-var Robot = function(baseAttrs, startX, destX, destY) {
+var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
     var _this = this;
+    var grid = asteroid.grid;
 
     this.energy = baseAttrs.baseEnergy * energy_scale;
     this.baseEnergy = baseAttrs.baseEnergy * energy_scale;
@@ -7,6 +8,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     this.resourceAmountByType = {}; // the stuff you pick up
     this.position = {'x': startX, 'y': 0};
     this.reachedDestination = false;
+    this.asteroid = asteroid;
 
     this.destX = destX;
     this.destY = destY;
@@ -227,7 +229,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     this.moveTo = function(newX, newY) {
         // Update the direction for the sprite
         updateDirection(newX, newY);
-        
+
         var currentTile = grid[this.position.x][this.position.y];
         var newTile = grid[newX][newY];
 

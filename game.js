@@ -2,7 +2,7 @@
 /* global constants */
 
 var stage;
-var grid = [];
+var grid = playerState.asteroid.grid;
 var spawn = {};
 
 var grid_size = 40;

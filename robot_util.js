@@ -74,7 +74,7 @@ var spawnBot = function(type, startX) {
         // Make a new bot based on the position.
         var destX = parseInt(e.stageX / 40);
         var destY = parseInt(e.stageY / 40);
-        var bot = new Robot(robotAttrs, startX, destX, destY);
+        var bot = new Robot(robotAttrs, startX, destX, destY, playerState.asteroid);
         activeBots.push(bot);
         return bot;
     }, null, true);
