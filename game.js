@@ -13,14 +13,6 @@ var surface_height = 75;
 
 var FPS = 10;
 
-var colors = {
-    'dirt': '#292426',
-    'rock': 'gray',
-    'iron': '#0D0B0C',
-    'backfill': 'pink',
-    'unexplored': 'black'
-};
-
 function createSpawn(xpos){
     spawn.shape = new createjs.Shape();
     spawn.shape.graphics.beginFill('#22B709')
@@ -41,7 +33,7 @@ function moveSpawn(direction){
   }
 }
 
-function Tile(pixel_x, pixel_y, size, type, amount) {
+function Tile(pixel_x, pixel_y, size, type, amount, pos) {
     /* create the easeljs shape object that
      * draws this Tile, and add it to the
      * stage
@@ -56,7 +48,10 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
         this.amount = amount;
         this.baseAmount = amount;
         this.type = type;
-        this.explored = false; // true to disable for of war
+        this.explored = false; // true to disable fog of war
+        if (pos[1] < 2) { // no FOW on first two rows, let's say
+            this.explored = true;
+        }
 
         this.refresh();
     };
@@ -111,7 +106,8 @@ function init_stage(width, height, size, surface_px) {
                              surface_px + j * size,
                              size,
                              resourceName,
-                             amount);
+                             amount,
+                             [i, j]);
 
         //Backbone.trigger('stageClick
 
@@ -135,13 +131,6 @@ function init_stage(width, height, size, surface_px) {
     createjs.Ticker.setFPS(FPS);
 }
 
-/* maps resources to function from depth to prob at depth */
-var resource_weights = {
-    'iron': {p: 0.01, d_weight: 0.2},
-    'stone': {p: 0.1, d_weight: 0.1},
-    'dirt': {p: 1, d_weight: 0}
-}
-
 function normalize(array) {
     var total = _.reduce(array,
             function(m, n) { return m + n;},
@@ -150,32 +139,27 @@ function normalize(array) {
 }
 
 function generate_terrain(depth) {
+    var resources = [];
+    var maxDepth = game_height;
+    var probs = _.map(resource_weights, function(x, r) {
+        resources.push(r);
+        if (depth < x.minDepth) {
+            return 0;
+        } else {
+            return (maxDepth - depth) * x.pTop + depth * x.pBottom;
+        }
+    });
 
-  var probs = _.map(resource_weights, function(x) {
-      return x.p * Math.exp(x.d_weight * depth);
-  });
+    probs = normalize(probs);
+    var rand = Math.random();
 
-  probs = normalize(probs);
-  var rand = Math.random();
-
-
-  var dirtProbability = 1;
-  var stoneProbability = 0.1*Math.exp(depth*0.1);
-  var ironProbability = 0.01*Math.exp(depth*0.2);
-  var normalization = dirtProbability+stoneProbability+ironProbability;
-  dirtProbability = dirtProbability/normalization;
-  stoneProbability = stoneProbability/normalization;
-  ironProbability = ironProbability/normalization;
-  var mineralSelect = Math.random();
-  if(mineralSelect <=ironProbability){
-    return "iron";
-  }
-  else if (mineralSelect <=ironProbability + stoneProbability){
-    return "rock";
-  }
-  else {
-    return "dirt";
-  }
+    var accum = 0;
+    for (var i = 0; i < resources.length; i++) {
+        accum += probs[i];
+        if (rand < accum) {
+            return resources[i];
+        }
+    }
 }
 
 

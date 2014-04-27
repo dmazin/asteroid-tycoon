@@ -187,13 +187,25 @@ var resources = {
         'hardness': 0.3,
         'harvestable': false,
         'value': 0,
-        'image': 'pics/rock08.png'
+        'image': 'pics/rock01.png'
     },
     'iron': {
         'hardness': 0.3,
         'harvestable': true,
         'value': 10,
         'image': 'pics/rock04.png'
+    },
+    'mintium': {
+        'hardness': 0.4,
+        'harvestable': true,
+        'value': 10,
+        'image': 'pics/rock09.png'
+    },
+    'junipum': {
+        'hardness': 0.5,
+        'harvestable': true,
+        'value': 10,
+        'image': 'pics/rock07.png'
     },
     'unexplored': {
         'hardness': 0.1,
@@ -202,3 +214,12 @@ var resources = {
         'image': 'pics/defaultTile_2x.png'
     }
 };
+
+/* maps resources to function from depth to prob at depth */
+var resource_weights = {
+    'dirt': {pTop: 1, pBottom: 1, minDepth: 0},
+    'rock': {pTop: 0.1, pBottom: 0.4, minDepth: 1},
+    'iron': {pTop: 0.01, pBottom: 0.2, minDepth: 1},
+    'mintium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
+    'junipum': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
+}
