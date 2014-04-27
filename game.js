@@ -65,7 +65,7 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
 
 function tick() {
     activeBots.forEach(function(bot) {
-        bot.moveToward(20, 20);
+        bot.moveToward(bot.destX, bot.destY);
     });
 
     stage.update();
@@ -73,7 +73,8 @@ function tick() {
 
 function init_stage(width, height, size, surface_px) {
 
-    stage = new createjs.Stage("mainCanvas");
+    window.stage = new createjs.Stage("mainCanvas");
+
 
     for (var i = 0; i < width; i++) {
       var line = [];
@@ -88,6 +89,8 @@ function init_stage(width, height, size, surface_px) {
                              size,
                              resourceName,
                              amount);
+
+        //Backbone.trigger('stageClick
 
         // Mouseover crap - bad
         //stage.enableMouseOver();
