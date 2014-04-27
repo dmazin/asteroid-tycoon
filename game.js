@@ -54,14 +54,13 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
         this.refresh();
     };
 
-    this.shape = new createjs.Shape();
-    this.shape.x = pixel_x;
-    this.shape.y = pixel_y;
-    stage.addChild(this.shape);
+    this.setType = function (newType) {
+        this.type = newType;
+        this.refresh();
+    }
 
-    this.amount = amount;
-    this.type = type;
-    this.explored = false;
+    this.init();
+
 }
 
 function tick() {
