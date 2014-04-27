@@ -9,16 +9,16 @@ var Robot = function(baseAttrs) {
         // let's do Uniform Cost Search?
 
         var startNode = {
-            'x': this.position.x,
-            'y': this.position.y,
-            'pathCost': 0,
-            'path' = []
+            x: this.position.x,
+            y: this.position.y,
+            pathCost: 0,
+            path: []
         };
-        var frontier = [startNode]
+        var frontier = [startNode];
         var explored = [];
 
         while (true) {
-            if (frontier.length == 0) {
+            if (frontier.length === 0) {
                 return false; // failure :-(
             }
             var node = findNodeWithMinPathCost(frontier); // TODO: implement such a function
@@ -27,29 +27,29 @@ var Robot = function(baseAttrs) {
             }
             explored.push(node.x + ',' + node.y);
             [[-1,0], [1,0], [0,-1], [0,1]].forEach(function (dir) {
-                var dest = {'x': node.x + dir[0], 'y': node.y + dir[1]};
+                var dest = { x: node.x + dir[0], y: node.y + dir[1]};
 
                 var tile = grid.getTileFromPos(dest); // TODO: add this probably through grid
 
                 if(!canPassTile(tile)) { return; } // cause the tile is impassable
 
                 var child = {
-                    'x': dest.x,
-                    'y': dest.y,
-                    'pathCost': node.pathCost + getTileCost(tile), // TODO: implement such a function
-                    'path': path.concat(dir)
-                }
+                    x: dest.x,
+                    y: dest.y,
+                    pathCost: node.pathCost + getTileCost(tile), // TODO: implement such a function
+                    path: path.concat(dir)
+                };
 
-                if (explored.indexOf(node.x + ',' + node.y) == -1 &&
-                        !frontier.some(function (node) {node.x == child.x && node.y == child.y})) {
+                if (explored.indexOf(node.x + ',' + node.y) === -1 &&
+                        !frontier.some(function (node) { node.x === child.x && node.y === child.y; })) {
                     // if child state is not in explored or frontier,
                     // insert into frontier
                     frontier.push(child);
-                } else if (frontier.some(function (node) {node.x == child.x && node.y == child.y})) {
+                } else if (frontier.some(function (node) { node.x === child.x && node.y === child.y; })) {
                     // if child state is in frontier *with a higher path-cost*,
                     // replace that frontier node with child
                     frontier = frontier.map(function (node) {
-                        if (node.x == child.x && node.y == child.y &&
+                        if (node.x === child.x && node.y === child.y &&
                                 node.pathCost > child.pathCost) {
                             return child;
                         } else {
@@ -89,7 +89,7 @@ var Robot = function(baseAttrs) {
             addResouces(changeAmount, tile.type);
         }
         tile.amount -= changeAmount; //Reduce the amount left on the tile
-    }
+    };
 
     var addResources = function(changeAmount, resourceType) {
         var amountHarvested = Math.min(changeAmount, this.storage);
