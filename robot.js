@@ -5,6 +5,7 @@ var Robot = function(baseAttrs, startX) {
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; // the stuff you pick up
     this.position = {'x': startX, 'y': 0};
+    this.canMoveToward = true;
 
     this.init = function () {
         this.render();
@@ -20,14 +21,16 @@ var Robot = function(baseAttrs, startX) {
 
     //This is incompatible with the tick function
     this.moveToward = function(destX, destY) {
-        var canHitTile = canPassTile(grid[destX][destY]);
-        while(canHitTile && !(this.position.x === destX && this.position.y === destY)) {
+        this.canMoveToward = canPassTile(grid[destX][destY]);
+        if(this.canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
             var randomVal = Math.random();
             if(randomVal > baseAttrs.wobble) {
-                canHitTile = this.goToward(destX, destY);
+                this.canMoveToward = this.goToward(destX, destY);
             } else {
-                canHitTile = makeRandomMove();
+                this.canMoveToward = makeRandomMove();
             }
+        } else {
+            this.canMoveToward = false;
         }
     };
 
@@ -41,8 +44,8 @@ var Robot = function(baseAttrs, startX) {
         var start = graph.nodes[this.position.x][this.position.y];
         var end = graph.nodes[destX][destY];
         var result = astar.search(graph.nodes, start, end);
-        if (result && result.length > 0) {
-            this.moveTo(result[0].pos.x, result[0].pos.y)
+        if (result) {
+            this.moveTo(result[0].pos.x, result[0].pos.y);
         }
     };
 
@@ -111,9 +114,9 @@ var Robot = function(baseAttrs, startX) {
     //If the tile is passable in multiple turns (including whether it can get
     // everything on the tile).
     var canPassTile = function(tile) {
-        var resource = resources[tile.getType()];
+        var resourceHardness = resources[tile.getType()].hardness;
         var drillHardness = baseAttrs.hardness;
-        return (drillHardness > resource.hardness);
+        return (drillHardness > resourceHardness);
     };
 
     var timeToPassTile = function(tile) {
