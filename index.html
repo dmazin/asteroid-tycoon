@@ -30,14 +30,19 @@
             </pre>
         </div>
         <marquee behavior="alternate">
-            <span class='money notification'>YOU HAVE <span class='amount'></span> SPACE DOLLARS</span>
+            <span class='money notification'>YOU HAVE <span class='amount'></span> NORMALIZED SPACE DOLLARS</span>
             <span class='iron notification'>IRON REPORT! IRON LEVELS AT <span class='amount'></span> IRONS</span>
             <span class='alert'>PRODUCTION DECLINING, PICK UP SLACK OR FACE CORPORATE OVERSIGHT</span>
         </marquee>
         <div class='controls'>
-            <div class='stats'>
-                Dollars: <span class='money'></span><br>
-                Irons: <span class='iron'></span>
+            <div class='information'>
+                <div class='stats'>
+                    Irons: <span class='iron'></span>
+                </div>
+                <div class='money-stats stats'>
+                    <span class='tiny-description'>NORMALIZED SPACE DOLLARS</span>
+                    <span class='amount'></span>
+                </div>
             </div>
             <div class='robot-spawn'></div>
         </div>
@@ -58,6 +63,30 @@
 }
 .sound a {
     color: white;
+}
+
+.information {
+    display: inline-block;
+    width: 220px;
+}
+
+.money-stats .tiny-description {
+    font-size: 10px;
+    position: relative;
+    top: -4px;
+    width: 80px;
+    display: inline-block;
+}
+
+.money-stats {
+    margin-top: 5px;
+    text-shadow: 1px 1px 1px #4A5E47;
+    color: #191F18;
+}
+
+.money-stats .amount {
+    float: right;
+    font-size: 20px;
 }
 
 .stats {
@@ -205,7 +234,6 @@ body {
 
         if (money > robots[robotType].cost) {
             spawnBot(robotType, Math.floor(spawn.shape.x/grid_size));
-            playerState.changeResource('money', -robots[robotType].cost);
         }
     });
 </script>

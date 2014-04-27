@@ -35,13 +35,16 @@ var playerState = (function() {
 
     state.changeResource = function(resource, amount) {
         resourceAmounts[resource] += amount;
+
+        // broken idk why
+        //resourceAmounts['money'] += resources[resource].value;
+
         if (resource === 'iron') {
             $('.stats .iron').text(parseInt(resourceAmounts[resource]));
             $('.notification.iron .amount').text(parseInt(resourceAmounts[resource]));
         }
         if (resource === 'dirt') {
-            resourceAmounts['money'] += amount;
-            $('.stats .money').text(parseInt(resourceAmounts['money']));
+            $('.money-stats .amount').text(parseInt(resourceAmounts['money']));
             $('.notification.money .amount').text(parseInt(resourceAmounts['money']));
         }
     };
