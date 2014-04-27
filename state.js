@@ -1,6 +1,6 @@
 var activeBots = [];
 
-var playerState = function() {
+var playerState = (function() {
     var robotLevels = {
         'squirrelBot': 0
     };
@@ -10,7 +10,9 @@ var playerState = function() {
         'iron': 0
     };
 
-    this.setRobotLevel = function(robotType, level) {
+    state = {};
+
+    state.setRobotLevel = function(robotType, level) {
         if (level <= robotLevels[robotType]) {
             return;
         }
@@ -18,11 +20,13 @@ var playerState = function() {
         robotLevels[robotType] = level;
     };
 
-    this.getResource = function(resource) {
+    state.getResource = function(resource) {
         return resourceAmounts[resource];
     };
 
-    this.changeResource = function(resource, amount) {
+    state.changeResource = function(resource, amount) {
         resourceAmounts['resource'] += amount;
     };
-};
+
+    return state;
+})();
