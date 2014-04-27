@@ -8,12 +8,12 @@ var grid_size = 20;
 var game_width = 50;
 var game_height = 60;
 
-var surface_height = 100;
+var surface_height = 50;
 
 var FPS = 30;
 
 var colors = {
-    'dirt': 'brown',
+    'dirt': '#292426',
     'rock': 'gray',
     'iron': 'black'
 }
