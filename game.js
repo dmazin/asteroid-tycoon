@@ -4,9 +4,9 @@
 var stage;
 var grid = [];
 
-var grid_size = 20;
-var game_width = 50;
-var game_height = 60;
+var grid_size = 40;
+var game_width = 25;
+var game_height = 30;
 
 var surface_height = 50;
 
@@ -65,7 +65,7 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
 
 function tick() {
     activeBots.forEach(function(bot) {
-        bot.moveToward(30, 30);
+        bot.moveToward(20, 20);
     });
 
     stage.update();

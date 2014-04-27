@@ -2,7 +2,11 @@ var activeBots = [];
 
 var playerState = (function() {
     var robotLevels = {
-        'squirrelBot': 0
+        'squirrelBot': 0,
+        'bearBot': 0,
+        'antBot': 0,
+        'goatBot': 0,
+        'vultureBot': 0
     };
 
     var resourceAmounts = {
