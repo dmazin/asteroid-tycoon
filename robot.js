@@ -137,7 +137,7 @@ var Robot = function(baseAttrs, startX) {
     //If the tile is passable in multiple turns (including whether it can get
     // everything on the tile).
     var canPassTile = function(tile) {
-        var resource = resources[tile.type];
+        var resource = resources[tile.getType()];
         var drillHardness = baseAttrs.hardness;
         return (drillHardness > resource.hardness);
     };

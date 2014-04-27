@@ -30,8 +30,12 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
     this.shape.y = pixel_y;
     stage.addChild(this.shape);
 
-    this.type = type;
     this.amount = amount;
+    this.explored = false;
+
+    this.getType = function() {
+        return this.explored ? type : "dirt";
+    };
 }
 
 function tick() {
@@ -46,7 +50,7 @@ function init_stage(width, height, size, surface_px) {
       var line = [];
       for (var j = 0; j < height; j++) {
         var resourceName = ["dirt", "rock", "iron"][Math.floor(Math.random() * 3)];
-        if (j == 0) {
+        if (j === 0) {
             resourceName = "dirt";
         }
         var amount = Math.floor(Math.random() * 20);
