@@ -44,7 +44,7 @@ var Robot = function(baseAttrs, startX) {
         var start = graph.nodes[this.position.x][this.position.y];
         var end = graph.nodes[destX][destY];
         var result = astar.search(graph.nodes, start, end);
-        if (result) {
+        if (result && result.length > 0) {
             this.moveTo(result[0].pos.x, result[0].pos.y);
         }
     };
@@ -158,5 +158,3 @@ var spawnBot = function(type, startX) {
     activeBots.push(bot);
     return bot;
 };
-
-bot = spawnBot('squirrelBot', 0);

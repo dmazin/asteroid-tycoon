@@ -2,17 +2,27 @@
 var robots = {
     'squirrelBot': {
         'description': 'Basic scout robot',
-        'hardness': 0.3,
+        'hardness': 0.13,
         'baseEnergy': 2000,
         'storage': 0,
         'wobble': 0.9,
         'harvestEfficiency': 0,
-        'cost': 10
+        'cost': 150
+    },
+    'bearBot': {
+        'description': 'All-around robot',
+        'hardness': 0.25,
+        'baseEnergy': 1200,
+        'storage': 100,
+        'wobble': 0.7,
+        'harvestEfficiency': 0.6,
+        'cost': 300
     }
 };
 
 var upgradeCosts = {
-    'squirrelBot': [0, 500, 1000]
+    'squirrelBot': [0, 500, 1000],
+    'bearBot': [0, 500, 1000]
 };
 
 var robotLevels = {
@@ -25,6 +35,15 @@ var robotLevels = {
         _.extend(robots['squirrelBot'], {
             baseEnergy: 3000,
             wobble: 0.6
+        }),
+    ],
+    'bearBot': [
+        robots['bearBot'],
+        _.extend(robots['bearBot'], {
+            baseEnergy: 1400
+        }),
+        _.extend(robots['bearBot'], {
+            baseEnergy: 1600
         }),
     ],
 };
