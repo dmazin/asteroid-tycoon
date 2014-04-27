@@ -37,13 +37,13 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
         this.explored = false;
 
         this.refresh();
-    }
+    };
 
     this.refresh = function () {
         this.shape.graphics.clear();
         this.shape.graphics.beginFill(colors[this.getType()]);
         this.shape.graphics.rect(0, 0, size, size);
-    }
+    };
 
     this.getType = function() {
         return this.explored ? (this.type || type) : "unexplored";
@@ -111,8 +111,8 @@ function init_stage(width, height, size, surface_px) {
 
 function generate_terrain(depth){
   var dirtProbability = 1;
-  var stoneProbability= .1*Math.exp(depth*.1);
-  var ironProbability= .01*Math.exp(depth*.2);
+  var stoneProbability = 0.1*Math.exp(depth*0.1);
+  var ironProbability = 0.01*Math.exp(depth*0.2);
   var normalization = dirtProbability+stoneProbability+ironProbability;
   dirtProbability = dirtProbability/normalization;
   stoneProbability = stoneProbability/normalization;
