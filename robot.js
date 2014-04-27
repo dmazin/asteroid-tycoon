@@ -85,7 +85,7 @@ var Robot = function(baseAttrs, startX) {
         if(dirs.length === 0) { return false; } //In case it's trapped somehow
         var randomDir = Math.floor(Math.random() * dirs.length);
         chosenDir = dirs[randomDir];
-        _this.move(chosenDir[0], chosenDir[1]);
+        _this.moveTo(_this.position.x + chosenDir[0], _this.position.y + chosenDir[1]);
         return true;
     };
 
