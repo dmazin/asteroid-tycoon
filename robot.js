@@ -5,6 +5,7 @@ var Robot = function(baseAttrs, startX) {
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; // the stuff you pick up
     this.position = {'x': startX, 'y': 0};
+    this.canMoveToward = true;
 
     this.init = function () {
         this.render();
@@ -167,9 +168,9 @@ var Robot = function(baseAttrs, startX) {
     //If the tile is passable in multiple turns (including whether it can get
     // everything on the tile).
     var canPassTile = function(tile) {
-        var resource = resources[tile.getType()];
+        var resourceHardness = resources[tile.getType()].hardness;
         var drillHardness = baseAttrs.hardness;
-        return (drillHardness > resource.hardness);
+        return (drillHardness > resourceHardness);
     };
 
     var timeToPassTile = function(tile) {
