@@ -8,13 +8,15 @@
 
 <div id='game'>
     <div id='menu'>
-        <pre class='title'>
-                ___   _____________________  ____  ________     ________  ____________  ____  _   __
-               /   | / ___/_  __/ ____/ __ \/ __ \/  _/ __ \   /_  __/\ \/ / ____/ __ \/ __ \/ | / /
-              / /| | \__ \ / / / __/ / /_/ / / / // // / / /    / /    \  / /   / / / / / / /  |/ /
-             / ___ |___/ // / / /___/ _, _/ /_/ // // /_/ /    / /     / / /___/ /_/ / /_/ / /|  /
-            /_/  |_/____//_/ /_____/_/ |_|\____/___/_____/    /_/     /_/\____/\____/\____/_/ |_/
-        </pre>
+        <div class='title-container'>
+            <pre class='title'>
+                    ___   _____________________  ____  ________     ________  ____________  ____  _   __
+                   /   | / ___/_  __/ ____/ __ \/ __ \/  _/ __ \   /_  __/\ \/ / ____/ __ \/ __ \/ | / /
+                  / /| | \__ \ / / / __/ / /_/ / / / // // / / /    / /    \  / /   / / / / / / /  |/ /
+                 / ___ |___/ // / / /___/ _, _/ /_/ // // /_/ /    / /     / / /___/ /_/ / /_/ / /|  /
+                /_/  |_/____//_/ /_____/_/ |_|\____/___/_____/    /_/     /_/\____/\____/\____/_/ |_/
+            </pre>
+        </div>
         <marquee behavior="alternate">
         <span class='money notification'>YOU HAVE <span class='amount'></span> SPACE DOLLARS</span>
         <span class='iron notification'>IRON REPORT! IRON LEVELS AT <span class='amount'></span> IRONS</span>
@@ -58,7 +60,17 @@ body {
     color: rgba(214, 214, 214, 0.7);
 }
 
+.title-container {
+    background-color: #C9C9C9;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 7px;
+}
+
 .title {
+    border: 7px inset #FFF;
+    background-color: #1B3B64;
+    border-radius: 12px;
     color: #FFF;
     width: 850px;
     margin: 0 auto;
