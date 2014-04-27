@@ -70,6 +70,16 @@ function init_stage(width, height, size, surface_px) {
                              size,
                              resourceName,
                              amount);
+
+        // Mouseover crap - bad
+        //stage.enableMouseOver();
+        //g.shape.on('mouseover', function(event) {
+            //event.target.graphics.clear().beginFill('#fff').drawRect(0, 0, 20, 20).endFill();
+        //});
+        //g.shape.on('mouseout', function(event) {
+            //event.target.graphics.clear().beginFill(colors[g.getType()]).drawRect(0, 0, 20, 20).endFill();
+        //});
+
         line.push(g);
       }
       grid.push(line);
