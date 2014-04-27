@@ -7,7 +7,8 @@ var robots = {
         'storage': 0,
         'wobble': 0.9,
         'harvestEfficiency': 0,
-        'cost': 150
+        'cost': 150,
+        'klass': SquirrelBot
     },
     'bearBot': {
         'description': 'All-around robot',
@@ -16,7 +17,8 @@ var robots = {
         'storage': 100,
         'wobble': 0.7,
         'harvestEfficiency': 0.6,
-        'cost': 300
+        'cost': 300,
+        'klass': BearBot
     },
     'antBot': {
         'description': 'Harvester robot',
@@ -25,7 +27,8 @@ var robots = {
         'storage': 200,
         'wobble': 0.4,
         'harvestEfficiency': 0.8,
-        'cost': 550
+        'cost': 550,
+        'klass': AntBot
     },
     'goatBot': {
         'description': 'Smasher robot',
@@ -34,7 +37,8 @@ var robots = {
         'storage': 0,
         'wobble': 0.5,
         'harvestEfficiency': 0,
-        'cost': 1050
+        'cost': 1050,
+        'klass': GoatBot
     },
     'vultureBot': {
         'description': 'Scavenger robot that picks up dead robot parts',
@@ -43,7 +47,8 @@ var robots = {
         'storage': 200,
         'wobble': 0.1,
         'harvestEfficiency': 0.7,
-        'cost': 650
+        'cost': 650,
+        'klass': VultureBot
     }
 };
 

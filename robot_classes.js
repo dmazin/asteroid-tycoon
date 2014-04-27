@@ -1,4 +1,4 @@
-var SquirrelBot, BearBot, AntBot, GoatBot, VultureBot;
+var SquirrelBot = {}, BearBot = {}, AntBot = {}, GoatBot = {}, VultureBot = {};
 
 SquirrelBot.defaultBehavior = function(_this) {
 	_this.makeRandomMove();
@@ -15,7 +15,8 @@ AntBot.defaultBehavior = function(_this) {
 	var harvestableSelectionCallback = function(tile) {
 		return resources[tile.getType()].harvestable === true;
 	};
-	_this.goTo(findNearestItem(_this.position, harvestableSelectionCallback));
+	dest = findNearestResource(_this.position, harvestableSelectionCallback);
+	_this.goToward(dest.x, dest.y);
 };
 
 //seeks out nearest hard rocks to smash rocks
@@ -23,11 +24,13 @@ GoatBot.defaultBehavior = function(_this) {
 	var rockSelectionCallback = function(tile) {
 		return tile.getType() === 'rock';
 	};
-	_this.goTo(findNearestItem(_this.position, rockSelectionCallback));
+	dest = findNearestResource(_this.position, rockSelectionCallback);
+	_this.goToward(dest.x, dest.y);
 };
 
 VultureBot.defaultBehavior = function(_this) {
-	_this.goTo(findNearestBot(_this.position));
+	dest = findNearestBot(_this.position);
+	_this.goToward(dest.x, dest.y);
 };
 
 //availbleBots for vulture
@@ -69,5 +72,5 @@ var findNearestResource = function(position, resourceSelectionCallback) {
 		});
 	});
 
-	return findNearestItem(resourcePositions);
+	return findNearestItem(position, resourcePositions);
 };

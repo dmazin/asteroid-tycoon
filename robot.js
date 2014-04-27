@@ -29,7 +29,7 @@ var Robot = function(baseAttrs, startX) {
         if (this.reachedDestination ||
             (this.position.x === destX && this.position.y === destY)) {
             this.reachedDestination = this.reachedDestination || true;
-            delta = klass.defaultBehavior(this);
+            baseAttrs.klass.defaultBehavior(this);
             return;
         }
 
@@ -41,7 +41,7 @@ var Robot = function(baseAttrs, startX) {
             if(randomVal > (baseAttrs.wobble * WobbleConstant)) {
                 canMoveToward = this.goToward(destX, destY);
             } else {
-                canMoveToward = makeRandomMove();
+                canMoveToward = this.makeRandomMove();
             }
         } else if (this.position.x === destX && this.position.y === destY) {
             this.reachedDestination = true;
@@ -91,7 +91,7 @@ var Robot = function(baseAttrs, startX) {
         //Can you move if you can't pick up stuff on a tile.
     };
 
-    var makeRandomMove = function() {
+    this.makeRandomMove = function() {
         var dirs = [[-1,0], [1,0], [0,-1], [0,1]].filter(function(dir) {
             var dest = {'x': _this.position.x + dir[0], 'y': _this.position.y + dir[1]};
             return grid[dest.x] && grid[dest.x][dest.y] && canPassTile(grid[dest.x][dest.y]);
