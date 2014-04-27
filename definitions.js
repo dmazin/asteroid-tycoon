@@ -38,7 +38,7 @@ var robots = {
     },
     'vultureBot': {
         'description': 'Scavenger robot that picks up dead robot parts',
-        'hardness': 0,
+        'hardness': 0.1,
         'baseEnergy': 1500,
         'storage': 200,
         'wobble': 0.1,

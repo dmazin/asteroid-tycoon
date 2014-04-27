@@ -5,6 +5,7 @@ var Robot = function(baseAttrs, startX) {
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; // the stuff you pick up
     this.position = {'x': startX, 'y': 0};
+    this.reachedDestination = false;
 
     this.init = function () {
         this.render();
@@ -20,15 +21,30 @@ var Robot = function(baseAttrs, startX) {
 
     //This is incompatible with the tick function
     this.moveToward = function(destX, destY) {
+        //It can't move if it's dead.
+        if(this.energy === 0) { return; }
+
+        // If they have reached their destination they should do
+        // default behavior.
+        if (this.reachedDestination ||
+            (this.position.x === destX && this.position.y === destY)) {
+            this.reachedDestination = this.reachedDestination || true;
+            delta = klass.defaultBehavior(this);
+            return;
+        }
+
+        //If they haven't reached their destination, try to
+        // go to the given destination
         canMoveToward = canPassTile(grid[destX][destY]);
-        if(canMoveToward && !(this.position.x === destX && this.position.y === destY) &&
-            (this.energy > 0)) {
+        if(canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
             var randomVal = Math.random();
             if(randomVal > (baseAttrs.wobble * WobbleConstant)) {
                 canMoveToward = this.goToward(destX, destY);
             } else {
                 canMoveToward = makeRandomMove();
             }
+        } else if (this.position.x === destX && this.position.y === destY) {
+            this.reachedDestination = true;
         }
     };
 
