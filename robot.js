@@ -13,13 +13,12 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 
     this.init = function () {
         var spriteSheet = new createjs.SpriteSheet({
-            images: [baseAttrs.spriteSheet],
+            images: [baseAttrs.spriteSheet, "pics/explosion_2x.png", "pics/rubble_2x.png"],
             frames: {width:40, height:40},
             animations: {
-                run: {
-                    frames: [0,1],
-                    speed: baseAttrs.spriteSpeed,
-                }
+                run: [0, 1, 'run', baseAttrs.spriteSpeed],
+                explode: [2, 8, 'rubble', 0.5],
+                rubble: [9, 9, 'rubble', 1]
             }
         });
         this.animation = new createjs.Sprite(spriteSheet, "run");
@@ -39,7 +38,15 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 
     this.moveToward = function(destX, destY) {
         //It can't move if it's dead.
-        if(this.energy <= 0) { return; }
+        if (this.energy <= 0) {
+            if (!this.dead) {
+                this.animation.gotoAndPlay('explode');
+                this.healthbar.visible = false;
+            }
+            this.dead = true;
+            this.salvageValue = 10;
+            return;
+        }
 
         // If they have reached their destination they should do
         // default behavior.
@@ -52,14 +59,18 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 
         //If they haven't reached their destination, try to
         // go to the given destination
-        canMoveToward = canPassTile(grid[destX][destY]);
-        if(canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
-            var randomVal = Math.random();
-            if(randomVal > (baseAttrs.wobble * WobbleConstant) || this.currentlyDigging) {
-                canMoveToward = this.goToward(destX, destY);
-            } else {
-                canMoveToward = this.makeRandomMove();
+        if (grid[destX] && grid[destX][destY]) {
+            var canMoveToward = canPassTile(grid[destX][destY]);
+            if(canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
+                var randomVal = Math.random();
+                if(randomVal > (baseAttrs.wobble * WobbleConstant) || this.currentlyDigging) {
+                    this.goToward(destX, destY);
+                } else {
+                    this.makeRandomMove();
+                }
             }
+        } else {
+            this.makeRandomMove();
         }
     };
 
@@ -81,6 +92,9 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         var result = astar.search(graph.nodes, start, end);
         if (result && result.length > 0) {
             this.moveTo(result[0].pos.x, result[0].pos.y);
+        } else {
+            // can't reach destination - let's just move randomly
+            this.makeRandomMove();
         }
     };
 
