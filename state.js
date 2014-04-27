@@ -15,6 +15,8 @@ var playerState = (function() {
         'dirt': 0
     };
 
+    var currentAsteroid = new Asteroid();
+
     state = {};
 
     state.getRobotLevel = function(robotType) {
@@ -36,18 +38,22 @@ var playerState = (function() {
     state.changeResource = function(resource, amount) {
         resourceAmounts[resource] += amount;
 
-        // broken idk why
-        //resourceAmounts['money'] += resources[resource].value;
+        if (resources[resource]) {
+            resourceAmounts['money'] += resources[resource].value * amount;
+        }
 
         if (resource === 'iron') {
             $('.stats .iron').text(parseInt(resourceAmounts[resource]));
             $('.notification.iron .amount').text(parseInt(resourceAmounts[resource]));
         }
-        if (resource === 'dirt') {
-            $('.money-stats .amount').text(parseInt(resourceAmounts['money']));
-            $('.notification.money .amount').text(parseInt(resourceAmounts['money']));
-        }
+
+        $('.money-stats .amount').text(parseInt(resourceAmounts['money']));
+        $('.notification.money .amount').text(parseInt(resourceAmounts['money']));
     };
+
+    state.getGrid = function() {
+        return currentAsteroid.getGrid();
+    }
 
     return state;
 })();
