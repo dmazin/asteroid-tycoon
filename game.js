@@ -16,7 +16,7 @@ var colors = {
     'dirt': '#292426',
     'rock': 'gray',
     'iron': 'black',
-    'unexplored': 'purple'
+    'unexplored': '#0D0B0C'
 };
 
 function Tile(pixel_x, pixel_y, size, type, amount) {
