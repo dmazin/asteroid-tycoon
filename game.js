@@ -26,14 +26,6 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
     this.amount = amount;
 }
 
-
-Tile.prototype.changeTerrainType = function(new_type) {
-    this.terrain_type = new_type;
-    /* this is where we redraw the Tile
-     * if we need to based on the new terrain type
-     */
-}
-
 function init_stage(width, height, size, surface_px) {
 
     stage = new createjs.Stage("mainCanvas");
