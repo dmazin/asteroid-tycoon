@@ -36,7 +36,7 @@ VultureBot.defaultBehavior = function(_this) {
 //availbleBots for vulture
 var findNearestBot = function(position) {
 	var currDiff = 1000;
-	var nearestBot = availbleBots[0];
+	var nearestBot = availableBots[0];
 	availbleBots.forEach(function(bot) {
 		var diffX = Math.abs(bot.position.x - position.x);
 		var diffY = Math.abs(bot.position.y - position.y);
