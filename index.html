@@ -18,6 +18,12 @@
     </span>
 </script>
 
+<script id="mineral-stat-template" type="text/html">
+    <div class='<%= name %>'>
+        <%= name %>: <span class='amount'><%= amount %></span>
+    </div>
+</script>
+
 <div id='game'>
     <div id='menu'>
         <div class='title-container'>
@@ -36,8 +42,7 @@
         </marquee>
         <div class='controls'>
             <div class='information'>
-                <div class='stats'>
-                    Irons: <span class='iron'></span>
+                <div class='general-stats stats'>
                 </div>
                 <div class='money-stats stats'>
                     <span class='tiny-description'>NORMALIZED SPACE DOLLARS</span>
@@ -51,7 +56,7 @@
 </div>
 
 <div class='sound'>
-    <audio id="audio" src="slow-loop.ogg" autoplay loop></audio>
+    <audio id="audio" src="slow-loop.ogg" loop></audio>
     <a href='javascript://' onclick="document.getElementById('audio').play()">play</a>
     <a href='javascript://' onclick="document.getElementById('audio').pause()">pause</a>
 </div>
@@ -159,7 +164,7 @@ body {
 
 #menu {
     position: relative;
-    font-weight: 200;
+    font-weight: 300;
     width: 980px;
     height: 210px;
     padding: 10px;
@@ -214,7 +219,7 @@ body {
 </style>
 
 
-<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,100' rel='stylesheet' type='text/css'>
 <script src='lib/jquery.js'></script>
 <script src='lib/underscore.js'></script>
 <script src='lib/easeljs-0.7.1.min.js'></script>
