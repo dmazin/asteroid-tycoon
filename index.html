@@ -25,8 +25,8 @@
             .........             ___   _____________________  ____  ________     ________  ____________  ____  _   __
        _...MMMMM88&&&&..._       /   | / ___/_  __/ ____/ __ \/ __ \/  _/ __ \   /_  __/\ \/ / ____/ __ \/ __ \/ | / /
    '::....MMMMM88&&&&&&....::'  / /| | \__ \ / / / __/ / /_/ / / / // // / / /    / /    \  / /   / / / / / / /  |/ /
-      `''''MMMMM88&&&&''''`    / ___ |___/ // / / /___/ _, _/ /_/ // // /_/ /    / /     / / /___/ /_/ / /_/ / /|  /
-            'MMM8&&&'         /_/  |_/____//_/ /_____/_/ |_|\____/___/_____/    /_/     /_/\____/\____/\____/_/ |_/
+      `''''MMMMM88&&&&''''`    / ___ |___/ // / / /___/ _, _/ /_/ // // /_/ /    / /  ___/ / /___/ /_/ / /_/ / /|  /
+            'MMM8&&&'         /_/  |_/____//_/ /_____/_/ |_|\____/___/_____/    /_/  /____/\____/\____/\____/_/ |_/
             </pre>
         </div>
         <marquee behavior="alternate">
@@ -42,10 +42,24 @@
             <div class='robot-spawn'></div>
         </div>
     </div>
-    <canvas id='mainCanvas' width=1000 height=1250></canvas>
+    <canvas id='mainCanvas' width=1000 height=1275></canvas>
+</div>
+
+<div class='sound'>
+    <audio id="audio" src="slow-loop.ogg" autoplay loop></audio>
+    <a href='javascript://' onclick="document.getElementById('audio').play()">play</a>
+    <a href='javascript://' onclick="document.getElementById('audio').pause()">pause</a>
 </div>
 
 <style>
+.sound {
+    width: 80px;
+    margin: 0 auto;
+}
+.sound a {
+    color: white;
+}
+
 .stats {
     background-color: #008000;
     width: 200px;
