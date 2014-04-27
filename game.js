@@ -10,7 +10,7 @@ var game_height = 30;
 
 var surface_height = 50;
 
-var FPS = 30;
+var FPS = 10;
 
 var colors = {
     'dirt': '#292426',

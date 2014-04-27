@@ -9,7 +9,7 @@ var robots = {
         'harvestEfficiency': 0,
         'cost': 150,
         'spriteSheet': 'pics/allaround0_2x.png',
-        'spriteSpeed': 0.1
+        'spriteSpeed': 0.3
     },
     'bearBot': {
         'description': 'All-around robot',
@@ -20,7 +20,7 @@ var robots = {
         'harvestEfficiency': 0.6,
         'cost': 300,
         'spriteSheet': 'pics/allaround0_2x.png',
-        'spriteSpeed': 0.1
+        'spriteSpeed': 0.3
     },
     'antBot': {
         'description': 'Harvester robot',
@@ -31,7 +31,7 @@ var robots = {
         'harvestEfficiency': 0.8,
         'cost': 550,
         'spriteSheet': 'pics/allaround0_2x.png',
-        'spriteSpeed': 0.1
+        'spriteSpeed': 0.3
     },
     'goatBot': {
         'description': 'Smasher robot',
@@ -42,7 +42,7 @@ var robots = {
         'harvestEfficiency': 0,
         'cost': 1050,
         'spriteSheet': 'pics/allaround0_2x.png',
-        'spriteSpeed': 0.1
+        'spriteSpeed': 0.3
     },
     'vultureBot': {
         'description': 'Scavenger robot that picks up dead robot parts',
@@ -53,7 +53,7 @@ var robots = {
         'harvestEfficiency': 0.7,
         'cost': 650,
         'spriteSheet': 'pics/allaround0_2x.png',
-        'spriteSpeed': 0.1
+        'spriteSpeed': 0.3
     }
 };
 
@@ -74,13 +74,13 @@ var robotLevels = {
             baseEnergy: 2500,
             wobble: 0.75,
             'spriteSheet': 'pics/allaround0_2x.png',
-            'spriteSpeed': 0.2
+            'spriteSpeed': 0.6
         }),
         _.extend(robots['squirrelBot'], {
             baseEnergy: 3000,
             wobble: 0.6,
             'spriteSheet': 'pics/allaround0_2x.png',
-            'spriteSpeed': 0.4
+            'spriteSpeed': 1.0
         }),
     ],
     'bearBot': [
@@ -92,7 +92,7 @@ var robotLevels = {
             harvestEfficiency: 0.7,
             hardness: 0.45,
             'spriteSheet': 'pics/allaround0_2x.png',
-            'spriteSpeed': 0.2
+            'spriteSpeed': 0.6
         }),
         _.extend(robots['bearBot'], {
             baseEnergy: 1600,
@@ -101,7 +101,7 @@ var robotLevels = {
             harvestEfficiency: 0.8,
             hardness: 0.65,
             'spriteSheet': 'pics/allaround0_2x.png',
-            'spriteSpeed': 0.4
+            'spriteSpeed': 1.0
         }),
     ],
     'antBot': [
@@ -112,7 +112,7 @@ var robotLevels = {
             harvestEfficiency: 0.9,
             hardness: 0.65,
             'spriteSheet': 'pics/allaround0_2x.png',
-            'spriteSpeed': 0.2
+            'spriteSpeed': 0.6
         }),
         _.extend(robots['antBot'], {
             baseEnergy: 1500,
@@ -120,7 +120,7 @@ var robotLevels = {
             harvestEfficiency: 1.0,
             hardness: 0.85,
             'spriteSheet': 'pics/allaround0_2x.png',
-            'spriteSpeed': 0.4
+            'spriteSpeed': 1.0
         }),
     ],
     'goatBot': [
@@ -129,13 +129,13 @@ var robotLevels = {
             baseEnergy: 1100,
             hardness: 0.75,
             'spriteSheet': 'pics/allaround0_2x.png',
-            'spriteSpeed': 0.2
+            'spriteSpeed': 0.6
         }),
         _.extend(robots['goatBot'], {
             baseEnergy: 1200,
             hardness: 0.95,
             'spriteSheet': 'pics/allaround0_2x.png',
-            'spriteSpeed': 0.4
+            'spriteSpeed': 1.0
 
         }),
     ],
@@ -146,14 +146,14 @@ var robotLevels = {
             storage: 250,
             harvestEfficiency: 0.85,
             'spriteSheet': 'pics/allaround0_2x.png',
-            'spriteSpeed': 0.2
+            'spriteSpeed': 0.6
         }),
         _.extend(robots['vultureBot'], {
             baseEnergy: 2000,
             storage: 300,
             harvestEfficiency: 1.0,
             'spriteSheet': 'pics/allaround0_2x.png',
-            'spriteSpeed': 0.4
+            'spriteSpeed': 1.0
         }),
     ]
 };
@@ -165,7 +165,7 @@ var resources = {
         'value': 0
     },
     'dirt': {
-        'hardness': 0.1,
+        'hardness': 0,
         'harvestable': false,
         'value': 0
     },
