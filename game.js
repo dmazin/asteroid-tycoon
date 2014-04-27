@@ -54,13 +54,12 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
         this.refresh();
     };
 
-    this.setType = function (newType) {
+   this.setType = function (newType) {
         this.type = newType;
         this.refresh();
-    }
+    };
 
     this.init();
-
 }
 
 function tick() {
