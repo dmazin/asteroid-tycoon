@@ -27,7 +27,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         if(canMoveToward && !(this.position.x === destX && this.position.y === destY) &&
             (this.energy > 0)) {
             var randomVal = Math.random();
-            if(randomVal > (baseAttrs.wobble * WobbleConstant)) {
+            if(randomVal > (baseAttrs.wobble * WobbleConstant) || this.currentlyDigging) {
                 canMoveToward = this.goToward(destX, destY);
             } else {
                 canMoveToward = makeRandomMove();
@@ -58,10 +58,13 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 
         if (canPassTile(newTile)) {
             if (newTile.amount <= 0) {
+                this.currentlyDigging = null;
                 this.position.x = newX;
                 this.position.y = newY;
+                grid[this.position.x][this.position.y].setType('backfill');
             } else {
                 this.hit(newTile);
+                this.currentlyDigging = {x: newX, y: newY};
             }
         }
 
@@ -130,8 +133,16 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 };
 
 Robot.prototype.render = function() {
-    this.shape.x = grid_size*(this.position.x + 0.5);
-    this.shape.y = grid_size*(this.position.y + 0.5) + surface_height;
+    if (this.currentlyDigging) {
+        x = (this.position.x + this.currentlyDigging.x) / 2;
+        y = (this.position.y + this.currentlyDigging.y) / 2;
+    } else {
+        x = this.position.x;
+        y = this.position.y;
+    }
+
+    this.shape.x = grid_size*(x + 0.5);
+    this.shape.y = grid_size*(y + 0.5) + surface_height;
 
     var p = this.position;
     [p.x-1, p.x, p.x+1].forEach(function (x) {

@@ -35,7 +35,7 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
         this.amount = amount;
         this.baseAmount = amount;
         this.type = type;
-        this.explored = false;
+        this.explored = true;
 
         this.refresh();
     };
@@ -79,7 +79,7 @@ function init_stage(width, height, size, surface_px) {
     for (var i = 0; i < width; i++) {
       var line = [];
       for (var j = 0; j < height; j++) {
-        var resourceName = generate_terrain(j);
+        var resourceName = generate_terrain(j, height);
         if (j === 0) {
             resourceName = "dirt";
         }
@@ -112,7 +112,30 @@ function init_stage(width, height, size, surface_px) {
     createjs.Ticker.setFPS(FPS);
 }
 
-function generate_terrain(depth){
+/* maps resources to function from depth to prob at depth */
+var resource_weights = {
+    'iron': {p: 0.01, d_weight: 0.2},
+    'stone': {p: 0.1, d_weight: 0.1},
+    'dirt': {p: 1, d_weight: 0}
+}
+
+function normalize(array) {
+    var total = _.reduce(array, 
+            function(m, n) { return m + n;},
+            0);
+    return _.map(array, function(x) { return x / total; });
+}
+
+function generate_terrain(depth) {
+
+  var probs = _.map(resource_weights, function(x) {
+      return x.p * Math.exp(x.d_weight * depth);
+  });
+
+  probs = normalize(probs);
+  var rand = Math.random();
+
+
   var dirtProbability = 1;
   var stoneProbability = 0.1*Math.exp(depth*0.1);
   var ironProbability = 0.01*Math.exp(depth*0.2);
