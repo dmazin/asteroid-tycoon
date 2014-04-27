@@ -1,6 +1,7 @@
 // Definitions of base-level robots - spawn using robotLevels, not robots
 var robots = {
     'squirrelBot': {
+        'uiName': 'Squirrel',
         'description': 'SquirrelBot 1.0 - Scout',
         'hardness': 0.13,
         'baseEnergy': 2000,
@@ -17,6 +18,7 @@ var robots = {
         'gif': 'pics/scout0.gif'
     },
     'bearBot': {
+        'uiName': 'Bear',
         'description': 'BearBot 1.0 - All Around',
         'hardness': 0.25,
         'baseEnergy': 1200,
@@ -31,6 +33,7 @@ var robots = {
         'gif': 'pics/allaround0.gif'
     },
     'antBot': {
+        'uiName': 'Ant',
         'description': 'AntBot 1000 - Harvester',
         'hardness': 0.35,
         'baseEnergy': 1000,
@@ -45,6 +48,7 @@ var robots = {
         'gif': 'pics/harvester0.gif'
     },
     'goatBot': {
+        'uiName': 'Goat',
         'description': 'GoatBot 1000 - Smasher',
         'hardness': 0.55,
         'baseEnergy': 1000,
@@ -59,6 +63,7 @@ var robots = {
         'gif': 'pics/smasher0.gif'
     },
     'vultureBot': {
+        'uiName': 'Vulture',
         'description': 'VultureBot 1000 - Scavenger',
         'hardness': 0.1,
         'baseEnergy': 1500,

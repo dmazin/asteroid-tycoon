@@ -10,9 +10,7 @@ var playerState = (function() {
     };
 
     var resourceAmounts = {
-        'money': 5000,
-        'iron': 0,
-        'dirt': 0
+        'money': 5000
     };
 
     var currentAsteroid = null;
@@ -36,19 +34,33 @@ var playerState = (function() {
     };
 
     state.changeResource = function(resource, amount) {
+        resourceAmounts[resource] = resourceAmounts[resource] || 0;
         resourceAmounts[resource] += amount;
-
-        if (resources[resource]) {
-            resourceAmounts['money'] += resources[resource].value * amount;
-        }
-
-        if (resource === 'iron') {
-            $('.stats .iron').text(parseInt(resourceAmounts[resource]));
-            $('.notification.iron .amount').text(parseInt(resourceAmounts[resource]));
-        }
 
         $('.money-stats .amount').text(parseInt(resourceAmounts['money']));
         $('.notification.money .amount').text(parseInt(resourceAmounts['money']));
+
+        if (resource === 'money' || resources[resource].harvestable === false) {
+            return;
+        }
+
+        var statTemplate = _.template($('#mineral-stat-template').html());
+
+        if ($('.general-stats .' + resource).length > 0) {
+            $('.general-stats .' + resource).html(statTemplate({
+                name: resource,
+                amount: parseInt(resourceAmounts[resource])
+            }));
+        } else {
+            $('.general-stats').append(statTemplate({
+                name: resource,
+                amount: parseInt(resourceAmounts[resource])
+            }));
+        }
+
+        if (resource === 'iron') {
+            $('.notification.iron .amount').text(parseInt(resourceAmounts[resource]));
+        }
     };
 
     state.getAsteroid = function() {
