@@ -5,7 +5,6 @@ var Robot = function(baseAttrs, startX) {
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; // the stuff you pick up
     this.position = {'x': startX, 'y': 0};
-    this.canMoveToward = true;
 
     this.init = function () {
         this.render();
@@ -21,16 +20,14 @@ var Robot = function(baseAttrs, startX) {
 
     //This is incompatible with the tick function
     this.moveToward = function(destX, destY) {
-        this.canMoveToward = canPassTile(grid[destX][destY]);
-        if(this.canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
+        canMoveToward = canPassTile(grid[destX][destY]);
+        if(canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
             var randomVal = Math.random();
             if(randomVal > baseAttrs.wobble) {
-                this.canMoveToward = this.goToward(destX, destY);
+                canMoveToward = this.goToward(destX, destY);
             } else {
-                this.canMoveToward = makeRandomMove();
+                canMoveToward = makeRandomMove();
             }
-        } else {
-            this.canMoveToward = false;
         }
     };
 
