@@ -277,6 +277,9 @@ var spawnBot = function(type, startX) {
         // Reset if the mouse is out of bounds.
         if(!stage.mouseInBounds) { return; }
 
+        //Update the player
+        updatePlayerAccourdingly(type);
+
         // Make a new bot based on the position.
         var destX = parseInt(e.stageX / 40);
         var destY = parseInt(e.stageY / 40);
@@ -284,4 +287,8 @@ var spawnBot = function(type, startX) {
         activeBots.push(bot);
         return bot;
     }, null, true);
+};
+
+var updatePlayerAccourdingly = function(robotType) {
+    playerState.changeResource('money', -robots[robotType].cost);
 };
