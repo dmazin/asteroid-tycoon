@@ -100,7 +100,8 @@ function tick() {
     var gs = grid_size;
     stage.destTile.x = Math.round((stage.mouseX - gs / 2) / gs) * gs + gs / 2;
     stage.destTile.y = Math.round((stage.mouseY - gs / 2) / gs) * gs + gs / 2;
-    stage.destTile.visible = stage.mouseInBounds && stage.destTile.y >= surface_height;
+    stage.destTile.visible = $('canvas').hasClass('botSpawner')
+        && stage.mouseInBounds && stage.destTile.y >= surface_height;
 
     stage.update();
 }

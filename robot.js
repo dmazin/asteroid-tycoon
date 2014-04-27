@@ -272,7 +272,7 @@ var spawnBot = function(type, startX) {
     // Have stage listen to mouseup once and make a new bot based on that
     stage.on('stagemouseup', function(e) {
         // Change canvas back
-        $('canvas').addClass('botSpawner');
+        $('canvas').removeClass('botSpawner');
 
         // Reset if the mouse is out of bounds.
         if(!stage.mouseInBounds) { return; }
