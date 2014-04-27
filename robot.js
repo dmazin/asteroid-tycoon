@@ -1,8 +1,8 @@
 var Robot = function(baseAttrs, startX, destX, destY) {
     var _this = this;
 
-    this.energy = baseAttrs.baseEnergy;
-    this.baseEnergy = baseAttrs.baseEnergy;
+    this.energy = baseAttrs.baseEnergy * energy_scale;
+    this.baseEnergy = baseAttrs.baseEnergy * energy_scale;
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; // the stuff you pick up
     this.position = {'x': startX, 'y': 0};

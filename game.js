@@ -13,6 +13,17 @@ var surface_height = 75;
 
 var FPS = 10;
 
+var colors = {
+    'dirt': '#292426',
+    'rock': 'gray',
+    'iron': '#0D0B0C',
+    'backfill': 'pink',
+    'unexplored': 'black'
+};
+
+// constants for scaling robot attributes for balancing purposes
+var energy_scale = .2;
+
 function createSpawn(xpos){
     spawn.shape = new createjs.Shape();
     spawn.shape.graphics.beginFill('#22B709')
