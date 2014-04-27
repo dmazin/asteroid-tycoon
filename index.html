@@ -11,10 +11,11 @@
         <pre class='title'>
                 ___   _____________________  ____  ________     ________  ____________  ____  _   __
                /   | / ___/_  __/ ____/ __ \/ __ \/  _/ __ \   /_  __/\ \/ / ____/ __ \/ __ \/ | / /
-              / /| | \__ \ / / / __/ / /_/ / / / // // / / /    / /    \  / /   / / / / / / /  |/ / 
-             / ___ |___/ // / / /___/ _, _/ /_/ // // /_/ /    / /     / / /___/ /_/ / /_/ / /|  /  
-            /_/  |_/____//_/ /_____/_/ |_|\____/___/_____/    /_/     /_/\____/\____/\____/_/ |_/   
+              / /| | \__ \ / / / __/ / /_/ / / / // // / / /    / /    \  / /   / / / / / / /  |/ /
+             / ___ |___/ // / / /___/ _, _/ /_/ // // /_/ /    / /     / / /___/ /_/ / /_/ / /|  /
+            /_/  |_/____//_/ /_____/_/ |_|\____/___/_____/    /_/     /_/\____/\____/\____/_/ |_/
         </pre>
+        <span class='alert'>YOU HAVE $3 SPACEDOLLARS</span>
         <div class='robot-spawn'>
             <span class='robot' data-robot='squirrelBot'>squirrel likes to dig</span>
             <span class='robot' data-robot='squirrelBot'>pony likes to neigh</span>
@@ -30,6 +31,14 @@
 body {
     font-family: 'Roboto', 'sans-serif';
     background-color: #000;
+}
+
+.alert {
+    border: 4px outset #89B96E;
+    background-color: #527E3A;
+    padding: 5px;
+    font-weight: 800;
+    color: rgba(214, 214, 214, 0.7);
 }
 
 .title {
@@ -92,6 +101,7 @@ body {
 <script src='lib/jquery.js'></script>
 <script src='lib/underscore.js'></script>
 <script src='lib/easeljs-0.7.1.min.js'></script>
+<script src='lib/astar.js'></script>
 <script src='definitions.js'></script>
 <script src='game.js'></script>
 <script src='state.js'></script>
@@ -100,7 +110,7 @@ body {
 <script>
     $('.robot').click(function() {
         var $this = $(this);
-        var robotType = $this.data('robot');    
+        var robotType = $this.data('robot');
 
         window.bot = spawnBot(robotType, 0);
     });
