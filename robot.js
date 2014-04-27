@@ -139,7 +139,7 @@ var upgradeBot = function(type, level) {
 };
 
 var spawnBot = function(type) {
-    var robotAttrs = robotLevels[type][typeLevels[type]];
+    var robotAttrs = robotLevels[type][robotLevels[type]];
     var bot = new Robot(robotAttrs);
     activeBots.push(bot);
 };

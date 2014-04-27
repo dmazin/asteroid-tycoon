@@ -1,6 +1,6 @@
 var activeBots = [];
 
-var playerState = function() {
+var playerState = (function() {
     var robotLevels = {
         'squirrelBot': 0
     };
@@ -25,4 +25,4 @@ var playerState = function() {
     this.changeResource = function(resource, amount) {
         resourceAmounts['resource'] += amount;
     };
-};
+})();
