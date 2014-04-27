@@ -175,7 +175,7 @@ var resources = {
         'hardness': 0,
         'harvestable': false,
         'value': 0,
-        'image': 'pics/backfill_2x.png'
+        'image': 'pics/backfill02.png'
     },
     'dirt': {
         'hardness': 0,
@@ -190,7 +190,7 @@ var resources = {
         'image': 'pics/rock08.png'
     },
     'iron': {
-        'hardness': 0.35,
+        'hardness': 0.3,
         'harvestable': true,
         'value': 10,
         'image': 'pics/rock04.png'
