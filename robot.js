@@ -6,6 +6,15 @@ var Robot = function(baseAttrs) {
 
     this.position = {x: 0, y: 0};
 
+
+    // as a placeholder, robots are blue spheres
+    // TODO make robots not be blue spheres
+    this.shape = new createjs.Shape();
+    this.shape.graphics.beginFill("blue")
+                       .drawCircle(0,0,8);
+    stage.addChild(this.shape);
+    this.render();
+
     // should return [xDelta, yDelta] (one of [-1,0], [1,0], [0,-1], [0,1])
     this.goTo = function (destX, destY, grid) {
         // let's do Uniform Cost Search?
@@ -83,6 +92,7 @@ var Robot = function(baseAttrs) {
 
         this.position.x += xDelta;
         this.position.y += yDelta;
+        this.render();
     };
 
     this.hit = function(tile) {
@@ -126,6 +136,12 @@ var Robot = function(baseAttrs) {
         return (baseAttrs.hardness - tile.getHardness()) * tile.resistance;
     };
 };
+
+
+Robot.prototype.render = function() {
+    this.shape.x = 20*this.position.x;
+    this.shape.y = 20*this.position.y + 100;
+}
 
 var upgradeBot = function(type, level) {
     var cost = upgradeCosts[type][level];
