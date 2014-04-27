@@ -146,7 +146,6 @@ var Robot = function(baseAttrs) {
     return this;
 };
 
-
 Robot.prototype.render = function() {
     this.shape.x = 20*this.position.x;
     this.shape.y = 20*this.position.y + 100;
