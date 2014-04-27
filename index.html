@@ -21,7 +21,8 @@
 <div id='game'>
     <div id='menu'>
         <div class='title-container'>
-            <pre class='title'>
+            <div class='printer'></div>
+            <pre class='readout'>
             .........             ___   _____________________  ____  ________     ________  ____________  ____  _   __
        _...MMMMM88&&&&..._       /   | / ___/_  __/ ____/ __ \/ __ \/  _/ __ \   /_  __/\ \/ / ____/ __ \/ __ \/ | / /
    '::....MMMMM88&&&&&&....::'  / /| | \__ \ / / / __/ / /_/ / / / // // / / /    / /    \  / /   / / / / / / /  |/ /
@@ -29,6 +30,7 @@
             'MMM8&&&'         /_/  |_/____//_/ /_____/_/ |_|\____/___/_____/    /_/  /____/\____/\____/\____/_/ |_/
             </pre>
         </div>
+        <pre class='printout'></pre>
         <marquee behavior="alternate">
             <span class='money notification'>YOU HAVE <span class='amount'></span> SPACE DOLLARS</span>
             <span class='iron notification'>IRON REPORT! IRON LEVELS AT <span class='amount'></span> IRONS</span>
@@ -52,6 +54,15 @@
 </div>
 
 <style>
+.printer {
+    width: 700px;
+    height: 5px;
+    background-color: #7A7575;
+    box-shadow: inset 1px 1px 1px #575757;
+    border-radius: 5px;
+    margin: 0 auto 9px;
+}
+
 .sound {
     width: 80px;
     margin: 0 auto;
@@ -113,7 +124,7 @@ body {
     padding: 7px;
 }
 
-.title {
+.readout {
     border: 7px inset #FFF;
     background-color: #1B3B64;
     border-radius: 12px;
@@ -182,6 +193,20 @@ body {
 .robot-container:hover {
     opacity: 1;
 }
+
+.printout {
+    border-top: 2px solid #92ADB8; 
+    top: 136px;
+    color: #4D4D4D;
+    position: absolute;
+    background-color: #FFF;
+    width: 670px;
+    left: 50%;
+    margin-left: -335px;
+    z-index: 1000;
+    display: none;
+    rect(0, 670px, 0, 0)
+}
 </style>
 
 
@@ -196,6 +221,33 @@ body {
 <script src='state.js'></script>
 <script src='robot.js'></script>
 
+<script id='first-email' type='text'>
+    EMAIL PRINTOUT
+    --------------------------------------------------
+
+    Whoa, whoa, whoa! Look who relaxedly sat down with a cup of coffee
+    to read email!
+
+    Are we at Asteroid Tycoon known for relaxedly reading email? No, that is
+    not what we are known for. We are known for our efficiency, and more
+    importantly, we are known in our productivity.
+
+    Sometimes I tear up, thinking about our growth over the last eight quarters.
+    We have grown by 50% or more each year. And this year we will deplete our
+    10,000th asteroid.
+
+    But you are not part of that equation. Your operation is always the weakest
+    showing of the year, you let your colonies nearly starve to death, and you
+    are wasteful with your financial resources.
+
+    Here is the verdict. We don't trust you with robots advanced enough to mine
+    anything precious, but we always need iron. Collect 10,000 units of iron,
+    and we'll see if R&D can get you a better scout.
+    OTHERWISE YOU ARE A FIGMENT OF MY IMAGINATION!!!!
+
+    - Corporate
+</script>
+
 <script>
     $('.robot').click(function() {
         var $this = $(this);
@@ -209,6 +261,20 @@ body {
             console.log(playerState.getResource('money'));
         }
     });
+
+    var lines = $('#first-email').text().split('\n');
+    
+    $('.printout').fadeIn(100);
+    var i = 0;
+    var interval = setInterval(function() {
+        console.log(i);
+        $('.printout').append(lines[i] + '\n');
+        $('.printout').css('clip', 'rect(0, 670px, ' + i * 20 + 'px, 0)');
+        i++;
+        if (i === lines.length) {
+            clearInterval(interval);
+        }
+    }, 50);
 </script>
 </body>
 </html>
