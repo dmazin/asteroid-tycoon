@@ -1,10 +1,13 @@
-var Robot = function(baseAttrs, startX) {
+var Robot = function(baseAttrs, startX, destX, destY) {
     var _this = this;
 
     this.energy = baseAttrs.baseEnergy;
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; // the stuff you pick up
     this.position = {'x': startX, 'y': 0};
+
+    this.destX = destX;
+    this.destY = destY;
 
     this.init = function () {
         this.render();
@@ -153,7 +156,12 @@ var upgradeBot = function(type, level) {
 
 var spawnBot = function(type, startX) {
     var robotAttrs = robotLevels[type][state.getRobotLevel(type)];
-    var bot = new Robot(robotAttrs, startX);
-    activeBots.push(bot);
-    return bot;
+
+    stage.on('stagemouseup', function(stage) {
+        var destX = parseInt(stage.stageX / 40);
+        var destY = parseInt(stage.stageY / 40);
+        var bot = new Robot(robotAttrs, startX, destX, destY);
+        activeBots.push(bot);
+        return bot;
+    }, null, true);
 };
