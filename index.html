@@ -11,16 +11,18 @@
         <pre class='title'>
                 ___   _____________________  ____  ________     ________  ____________  ____  _   __
                /   | / ___/_  __/ ____/ __ \/ __ \/  _/ __ \   /_  __/\ \/ / ____/ __ \/ __ \/ | / /
-              / /| | \__ \ / / / __/ / /_/ / / / // // / / /    / /    \  / /   / / / / / / /  |/ / 
-             / ___ |___/ // / / /___/ _, _/ /_/ // // /_/ /    / /     / / /___/ /_/ / /_/ / /|  /  
-            /_/  |_/____//_/ /_____/_/ |_|\____/___/_____/    /_/     /_/\____/\____/\____/_/ |_/   
+              / /| | \__ \ / / / __/ / /_/ / / / // // / / /    / /    \  / /   / / / / / / /  |/ /
+             / ___ |___/ // / / /___/ _, _/ /_/ // // /_/ /    / /     / / /___/ /_/ / /_/ / /|  /
+            /_/  |_/____//_/ /_____/_/ |_|\____/___/_____/    /_/     /_/\____/\____/\____/_/ |_/
         </pre>
+        <span class='notification'>YOU HAVE $3 SPACEDOLLARS</span>
+        <span class='alert'>PRODUCTION DECLINING, PICK UP SLACK OR FACE CORPORATE OVERSIGHT</span>
         <div class='robot-spawn'>
-            <span class='robot' data-robot='squirrelBot'>squirrel</span>
-            <span class='robot' data-robot='squirrelBot'>squirrel</span>
-            <span class='robot' data-robot='squirrelBot'>squirrel</span>
-            <span class='robot' data-robot='squirrelBot'>squirrel</span>
-            <span class='robot' data-robot='squirrelBot'>squirrel</span>
+            <span class='robot' data-robot='squirrelBot'>squirrel likes to dig</span>
+            <span class='robot' data-robot='squirrelBot'>pony likes to neigh</span>
+            <span class='robot' data-robot='squirrelBot'>fox likes to wink</span>
+            <span class='robot' data-robot='squirrelBot'>cow likes to stand</span>
+            <span class='robot' data-robot='squirrelBot'>turtle... turtle</span>
         </div>
     </div>
     <canvas id='mainCanvas' width=1000 height=800></canvas>
@@ -30,6 +32,22 @@
 body {
     font-family: 'Roboto', 'sans-serif';
     background-color: #000;
+}
+
+.notification {
+    border: 4px outset #89B96E;
+    background-color: #527E3A;
+    padding: 5px;
+    font-weight: 800;
+    color: rgba(214, 214, 214, 0.7);
+}
+
+.alert {
+    border: 4px outset #994C7A;
+    background-color: #7E3A63;
+    padding: 5px;
+    font-weight: 800;
+    color: rgba(214, 214, 214, 0.7);
 }
 
 .title {
@@ -55,7 +73,7 @@ body {
 }
 
 .robot-spawn {
-    width: 530px;
+    width: 560px;
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -76,8 +94,10 @@ body {
     text-align: center;
     opacity: .6;
     padding: 1px 0 3px;
-    border: 1px solid #FFF;
-    border-radius: 5px;
+    border: 4px outset #A06767;
+    border-radius: 10px;
+    vertical-align: top;
+    background-color: #6F3E3E;
 }
 
 .robot:hover {
@@ -90,6 +110,7 @@ body {
 <script src='lib/jquery.js'></script>
 <script src='lib/underscore.js'></script>
 <script src='lib/easeljs-0.7.1.min.js'></script>
+<script src='lib/astar.js'></script>
 <script src='definitions.js'></script>
 <script src='game.js'></script>
 <script src='state.js'></script>
@@ -98,9 +119,9 @@ body {
 <script>
     $('.robot').click(function() {
         var $this = $(this);
-        var robotType = $this.data('robot');    
+        var robotType = $this.data('robot');
 
-        spawnBot(robotType, 0);
+        window.bot = spawnBot(robotType, 0);
     });
 </script>
 </body>

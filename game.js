@@ -33,6 +33,7 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
         stage.addChild(this.shape);
 
         this.amount = amount;
+        this.baseAmount = amount;
         this.type = type;
         this.explored = false;
 
@@ -54,17 +55,21 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
         this.refresh();
     };
 
-    this.shape = new createjs.Shape();
-    this.shape.x = pixel_x;
-    this.shape.y = pixel_y;
-    stage.addChild(this.shape);
+   this.setType = function (newType) {
+        this.type = newType;
+        this.refresh();
+    };
 
-    this.amount = amount;
-    this.type = type;
-    this.explored = false;
+    this.init();
 }
 
 function tick() {
+    activeBots.forEach(function(bot) {
+        if(bot.canMoveToward) {
+            bot.moveToward(10, 10);
+        }
+    });
+
     stage.update();
 }
 
@@ -119,7 +124,7 @@ function generate_terrain(depth){
     return "iron";
   }
   else if (mineralSelect <=ironProbability + stoneProbability){
-    return "stone";
+    return "rock";
   }
   else {
     return "dirt";
