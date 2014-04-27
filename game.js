@@ -33,6 +33,7 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
         stage.addChild(this.shape);
 
         this.amount = amount;
+        this.baseAmount = amount;
         this.type = type;
         this.explored = false;
 
@@ -64,7 +65,9 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
 
 function tick() {
     activeBots.forEach(function(bot) {
-        bot.goToward(10, 10);
+        if(bot.canMoveToward) {
+            bot.moveToward(10, 10);
+        }
     });
 
     stage.update();
@@ -121,7 +124,7 @@ function generate_terrain(depth){
     return "iron";
   }
   else if (mineralSelect <=ironProbability + stoneProbability){
-    return "stone";
+    return "rock";
   }
   else {
     return "dirt";
