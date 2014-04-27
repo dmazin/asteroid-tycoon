@@ -30,12 +30,21 @@
                 <span class='robot' data-robot='goatBot'>goat likes to stand</span>
                 <span class='robot' data-robot='vultureBot'>vulture... turtle</span>
             </div>
+        <div class='stats'>
+            Dollars: <div class='money'></div>Irons: <div class='iron'></div>
+        </div>
         </div>
     </div>
     <canvas id='mainCanvas' width=1000 height=1200></canvas>
 </div>
 
 <style>
+.stats {
+    background-color: green;
+    width: 200px;
+    font-size: 13px;
+}
+
 body {
     font-family: 'Roboto', 'sans-serif';
     background-color: #000;
@@ -146,8 +155,14 @@ body {
     $('.robot').click(function() {
         var $this = $(this);
         var robotType = $this.data('robot');
+            
+        var money = playerState.getResource('money');
 
-        window.bot = spawnBot(robotType, Math.floor(spawn.shape.x/grid_size));
+        if (money > robots[robotType].cost) {
+            spawnBot(robotType, Math.floor(spawn.shape.x/grid_size));
+            playerState.changeResource('money', -robots[robotType].cost);
+            console.log(playerState.getResource('money'));
+        }
     });
 </script>
 </body>

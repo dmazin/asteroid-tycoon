@@ -10,7 +10,7 @@ var playerState = (function() {
     };
 
     var resourceAmounts = {
-        'money': 0,
+        'money': 1000,
         'iron': 0,
         'dirt': 0
     };
@@ -36,10 +36,13 @@ var playerState = (function() {
     state.changeResource = function(resource, amount) {
         resourceAmounts[resource] += amount;
         if (resource === 'iron') {
+            $('.stats .iron').text(parseInt(resourceAmounts[resource]));
             $('.notification.iron .amount').text(parseInt(resourceAmounts[resource]));
         }
         if (resource === 'dirt') {
-            $('.notification.money .amount').text(parseInt(resourceAmounts[resource]));
+            resourceAmounts['money'] += amount;
+            $('.stats .money').text(parseInt(resourceAmounts['money']));
+            $('.notification.money .amount').text(parseInt(resourceAmounts['money']));
         }
     };
 
