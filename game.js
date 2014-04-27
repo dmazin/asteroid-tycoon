@@ -97,13 +97,16 @@ function tick() {
         bot.moveToward(bot.destX, bot.destY);
     });
 
+    var gs = grid_size;
+    stage.destTile.x = Math.round((stage.mouseX - gs / 2) / gs) * gs + gs / 2;
+    stage.destTile.y = Math.round((stage.mouseY - gs / 2) / gs) * gs + gs / 2;
+    stage.destTile.visible = stage.mouseInBounds && stage.destTile.y >= surface_height;
+
     stage.update();
 }
 
 function init_stage(width, height, size, surface_px) {
-
     window.stage = new createjs.Stage("mainCanvas");
-
 
     for (var i = 0; i < width; i++) {
       var line = [];
@@ -120,16 +123,7 @@ function init_stage(width, height, size, surface_px) {
                              amount,
                              [i, j]);
 
-        //Backbone.trigger('stageClick
-
-        // Mouseover crap - bad
-        //stage.enableMouseOver();
-        //g.shape.on('mouseover', function(event) {
-            //event.target.graphics.clear().beginFill('#fff').drawRect(0, 0, 20, 20).endFill();
-        //});
-        //g.shape.on('mouseout', function(event) {
-            //event.target.graphics.clear().beginFill(colors[g.getType()]).drawRect(0, 0, 20, 20).endFill();
-        //});
+        //Backbone.trigger('stageClick')
 
         line.push(g);
       }
@@ -140,6 +134,11 @@ function init_stage(width, height, size, surface_px) {
 
     createjs.Ticker.addEventListener("tick", tick);
     createjs.Ticker.setFPS(FPS);
+
+    stage.destTile = new createjs.Shape();
+    stage.destTile.graphics.beginFill('blue')
+                            .drawCircle(0,0,8);
+    stage.addChild(stage.destTile);
 
     stage.enableMouseOver(10);
 }
