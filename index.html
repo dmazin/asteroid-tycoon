@@ -15,8 +15,11 @@
              / ___ |___/ // / / /___/ _, _/ /_/ // // /_/ /    / /     / / /___/ /_/ / /_/ / /|  /
             /_/  |_/____//_/ /_____/_/ |_|\____/___/_____/    /_/     /_/\____/\____/\____/_/ |_/
         </pre>
-        <span class='notification'>IRON REPORT! YOU HAVE <span class='amount'></span> IRONS</span>
+        <marquee behavior="alternate">
+        <span class='money notification'>YOU HAVE <span class='amount'></span> SPACE DOLLARS</span>
+        <span class='iron notification'>IRON REPORT! IRON LEVELS AT <span class='amount'></span> IRONS</span>
         <span class='alert'>PRODUCTION DECLINING, PICK UP SLACK OR FACE CORPORATE OVERSIGHT</span>
+        </marquee>
         <div class='robot-spawn'>
             <span class='robot' data-robot='squirrelBot'>squirrel likes to dig</span>
             <span class='robot' data-robot='bearBot'>bear likes to neigh</span>
@@ -40,6 +43,11 @@ body {
     padding: 5px;
     font-weight: 800;
     color: rgba(214, 214, 214, 0.7);
+}
+
+.notification.iron {
+    border: 4px outset #9B842A;
+    background-color: #9C7842;
 }
 
 .alert {
