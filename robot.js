@@ -52,8 +52,6 @@ var Robot = function(baseAttrs, startX, destX, destY) {
             } else {
                 canMoveToward = this.makeRandomMove();
             }
-        } else if (this.position.x === destX && this.position.y === destY) {
-            this.reachedDestination = true;
         }
     };
 
