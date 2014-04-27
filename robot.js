@@ -37,9 +37,13 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         this.render();
     };
 
+    this.getGrid = function() {
+        return grid;
+    };
+
     this.giveUpDigging =  function(perseverance){
         if (arguments.length === 0) {
-            perseverence = .95;
+            perseverence = 0.95;
         }
         if (Math.random() > perseverence){
             return true;

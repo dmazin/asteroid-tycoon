@@ -22,7 +22,7 @@ AntBot.defaultBehavior = function(_this) {
 	var harvestableSelectionCallback = function(tile) {
 		return resources[tile.getType()].harvestable === true;
 	};
-	var dest = findNearestResource(_this.position, harvestableSelectionCallback);
+	var dest = findNearestResource(_this.position, _this.getGrid(), harvestableSelectionCallback);
 	if(dest) {
 		_this.goToward(dest.x, dest.y);
 	} else {
@@ -35,7 +35,7 @@ GoatBot.defaultBehavior = function(_this) {
 	var rockSelectionCallback = function(tile) {
 		return tile.getType() === 'rock';
 	};
-	var dest = findNearestResource(_this.position, rockSelectionCallback);
+	var dest = findNearestResource(_this.position, _this.getGrid(), rockSelectionCallback);
 	if(dest) {
 		_this.goToward(dest.x, dest.y);
 	} else {
@@ -82,9 +82,8 @@ var findNearestItem = function(position, itemPositionArray) {
 	return nearestPosition;
 };
 
-var findNearestResource = function(position, resourceSelectionCallback) {
+var findNearestResource = function(position, grid, resourceSelectionCallback) {
 	var resourcePositions = [];
-	var grid = playerState.getGrid();
 	grid.forEach(function(row, x) {
 		row.forEach(function(val, y) {
 			if (resourceSelectionCallback(val)) {
