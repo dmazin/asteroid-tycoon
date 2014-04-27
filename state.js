@@ -12,6 +12,10 @@ var playerState = (function() {
 
     state = {};
 
+    state.getRobotLevel = function(robotType) {
+        return robotLevels[robotType];
+    }
+
     state.setRobotLevel = function(robotType, level) {
         if (level <= robotLevels[robotType]) {
             return;

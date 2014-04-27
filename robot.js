@@ -133,13 +133,13 @@ var upgradeBot = function(type, level) {
     if (playerState.getResource('money') < cost) {
         return;
     }
-    
+
     playerState.changeResource('money', -cost);
     playerState.setRobotLevel(type, level);
 };
 
 var spawnBot = function(type) {
-    var robotAttrs = robotLevels[type][robotLevels[type]];
+    var robotAttrs = robotLevels[type][state.getRobotLevel(type)];
     var bot = new Robot(robotAttrs);
     activeBots.push(bot);
 };
