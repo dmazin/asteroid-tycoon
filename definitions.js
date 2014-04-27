@@ -40,7 +40,7 @@ var resources = {
         'harvestable': false,
         'value': 0
     },
-    'rock': {
+    'stone': {
         'hardness': 0.3,
         'harvestable': false,
         'value': 0
