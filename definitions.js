@@ -75,13 +75,13 @@ var upgradeCosts = {
 var robotLevels = {
     'squirrelBot': [
         robots['squirrelBot'],
-        _.extend(robots['squirrelBot'], {
+        _.extend(_.clone(robots['squirrelBot']), {
             baseEnergy: 2500,
             wobble: 0.75,
             'spriteSheet': 'pics/scout1_2x.png',
             'spriteSpeed': 0.6
         }),
-        _.extend(robots['squirrelBot'], {
+        _.extend(_.clone(robots['squirrelBot']), {
             baseEnergy: 3000,
             wobble: 0.6,
             'spriteSheet': 'pics/scout2_2x.png',
@@ -90,7 +90,7 @@ var robotLevels = {
     ],
     'bearBot': [
         robots['bearBot'],
-        _.extend(robots['bearBot'], {
+        _.extend(_.clone(robots['bearBot']), {
             baseEnergy: 1400,
             storage: 125,
             wobble: 0.65,
@@ -99,7 +99,7 @@ var robotLevels = {
             'spriteSheet': 'pics/allaround1_2x.png',
             'spriteSpeed': 0.6
         }),
-        _.extend(robots['bearBot'], {
+        _.extend(_.clone(robots['bearBot']), {
             baseEnergy: 1600,
             storage: 150,
             wobble: 0.6,
@@ -111,7 +111,7 @@ var robotLevels = {
     ],
     'antBot': [
         robots['antBot'],
-        _.extend(robots['antBot'], {
+        _.extend(_.clone(robots['antBot']), {
             baseEnergy: 1250,
             storage: 300,
             harvestEfficiency: 0.9,
@@ -119,7 +119,7 @@ var robotLevels = {
             'spriteSheet': 'pics/harvester0_2x.png',
             'spriteSpeed': 0.6
         }),
-        _.extend(robots['antBot'], {
+        _.extend(_.clone(robots['antBot']), {
             baseEnergy: 1500,
             storage: 400,
             harvestEfficiency: 1.0,
@@ -130,13 +130,13 @@ var robotLevels = {
     ],
     'goatBot': [
         robots['goatBot'],
-        _.extend(robots['goatBot'], {
+        _.extend(_.clone(robots['goatBot']), {
             baseEnergy: 1100,
             hardness: 0.75,
             'spriteSheet': 'pics/smasher1_2x.png',
             'spriteSpeed': 0.6
         }),
-        _.extend(robots['goatBot'], {
+        _.extend(_.clone(robots['goatBot']), {
             baseEnergy: 1200,
             hardness: 0.95,
             'spriteSheet': 'pics/smasher2_2x.png',
@@ -146,14 +146,14 @@ var robotLevels = {
     ],
     'vultureBot': [
         robots['vultureBot'],
-        _.extend(robots['vultureBot'], {
+        _.extend(_.clone(robots['vultureBot']), {
             baseEnergy: 1750,
             storage: 250,
             harvestEfficiency: 0.85,
             'spriteSheet': 'pics/vulture1_2x.png',
             'spriteSpeed': 0.6
         }),
-        _.extend(robots['vultureBot'], {
+        _.extend(_.clone(robots['vultureBot']), {
             baseEnergy: 2000,
             storage: 300,
             harvestEfficiency: 1.0,
