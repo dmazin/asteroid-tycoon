@@ -98,6 +98,8 @@ var Robot = function(baseAttrs, startX) {
     };
 
     this.move = function(xDelta, yDelta) {
+        grid[this.position.x][this.position.y].setType('backfill');
+
         this.position.x += xDelta;
         this.position.y += yDelta;
 
@@ -151,8 +153,8 @@ var Robot = function(baseAttrs, startX) {
 };
 
 Robot.prototype.render = function() {
-    this.shape.x = grid_size *this.position.x + 10;
-    this.shape.y = grid_size *this.position.y + surface_height + 10;
+    this.shape.x = grid_size*(this.position.x + 0.5);
+    this.shape.y = grid_size*(this.position.y + 0.5) + surface_height;
 
     var p = this.position;
     [p.x-1, p.x, p.x+1].forEach(function (x) {
