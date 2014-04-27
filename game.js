@@ -33,7 +33,7 @@ function init_stage(width, height, size, surface_px) {
     for (var i = 0; i < width; i++) {
       var line = [];
       for (var j = 0; j < height; j++) {
-        var resources = resources[Math.floor(Math.random() * resources.length) || 1];
+        var resource = resources[Math.floor(Math.random() * resources.length) || 1];
         var amount = Math.floor(Math.random() * 20);
         var g = new Tile(i*size,
                              surface_px + j * size,

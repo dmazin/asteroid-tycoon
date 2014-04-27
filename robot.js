@@ -137,12 +137,12 @@ var Robot = function(baseAttrs) {
         var resource = resources[tile.type];
         var drillHardness = baseAttrs.hardness;
         return (drillHardness > resource.hardness);
-    }
+    };
 
     var timeToPassTile = function(tile) {
         var resource = resources[tile.type];
         return (baseAttrs.hardness - resource.hardness) * resource.resistance;
-    }
+    };
 
     return this;
 };
@@ -151,7 +151,7 @@ var Robot = function(baseAttrs) {
 Robot.prototype.render = function() {
     this.shape.x = 20*this.position.x;
     this.shape.y = 20*this.position.y + 100;
-}
+};
 
 var upgradeBot = function(type, level) {
     var cost = upgradeCosts[type][level];
