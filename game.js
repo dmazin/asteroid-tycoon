@@ -37,17 +37,6 @@ function createSpawn(xpos){
     stage.addChild(spawn.shape);
 }
 
-function moveSpawn(direction){
-  if (direction=="left"){
-    spawn.shape.x = spawn.shape.x - grid_size;
-
-  }
-  else if (direction=="right"){
-    spawn.shape.x = spawn.shape.x + grid_size;
-
-  }
-}
-
 function Tile(pixel_x, pixel_y, size, type, amount, pos) {
     /* create the easeljs shape object that
      * draws this Tile, and add it to the
@@ -144,6 +133,8 @@ function init_stage(width, height, size, surface_px) {
 
     createjs.Ticker.addEventListener("tick", tick);
     createjs.Ticker.setFPS(FPS);
+
+    stage.enableMouseOver(10);
 }
 
 function normalize(array) {
@@ -177,25 +168,4 @@ function generate_terrain(depth) {
     }
 }
 
-
 init_stage(game_width, game_height, grid_size, surface_height);
-stage.enableMouseOver(10);
-
-
-document.onkeydown = checkKey;
-
-
-
-function checkKey(key) {
-
-    key = key || window.event;
-
-    if (key.keyCode == '37') {
-        // left arrow
-        moveSpawn("left")
-    }
-    else if (key.keyCode == '39') {
-        // right arrow
-        moveSpawn("right")
-    }
-}
