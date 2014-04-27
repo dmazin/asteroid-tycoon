@@ -2,40 +2,12 @@
 var robots = {
     'squirrelBot': {
         'description': 'Basic scout robot',
-        'hardness': 0.13,
-        'baseEnergy': 200,
+        'hardness': 0.3,
+        'baseEnergy': 2000,
         'storage': 0,
         'wobble': 0.9,
         'harvestEfficiency': 0,
-        'cost': 150
-    },
-    'bearBot': {
-        'energy': 1200,
-        'storage': 100,
-        'wobble': .7,
-        'harvestEfficiency': .6,
-        'cost': 300
-    },
-    'antBot': {
-        'energy': 1000,
-        'storage': 200,
-        'wobble': .4,
-        'harvestEfficiency': .8,
-        'cost': 550
-    },
-    'goatBot': {
-        'energy': 1000,
-        'storage': 0,
-        'wobble': .5,
-        'harvestEfficiency': .3,
-        'cost': 1050
-    },
-    'vultureBot': {
-        'energy': 1500,
-        'storage': 200,
-        'wobble': .1,
-        'harvestEfficiency': .7,
-        'cost': 650
+        'cost': 10
     }
 };
 
@@ -55,18 +27,6 @@ var robotLevels = {
             wobble: 0.6
         }),
     ],
-    'bearBot': [
-        robots['bearBot']
-    ],
-    'antBot': [
-        robots['antBot']
-    ],
-    'goatBot': [
-        robots['goatBot']
-    ],
-    'vultureBot': [
-        robots['vultureBot']
-    ]
 };
 
 var resources = {
@@ -76,12 +36,12 @@ var resources = {
         'value': 0
     },
     'dirt': {
-        'hardness': 0.04,
+        'hardness': 0.1,
         'harvestable': false,
         'value': 0
     },
-    'rock': {
-        'hardness': 0.14,
+    'stone': {
+        'hardness': 0.3,
         'harvestable': false,
         'value': 0
     },
@@ -91,7 +51,7 @@ var resources = {
         'value': 10
     },
     'unexplored': {
-        'hardness': 0.04,
+        'hardness': 0.1,
         'harvestable': false,
         'value': 0
     }
