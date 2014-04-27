@@ -13,13 +13,12 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 
     this.init = function () {
         var spriteSheet = new createjs.SpriteSheet({
-            images: [baseAttrs.spriteSheet],
+            images: ["pics/rubble_2x.png"],
             frames: {width:40, height:40},
             animations: {
-                run: {
-                    frames: [0,1],
-                    speed: baseAttrs.spriteSpeed,
-                }
+                run: [0, 1, 'run', baseAttrs.spriteSpeed],
+                explode: [2, 8, 'rubble', 0.5],
+                rubble: [9, 9, 'rubble', 1]
             }
         });
         this.animation = new createjs.Sprite(spriteSheet, "run");
@@ -39,7 +38,14 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 
     this.moveToward = function(destX, destY) {
         //It can't move if it's dead.
-        if(this.energy <= 0) { return; }
+        if(this.energy <= 0) {
+            if (!this.dead) {
+                this.animation.gotoAndPlay('explode');
+            }
+            this.dead = true;
+            this.salvageValue = 10;
+            return;
+        }
 
         // If they have reached their destination they should do
         // default behavior.
