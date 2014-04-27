@@ -52,7 +52,13 @@ var Robot = function(baseAttrs, startX) {
             }
             var node = popMinNode(frontier);
             if (node.x == destX && node.y == destY) {
-                return node.path[0];
+                // path to destination found
+                var dirFound = node.path[0];
+                this.move(dirFound[0], dirFound[1]);
+                if (this.position.x != destX || this.position.y != destY) {
+                    // keep going
+                    this.goTo(destX, destY);
+                }
             }
             explored.push(node.x + ',' + node.y);
             [[-1,0], [1,0], [0,-1], [0,1]].forEach(function (dir) {
@@ -95,10 +101,6 @@ var Robot = function(baseAttrs, startX) {
     };
 
     this.move = function(xDelta, yDelta) {
-        if (!this.canMove) {
-            return;
-        }
-
         this.position.x += xDelta;
         this.position.y += yDelta;
         this.render();
