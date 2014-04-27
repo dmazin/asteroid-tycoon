@@ -121,7 +121,7 @@ body {
         var $this = $(this);
         var robotType = $this.data('robot');
 
-        window.bot = spawnBot(robotType, 0);
+        window.bot = spawnBot(robotType, Math.floor(spawn.shape.x/grid_size));
     });
 </script>
 </body>

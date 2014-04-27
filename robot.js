@@ -5,6 +5,7 @@ var Robot = function(baseAttrs, startX) {
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; // the stuff you pick up
     this.position = {'x': startX, 'y': 0};
+    this.destination = {'x': 0, 'y': 0}
 
     this.init = function () {
         this.render();
@@ -31,6 +32,13 @@ var Robot = function(baseAttrs, startX) {
             }
         }
     };
+
+    this.setDestination =function(destX, destY){
+        this.destination.x=destX;
+        this.destination.y=destY;
+    }
+
+    this.setDestination(30,30);
 
     this.goToward = function (destX, destY) {
         var g = grid.map(function (row) {
@@ -144,7 +152,7 @@ var upgradeBot = function(type, level) {
 
     if (playerState.getResource('money') < cost) {
         return;
-    }
+    }p
 
     playerState.changeResource('money', -cost);
     playerState.setRobotLevel(type, level);
