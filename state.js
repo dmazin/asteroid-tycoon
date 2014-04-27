@@ -2,12 +2,17 @@ var activeBots = [];
 
 var playerState = (function() {
     var robotLevels = {
-        'squirrelBot': 0
+        'squirrelBot': 0,
+        'bearBot': 0,
+        'antBot': 0,
+        'goatBot': 0,
+        'vultureBot': 0
     };
 
     var resourceAmounts = {
         'money': 0,
-        'iron': 0
+        'iron': 0,
+        'dirt': 0
     };
 
     state = {};
@@ -29,7 +34,8 @@ var playerState = (function() {
     };
 
     state.changeResource = function(resource, amount) {
-        resourceAmounts['resource'] += amount;
+        resourceAmounts[resource] += amount;
+        $('.notification .amount').text(parseInt(resourceAmounts[resource]));
     };
 
     return state;

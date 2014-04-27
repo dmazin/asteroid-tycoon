@@ -5,7 +5,6 @@ var Robot = function(baseAttrs, startX) {
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; // the stuff you pick up
     this.position = {'x': startX, 'y': 0};
-    this.canMoveToward = true;
 
     this.init = function () {
         this.render();
@@ -21,16 +20,15 @@ var Robot = function(baseAttrs, startX) {
 
     //This is incompatible with the tick function
     this.moveToward = function(destX, destY) {
-        this.canMoveToward = canPassTile(grid[destX][destY]);
-        if(this.canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
+        canMoveToward = canPassTile(grid[destX][destY]);
+        if(canMoveToward && !(this.position.x === destX && this.position.y === destY) &&
+            (this.energy > 0)) {
             var randomVal = Math.random();
-            if(randomVal > baseAttrs.wobble) {
-                this.canMoveToward = this.goToward(destX, destY);
+            if(randomVal > (baseAttrs.wobble * WobbleConstant)) {
+                canMoveToward = this.goToward(destX, destY);
             } else {
-                this.canMoveToward = makeRandomMove();
+                canMoveToward = makeRandomMove();
             }
-        } else {
-            this.canMoveToward = false;
         }
     };
 
@@ -44,7 +42,7 @@ var Robot = function(baseAttrs, startX) {
         var start = graph.nodes[this.position.x][this.position.y];
         var end = graph.nodes[destX][destY];
         var result = astar.search(graph.nodes, start, end);
-        if (result) {
+        if (result && result.length > 0) {
             this.moveTo(result[0].pos.x, result[0].pos.y);
         }
     };
@@ -85,7 +83,7 @@ var Robot = function(baseAttrs, startX) {
         if(dirs.length === 0) { return false; } //In case it's trapped somehow
         var randomDir = Math.floor(Math.random() * dirs.length);
         chosenDir = dirs[randomDir];
-        _this.move(chosenDir[0], chosenDir[1]);
+        _this.moveTo(_this.position.x + chosenDir[0], _this.position.y + chosenDir[1]);
         return true;
     };
 
@@ -98,7 +96,7 @@ var Robot = function(baseAttrs, startX) {
         if (tile.harvestable && _this.storage > 0) {
             addResources(amountMined, tile.getType());
         }
-        console.log("mined: " + amountMined + " " + tile.getType());
+        playerState.changeResource(tile.getType(), amountMined);
         tile.amount -= amountMined; //Reduce the amount left on the tile
     };
 
@@ -158,5 +156,3 @@ var spawnBot = function(type, startX) {
     activeBots.push(bot);
     return bot;
 };
-
-bot = spawnBot('squirrelBot', 0);
