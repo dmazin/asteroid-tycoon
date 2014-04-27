@@ -9,7 +9,7 @@ var grid_size = 40;
 var game_width = 25;
 var game_height = 30;
 
-var surface_height = 50;
+var surface_height = 75;
 
 var FPS = 10;
 
@@ -27,21 +27,25 @@ function createSpawn(xpos){
                        .drawCircle(0,0,8);
     spawn.shape.x = grid_size*(xpos + 0.5);
     spawn.shape.y = grid_size*(0 + 0.5) + surface_height;
+
+    spawn.shape.on("mousedown", function(evt) {
+        this.offset = {x:this.x-evt.stageX, y:this.y-evt.stageY};
+    });
+
+    spawn.shape.on("pressmove", function(evt) {
+        var gs = grid_size;
+        this.x = Math.round((evt.stageX + this.offset.x - gs / 2) / gs) * gs + gs / 2;
+        if (this.x < 0) {
+            this.x = 0;
+        } else if (this.x > gs * game_width) {
+            this.x = gs * game_width;
+        }
+    });
+
     stage.addChild(spawn.shape);
 }
 
-function moveSpawn(direction){
-  if (direction=="left"){
-    spawn.shape.x = spawn.shape.x - grid_size;
-
-  }
-  else if (direction=="right"){
-    spawn.shape.x = spawn.shape.x + grid_size;
-
-  }
-}
-
-function Tile(pixel_x, pixel_y, size, type, amount) {
+function Tile(pixel_x, pixel_y, size, type, amount, pos) {
     /* create the easeljs shape object that
      * draws this Tile, and add it to the
      * stage
@@ -56,17 +60,16 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
         this.amount = amount;
         this.baseAmount = amount;
         this.type = type;
-        this.explored = false; // true to disable for of war
+        this.explored = false; // true to disable fog of war
+        if (pos[1] < 2) { // no FOW on first two rows, let's say
+            this.explored = true;
+        }
 
         this.refresh();
     };
 
     this.refresh = function () {
-        stage.removeChild(this.shape);
-        this.shape = new createjs.Bitmap(resources[this.getType()].image);
-        this.shape.x = pixel_x;
-        this.shape.y = pixel_y;
-        stage.addChildAt(this.shape, 0);
+        this.shape.image = resources[this.getType()].image;
     };
 
     this.getType = function() {
@@ -91,13 +94,17 @@ function tick() {
         bot.moveToward(bot.destX, bot.destY);
     });
 
+    var gs = grid_size;
+    stage.destTile.x = Math.round((stage.mouseX - gs / 2) / gs) * gs + gs / 2;
+    stage.destTile.y = Math.round((stage.mouseY - gs / 2) / gs) * gs + gs / 2;
+    stage.destTile.visible = $('canvas').hasClass('botSpawner')
+        && stage.mouseInBounds && stage.destTile.y >= surface_height;
+
     stage.update();
 }
 
 function init_stage(width, height, size, surface_px) {
-
     window.stage = new createjs.Stage("mainCanvas");
-
 
     for (var i = 0; i < width; i++) {
       var line = [];
@@ -111,18 +118,10 @@ function init_stage(width, height, size, surface_px) {
                              surface_px + j * size,
                              size,
                              resourceName,
-                             amount);
+                             amount,
+                             [i, j]);
 
-        //Backbone.trigger('stageClick
-
-        // Mouseover crap - bad
-        //stage.enableMouseOver();
-        //g.shape.on('mouseover', function(event) {
-            //event.target.graphics.clear().beginFill('#fff').drawRect(0, 0, 20, 20).endFill();
-        //});
-        //g.shape.on('mouseout', function(event) {
-            //event.target.graphics.clear().beginFill(colors[g.getType()]).drawRect(0, 0, 20, 20).endFill();
-        //});
+        //Backbone.trigger('stageClick')
 
         line.push(g);
       }
@@ -133,13 +132,13 @@ function init_stage(width, height, size, surface_px) {
 
     createjs.Ticker.addEventListener("tick", tick);
     createjs.Ticker.setFPS(FPS);
-}
 
-/* maps resources to function from depth to prob at depth */
-var resource_weights = {
-    'iron': {p: 0.01, d_weight: 0.2},
-    'stone': {p: 0.1, d_weight: 0.1},
-    'dirt': {p: 1, d_weight: 0}
+    stage.destTile = new createjs.Shape();
+    stage.destTile.graphics.beginFill('blue')
+                            .drawCircle(0,0,8);
+    stage.addChild(stage.destTile);
+
+    stage.enableMouseOver(10);
 }
 
 function normalize(array) {
@@ -150,52 +149,27 @@ function normalize(array) {
 }
 
 function generate_terrain(depth) {
+    var resources = [];
+    var maxDepth = game_height;
+    var probs = _.map(resource_weights, function(x, r) {
+        resources.push(r);
+        if (depth < x.minDepth) {
+            return 0;
+        } else {
+            return (maxDepth - depth) * x.pTop + depth * x.pBottom;
+        }
+    });
 
-  var probs = _.map(resource_weights, function(x) {
-      return x.p * Math.exp(x.d_weight * depth);
-  });
+    probs = normalize(probs);
+    var rand = Math.random();
 
-  probs = normalize(probs);
-  var rand = Math.random();
-
-
-  var dirtProbability = 1;
-  var stoneProbability = 0.1*Math.exp(depth*0.1);
-  var ironProbability = 0.01*Math.exp(depth*0.2);
-  var normalization = dirtProbability+stoneProbability+ironProbability;
-  dirtProbability = dirtProbability/normalization;
-  stoneProbability = stoneProbability/normalization;
-  ironProbability = ironProbability/normalization;
-  var mineralSelect = Math.random();
-  if(mineralSelect <=ironProbability){
-    return "iron";
-  }
-  else if (mineralSelect <=ironProbability + stoneProbability){
-    return "rock";
-  }
-  else {
-    return "dirt";
-  }
+    var accum = 0;
+    for (var i = 0; i < resources.length; i++) {
+        accum += probs[i];
+        if (rand < accum) {
+            return resources[i];
+        }
+    }
 }
-
 
 init_stage(game_width, game_height, grid_size, surface_height);
-
-
-document.onkeydown = checkKey;
-
-
-
-function checkKey(key) {
-
-    key = key || window.event;
-
-    if (key.keyCode == '37') {
-        // left arrow
-        moveSpawn("left")
-    }
-    else if (key.keyCode == '39') {
-        // right arrow
-        moveSpawn("right")
-    }
-}

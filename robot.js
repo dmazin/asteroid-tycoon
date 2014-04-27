@@ -1,8 +1,8 @@
 var Robot = function(baseAttrs, startX, destX, destY) {
     var _this = this;
 
-    this.energy = baseAttrs.baseEnergy;
-    this.baseEnergy = baseAttrs.baseEnergy;
+    this.energy = baseAttrs.baseEnergy * energy_scale;
+    this.baseEnergy = baseAttrs.baseEnergy * energy_scale;
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; // the stuff you pick up
     this.position = {'x': startX, 'y': 0};
@@ -170,11 +170,30 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     this.makeRandomMove = function() {
         //moves the robot in a random direction
         dirs = this.getViableDirections();
-        if(dirs.length === 0) { return false; } //In case it's trapped somehow
+        if(dirs.length === 0) {
+            console.log('trying to makeRandomMove but no place to go!')
+            return false;
+        } //In case it's trapped somehow
+
         var randomDir = Math.floor(Math.random() * dirs.length);
         chosenDir = dirs[randomDir];
-        _this.moveTo(_this.position.x + chosenDir[0], _this.position.y + chosenDir[1]);
-        return true;
+        this.moveInDirection(chosenDir[0], chosenDir[1]);
+        return chosenDir;
+    };
+
+    this.moveInDirection = function(xDelta, yDelta) {
+        dest = {'x': _this.position.x + xDelta, 'y': _this.position.y + yDelta};
+        this.moveTo(dest.x, dest.y);
+    };
+
+    // in unable to move in chosen direction, move randomly
+    this.moveInDirectionOrRandom = function(xDelta, yDelta) {
+        dest = {'x': _this.position.x + xDelta, 'y': _this.position.y + yDelta};
+        if (grid[dest.x] && grid[dest.x][dest.y] && canPassTile(grid[dest.x][dest.y])) {
+            this.moveTo(dest.x, dest.y);
+        } else {
+            this.makeRandomMove();
+        }
     };
 
     this.moveTo = function(newX, newY) {
@@ -206,7 +225,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 
             }
         }
-        this.energy -= 20;
+        this.energy -= 1;
         this.render();
     };
 
@@ -222,13 +241,20 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 
     var updateTileAndResources = function(tile) {
         var resource = resources[tile.getType()];
-        var proportionMined = baseAttrs.hardness - resource.hardness;
+        var hardness = baseAttrs.hardness;
+        if (baseAttrs.affinity[tile.getType()]) {
+            hardness *= baseAttrs.affinity[tile.getType()];
+        }
+        console.log(hardness);
+        var proportionMined = hardness - resource.hardness;
         var amountMined = tile.baseAmount * proportionMined;
         if (tile.harvestable && _this.storage > 0) {
             addResources(amountMined, tile.getType());
         }
         playerState.changeResource(tile.getType(), amountMined);
         tile.amount -= amountMined; //Reduce the amount left on the tile
+
+        playerState.changeResource('money', 1);
     };
 
     var addResources = function(amountMined, resourceType) {
@@ -316,13 +342,29 @@ var upgradeBot = function(type, level) {
 
 var spawnBot = function(type, startX) {
     var robotAttrs = robotLevels[type][state.getRobotLevel(type)];
+    // Canvas act different if you can now spawn a bot
+    $('canvas').addClass('botSpawner');
 
     // Have stage listen to mouseup once and make a new bot based on that
-    stage.on('stagemouseup', function(stage) {
-        var destX = parseInt(stage.stageX / 40);
-        var destY = parseInt(stage.stageY / 40);
+    stage.on('stagemouseup', function(e) {
+        // Change canvas back
+        $('canvas').removeClass('botSpawner');
+
+        // Reset if the mouse is out of bounds.
+        if(!stage.mouseInBounds) { return; }
+
+        //Update the player
+        updatePlayerMoney(type);
+
+        // Make a new bot based on the position.
+        var destX = parseInt(e.stageX / 40);
+        var destY = parseInt(e.stageY / 40);
         var bot = new Robot(robotAttrs, startX, destX, destY);
         activeBots.push(bot);
         return bot;
     }, null, true);
+};
+
+var updatePlayerMoney = function(robotType) {
+    playerState.changeResource('money', -robots[robotType].cost);
 };
