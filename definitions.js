@@ -167,26 +167,31 @@ var resources = {
     'backfill': {
         'hardness': 0,
         'harvestable': false,
-        'value': 0
+        'value': 0,
+        'image': 'pics/backfill_2x.png'
     },
     'dirt': {
         'hardness': 0,
         'harvestable': false,
-        'value': 0
+        'value': 0,
+        'image': 'pics/rock11.png'
     },
     'rock': {
         'hardness': 0.3,
         'harvestable': false,
-        'value': 0
+        'value': 0,
+        'image': 'pics/rock08.png'
     },
     'iron': {
         'hardness': 0.35,
         'harvestable': true,
-        'value': 10
+        'value': 10,
+        'image': 'pics/rock04.png'
     },
     'unexplored': {
         'hardness': 0.1,
         'harvestable': false,
-        'value': 0
+        'value': 0,
+        'image': 'pics/defaultTile_2x.png'
     }
 };
