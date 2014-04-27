@@ -9,7 +9,7 @@ var grid_size = 40;
 var game_width = 25;
 var game_height = 30;
 
-var surface_height = 50;
+var surface_height = 75;
 
 var FPS = 10;
 
