@@ -5,6 +5,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; // the stuff you pick up
     this.position = {'x': startX, 'y': 0};
+    this.reachedDestination = false;
 
     this.destX = destX;
     this.destY = destY;
@@ -29,22 +30,37 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     };
 
     this.moveToward = function(destX, destY) {
+        //It can't move if it's dead.
+        if(this.energy === 0) { return; }
+
+        // If they have reached their destination they should do
+        // default behavior.
+        if (this.reachedDestination ||
+            (this.position.x === destX && this.position.y === destY)) {
+            this.reachedDestination = this.reachedDestination || true;
+            baseAttrs.klass.defaultBehavior(this);
+            return;
+        }
+
+        //If they haven't reached their destination, try to
+        // go to the given destination
         canMoveToward = canPassTile(grid[destX][destY]);
-        if(canMoveToward && !(this.position.x === destX && this.position.y === destY) &&
-            (this.energy > 0)) {
+        if(canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
             var randomVal = Math.random();
             if(randomVal > (baseAttrs.wobble * WobbleConstant) || this.currentlyDigging) {
                 canMoveToward = this.goToward(destX, destY);
             } else {
-                canMoveToward = makeRandomMove();
+                canMoveToward = this.makeRandomMove();
             }
+        } else if (this.position.x === destX && this.position.y === destY) {
+            this.reachedDestination = true;
         }
     };
 
     this.setDestination =function(destinX, destinY){
         this.destX=destinX;
         this.destY=destinY;
-    }
+    };
 
     this.setDestination(15,15);
 
@@ -63,7 +79,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         }
     };
 
-    var makeRandomMove = function() {
+    this.makeRandomMove = function() {
         var dirs = [[-1,0], [1,0], [0,-1], [0,1]].filter(function(dir) {
             var dest = {'x': _this.position.x + dir[0], 'y': _this.position.y + dir[1]};
             return grid[dest.x] && grid[dest.x][dest.y] && canPassTile(grid[dest.x][dest.y]);
