@@ -8,10 +8,10 @@ var grid_size = 20;
 var game_width = 50;
 var game_height = 60;
 
-function GridElem(pixel_x, pixel_y, size) {
+function Tile(pixel_x, pixel_y, size, type, amount) {
 
     /* create the easeljs shape object that
-     * draws this GridElem, and add it to the
+     * draws this Tile, and add it to the
      * stage
      */
     this.shape = new createjs.Shape();
@@ -22,12 +22,14 @@ function GridElem(pixel_x, pixel_y, size) {
     this.shape.y = pixel_y;
     stage.addChild(this.shape);
 
-    this.terrain_type = 'unexplored';
+    this.type = type;
+    this.amount = amount;
 }
 
-GridElem.prototype.changeTerrainType = function(new_type) {
+
+Tile.prototype.changeTerrainType = function(new_type) {
     this.terrain_type = new_type;
-    /* this is where we redraw the GridElem 
+    /* this is where we redraw the Tile
      * if we need to based on the new terrain type
      */
 }
@@ -39,7 +41,7 @@ function init_stage(width, height, size, surface_px) {
     for (var i = 0; i < width; i++) {
       var line = [];
       for (var j = 0; j < height; j++) {
-        var g = new GridElem(i*size,
+        var g = new Tile(i*size,
                              surface_px + j * size,
                              size);
         line.push(g);
