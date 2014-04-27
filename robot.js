@@ -7,8 +7,13 @@ var Robot = function(baseAttrs, startX) {
     this.position = {'x': startX, 'y': 0};
 
     this.init = function () {
+        grid[this.position.x][this.position.y].explored = true;
+        grid[this.position.x+1][this.position.y].explored = true;
+        grid[this.position.x-1][this.position.y].explored = true;
+        grid[this.position.x][this.position.y+1].explored = true;
+        grid[this.position.x][this.position.y-1].explored = true;
         this.render();
-    }
+    };
 
     // as a placeholder, robots are blue spheres
     // TODO make robots not be blue spheres

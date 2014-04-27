@@ -16,7 +16,7 @@ var colors = {
     'dirt': 'brown',
     'rock': 'gray',
     'iron': 'black'
-}
+};
 
 function Tile(pixel_x, pixel_y, size, type, amount) {
 
@@ -33,11 +33,11 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
     stage.addChild(this.shape);
 
     this.amount = amount;
-    this.type = null;
+    this.type = type;
     this.explored = false;
 
     this.getType = function() {
-        return this.explored ? (this.type || type) : "dirt";
+        return this.explored ? this.type : "dirt";
     };
 }
 
