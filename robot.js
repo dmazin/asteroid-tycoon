@@ -258,7 +258,7 @@ var upgradeBot = function(type, level) {
 
     if (playerState.getResource('money') < cost) {
         return;
-    }p
+    }
 
     playerState.changeResource('money', -cost);
     playerState.setRobotLevel(type, level);
