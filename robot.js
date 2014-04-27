@@ -125,6 +125,8 @@ var Robot = function(baseAttrs) {
     var timeToPassTile = function(tile) {
         return (baseAttrs.hardness - tile.getHardness()) * tile.resistance;
     };
+
+    return this;
 };
 
 var upgradeBot = function(type, level) {
