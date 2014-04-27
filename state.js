@@ -17,7 +17,15 @@ var playerState = (function() {
 
     state = {};
 
+    state.setAsteroid = function(asteroid) {
+        state.asteroid = asteroid;
+    };
+
     state.setAsteroid(new Asteroid());
+
+    state.getAsteroid = function() {
+        return state.asteroid;
+    };
 
     state.getRobotLevel = function(robotType) {
         return robotLevels[robotType];
@@ -49,14 +57,6 @@ var playerState = (function() {
             $('.money-stats .amount').text(parseInt(resourceAmounts['money']));
             $('.notification.money .amount').text(parseInt(resourceAmounts['money']));
         }
-    };
-
-    state.getAsteroid = function() {
-        return state.asteroid;
-    };
-
-    state.setAsteroid = function(asteroid) {
-        state.asteroid = asteroid;
     };
 
     return state;
