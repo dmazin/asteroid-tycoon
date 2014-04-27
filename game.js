@@ -3,6 +3,7 @@
 
 var stage;
 var grid = [];
+var spawn = {};
 
 var grid_size = 40;
 var game_width = 25;
@@ -15,10 +16,30 @@ var FPS = 30;
 var colors = {
     'dirt': '#292426',
     'rock': 'gray',
-    'iron': 'black',
+    'iron': '#0D0B0C',
     'backfill': 'pink',
-    'unexplored': '#0D0B0C'
+    'unexplored': 'black'
 };
+
+function createSpawn(xpos){
+    spawn.shape = new createjs.Shape();
+    spawn.shape.graphics.beginFill('#22B709')
+                       .drawCircle(0,0,8);                       
+    spawn.shape.x = grid_size*(xpos + 0.5);
+    spawn.shape.y = grid_size*(0 + 0.5) + surface_height;
+    stage.addChild(spawn.shape);
+}
+
+function moveSpawn(direction){
+  if (direction=="left"){
+    spawn.shape.x = spawn.shape.x - grid_size;
+
+  }
+  else if (direction=="right"){
+    spawn.shape.x = spawn.shape.x + grid_size;
+
+  }
+}
 
 function Tile(pixel_x, pixel_y, size, type, amount) {
     /* create the easeljs shape object that
@@ -105,7 +126,7 @@ function init_stage(width, height, size, surface_px) {
       }
       grid.push(line);
     }
-
+    createSpawn(Math.floor(width/2));
     stage.update();
 
     createjs.Ticker.addEventListener("tick", tick);
@@ -157,3 +178,23 @@ function generate_terrain(depth) {
 
 
 init_stage(game_width, game_height, grid_size, surface_height);
+
+
+document.onkeydown = checkKey;
+
+
+
+function checkKey(key) {
+
+    key = key || window.event;
+
+    if (key.keyCode == '37') {
+        // left arrow
+        moveSpawn("left")
+    }
+    else if (key.keyCode == '39') {
+        // right arrow
+        moveSpawn("right")
+    }
+}
+

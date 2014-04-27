@@ -8,6 +8,7 @@ var robots = {
         'wobble': 0.9,
         'harvestEfficiency': 0,
         'cost': 150,
+        'klass': SquirrelBot
         'spriteSheet': 'pics/allaround0_2x.png',
         'spriteSpeed': 0.1
     },
@@ -19,6 +20,7 @@ var robots = {
         'wobble': 0.7,
         'harvestEfficiency': 0.6,
         'cost': 300,
+        'klass': BearBot
         'spriteSheet': 'pics/allaround0_2x.png',
         'spriteSpeed': 0.1
     },
@@ -30,6 +32,7 @@ var robots = {
         'wobble': 0.4,
         'harvestEfficiency': 0.8,
         'cost': 550,
+        'klass': AntBot
         'spriteSheet': 'pics/allaround0_2x.png',
         'spriteSpeed': 0.1
     },
@@ -41,17 +44,19 @@ var robots = {
         'wobble': 0.5,
         'harvestEfficiency': 0,
         'cost': 1050,
+        'klass': GoatBot
         'spriteSheet': 'pics/allaround0_2x.png',
         'spriteSpeed': 0.1
     },
     'vultureBot': {
         'description': 'Scavenger robot that picks up dead robot parts',
-        'hardness': 0,
+        'hardness': 0.1,
         'baseEnergy': 1500,
         'storage': 200,
         'wobble': 0.1,
         'harvestEfficiency': 0.7,
         'cost': 650,
+        'klass': VultureBot
         'spriteSheet': 'pics/allaround0_2x.png',
         'spriteSpeed': 0.1
     }

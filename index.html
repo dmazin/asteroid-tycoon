@@ -132,6 +132,7 @@ body {
 <script src='lib/underscore.js'></script>
 <script src='lib/easeljs-0.7.1.min.js'></script>
 <script src='lib/astar.js'></script>
+<script src='robot_classes.js'></script>
 <script src='definitions.js'></script>
 <script src='game.js'></script>
 <script src='state.js'></script>
@@ -142,7 +143,7 @@ body {
         var $this = $(this);
         var robotType = $this.data('robot');
 
-        window.bot = spawnBot(robotType, 0);
+        window.bot = spawnBot(robotType, Math.floor(spawn.shape.x/grid_size));
     });
 </script>
 </body>
