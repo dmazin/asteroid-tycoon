@@ -21,7 +21,8 @@ var Robot = function(baseAttrs, startX) {
     //This is incompatible with the tick function
     this.moveToward = function(destX, destY) {
         canMoveToward = canPassTile(grid[destX][destY]);
-        if(canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
+        if(canMoveToward && !(this.position.x === destX && this.position.y === destY) &&
+            (this.energy > 0)) {
             var randomVal = Math.random();
             if(randomVal > (baseAttrs.wobble * WobbleConstant)) {
                 canMoveToward = this.goToward(destX, destY);
