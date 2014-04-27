@@ -10,6 +10,12 @@ var game_height = 60;
 
 var FPS = 30;
 
+var colors = {
+    'dirt': 'brown',
+    'rock': 'gray',
+    'iron': 'black'
+}
+
 function Tile(pixel_x, pixel_y, size, type, amount) {
 
     /* create the easeljs shape object that
@@ -17,7 +23,7 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
      * stage
      */
     this.shape = new createjs.Shape();
-    this.shape.graphics.beginFill("brown");
+    this.shape.graphics.beginFill(colors[type]);
     this.shape.graphics.rect(0, 0, size, size);
 
     this.shape.x = pixel_x;
