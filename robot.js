@@ -103,11 +103,29 @@ var Robot = function(baseAttrs, startX, destX, destY) {
             var dest = {'x': _this.position.x + dir[0], 'y': _this.position.y + dir[1]};
             return grid[dest.x] && grid[dest.x][dest.y] && canPassTile(grid[dest.x][dest.y]);
         });
-        if(dirs.length === 0) { return false; } //In case it's trapped somehow
+        if(dirs.length === 0) {
+            console.log('trying to makeRandomMove but no place to go!')
+            return false;
+        }
         var randomDir = Math.floor(Math.random() * dirs.length);
         chosenDir = dirs[randomDir];
-        _this.moveTo(_this.position.x + chosenDir[0], _this.position.y + chosenDir[1]);
-        return true;
+        this.moveInDirection(chosenDir[0], chosenDir[1]);
+        return chosenDir;
+    };
+
+    this.moveInDirection = function(xDelta, yDelta) {
+        dest = {'x': _this.position.x + xDelta, 'y': _this.position.y + yDelta};
+        this.moveTo(dest.x, dest.y);
+    };
+
+    // in unable to move in chosen direction, move randomly
+    this.moveInDirectionOrRandom = function(xDelta, yDelta) {
+        dest = {'x': _this.position.x + xDelta, 'y': _this.position.y + yDelta};
+        if (grid[dest.x] && grid[dest.x][dest.y] && canPassTile(grid[dest.x][dest.y])) {
+            this.moveTo(dest.x, dest.y);
+        } else {
+            this.makeRandomMove();
+        }
     };
 
     this.moveTo = function(newX, newY) {
@@ -137,6 +155,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
                 this.currentlyDigging = {x: newX, y: newY};
             }
         }
+
         this.energy -= 3;
         this.render();
     };

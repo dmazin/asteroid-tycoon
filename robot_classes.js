@@ -1,7 +1,14 @@
 var SquirrelBot = {}, BearBot = {}, AntBot = {}, GoatBot = {}, VultureBot = {};
 
+// move in a random direction for 10 moves at a time
 SquirrelBot.defaultBehavior = function(_this) {
-	_this.makeRandomMove();
+	if (!_this.directionPicked || _this.movesLeft <= 0) {
+		_this.directionPicked = _this.makeRandomMove();
+		_this.movesLeft = 10;
+	} else {
+		_this.moveInDirectionOrRandom(_this.directionPicked[0], _this.directionPicked[1]);
+		_this.movesLeft--;
+	}
 };
 
 BearBot.defaultBehavior = function(_this) {

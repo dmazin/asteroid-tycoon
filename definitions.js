@@ -175,7 +175,7 @@ var resources = {
         'hardness': 0,
         'harvestable': false,
         'value': 0,
-        'image': 'pics/backfill02.png'
+        'image': 'pics/backfill03.png'
     },
     'dirt': {
         'hardness': 0,
