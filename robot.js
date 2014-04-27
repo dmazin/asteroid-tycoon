@@ -120,5 +120,6 @@ var upgradeBot = function(type, level) {
 
 var spawnBot = function(type) {
     var robotAttrs = robotLevels[type][typeLevels[type]];
-    new Robot(robotAttrs);
+    var bot = new Robot(robotAttrs);
+    activeBots.push(bot);
 };
