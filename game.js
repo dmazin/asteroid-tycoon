@@ -54,7 +54,6 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
         this.refresh();
     };
 
-<<<<<<< HEAD
     this.shape = new createjs.Shape();
     this.shape.graphics.beginFill(colors[type]);
     this.shape.graphics.rect(0, 0, size, size);
@@ -66,14 +65,6 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
     this.amount = amount;
     this.type = type;
     this.explored = true;
-=======
-    this.setType = function (newType) {
-        this.type = newType;
-        this.refresh();
-    }
-
-    this.init();
->>>>>>> 1b07ea87a9eebf74a3a3e63142bdaf1a8818a935
 }
 
 function tick() {
