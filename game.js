@@ -46,6 +46,9 @@ function init_stage(width, height, size, surface_px) {
       var line = [];
       for (var j = 0; j < height; j++) {
         var resourceName = ["dirt", "rock", "iron"][Math.floor(Math.random() * 3)];
+        if (j == 0) {
+            resourceName = "dirt";
+        }
         var amount = Math.floor(Math.random() * 20);
         var g = new Tile(i*size,
                              surface_px + j * size,

@@ -57,7 +57,6 @@ var Robot = function(baseAttrs, startX) {
             explored.push(node.x + ',' + node.y);
             [[-1,0], [1,0], [0,-1], [0,1]].forEach(function (dir) {
                 var dest = {'x': node.x + dir[0], 'y': node.y + dir[1]};
-                console.log(dest);
 
                 if (!grid[dest.x] || !grid[dest.x][dest.y] ||
                         !canPassTile(grid[dest.x][dest.y])) {
@@ -66,15 +65,13 @@ var Robot = function(baseAttrs, startX) {
                 }
 
                 var tile = grid[dest.x][dest.y];
-                console.log(tile);
 
                 var child = {
                     'x': dest.x,
                     'y': dest.y,
                     'pathCost': node.pathCost + timeToPassTile(tile),
-                    'path': node.path.concat(dir)
+                    'path': node.path.concat([dir])
                 };
-                console.log(child);
 
                 if (explored.indexOf(child.x + ',' + child.y) == -1 &&
                         !frontier.some(function (n) {n.x == child.x && n.y == child.y})) {
@@ -93,8 +90,6 @@ var Robot = function(baseAttrs, startX) {
                         }
                     });
                 }
-
-                console.log(frontier);
             });
         }
     };
@@ -144,13 +139,12 @@ var Robot = function(baseAttrs, startX) {
     var canPassTile = function(tile) {
         var resource = resources[tile.type];
         var drillHardness = baseAttrs.hardness;
-        console.log([tile.type, drillHardness > resource.hardness])
         return (drillHardness > resource.hardness);
     };
 
     var timeToPassTile = function(tile) {
         var resource = resources[tile.type];
-        return (baseAttrs.hardness - resource.hardness) * resource.resistance;
+        return (baseAttrs.hardness - resource.hardness) * tile.amount;
     };
 
     return this;
