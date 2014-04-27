@@ -15,8 +15,12 @@ AntBot.defaultBehavior = function(_this) {
 	var harvestableSelectionCallback = function(tile) {
 		return resources[tile.getType()].harvestable === true;
 	};
-	dest = findNearestResource(_this.position, harvestableSelectionCallback);
-	_this.goToward(dest.x, dest.y);
+	var dest = findNearestResource(_this.position, harvestableSelectionCallback);
+	if(dest) {
+		_this.goToward(dest.x, dest.y);
+	} else {
+		_this.makeRandomMove();
+	}
 };
 
 //seeks out nearest hard rocks to smash rocks
@@ -24,13 +28,21 @@ GoatBot.defaultBehavior = function(_this) {
 	var rockSelectionCallback = function(tile) {
 		return tile.getType() === 'rock';
 	};
-	dest = findNearestResource(_this.position, rockSelectionCallback);
-	_this.goToward(dest.x, dest.y);
+	var dest = findNearestResource(_this.position, rockSelectionCallback);
+	if(dest) {
+		_this.goToward(dest.x, dest.y);
+	} else {
+		_this.makeRandomMove();
+	}
 };
 
 VultureBot.defaultBehavior = function(_this) {
-	dest = findNearestBot(_this.position);
-	_this.goToward(dest.x, dest.y);
+	var dest = findNearestBot(_this.position);
+	if(dest) {
+		_this.goToward(dest.x, dest.y);
+	} else {
+		_this.makeRandomMove();
+	}
 };
 
 //availbleBots for vulture
