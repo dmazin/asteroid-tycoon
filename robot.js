@@ -168,6 +168,7 @@ var upgradeBot = function(type, level) {
 var spawnBot = function(type, startX) {
     var robotAttrs = robotLevels[type][state.getRobotLevel(type)];
 
+    // Have stage listen to mouseup once and make a new bot based on that
     stage.on('stagemouseup', function(stage) {
         var destX = parseInt(stage.stageX / 40);
         var destY = parseInt(stage.stageY / 40);

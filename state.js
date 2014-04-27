@@ -35,7 +35,9 @@ var playerState = (function() {
 
     state.changeResource = function(resource, amount) {
         resourceAmounts[resource] += amount;
-        $('.notification .amount').text(parseInt(resourceAmounts[resource]));
+        if (resource === 'iron') {
+            $('.notification .amount').text(parseInt(resourceAmounts[resource]));
+        }
     };
 
     return state;
