@@ -2,6 +2,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     var _this = this;
 
     this.energy = baseAttrs.baseEnergy;
+    this.baseEnergy = baseAttrs.baseEnergy;
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; // the stuff you pick up
     this.position = {'x': startX, 'y': 0};
@@ -22,16 +23,23 @@ var Robot = function(baseAttrs, startX, destX, destY) {
             }
         });
         this.animation = new createjs.Sprite(spriteSheet, "run");
-        this.animation.scaleX = -1;
-        this.animation.scaleY = 1;
         this.animation.gotoAndPlay("run");
         stage.addChild(this.animation);
+
+        var healthbarSpriteSheet = new createjs.SpriteSheet({
+            images: ["pics/healthbar_2x.png"],
+            frames: {width:40, height:4}
+        });
+        this.healthbar = new createjs.Sprite(healthbarSpriteSheet);
+        this.healthbar.gotoAndStop(19);
+        stage.addChild(this.healthbar);
+
         this.render();
     };
 
     this.moveToward = function(destX, destY) {
         //It can't move if it's dead.
-        if(this.energy === 0) { return; }
+        if(this.energy <= 0) { return; }
 
         // If they have reached their destination they should do
         // default behavior.
@@ -115,7 +123,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
                 this.currentlyDigging = {x: newX, y: newY};
             }
         }
-
+        this.energy -= 3;
         this.render();
     };
 
@@ -130,8 +138,6 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     };
 
     var updateTileAndResources = function(tile) {
-        _this.energy -= 1;
-
         var resource = resources[tile.getType()];
         var proportionMined = baseAttrs.hardness - resource.hardness;
         var amountMined = tile.baseAmount * proportionMined;
@@ -180,6 +186,10 @@ Robot.prototype.render = function() {
         x = this.position.x;
         y = this.position.y;
     }
+
+    this.healthbar.x = grid_size*x;
+    this.healthbar.y = grid_size*y + surface_height - grid_size / 3;
+    this.healthbar.gotoAndStop(Math.floor(this.energy / this.baseEnergy * 20));
 
     this.animation.rotation = 0;
     this.animation.scaleX = 1;

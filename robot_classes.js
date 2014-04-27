@@ -45,11 +45,11 @@ VultureBot.defaultBehavior = function(_this) {
 	}
 };
 
-//availbleBots for vulture
+//activeBots for vulture
 var findNearestBot = function(position) {
 	var currDiff = 1000;
-	var nearestBot = availableBots[0];
-	availbleBots.forEach(function(bot) {
+	var nearestBot = activeBots[0];
+	activeBots.forEach(function(bot) {
 		var diffX = Math.abs(bot.position.x - position.x);
 		var diffY = Math.abs(bot.position.y - position.y);
 		if((diffX + diffY) < currDiff) {
