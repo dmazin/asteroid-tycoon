@@ -3,7 +3,7 @@ var Robot = function(baseAttrs) {
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; //The stuff you pick up
 
-    this.position = {'x': 0, 'y': 0};
+    this.position = {x: 0, y: 0};
 
     this.goTo = function (destX, destY, grid) {
         // let's do Uniform Cost Search?
