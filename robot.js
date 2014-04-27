@@ -315,10 +315,10 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     // This is called when a robot's energy reaches
     // 0 from the handleMove function.
     var handleDeath = function() {
-        this.animation.gotoAndPlay('explode');
-        this.healthbar.visible = false;
-        this.salvageValue = 10;
-        this.dead = true;
+        _this.animation.gotoAndPlay('explode');
+        _this.healthbar.visible = false;
+        _this.salvageValue = 10;
+        _this.dead = true;
     };
 
     this.init();
