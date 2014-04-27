@@ -49,7 +49,7 @@ var robots = {
         'spriteSpeed': 0.3
     },
     'vultureBot': {
-        'description': 'Scavenger robot that picks up dead robot parts',
+        'description': 'Rubble scavenger',
         'hardness': 0.1,
         'baseEnergy': 1500,
         'storage': 200,
@@ -61,6 +61,13 @@ var robots = {
         'spriteSpeed': 0.3
     }
 };
+
+var buy_button_template = _.template($('#robot-buy-button-template').html());
+_.each(robots, function(val, key) {
+    var data = _.extend(val, {'name': key});
+    var rendered = buy_button_template(data);
+    $('.controls .robot-spawn').append(rendered);
+});
 
 var WobbleConstant = 0.5;
 
