@@ -96,8 +96,8 @@ var Robot = function(baseAttrs) {
     };
 
     var updateTileAndResources = function(tile) {
-        var changePercentage = baseAttrs.hardness - tile.getHardness();
         _this.energy -= 1;
+        var changePercentage = baseAttrs.hardness - tile.getHardness();
         var changeAmount = Math.ceil(tile.amount * changePercentage);
         if (tile.harvestable && _this.storage > 0) {
             addResouces(changeAmount, tile.type);
@@ -124,14 +124,14 @@ var Robot = function(baseAttrs) {
 
     var timeToPassTile = function(tile) {
         return (baseAttrs.hardness - tile.getHardness()) * tile.resistance;
-    }
+    };
 };
 
 var upgradeBot = function(type, level) {
     var cost = upgradeCosts[type][level];
 
     if (playerState.getResource('money') < cost) {
-        return; 
+        return;
     }
     
     playerState.changeResource('money', -cost);
