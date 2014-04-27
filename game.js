@@ -8,6 +8,8 @@ var grid_size = 20;
 var game_width = 50;
 var game_height = 60;
 
+var FPS = 30;
+
 function Tile(pixel_x, pixel_y, size, type, amount) {
 
     /* create the easeljs shape object that
@@ -24,6 +26,10 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
 
     this.type = type;
     this.amount = amount;
+}
+
+function tick() {
+    stage.update();
 }
 
 function init_stage(width, height, size, surface_px) {
@@ -45,6 +51,9 @@ function init_stage(width, height, size, surface_px) {
     }
 
     stage.update();
+
+    createjs.Ticker.addEventListener("tick", tick);
+    createjs.Ticker.setFPS(FPS);
 }
 
 init_stage(game_width, game_height, grid_size, 100);
