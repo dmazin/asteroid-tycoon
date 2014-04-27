@@ -3,8 +3,9 @@ var Robot = function(baseAttrs) {
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; //The stuff you pick up
 
-    this.position = {'x': 0, 'y': 0};
+    this.position = {x: 0, y: 0};
 
+    // should return [xDelta, yDelta] (one of [-1,0], [1,0], [0,-1], [0,1])
     this.goTo = function (destX, destY, grid) {
         // let's do Uniform Cost Search?
 
@@ -25,13 +26,13 @@ var Robot = function(baseAttrs) {
             'x': this.position.x,
             'y': this.position.y,
             'pathCost': 0,
-            'path' = []
+            'path': []
         };
         var frontier = [startNode];
         var explored = [];
 
         while (true) {
-            if (frontier.length == 0) {
+            if (frontier.length === 0) {
                 return false; // failure :-(
             }
             var node = popMinNode(frontier);
@@ -51,7 +52,7 @@ var Robot = function(baseAttrs) {
                     'y': dest.y,
                     'pathCost': node.pathCost + timeToPassTile(tile),
                     'path': path.concat(dir)
-                }
+                };
 
                 if (explored.indexOf(node.x + ',' + node.y) == -1 &&
                         !frontier.some(function (n) {n.x == child.x && n.y == child.y})) {
@@ -62,7 +63,7 @@ var Robot = function(baseAttrs) {
                     // if child state is in frontier *with a higher path-cost*,
                     // replace that frontier node with child
                     frontier = frontier.map(function (node) {
-                        if (node.x == child.x && node.y == child.y &&
+                        if (node.x === child.x && node.y === child.y &&
                                 node.pathCost > child.pathCost) {
                             return child;
                         } else {
@@ -102,7 +103,7 @@ var Robot = function(baseAttrs) {
             addResouces(changeAmount, tile.type);
         }
         tile.amount -= changeAmount; //Reduce the amount left on the tile
-    }
+    };
 
     var addResources = function(changeAmount, resourceType) {
         var amountHarvested = Math.min(changeAmount, this.storage);
@@ -137,5 +138,6 @@ var upgradeBot = function(type, level) {
 
 var spawnBot = function(type) {
     var robotAttrs = robotLevels[type][typeLevels[type]];
-    new Robot(robotAttrs);
+    var bot = new Robot(robotAttrs);
+    activeBots.push(bot);
 };
