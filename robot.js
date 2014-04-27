@@ -222,18 +222,12 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         }
     };
 
+    //once the tile to move to is determined, this function makes the final move step
+    // This is the function that actually moves the robot.
     this.moveTo = function(newX, newY) {
-        //once the tile to move to is determined, this function makes the final move step
-        if (newY > this.position.y) {
-            this.direction = 'down';
-        } else if (newY < this.position.y) {
-            this.direction = 'up';
-        } else if (newX > this.position.x) {
-            this.direction = 'right';
-        } else if (newX < this.position.x) {
-            this.direction = 'left';
-        }
-
+        // Update the direction for the sprite
+        updateDirection(newX, newY);
+        
         var currentTile = grid[this.position.x][this.position.y];
         var newTile = grid[newX][newY];
 
@@ -319,6 +313,19 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         _this.healthbar.visible = false;
         _this.salvageValue = 10;
         _this.dead = true;
+    };
+
+    var updateDirection = function(newX, newY) {
+        if (newY > _this.position.y) {
+            _this.direction = 'down';
+        } else if (newY < _this.position.y) {
+            _this.direction = 'up';
+        } else if (newX > _this.position.x) {
+            _this.direction = 'right';
+        } else if (newX < _this.position.x) {
+            _this.direction = 'left';
+        }
+
     };
 
     this.init();
