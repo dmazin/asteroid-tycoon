@@ -23,7 +23,7 @@ var Robot = function(baseAttrs, startX) {
         canMoveToward = canPassTile(grid[destX][destY]);
         if(canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
             var randomVal = Math.random();
-            if(randomVal > baseAttrs.wobble) {
+            if(randomVal > (baseAttrs.wobble * WobbleConstant)) {
                 canMoveToward = this.goToward(destX, destY);
             } else {
                 canMoveToward = makeRandomMove();

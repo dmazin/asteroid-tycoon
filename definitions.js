@@ -11,6 +11,8 @@ var robots = {
     }
 };
 
+var WobbleConstant = 0.5;
+
 var upgradeCosts = {
     'squirrelBot': [0, 500, 1000]
 };
