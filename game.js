@@ -17,7 +17,7 @@ var colors = {
     'rock': 'gray',
     'iron': 'black',
     'unexplored': 'purple'
-}
+};
 
 function Tile(pixel_x, pixel_y, size, type, amount) {
     /* create the easeljs shape object that
@@ -45,7 +45,7 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
     stage.addChild(this.shape);
 
     this.amount = amount;
-    this.type = null;
+    this.type = type;
     this.explored = false;
 }
 

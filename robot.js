@@ -8,7 +8,7 @@ var Robot = function(baseAttrs, startX) {
 
     this.init = function () {
         this.render();
-    }
+    };
 
     // as a placeholder, robots are blue spheres
     // TODO make robots not be blue spheres
@@ -101,15 +101,6 @@ var Robot = function(baseAttrs, startX) {
         this.position.x += xDelta;
         this.position.y += yDelta;
 
-        var p = this.position;
-        [p.x-1, p.x, p.x+1].forEach(function (x) {
-            [p.y-1, p.y, p.y+1].forEach(function (y) {
-                if (grid[x] && grid[x][y]) {
-                    grid[x][y].setExplored();
-                }
-            });
-        });
-
         this.render();
     };
 
@@ -162,6 +153,15 @@ var Robot = function(baseAttrs, startX) {
 Robot.prototype.render = function() {
     this.shape.x = grid_size *this.position.x + 10;
     this.shape.y = grid_size *this.position.y + surface_height + 10;
+
+    var p = this.position;
+    [p.x-1, p.x, p.x+1].forEach(function (x) {
+        [p.y-1, p.y, p.y+1].forEach(function (y) {
+            if (grid[x] && grid[x][y]) {
+                grid[x][y].setExplored();
+            }
+        });
+    });
 };
 
 var upgradeBot = function(type, level) {
