@@ -35,7 +35,7 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
     this.explored = false;
 
     this.getType = function() {
-        return this.explored ? type : "dirt";
+        return this.explored ? (this.type || type) : "dirt";
     };
 }
 
