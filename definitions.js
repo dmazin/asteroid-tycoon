@@ -214,10 +214,16 @@ var resources = {
         'image': loadImage('pics/rock09.png')
     },
     'junipum': {
-        'hardness': 0.5,
+        'hardness': 0.4,
         'harvestable': true,
         'value': 10,
-        'image': loadImage('pics/rock07.png')
+        'image': loadImage('pics/rock08.png')
+    },
+    'paprikum': {
+        'hardness': 0.4,
+        'harvestable': true,
+        'value': 10,
+        'image': loadImage('pics/rock06.png')
     },
     'unexplored': {
         'hardness': 0.1,
@@ -233,5 +239,6 @@ var resource_weights = {
     'rock': {pTop: 0.1, pBottom: 0.4, minDepth: 1},
     'iron': {pTop: 0.01, pBottom: 0.2, minDepth: 1},
     'mintium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
-    'junipum': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
+    'junipum': {pTop: 0.01, pBottom: 0.05, minDepth: 15},
+    'paprikum': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
 }
