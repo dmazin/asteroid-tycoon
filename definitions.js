@@ -1,7 +1,7 @@
 // Definitions of base-level robots - spawn using robotLevels, not robots
 var robots = {
     'squirrelBot': {
-        'description': 'Basic scout robot',
+        'description': 'SquirrelBot 1.0 - Scout',
         'hardness': 0.13,
         'baseEnergy': 2000,
         'storage': 0,
@@ -10,10 +10,12 @@ var robots = {
         'cost': 150,
         'klass': SquirrelBot,
         'spriteSheet': 'pics/scout0_2x.png',
-        'spriteSpeed': 0.3
+        'spriteSpeed': 0.3,
+        'gif': 'pics/scout0.gif'
+
     },
     'bearBot': {
-        'description': 'All-around robot',
+        'description': 'BearBot 1.0 - All Around',
         'hardness': 0.25,
         'baseEnergy': 1200,
         'storage': 100,
@@ -22,10 +24,11 @@ var robots = {
         'cost': 300,
         'klass': BearBot,
         'spriteSheet': 'pics/allaround0_2x.png',
-        'spriteSpeed': 0.3
+        'spriteSpeed': 0.3,
+        'gif': 'pics/allaround0.gif'
     },
     'antBot': {
-        'description': 'Harvester robot',
+        'description': 'AntBot 1000 - Harvester',
         'hardness': 0.35,
         'baseEnergy': 1000,
         'storage': 200,
@@ -34,10 +37,11 @@ var robots = {
         'cost': 550,
         'klass': AntBot,
         'spriteSheet': 'pics/harvester0_2x.png',
-        'spriteSpeed': 0.3
+        'spriteSpeed': 0.3,
+        'gif': 'pics/harvester0.gif'
     },
     'goatBot': {
-        'description': 'Smasher robot',
+        'description': 'GoatBot 1000 - Smasher',
         'hardness': 0.55,
         'baseEnergy': 1000,
         'storage': 0,
@@ -46,10 +50,11 @@ var robots = {
         'cost': 1050,
         'klass': GoatBot,
         'spriteSheet': 'pics/smasher0_2x.png',
-        'spriteSpeed': 0.3
+        'spriteSpeed': 0.3,
+        'gif': 'pics/smasher0.gif'
     },
     'vultureBot': {
-        'description': 'Rubble scavenger',
+        'description': 'VultureBot 1000 - Scavenger',
         'hardness': 0.1,
         'baseEnergy': 1500,
         'storage': 200,
@@ -58,7 +63,8 @@ var robots = {
         'cost': 650,
         'klass': VultureBot,
         'spriteSheet': 'pics/vulture0_2x.png',
-        'spriteSpeed': 0.3
+        'spriteSpeed': 0.3,
+        'gif': 'pics/scavenger0.gif'
     }
 };
 
@@ -170,35 +176,62 @@ var robotLevels = {
     ]
 };
 
+function loadImage(src) {
+    i = new Image();
+    i.src = src;
+    return i;
+}
+
 var resources = {
     'backfill': {
         'hardness': 0,
         'harvestable': false,
         'value': 0,
-        'image': 'pics/backfill02.png'
+        'image': loadImage('pics/backfill03.png')
     },
     'dirt': {
         'hardness': 0,
         'harvestable': false,
         'value': 0,
-        'image': 'pics/rock11.png'
+        'image': loadImage('pics/rock11.png')
     },
     'rock': {
         'hardness': 0.3,
         'harvestable': false,
         'value': 0,
-        'image': 'pics/rock08.png'
+        'image': loadImage('pics/rock01.png')
     },
     'iron': {
         'hardness': 0.3,
         'harvestable': true,
         'value': 10,
-        'image': 'pics/rock04.png'
+        'image': loadImage('pics/rock04.png')
+    },
+    'mintium': {
+        'hardness': 0.4,
+        'harvestable': true,
+        'value': 10,
+        'image': loadImage('pics/rock09.png')
+    },
+    'junipum': {
+        'hardness': 0.5,
+        'harvestable': true,
+        'value': 10,
+        'image': loadImage('pics/rock07.png')
     },
     'unexplored': {
         'hardness': 0.1,
         'harvestable': false,
         'value': 0,
-        'image': 'pics/defaultTile_2x.png'
+        'image': loadImage('pics/defaultTile_2x.png')
     }
 };
+
+/* maps resources to function from depth to prob at depth */
+var resource_weights = {
+    'dirt': {pTop: 1, pBottom: 1, minDepth: 0},
+    'rock': {pTop: 0.1, pBottom: 0.4, minDepth: 1},
+    'iron': {pTop: 0.01, pBottom: 0.2, minDepth: 1},
+    'mintium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
+    'junipum': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
+}
