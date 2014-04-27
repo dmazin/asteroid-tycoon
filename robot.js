@@ -31,81 +31,10 @@ var Robot = function(baseAttrs, startX) {
         }
     };
 
-    // should return [xDelta, yDelta] (one of [-1,0], [1,0], [0,-1], [0,1])
     this.goToward = function (destX, destY) {
-        // let's do Uniform Cost Search?
-
-        function popMinNode(frontier) {
-            var bestCost = 9999;
-            var bestNode = null;
-            var bestIndex = null;
-            frontier.forEach(function (node, idx) {
-                if (node.pathCost < bestCost) {
-                    bestNode = node;
-                    bestCost = node.pathCost;
-                    bestIndex = idx;
-                }
-            });
-            frontier.splice(bestIndex, 1);
-            return bestNode;
-        }
-
-        var startNode = {
-            'x': this.position.x,
-            'y': this.position.y,
-            'pathCost': 0,
-            'path': []
-        };
-        var frontier = [startNode];
-        var explored = [];
-
-        while (true) {
-            if (frontier.length === 0) {
-                return false; // failure :-(
-            }
-            var node = popMinNode(frontier);
-            if (node.x == destX && node.y == destY) {
-                // path to destination found
-                var dirFound = node.path[0];
-                this.move(dirFound[0], dirFound[1]);
-                return true;
-            }
-            explored.push(node.x + ',' + node.y);
-            [[-1,0], [1,0], [0,-1], [0,1]].forEach(function (dir) {
-                var dest = {'x': node.x + dir[0], 'y': node.y + dir[1]};
-
-                if (!grid[dest.x] || !grid[dest.x][dest.y] ||
-                        !canPassTile(grid[dest.x][dest.y])) {
-                    // dest is out of bounds or impassable
-                    return;
-                }
-
-                var tile = grid[dest.x][dest.y];
-
-                var child = {
-                    'x': dest.x,
-                    'y': dest.y,
-                    'pathCost': node.pathCost + timeToPassTile(tile),
-                    'path': node.path.concat([dir])
-                };
-
-                if (explored.indexOf(child.x + ',' + child.y) == -1 &&
-                        !frontier.some(function (n) {n.x == child.x && n.y == child.y})) {
-                    // if child state is not in explored or frontier,
-                    // insert into frontier
-                    frontier.push(child);
-                } else if (frontier.some(function (n) {n.x == child.x && n.y == child.y})) {
-                    // if child state is in frontier *with a higher path-cost*,
-                    // replace that frontier node with child
-                    frontier = frontier.map(function (node) {
-                        if (node.x === child.x && node.y === child.y &&
-                                node.pathCost > child.pathCost) {
-                            return child;
-                        } else {
-                            return node;
-                        }
-                    });
-                }
+        var g = grid.map(function (row) {
+            return row.map(function (tile) {
+                return canPassTile(tile) ? 1 : 0;
             });
         });
         var graph = new Graph(g);

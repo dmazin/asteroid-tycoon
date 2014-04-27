@@ -122,7 +122,7 @@ function generate_terrain(depth){
     return "iron";
   }
   else if (mineralSelect <=ironProbability + stoneProbability){
-    return "stone";
+    return "rock";
   }
   else {
     return "dirt";
