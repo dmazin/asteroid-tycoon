@@ -115,7 +115,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
                 this.currentlyDigging = {x: newX, y: newY};
             }
         }
-        this.energy -= 1;
+        this.energy -= 3;
         this.render();
     };
 
