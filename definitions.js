@@ -49,5 +49,10 @@ var resources = {
         'hardness': 0.35,
         'harvestable': true,
         'value': 10
+    },
+    'unexplored': {
+        'hardness': 0.1,
+        'harvestable': false,
+        'value': 0
     }
 };
