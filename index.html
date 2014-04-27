@@ -18,16 +18,18 @@
             </pre>
         </div>
         <marquee behavior="alternate">
-        <span class='money notification'>YOU HAVE <span class='amount'></span> SPACE DOLLARS</span>
-        <span class='iron notification'>IRON REPORT! IRON LEVELS AT <span class='amount'></span> IRONS</span>
-        <span class='alert'>PRODUCTION DECLINING, PICK UP SLACK OR FACE CORPORATE OVERSIGHT</span>
+            <span class='money notification'>YOU HAVE <span class='amount'></span> SPACE DOLLARS</span>
+            <span class='iron notification'>IRON REPORT! IRON LEVELS AT <span class='amount'></span> IRONS</span>
+            <span class='alert'>PRODUCTION DECLINING, PICK UP SLACK OR FACE CORPORATE OVERSIGHT</span>
         </marquee>
-        <div class='robot-spawn'>
-            <span class='robot' data-robot='squirrelBot'>squirrel likes to dig</span>
-            <span class='robot' data-robot='bearBot'>bear likes to neigh</span>
-            <span class='robot' data-robot='antBot'>ant likes to wink</span>
-            <span class='robot' data-robot='goatBot'>goat likes to stand</span>
-            <span class='robot' data-robot='vultureBot'>vulture... turtle</span>
+        <div class='controls'>
+            <div class='robot-spawn'>
+                <span class='robot' data-robot='squirrelBot'>squirrel likes to dig</span>
+                <span class='robot' data-robot='bearBot'>bear likes to neigh</span>
+                <span class='robot' data-robot='antBot'>ant likes to wink</span>
+                <span class='robot' data-robot='goatBot'>goat likes to stand</span>
+                <span class='robot' data-robot='vultureBot'>vulture... turtle</span>
+            </div>
         </div>
     </div>
     <canvas id='mainCanvas' width=1000 height=1200></canvas>
@@ -37,6 +39,12 @@
 body {
     font-family: 'Roboto', 'sans-serif';
     background-color: #000;
+}
+
+.controls {
+    background-color: #C9C9C9;
+    margin-top: -4px;
+    padding: 10px 57px;
 }
 
 .notification {
@@ -95,10 +103,6 @@ body {
 
 .robot-spawn {
     width: 560px;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    margin-left: -265px;
 }
 
 #mainCanvas {
@@ -115,10 +119,10 @@ body {
     text-align: center;
     opacity: .6;
     padding: 1px 0 3px;
-    border: 4px outset #A06767;
+    border: 4px outset #BDBDBD;
     border-radius: 10px;
     vertical-align: top;
-    background-color: #6F3E3E;
+    background-color: #8B8B8B;
 }
 
 .robot:hover {
