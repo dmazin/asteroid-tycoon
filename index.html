@@ -45,9 +45,21 @@
     <canvas id='mainCanvas' width=1000 height=1250></canvas>
 </div>
 
-<audio src="slow-loop.ogg" autoplay loop></audio>
+<div class='sound'>
+    <audio id="audio" src="slow-loop.ogg" autoplay loop></audio>
+    <a href='javascript://' onclick="document.getElementById('audio').play()">play</a>
+    <a href='javascript://' onclick="document.getElementById('audio').pause()">pause</a>
+</div>
 
 <style>
+.sound {
+    width: 80px;
+    margin: 0 auto;
+}
+.sound a {
+    color: white;
+}
+
 .stats {
     background-color: #008000;
     width: 200px;
