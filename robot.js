@@ -179,6 +179,8 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         }
         playerState.changeResource(tile.getType(), amountMined);
         tile.amount -= amountMined; //Reduce the amount left on the tile
+
+        playerState.changeResource('money', 1);
     };
 
     var addResources = function(amountMined, resourceType) {
