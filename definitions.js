@@ -69,7 +69,7 @@ _.each(robots, function(val, key) {
     $('.controls .robot-spawn').append(rendered);
 });
 
-var WobbleConstant = 0.5;
+var WobbleConstant = 0.75;
 
 var upgradeCosts = {
     'squirrelBot': [0, 1500, 3000],
