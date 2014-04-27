@@ -1,4 +1,5 @@
 var activeBots = [];
+var deadBots = [];
 
 var playerState = (function() {
     var robotLevels = {

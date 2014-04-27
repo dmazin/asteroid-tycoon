@@ -250,6 +250,16 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
 
             }
         }
+
+        if (baseAttrs.canSalvage) {
+            deadBots.forEach(function (bot, i) {
+                if (bot.position.x == newX && bot.position.y == newY) {
+                    bot.getSalvaged();
+                    deadBots.splice(i, 1); // remove from array
+                }
+            });
+        }
+
         this.energy -= 1;
         this.render();
     };
@@ -263,6 +273,11 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         this.canMove = (tile.amount <= 0); //You can move if you're not blocked by a tile.
         //Can you move if you can't pick up stuff on a tile.
     };
+
+    this.getSalvaged = function () {
+        playerState.changeResource('money', this.salvageValue);
+        this.animation.visible = false;
+    }
 
     // This gets called as part of the hit function.
     // It is used to update the tile's amount given
@@ -315,8 +330,9 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
     var handleDeath = function() {
         _this.animation.gotoAndPlay('explode');
         _this.healthbar.visible = false;
-        _this.salvageValue = 10;
+        _this.salvageValue = baseAttrs.cost * salvageValueMultiplier;
         _this.dead = true;
+        deadBots.push(_this);
     };
 
     var updateDirection = function(newX, newY) {

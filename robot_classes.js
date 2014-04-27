@@ -53,11 +53,15 @@ VultureBot.defaultBehavior = function(_this) {
 	}
 };
 
-//activeBots for vulture
+// nearest deadBot for vulture
 var findNearestBot = function(position) {
+	if (deadBots.length == 0) {
+		return false;
+	}
+
 	var currDiff = 1000;
-	var nearestBot = activeBots[0];
-	activeBots.forEach(function(bot) {
+	var nearestBot = deadBots[0];
+	deadBots.forEach(function(bot) {
 		var diffX = Math.abs(bot.position.x - position.x);
 		var diffY = Math.abs(bot.position.y - position.y);
 		if((diffX + diffY) < currDiff) {
@@ -65,6 +69,7 @@ var findNearestBot = function(position) {
 			nearestBot = bot;
 		}
 	});
+
 	return nearestBot.position;
 };
 

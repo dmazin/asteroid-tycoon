@@ -73,22 +73,19 @@ var robots = {
         'cost': 650,
         'affinity': {},
         'klass': VultureBot,
+        'canSalvage': true,
         'spriteSheet': 'pics/vulture0_2x.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/scavenger0.gif'
     }
 };
 
-var buy_button_template = _.template($('#robot-buy-button-template').html());
-_.each(robots, function(val, key) {
-    var data = _.extend(val, {'name': key});
-    var rendered = buy_button_template(data);
-    $('.controls .robot-spawn').append(rendered);
-});
-
 // constants for scaling robot attributes for balancing purposes
 var energy_scale = 0.1;
 var WobbleConstant = 0.75;
+
+// other constants
+var salvageValueMultiplier = 0.5;
 
 var upgradeCosts = {
     'squirrelBot': [0, 1500, 3000],
