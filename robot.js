@@ -107,6 +107,8 @@ var Robot = function(baseAttrs, startX) {
     };
 
     this.hit = function(tile) {
+        // When you hit a tile it's explored
+        tile.explored = true;
         // Amount harvested based per frame on harvest efficiency
         // amount resource broken down per frame based on drill hardness vs resource hardness
         if (canPassTile(tile)) {
@@ -121,7 +123,7 @@ var Robot = function(baseAttrs, startX) {
         var changePercentage = baseAttrs.hardness - tile.getHardness();
         var changeAmount = Math.ceil(tile.amount * changePercentage);
         if (tile.harvestable && _this.storage > 0) {
-            addResouces(changeAmount, tile.type);
+            addResouces(changeAmount, tile.getType());
         }
         tile.amount -= changeAmount; //Reduce the amount left on the tile
         if(tile.amount === 0) { tile.type = 'backfill'; }
@@ -130,10 +132,10 @@ var Robot = function(baseAttrs, startX) {
     var addResources = function(changeAmount, resourceType) {
         var amountHarvested = Math.min(changeAmount, _this.storage);
         _this.storage -= amountHarvested;
-        var resourceAmount = _this.resourceAmountByType[tile.type] || 0;
+        var resourceAmount = _this.resourceAmountByType[resourceType] || 0;
         //Store the resources we've collected by the name to amount.
         //i.e { name: amount }
-        _this.resourceAmountByType[tile.type] = resourceAmount + amountHarvested;
+        _this.resourceAmountByType[resourceType] = resourceAmount + amountHarvested;
     };
 
     //If the tile is passable in multiple turns (including whether it can get
@@ -145,7 +147,7 @@ var Robot = function(baseAttrs, startX) {
     };
 
     var timeToPassTile = function(tile) {
-        var resource = resources[tile.type];
+        var resource = resources[tile.getType()];
         return (baseAttrs.hardness - resource.hardness) * tile.amount;
     };
 

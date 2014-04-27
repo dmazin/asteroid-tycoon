@@ -31,6 +31,7 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
     stage.addChild(this.shape);
 
     this.amount = amount;
+    this.type = null;
     this.explored = false;
 
     this.getType = function() {
