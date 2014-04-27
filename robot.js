@@ -87,6 +87,9 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         var result = astar.search(graph.nodes, start, end);
         if (result && result.length > 0) {
             this.moveTo(result[0].pos.x, result[0].pos.y);
+        } else {
+            // can't reach destination - let's just move randomly
+            this.makeRandomMove();
         }
     };
 

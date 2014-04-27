@@ -35,7 +35,7 @@
         </div>
         </div>
     </div>
-    <canvas id='mainCanvas' width=1000 height=1200></canvas>
+    <canvas id='mainCanvas' width=1000 height=1250></canvas>
 </div>
 
 <style>
@@ -157,7 +157,7 @@ body {
     $('.robot').click(function() {
         var $this = $(this);
         var robotType = $this.data('robot');
-            
+
         var money = playerState.getResource('money');
 
         if (money > robots[robotType].cost) {
