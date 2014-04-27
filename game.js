@@ -24,7 +24,7 @@ var colors = {
 function createSpawn(xpos){
     spawn.shape = new createjs.Shape();
     spawn.shape.graphics.beginFill('#22B709')
-                       .drawCircle(0,0,8);                       
+                       .drawCircle(0,0,8);
     spawn.shape.x = grid_size*(xpos + 0.5);
     spawn.shape.y = grid_size*(0 + 0.5) + surface_height;
     stage.addChild(spawn.shape);
@@ -48,7 +48,7 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
      */
 
     this.init = function () {
-        this.shape = new createjs.Shape();
+        this.shape = new createjs.Bitmap(resources[this.getType()].image);
         this.shape.x = pixel_x;
         this.shape.y = pixel_y;
         stage.addChild(this.shape);
@@ -62,9 +62,11 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
     };
 
     this.refresh = function () {
-        this.shape.graphics.clear();
-        this.shape.graphics.beginFill(colors[this.getType()]);
-        this.shape.graphics.rect(0, 0, size, size);
+        stage.removeChild(this.shape);
+        this.shape = new createjs.Bitmap(resources[this.getType()].image);
+        this.shape.x = pixel_x;
+        this.shape.y = pixel_y;
+        stage.addChildAt(this.shape, 0);
     };
 
     this.getType = function() {
@@ -197,4 +199,3 @@ function checkKey(key) {
         moveSpawn("right")
     }
 }
-

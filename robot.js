@@ -38,9 +38,10 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 
     this.moveToward = function(destX, destY) {
         //It can't move if it's dead.
-        if(this.energy <= 0) {
+        if (this.energy <= 0) {
             if (!this.dead) {
                 this.animation.gotoAndPlay('explode');
+                this.healthbar.visible = false;
             }
             this.dead = true;
             this.salvageValue = 10;
@@ -58,14 +59,18 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 
         //If they haven't reached their destination, try to
         // go to the given destination
-        canMoveToward = canPassTile(grid[destX][destY]);
-        if(canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
-            var randomVal = Math.random();
-            if(randomVal > (baseAttrs.wobble * WobbleConstant) || this.currentlyDigging) {
-                canMoveToward = this.goToward(destX, destY);
-            } else {
-                canMoveToward = this.makeRandomMove();
+        if (grid[destX] && grid[destX][destY]) {
+            var canMoveToward = canPassTile(grid[destX][destY]);
+            if(canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
+                var randomVal = Math.random();
+                if(randomVal > (baseAttrs.wobble * WobbleConstant) || this.currentlyDigging) {
+                    this.goToward(destX, destY);
+                } else {
+                    this.makeRandomMove();
+                }
             }
+        } else {
+            this.makeRandomMove();
         }
     };
 
