@@ -26,6 +26,10 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
     this.amount = amount;
 }
 
+function tick() {
+    stage.update();
+}
+
 function init_stage(width, height, size, surface_px) {
 
     stage = new createjs.Stage("mainCanvas");
@@ -45,6 +49,9 @@ function init_stage(width, height, size, surface_px) {
     }
 
     stage.update();
+
+    createjs.Ticker.addEventListener("tick", tick);
+    createjs.Ticker.setFPS(30);
 }
 
 init_stage(game_width, game_height, grid_size, 100);
