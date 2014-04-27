@@ -1,11 +1,14 @@
-var Robot = function(baseAttrs) {
-    this.energy = baseAttrs.baseEnergy;
-    this.storage = baseAttrs.storage;
-    this.resourceAmountByType = {}; //The stuff you pick up
+var Robot = function(baseAttrs, startX) {
     var _this = this;
 
-    this.position = {x: 0, y: 0};
+    this.energy = baseAttrs.baseEnergy;
+    this.storage = baseAttrs.storage;
+    this.resourceAmountByType = {}; // the stuff you pick up
+    this.position = {'x': startX, 'y': 0};
 
+    this.init = function () {
+        this.render();
+    }
 
     // as a placeholder, robots are blue spheres
     // TODO make robots not be blue spheres
@@ -163,9 +166,9 @@ var upgradeBot = function(type, level) {
     playerState.setRobotLevel(type, level);
 };
 
-var spawnBot = function(type) {
+var spawnBot = function(type, startX) {
     var robotAttrs = robotLevels[type][state.getRobotLevel(type)];
-    var bot = new Robot(robotAttrs);
+    var bot = new Robot(robotAttrs, startX);
     activeBots.push(bot);
     return bot;
 };
