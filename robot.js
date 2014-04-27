@@ -115,7 +115,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
                 this.currentlyDigging = {x: newX, y: newY};
             }
         }
-
+        this.energy -= 3;
         this.render();
     };
 
@@ -130,8 +130,6 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     };
 
     var updateTileAndResources = function(tile) {
-        _this.energy -= 1;
-
         var resource = resources[tile.getType()];
         var proportionMined = baseAttrs.hardness - resource.hardness;
         var amountMined = tile.baseAmount * proportionMined;
