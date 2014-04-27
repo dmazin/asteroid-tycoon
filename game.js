@@ -19,6 +19,21 @@ function createSpawn(xpos){
                        .drawCircle(0,0,8);
     spawn.shape.x = grid_size*(xpos + 0.5);
     spawn.shape.y = grid_size*(0 + 0.5) + surface_height;
+
+    spawn.shape.on("mousedown", function(evt) {
+        this.offset = {x:this.x-evt.stageX, y:this.y-evt.stageY};
+    });
+
+    spawn.shape.on("pressmove", function(evt) {
+        var gs = grid_size;
+        this.x = Math.round((evt.stageX + this.offset.x - gs / 2) / gs) * gs + gs / 2;
+        if (this.x < 0) {
+            this.x = 0;
+        } else if (this.x > gs * game_width) {
+            this.x = gs * game_width;
+        }
+    });
+
     stage.addChild(spawn.shape);
 }
 
@@ -164,6 +179,7 @@ function generate_terrain(depth) {
 
 
 init_stage(game_width, game_height, grid_size, surface_height);
+stage.enableMouseOver(10);
 
 
 document.onkeydown = checkKey;
