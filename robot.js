@@ -82,7 +82,6 @@ var Robot = function(baseAttrs) {
     };
 
     var updateTileAndResources = function(tile) {
-        //The math should totally be double checked here, but here's a rough draft
         var changePercentage = baseAttrs.hardness - tile.getHardness();
         _this.energy -= 1;
         var changeAmount = Math.ceil(tile.amount * changePercentage);
