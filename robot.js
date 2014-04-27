@@ -222,7 +222,10 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         }
     };
 
+    //once the tile to move to is determined, this function makes the final move step
+    // This is the function that actually moves the robot.
     this.moveTo = function(newX, newY) {
+<<<<<<< HEAD
         //once the tile to move to is determined, this function makes the final move step
         if (newY > this.position.y) {
             this.direction = 'down';
@@ -236,6 +239,13 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 
         var currentTile = getGrid()[this.position.x][this.position.y];
         var newTile = getGrid()[newX][newY];
+=======
+        // Update the direction for the sprite
+        updateDirection(newX, newY);
+
+        var currentTile = grid[this.position.x][this.position.y];
+        var newTile = grid[newX][newY];
+>>>>>>> master
 
         getGrid()[this.position.x][this.position.y].setType('backfill');
 
@@ -371,46 +381,19 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         _this.dead = true;
     };
 
+    var updateDirection = function(newX, newY) {
+        if (newY > _this.position.y) {
+            _this.direction = 'down';
+        } else if (newY < _this.position.y) {
+            _this.direction = 'up';
+        } else if (newX > _this.position.x) {
+            _this.direction = 'right';
+        } else if (newX < _this.position.x) {
+            _this.direction = 'left';
+        }
+
+    };
+
     this.init();
     return this;
-};
-
-var upgradeBot = function(type, level) {
-    var cost = upgradeCosts[type][level];
-
-    if (playerState.getResource('money') < cost) {
-        return;
-    }
-
-    playerState.changeResource('money', -cost);
-    playerState.setRobotLevel(type, level);
-};
-
-var spawnBot = function(type, startX) {
-    var robotAttrs = robotLevels[type][state.getRobotLevel(type)];
-    // Canvas act different if you can now spawn a bot
-    $('canvas').addClass('botSpawner');
-
-    // Have stage listen to mouseup once and make a new bot based on that
-    stage.on('stagemouseup', function(e) {
-        // Change canvas back
-        $('canvas').removeClass('botSpawner');
-
-        // Reset if the mouse is out of bounds.
-        if(!stage.mouseInBounds) { return; }
-
-        //Update the player
-        updatePlayerMoney(type);
-
-        // Make a new bot based on the position.
-        var destX = parseInt(e.stageX / 40);
-        var destY = parseInt(e.stageY / 40);
-        var bot = new Robot(robotAttrs, startX, destX, destY);
-        activeBots.push(bot);
-        return bot;
-    }, null, true);
-};
-
-var updatePlayerMoney = function(robotType) {
-    playerState.changeResource('money', -robots[robotType].cost);
 };
