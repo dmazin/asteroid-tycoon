@@ -10,7 +10,7 @@ var playerState = (function() {
     };
 
     var resourceAmounts = {
-        'money': 1000,
+        'money': 5000,
         'iron': 0,
         'dirt': 0
     };
