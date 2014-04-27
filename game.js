@@ -56,7 +56,7 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
         this.amount = amount;
         this.baseAmount = amount;
         this.type = type;
-        this.explored = true;
+        this.explored = false; // true to disable for of war
 
         this.refresh();
     };
@@ -141,7 +141,7 @@ var resource_weights = {
 }
 
 function normalize(array) {
-    var total = _.reduce(array, 
+    var total = _.reduce(array,
             function(m, n) { return m + n;},
             0);
     return _.map(array, function(x) { return x / total; });
