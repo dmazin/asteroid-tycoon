@@ -8,7 +8,7 @@ var robots = {
         'wobble': 0.9,
         'harvestEfficiency': 0,
         'cost': 150,
-        'klass': SquirrelBot
+        'klass': SquirrelBot,
         'spriteSheet': 'pics/allaround0_2x.png',
         'spriteSpeed': 0.3
     },
@@ -20,7 +20,7 @@ var robots = {
         'wobble': 0.7,
         'harvestEfficiency': 0.6,
         'cost': 300,
-        'klass': BearBot
+        'klass': BearBot,
         'spriteSheet': 'pics/allaround0_2x.png',
         'spriteSpeed': 0.3
     },
@@ -32,7 +32,7 @@ var robots = {
         'wobble': 0.4,
         'harvestEfficiency': 0.8,
         'cost': 550,
-        'klass': AntBot
+        'klass': AntBot,
         'spriteSheet': 'pics/allaround0_2x.png',
         'spriteSpeed': 0.3
     },
@@ -44,7 +44,7 @@ var robots = {
         'wobble': 0.5,
         'harvestEfficiency': 0,
         'cost': 1050,
-        'klass': GoatBot
+        'klass': GoatBot,
         'spriteSheet': 'pics/allaround0_2x.png',
         'spriteSpeed': 0.3
     },
@@ -56,7 +56,7 @@ var robots = {
         'wobble': 0.1,
         'harvestEfficiency': 0.7,
         'cost': 650,
-        'klass': VultureBot
+        'klass': VultureBot,
         'spriteSheet': 'pics/allaround0_2x.png',
         'spriteSpeed': 0.3
     }
