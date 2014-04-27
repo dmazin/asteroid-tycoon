@@ -17,6 +17,8 @@ var playerState = (function() {
 
     state = {};
 
+    state.setAsteroid(new Asteroid());
+
     state.getRobotLevel = function(robotType) {
         return robotLevels[robotType];
     };
@@ -49,7 +51,13 @@ var playerState = (function() {
         }
     };
 
-    state.asteroid = new Asteroid();
+    state.getAsteroid = function() {
+        return state.asteroid;
+    };
+
+    state.setAsteroid = function(asteroid) {
+        state.asteroid = asteroid;
+    };
 
     return state;
 })();
