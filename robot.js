@@ -155,8 +155,8 @@ var Robot = function(baseAttrs, startX) {
 };
 
 Robot.prototype.render = function() {
-    this.shape.x = 20*this.position.x + 10;
-    this.shape.y = 20*this.position.y + 110;
+    this.shape.x = grid_size *this.position.x + 10;
+    this.shape.y = grid_size *this.position.y + surface_height + 10;
 };
 
 var upgradeBot = function(type, level) {

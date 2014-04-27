@@ -8,6 +8,8 @@ var grid_size = 20;
 var game_width = 50;
 var game_height = 60;
 
+var surface_height = 100;
+
 var FPS = 30;
 
 var colors = {
@@ -71,4 +73,4 @@ function init_stage(width, height, size, surface_px) {
     createjs.Ticker.setFPS(FPS);
 }
 
-init_stage(game_width, game_height, grid_size, 100);
+init_stage(game_width, game_height, grid_size, surface_height);
