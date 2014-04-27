@@ -1,5 +1,6 @@
-var Robot = function(baseAttrs, startX, destX, destY) {
+var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
     var _this = this;
+    var grid = asteroid.getGrid();
 
     this.energy = baseAttrs.baseEnergy * energy_scale;
     this.baseEnergy = baseAttrs.baseEnergy * energy_scale;
@@ -95,8 +96,8 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     // and hopelessness).
     this.moveTowardDestination = function(destX, destY) {
         //checks if will be able to reach destination.  If hopeless, just move randomly.
-        if (getGrid()[destX] && getGrid()[destX][destY]) {
-            var canMoveToward = canPassTile(getGrid()[destX][destY]);
+        if (grid[destX] && grid[destX][destY]) {
+            var canMoveToward = canPassTile(grid[destX][destY]);
             if(canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
                 // Make random moves based on a robot's wobble
                 var randomVal = Math.random();
@@ -122,7 +123,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 
     this.getHeading = function (destX, destY){
         //returns the direction and coordinates of the start of the path to our intended destination.
-        var g = getGrid().map(function (row) {
+        var g = grid.map(function (row) {
             return row.map(function (tile) {
                 return canPassTile(tile) ? timeToPassTile(tile) : 0;
             });
@@ -186,7 +187,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     this.getViableDirections = function(){
         var dirs = [[-1,0], [1,0], [0,-1], [0,1]].filter(function(dir) {
             var dest = {'x': _this.position.x + dir[0], 'y': _this.position.y + dir[1]};
-            return getGrid()[dest.x] && getGrid()[dest.x][dest.y] && canPassTile(getGrid()[dest.x][dest.y]);
+            return grid[dest.x] && grid[dest.x][dest.y] && canPassTile(grid[dest.x][dest.y]);
         });
         return dirs;
     };
@@ -215,7 +216,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     // behavior.
     this.moveInDirectionOrRandom = function(xDelta, yDelta) {
         dest = {'x': _this.position.x + xDelta, 'y': _this.position.y + yDelta};
-        if (getGrid()[dest.x] && getGrid()[dest.x][dest.y] && canPassTile(getGrid()[dest.x][dest.y])) {
+        if (grid[dest.x] && grid[dest.x][dest.y] && canPassTile(grid[dest.x][dest.y])) {
             this.moveTo(dest.x, dest.y);
         } else {
             this.makeRandomMove();
@@ -225,36 +226,20 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     //once the tile to move to is determined, this function makes the final move step
     // This is the function that actually moves the robot.
     this.moveTo = function(newX, newY) {
-<<<<<<< HEAD
-        //once the tile to move to is determined, this function makes the final move step
-        if (newY > this.position.y) {
-            this.direction = 'down';
-        } else if (newY < this.position.y) {
-            this.direction = 'up';
-        } else if (newX > this.position.x) {
-            this.direction = 'right';
-        } else if (newX < this.position.x) {
-            this.direction = 'left';
-        }
-
-        var currentTile = getGrid()[this.position.x][this.position.y];
-        var newTile = getGrid()[newX][newY];
-=======
         // Update the direction for the sprite
         updateDirection(newX, newY);
 
         var currentTile = grid[this.position.x][this.position.y];
         var newTile = grid[newX][newY];
->>>>>>> master
 
-        getGrid()[this.position.x][this.position.y].setType('backfill');
+        grid[this.position.x][this.position.y].setType('backfill');
 
         if (canPassTile(newTile)) {
             if (newTile.amount <= 0) {
                 this.currentlyDigging = null;
                 this.position.x = newX;
                 this.position.y = newY;
-                getGrid()[this.position.x][this.position.y].setType('backfill');
+                grid[this.position.x][this.position.y].setType('backfill');
             } else {
                 this.hit(newTile);
                 this.currentlyDigging = {x: newX, y: newY};
@@ -314,17 +299,12 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         var p = this.position;
         [p.x-1, p.x, p.x+1].forEach(function (x) {
             [p.y-1, p.y, p.y+1].forEach(function (y) {
-                if (getGrid()[x] && getGrid()[x][y]) {
-                    getGrid()[x][y].setExplored();
+                if (grid[x] && grid[x][y]) {
+                    grid[x][y].setExplored();
                 }
             });
         });
     };
-
-    // gets current grid
-    var getGrid = function() {
-        return playerState.getGrid();
-    }
 
     // This gets called as part of the hit function.
     // It is used to update the tile's amount given

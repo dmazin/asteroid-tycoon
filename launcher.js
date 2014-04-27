@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    playerState.setAsteroid(asteroids['Bananasteroid']);
+
     init_stage();
 
     $('.robot').click(function() {

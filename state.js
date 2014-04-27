@@ -15,7 +15,7 @@ var playerState = (function() {
         'dirt': 0
     };
 
-    var currentAsteroid = asteroids['Bananasteroid'];
+    var currentAsteroid = null;
 
     state = {};
 
@@ -55,8 +55,8 @@ var playerState = (function() {
         return currentAsteroid;
     };
 
-    state.getGrid = function() {
-        return currentAsteroid.getGrid();
+    state.setAsteroid = function(asteroid) {
+        currentAsteroid = asteroid;
     };
 
     return state;
