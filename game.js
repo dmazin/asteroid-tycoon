@@ -21,9 +21,6 @@ var colors = {
     'unexplored': 'black'
 };
 
-// constants for scaling robot attributes for balancing purposes
-var energy_scale = .2;
-
 function createSpawn(xpos){
     spawn.shape = new createjs.Shape();
     spawn.shape.graphics.beginFill('#22B709')
@@ -94,7 +91,7 @@ function Tile(pixel_x, pixel_y, size, type, amount, pos) {
 
 function tick() {
     activeBots.forEach(function(bot) {
-        bot.moveToward(bot.destX, bot.destY);
+        bot.handleMove(bot.destX, bot.destY);
     });
 
     var gs = grid_size;

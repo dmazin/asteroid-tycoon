@@ -9,11 +9,13 @@ var robots = {
         'wobble': 0.9,
         'harvestEfficiency': 0,
         'cost': 150,
+        'affinity': {
+            'dirt': 2
+        },
         'klass': SquirrelBot,
         'spriteSheet': 'pics/scout0_2x.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/scout0.gif'
-
     },
     'bearBot': {
         'uiName': 'Bear',
@@ -24,6 +26,7 @@ var robots = {
         'wobble': 0.7,
         'harvestEfficiency': 0.6,
         'cost': 300,
+        'affinity': {},
         'klass': BearBot,
         'spriteSheet': 'pics/allaround0_2x.png',
         'spriteSpeed': 0.3,
@@ -38,6 +41,7 @@ var robots = {
         'wobble': 0.4,
         'harvestEfficiency': 0.8,
         'cost': 550,
+        'affinity': {},
         'klass': AntBot,
         'spriteSheet': 'pics/harvester0_2x.png',
         'spriteSpeed': 0.3,
@@ -52,6 +56,7 @@ var robots = {
         'wobble': 0.5,
         'harvestEfficiency': 0,
         'cost': 1050,
+        'affinity': {},
         'klass': GoatBot,
         'spriteSheet': 'pics/smasher0_2x.png',
         'spriteSpeed': 0.3,
@@ -66,6 +71,7 @@ var robots = {
         'wobble': 0.1,
         'harvestEfficiency': 0.7,
         'cost': 650,
+        'affinity': {},
         'klass': VultureBot,
         'spriteSheet': 'pics/vulture0_2x.png',
         'spriteSpeed': 0.3,
@@ -80,7 +86,9 @@ _.each(robots, function(val, key) {
     $('.controls .robot-spawn').append(rendered);
 });
 
-var WobbleConstant = 0.5;
+// constants for scaling robot attributes for balancing purposes
+var energy_scale = 0.1;
+var WobbleConstant = 0.75;
 
 var upgradeCosts = {
     'squirrelBot': [0, 1500, 3000],
