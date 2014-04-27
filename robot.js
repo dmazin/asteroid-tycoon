@@ -171,6 +171,10 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 };
 
 Robot.prototype.render = function() {
+    if (this.energy <= 0) {
+        this.animation.stop();
+    }
+
     if (this.currentlyDigging) {
         x = (3 * this.position.x + this.currentlyDigging.x) / 4;
         y = (3 * this.position.y + this.currentlyDigging.y) / 4;
