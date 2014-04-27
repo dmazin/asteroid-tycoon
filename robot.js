@@ -95,8 +95,8 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     // and hopelessness).
     this.moveTowardDestination = function(destX, destY) {
         //checks if will be able to reach destination.  If hopeless, just move randomly.
-        if (grid[destX] && grid[destX][destY]) {
-            var canMoveToward = canPassTile(grid[destX][destY]);
+        if (getGrid()[destX] && getGrid()[destX][destY]) {
+            var canMoveToward = canPassTile(getGrid()[destX][destY]);
             if(canMoveToward && !(this.position.x === destX && this.position.y === destY)) {
                 // Make random moves based on a robot's wobble
                 var randomVal = Math.random();
@@ -122,7 +122,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 
     this.getHeading = function (destX, destY){
         //returns the direction and coordinates of the start of the path to our intended destination.
-        var g = grid.map(function (row) {
+        var g = getGrid().map(function (row) {
             return row.map(function (tile) {
                 return canPassTile(tile) ? timeToPassTile(tile) : 0;
             });
@@ -186,7 +186,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     this.getViableDirections = function(){
         var dirs = [[-1,0], [1,0], [0,-1], [0,1]].filter(function(dir) {
             var dest = {'x': _this.position.x + dir[0], 'y': _this.position.y + dir[1]};
-            return grid[dest.x] && grid[dest.x][dest.y] && canPassTile(grid[dest.x][dest.y]);
+            return getGrid()[dest.x] && getGrid()[dest.x][dest.y] && canPassTile(getGrid()[dest.x][dest.y]);
         });
         return dirs;
     };
@@ -215,7 +215,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
     // behavior.
     this.moveInDirectionOrRandom = function(xDelta, yDelta) {
         dest = {'x': _this.position.x + xDelta, 'y': _this.position.y + yDelta};
-        if (grid[dest.x] && grid[dest.x][dest.y] && canPassTile(grid[dest.x][dest.y])) {
+        if (getGrid()[dest.x] && getGrid()[dest.x][dest.y] && canPassTile(getGrid()[dest.x][dest.y])) {
             this.moveTo(dest.x, dest.y);
         } else {
             this.makeRandomMove();
@@ -234,17 +234,17 @@ var Robot = function(baseAttrs, startX, destX, destY) {
             this.direction = 'left';
         }
 
-        var currentTile = grid[this.position.x][this.position.y];
-        var newTile = grid[newX][newY];
+        var currentTile = getGrid()[this.position.x][this.position.y];
+        var newTile = getGrid()[newX][newY];
 
-        grid[this.position.x][this.position.y].setType('backfill');
+        getGrid()[this.position.x][this.position.y].setType('backfill');
 
         if (canPassTile(newTile)) {
             if (newTile.amount <= 0) {
                 this.currentlyDigging = null;
                 this.position.x = newX;
                 this.position.y = newY;
-                grid[this.position.x][this.position.y].setType('backfill');
+                getGrid()[this.position.x][this.position.y].setType('backfill');
             } else {
                 this.hit(newTile);
                 this.currentlyDigging = {x: newX, y: newY};
@@ -265,6 +265,56 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         //Can you move if you can't pick up stuff on a tile.
     };
 
+    this.render = function() {
+        if (this.energy <= 0) {
+            this.animation.stop();
+        }
+
+        if (this.currentlyDigging) {
+            x = (3 * this.position.x + this.currentlyDigging.x) / 4;
+            y = (3 * this.position.y + this.currentlyDigging.y) / 4;
+        } else {
+            x = this.position.x;
+            y = this.position.y;
+        }
+
+        this.healthbar.x = grid_size*x;
+        this.healthbar.y = grid_size*y + surface_height - grid_size / 3;
+        this.healthbar.gotoAndStop(Math.floor(this.energy / this.baseEnergy * 20));
+
+        this.animation.rotation = 0;
+        this.animation.scaleX = 1;
+        if (this.direction == 'down') {
+            this.animation.scaleX = -1;
+            this.animation.rotation = 90;
+            y++;
+            x++;
+        } else if (this.direction == 'up') {
+            this.animation.scaleX = -1;
+            this.animation.rotation = 270;
+        } else if (this.direction == 'right') {
+            this.animation.scaleX = -1;
+            x++;
+        } else if (this.direction == 'left') {
+        }
+
+        this.animation.x = grid_size*x;
+        this.animation.y = grid_size*y + surface_height;
+
+        var p = this.position;
+        [p.x-1, p.x, p.x+1].forEach(function (x) {
+            [p.y-1, p.y, p.y+1].forEach(function (y) {
+                if (getGrid()[x] && getGrid()[x][y]) {
+                    getGrid()[x][y].setExplored();
+                }
+            });
+        });
+    };
+
+    // gets current grid
+    var getGrid = function() {
+        return playerState.getGrid();
+    }
 
     // This gets called as part of the hit function.
     // It is used to update the tile's amount given
@@ -323,52 +373,6 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 
     this.init();
     return this;
-};
-
-Robot.prototype.render = function() {
-    if (this.energy <= 0) {
-        this.animation.stop();
-    }
-
-    if (this.currentlyDigging) {
-        x = (3 * this.position.x + this.currentlyDigging.x) / 4;
-        y = (3 * this.position.y + this.currentlyDigging.y) / 4;
-    } else {
-        x = this.position.x;
-        y = this.position.y;
-    }
-
-    this.healthbar.x = grid_size*x;
-    this.healthbar.y = grid_size*y + surface_height - grid_size / 3;
-    this.healthbar.gotoAndStop(Math.floor(this.energy / this.baseEnergy * 20));
-
-    this.animation.rotation = 0;
-    this.animation.scaleX = 1;
-    if (this.direction == 'down') {
-        this.animation.scaleX = -1;
-        this.animation.rotation = 90;
-        y++;
-        x++;
-    } else if (this.direction == 'up') {
-        this.animation.scaleX = -1;
-        this.animation.rotation = 270;
-    } else if (this.direction == 'right') {
-        this.animation.scaleX = -1;
-        x++;
-    } else if (this.direction == 'left') {
-    }
-
-    this.animation.x = grid_size*x;
-    this.animation.y = grid_size*y + surface_height;
-
-    var p = this.position;
-    [p.x-1, p.x, p.x+1].forEach(function (x) {
-        [p.y-1, p.y, p.y+1].forEach(function (y) {
-            if (grid[x] && grid[x][y]) {
-                grid[x][y].setExplored();
-            }
-        });
-    });
 };
 
 var upgradeBot = function(type, level) {

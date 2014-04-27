@@ -250,3 +250,7 @@ var resource_weights = {
     'junipum': {pTop: 0.01, pBottom: 0.05, minDepth: 15},
     'paprikum': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
 }
+
+var asteroids = {
+    "Bananasteroid": new Asteroid()
+}

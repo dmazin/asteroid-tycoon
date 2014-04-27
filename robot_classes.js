@@ -84,6 +84,7 @@ var findNearestItem = function(position, itemPositionArray) {
 
 var findNearestResource = function(position, resourceSelectionCallback) {
 	var resourcePositions = [];
+	var grid = playerState.getGrid();
 	grid.forEach(function(row, x) {
 		row.forEach(function(val, y) {
 			if (resourceSelectionCallback(val)) {
