@@ -371,7 +371,6 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         } else if (newX < _this.position.x) {
             _this.direction = 'left';
         }
-
     };
 
     this.init();
