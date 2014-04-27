@@ -15,17 +15,29 @@ var FPS = 30;
 var colors = {
     'dirt': '#292426',
     'rock': 'gray',
-    'iron': 'black'
-}
+    'iron': 'black',
+    'unexplored': 'purple'
+};
 
 function Tile(pixel_x, pixel_y, size, type, amount) {
-
     /* create the easeljs shape object that
      * draws this Tile, and add it to the
      * stage
      */
+
+    this.getType = function() {
+        return this.explored ? (this.type || type) : "unexplored";
+    };
+
+    this.setExplored = function() {
+        this.explored = true
+        this.shape.graphics.clear();
+        this.shape.graphics.beginFill(colors[type]);
+        this.shape.graphics.rect(0, 0, size, size);
+    };
+
     this.shape = new createjs.Shape();
-    this.shape.graphics.beginFill(colors[type]);
+    this.shape.graphics.beginFill(colors[this.getType()]);
     this.shape.graphics.rect(0, 0, size, size);
 
     this.shape.x = pixel_x;
@@ -33,12 +45,8 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
     stage.addChild(this.shape);
 
     this.amount = amount;
-    this.type = null;
+    this.type = type;
     this.explored = false;
-
-    this.getType = function() {
-        return this.explored ? (this.type || type) : "dirt";
-    };
 }
 
 function tick() {

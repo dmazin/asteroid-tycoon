@@ -8,7 +8,7 @@ var Robot = function(baseAttrs, startX) {
 
     this.init = function () {
         this.render();
-    }
+    };
 
     // as a placeholder, robots are blue spheres
     // TODO make robots not be blue spheres
@@ -19,7 +19,7 @@ var Robot = function(baseAttrs, startX) {
     this.render();
 
     // should return [xDelta, yDelta] (one of [-1,0], [1,0], [0,-1], [0,1])
-    this.goTo = function (destX, destY) {
+    this.goToward = function (destX, destY) {
         // let's do Uniform Cost Search?
 
         function popMinNode(frontier) {
@@ -55,10 +55,7 @@ var Robot = function(baseAttrs, startX) {
                 // path to destination found
                 var dirFound = node.path[0];
                 this.move(dirFound[0], dirFound[1]);
-                if (this.position.x != destX || this.position.y != destY) {
-                    // keep going
-                    this.goTo(destX, destY);
-                }
+                return;
             }
             explored.push(node.x + ',' + node.y);
             [[-1,0], [1,0], [0,-1], [0,1]].forEach(function (dir) {
@@ -103,12 +100,11 @@ var Robot = function(baseAttrs, startX) {
     this.move = function(xDelta, yDelta) {
         this.position.x += xDelta;
         this.position.y += yDelta;
+
         this.render();
     };
 
     this.hit = function(tile) {
-        // When you hit a tile it's explored
-        tile.explored = true;
         // Amount harvested based per frame on harvest efficiency
         // amount resource broken down per frame based on drill hardness vs resource hardness
         if (canPassTile(tile)) {
@@ -157,6 +153,15 @@ var Robot = function(baseAttrs, startX) {
 Robot.prototype.render = function() {
     this.shape.x = grid_size *this.position.x + 10;
     this.shape.y = grid_size *this.position.y + surface_height + 10;
+
+    var p = this.position;
+    [p.x-1, p.x, p.x+1].forEach(function (x) {
+        [p.y-1, p.y, p.y+1].forEach(function (y) {
+            if (grid[x] && grid[x][y]) {
+                grid[x][y].setExplored();
+            }
+        });
+    });
 };
 
 var upgradeBot = function(type, level) {
