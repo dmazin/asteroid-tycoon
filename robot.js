@@ -41,6 +41,13 @@ var Robot = function(baseAttrs, startX, destX, destY) {
         }
     };
 
+    this.setDestination =function(destinX, destinY){
+        this.destX=destinX;
+        this.destY=destinY;
+    }
+
+    this.setDestination(15,15);
+
     this.goToward = function (destX, destY) {
         var g = grid.map(function (row) {
             return row.map(function (tile) {
@@ -195,7 +202,7 @@ var upgradeBot = function(type, level) {
 
     if (playerState.getResource('money') < cost) {
         return;
-    }
+    }p
 
     playerState.changeResource('money', -cost);
     playerState.setRobotLevel(type, level);
