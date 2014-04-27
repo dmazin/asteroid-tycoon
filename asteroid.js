@@ -41,7 +41,7 @@ var Asteroid = function (terrainParameters) {
 
         var resources = [];
         var maxDepth = game_height;
-        var probs = _.map(resource_weights, function(x, r) {
+        var probs = _.map(terrainParameters, function(x, r) {
             resources.push(r);
             if (depth < x.minDepth) {
                 return 0;
