@@ -2,10 +2,10 @@
 var robots = {
     'squirrelBot': {
         'description': 'Basic scout robot',
-        'hardness': .3,
+        'hardness': 0.3,
         'baseEnergy': 2000,
         'storage': 0,
-        'wobble': .9,
+        'wobble': 0.9,
         'harvestEfficiency': 0,
         'cost': 10
     }
@@ -20,28 +20,28 @@ var robotLevels = {
         robots['squirrelBot'],
         _.extend(robots['squirrelBot'], {
             energy: 2500,
-            wobble: .75
-        },
+            wobble: 0.75
+        }),
         _.extend(robots['squirrelBot'], {
             energy: 3000,
-            wobble: .6
-        },
+            wobble: 0.6
+        }),
     ],
 };
 
 var resources = {
     'dirt': {
-        'hardness': .1,
+        'hardness': 0.1,
         'harvestable': false,
         'value': 0
     },
     'rock': {
-        'hardness': .3,
+        'hardness': 0.3,
         'harvestable': false,
         'value': 0
     },
     'iron': {
-        'hardness': .35,
+        'hardness': 0.35,
         'harvestable': true,
         'value': 10
     }
