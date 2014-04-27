@@ -89,6 +89,7 @@ var Robot = function(baseAttrs, startX) {
 
     var updateTileAndResources = function(tile) {
         _this.energy -= 1;
+        _this.shape.graphics.clear().beginFill('rgb(0,0,'+String(parseInt(_this.energy / 10 - 40))+')').drawCircle(0,0,8);
 
         var resource = resources[tile.getType()];
         var proportionMined = baseAttrs.hardness - resource.hardness;
