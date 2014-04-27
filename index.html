@@ -16,11 +16,11 @@
             /_/  |_/____//_/ /_____/_/ |_|\____/___/_____/    /_/     /_/\____/\____/\____/_/ |_/   
         </pre>
         <div class='robot-spawn'>
-            <span class='robot' data-robot='squirrelBot'>squirrel</span>
-            <span class='robot' data-robot='squirrelBot'>squirrel</span>
-            <span class='robot' data-robot='squirrelBot'>squirrel</span>
-            <span class='robot' data-robot='squirrelBot'>squirrel</span>
-            <span class='robot' data-robot='squirrelBot'>squirrel</span>
+            <span class='robot' data-robot='squirrelBot'>squirrel likes to dig</span>
+            <span class='robot' data-robot='squirrelBot'>pony likes to neigh</span>
+            <span class='robot' data-robot='squirrelBot'>fox likes to wink</span>
+            <span class='robot' data-robot='squirrelBot'>cow likes to stand</span>
+            <span class='robot' data-robot='squirrelBot'>turtle... turtle</span>
         </div>
     </div>
     <canvas id='mainCanvas' width=1000 height=800></canvas>
@@ -55,7 +55,7 @@ body {
 }
 
 .robot-spawn {
-    width: 530px;
+    width: 560px;
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -76,8 +76,10 @@ body {
     text-align: center;
     opacity: .6;
     padding: 1px 0 3px;
-    border: 1px solid #FFF;
-    border-radius: 5px;
+    border: 4px outset #A06767;
+    border-radius: 10px;
+    vertical-align: top;
+    background-color: #6F3E3E;
 }
 
 .robot:hover {
@@ -100,7 +102,7 @@ body {
         var $this = $(this);
         var robotType = $this.data('robot');    
 
-        spawnBot(robotType, 0);
+        window.bot = spawnBot(robotType, 0);
     });
 </script>
 </body>
