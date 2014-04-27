@@ -38,13 +38,13 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
         this.explored = false;
 
         this.refresh();
-    }
+    };
 
     this.refresh = function () {
         this.shape.graphics.clear();
         this.shape.graphics.beginFill(colors[this.getType()]);
         this.shape.graphics.rect(0, 0, size, size);
-    }
+    };
 
     this.getType = function() {
         return this.explored ? (this.type || type) : "unexplored";
@@ -55,17 +55,19 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
         this.refresh();
     };
 
-    this.setType = function (newType) {
+   this.setType = function (newType) {
         this.type = newType;
         this.refresh();
-    }
+    };
 
     this.init();
 }
 
-var bot;
 function tick() {
-    bot.goToward(20, 20);
+    activeBots.forEach(function(bot) {
+        bot.goToward(10, 10);
+    });
+
     stage.update();
 }
 
@@ -76,7 +78,7 @@ function init_stage(width, height, size, surface_px) {
     for (var i = 0; i < width; i++) {
       var line = [];
       for (var j = 0; j < height; j++) {
-        var resourceName = ["dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "rock", "iron"][Math.floor(Math.random() * 10)];
+        var resourceName = generate_terrain(j);
         if (j === 0) {
             resourceName = "dirt";
         }
@@ -86,6 +88,16 @@ function init_stage(width, height, size, surface_px) {
                              size,
                              resourceName,
                              amount);
+
+        // Mouseover crap - bad
+        //stage.enableMouseOver();
+        //g.shape.on('mouseover', function(event) {
+            //event.target.graphics.clear().beginFill('#fff').drawRect(0, 0, 20, 20).endFill();
+        //});
+        //g.shape.on('mouseout', function(event) {
+            //event.target.graphics.clear().beginFill(colors[g.getType()]).drawRect(0, 0, 20, 20).endFill();
+        //});
+
         line.push(g);
       }
       grid.push(line);
@@ -96,5 +108,26 @@ function init_stage(width, height, size, surface_px) {
     createjs.Ticker.addEventListener("tick", tick);
     createjs.Ticker.setFPS(FPS);
 }
+
+function generate_terrain(depth){
+  var dirtProbability = 1;
+  var stoneProbability = 0.1*Math.exp(depth*0.1);
+  var ironProbability = 0.01*Math.exp(depth*0.2);
+  var normalization = dirtProbability+stoneProbability+ironProbability;
+  dirtProbability = dirtProbability/normalization;
+  stoneProbability = stoneProbability/normalization;
+  ironProbability = ironProbability/normalization;
+  var mineralSelect = Math.random();
+  if(mineralSelect <=ironProbability){
+    return "iron";
+  }
+  else if (mineralSelect <=ironProbability + stoneProbability){
+    return "stone";
+  }
+  else {
+    return "dirt";
+  }
+}
+
 
 init_stage(game_width, game_height, grid_size, surface_height);
