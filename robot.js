@@ -127,13 +127,15 @@ var Robot = function(baseAttrs) {
     }
 };
 
-// Keep track what level each type should be spawned as
-var typeLevels = {
-    'squirrelBot': 0
-};
-
 var upgradeBot = function(type, level) {
-    typeLevels[type] = level;
+    var cost = upgradeCosts[type][level];
+
+    if (playerState.getResource('money') < cost) {
+        return; 
+    }
+    
+    playerState.changeResource('money', -cost);
+    playerState.setRobotLevel(type, level);
 };
 
 var spawnBot = function(type) {

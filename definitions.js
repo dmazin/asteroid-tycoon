@@ -11,6 +11,10 @@ var robots = {
     }
 };
 
+var upgradeCosts = {
+    'squirrelBot': [0, 500, 1000]
+};
+
 var robotLevels = {
     'squirrelBot': [
         robots['squirrelBot'],
