@@ -8,30 +8,60 @@ var grid_size = 20;
 var game_width = 50;
 var game_height = 60;
 
+var surface_height = 50;
+
 var FPS = 30;
 
 var colors = {
-    'dirt': 'brown',
+    'dirt': '#292426',
     'rock': 'gray',
-    'iron': 'black'
-}
+    'iron': 'black',
+    'backfill': 'pink',
+    'unexplored': '#0D0B0C'
+};
 
 function Tile(pixel_x, pixel_y, size, type, amount) {
-
     /* create the easeljs shape object that
      * draws this Tile, and add it to the
      * stage
      */
-    this.shape = new createjs.Shape();
-    this.shape.graphics.beginFill(colors[type]);
-    this.shape.graphics.rect(0, 0, size, size);
 
+    this.init = function () {
+        this.shape = new createjs.Shape();
+        this.shape.x = pixel_x;
+        this.shape.y = pixel_y;
+        stage.addChild(this.shape);
+
+        this.amount = amount;
+        this.type = type;
+        this.explored = false;
+
+        this.refresh();
+    };
+
+    this.refresh = function () {
+        this.shape.graphics.clear();
+        this.shape.graphics.beginFill(colors[this.getType()]);
+        this.shape.graphics.rect(0, 0, size, size);
+    };
+
+    this.getType = function() {
+        return this.explored ? (this.type || type) : "unexplored";
+    };
+
+    this.setExplored = function() {
+        this.explored = true;
+        this.refresh();
+    };
+
+    this.shape = new createjs.Shape();
     this.shape.x = pixel_x;
     this.shape.y = pixel_y;
     stage.addChild(this.shape);
 
-    this.type = type;
     this.amount = amount;
+    this.type = type;
+    this.explored = false;
 }
 
 function tick() {
@@ -45,8 +75,8 @@ function init_stage(width, height, size, surface_px) {
     for (var i = 0; i < width; i++) {
       var line = [];
       for (var j = 0; j < height; j++) {
-        var resourceName = ["dirt", "rock", "iron"][Math.floor(Math.random() * 3)];
-        if (j == 0) {
+        var resourceName = generate_terrain(j);
+        if (j === 0) {
             resourceName = "dirt";
         }
         var amount = Math.floor(Math.random() * 20);
@@ -55,6 +85,16 @@ function init_stage(width, height, size, surface_px) {
                              size,
                              resourceName,
                              amount);
+
+        // Mouseover crap - bad
+        //stage.enableMouseOver();
+        //g.shape.on('mouseover', function(event) {
+            //event.target.graphics.clear().beginFill('#fff').drawRect(0, 0, 20, 20).endFill();
+        //});
+        //g.shape.on('mouseout', function(event) {
+            //event.target.graphics.clear().beginFill(colors[g.getType()]).drawRect(0, 0, 20, 20).endFill();
+        //});
+
         line.push(g);
       }
       grid.push(line);
@@ -66,4 +106,25 @@ function init_stage(width, height, size, surface_px) {
     createjs.Ticker.setFPS(FPS);
 }
 
-init_stage(game_width, game_height, grid_size, 100);
+function generate_terrain(depth){
+  var dirtProbability = 1;
+  var stoneProbability = 0.1*Math.exp(depth*0.1);
+  var ironProbability = 0.01*Math.exp(depth*0.2);
+  var normalization = dirtProbability+stoneProbability+ironProbability;
+  dirtProbability = dirtProbability/normalization;
+  stoneProbability = stoneProbability/normalization;
+  ironProbability = ironProbability/normalization;
+  var mineralSelect = Math.random();
+  if(mineralSelect <=ironProbability){
+    return "iron";
+  }
+  else if (mineralSelect <=ironProbability + stoneProbability){
+    return "stone";
+  }
+  else {
+    return "dirt";
+  }
+}
+
+
+init_stage(game_width, game_height, grid_size, surface_height);

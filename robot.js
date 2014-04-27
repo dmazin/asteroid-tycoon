@@ -8,7 +8,7 @@ var Robot = function(baseAttrs, startX) {
 
     this.init = function () {
         this.render();
-    }
+    };
 
     // as a placeholder, robots are blue spheres
     // TODO make robots not be blue spheres
@@ -18,8 +18,21 @@ var Robot = function(baseAttrs, startX) {
     stage.addChild(this.shape);
     this.render();
 
+    //This is incompatible with the tick function
+    this.moveToward = function(destX, destY) {
+        var canHitTile = canPassTile(grid[destX][destY]);
+        while(canHitTile && !(this.position.x === destX && this.position.y === destY)) {
+            var randomVal = Math.random();
+            if(randomVal > baseAttrs.wobble) {
+                canHitTile = this.goToward(destX, destY);
+            } else {
+                canHitTile = makeRandomMove();
+            }
+        }
+    };
+
     // should return [xDelta, yDelta] (one of [-1,0], [1,0], [0,-1], [0,1])
-    this.goTo = function (destX, destY) {
+    this.goToward = function (destX, destY) {
         // let's do Uniform Cost Search?
 
         function popMinNode(frontier) {
@@ -52,7 +65,10 @@ var Robot = function(baseAttrs, startX) {
             }
             var node = popMinNode(frontier);
             if (node.x == destX && node.y == destY) {
-                return node.path[0];
+                // path to destination found
+                var dirFound = node.path[0];
+                this.move(dirFound[0], dirFound[1]);
+                return true;
             }
             explored.push(node.x + ',' + node.y);
             [[-1,0], [1,0], [0,-1], [0,1]].forEach(function (dir) {
@@ -95,12 +111,11 @@ var Robot = function(baseAttrs, startX) {
     };
 
     this.move = function(xDelta, yDelta) {
-        if (!this.canMove) {
-            return;
-        }
+        grid[this.position.x][this.position.y].setType('backfill');
 
         this.position.x += xDelta;
         this.position.y += yDelta;
+
         this.render();
     };
 
@@ -114,12 +129,24 @@ var Robot = function(baseAttrs, startX) {
         //Can you move if you can't pick up stuff on a tile.
     };
 
+    var makeRandomMove = function() {
+        var dirs = [[-1,0], [1,0], [0,-1], [0,1]].filter(function(dir) {
+            var dest = {'x': _this.position.x + dir[0], 'y': _this.position.y + dir[1]};
+            return grid[dest.x] && grid[dest.x][dest.y] && canPassTile(grid[dest.x][dest.y]);
+        });
+        if(dirs.length === 0) { return false; } //In case it's trapped somehow
+        var randomDir = Math.floor(Math.random() * dirs.length);
+        chosenDir = dirs[randomDir];
+        _this.move(chosenDir[0], chosenDir[1]);
+        return true;
+    };
+
     var updateTileAndResources = function(tile) {
         _this.energy -= 1;
         var changePercentage = baseAttrs.hardness - tile.getHardness();
         var changeAmount = Math.ceil(tile.amount * changePercentage);
         if (tile.harvestable && _this.storage > 0) {
-            addResouces(changeAmount, tile.type);
+            addResouces(changeAmount, tile.getType());
         }
         tile.amount -= changeAmount; //Reduce the amount left on the tile
         if(tile.amount === 0) { tile.type = 'backfill'; }
@@ -128,22 +155,22 @@ var Robot = function(baseAttrs, startX) {
     var addResources = function(changeAmount, resourceType) {
         var amountHarvested = Math.min(changeAmount, _this.storage);
         _this.storage -= amountHarvested;
-        var resourceAmount = _this.resourceAmountByType[tile.type] || 0;
+        var resourceAmount = _this.resourceAmountByType[resourceType] || 0;
         //Store the resources we've collected by the name to amount.
         //i.e { name: amount }
-        _this.resourceAmountByType[tile.type] = resourceAmount + amountHarvested;
+        _this.resourceAmountByType[resourceType] = resourceAmount + amountHarvested;
     };
 
     //If the tile is passable in multiple turns (including whether it can get
     // everything on the tile).
     var canPassTile = function(tile) {
-        var resource = resources[tile.type];
+        var resource = resources[tile.getType()];
         var drillHardness = baseAttrs.hardness;
         return (drillHardness > resource.hardness);
     };
 
     var timeToPassTile = function(tile) {
-        var resource = resources[tile.type];
+        var resource = resources[tile.getType()];
         return (baseAttrs.hardness - resource.hardness) * tile.amount;
     };
 
@@ -151,8 +178,17 @@ var Robot = function(baseAttrs, startX) {
 };
 
 Robot.prototype.render = function() {
-    this.shape.x = 20*this.position.x + 10;
-    this.shape.y = 20*this.position.y + 110;
+    this.shape.x = grid_size*(this.position.x + 0.5);
+    this.shape.y = grid_size*(this.position.y + 0.5) + surface_height;
+
+    var p = this.position;
+    [p.x-1, p.x, p.x+1].forEach(function (x) {
+        [p.y-1, p.y, p.y+1].forEach(function (y) {
+            if (grid[x] && grid[x][y]) {
+                grid[x][y].setExplored();
+            }
+        });
+    });
 };
 
 var upgradeBot = function(type, level) {
