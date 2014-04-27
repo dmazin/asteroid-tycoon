@@ -95,7 +95,7 @@ var Robot = function(baseAttrs, startX) {
         if (tile.harvestable && _this.storage > 0) {
             addResources(amountMined, tile.getType());
         }
-        console.log("mined: " + amountMined + " " + tile.getType());
+        playerState.changeResource(tile.getType(), amountMined);
         tile.amount -= amountMined; //Reduce the amount left on the tile
     };
 

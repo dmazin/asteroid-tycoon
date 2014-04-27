@@ -7,7 +7,8 @@ var playerState = (function() {
 
     var resourceAmounts = {
         'money': 0,
-        'iron': 0
+        'iron': 0,
+        'dirt': 0
     };
 
     state = {};
@@ -29,7 +30,8 @@ var playerState = (function() {
     };
 
     state.changeResource = function(resource, amount) {
-        resourceAmounts['resource'] += amount;
+        resourceAmounts[resource] += amount;
+        $('.notification .amount').text(parseInt(resourceAmounts[resource]));
     };
 
     return state;

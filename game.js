@@ -65,7 +65,7 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
 
 function tick() {
     activeBots.forEach(function(bot) {
-        bot.goToward(10, 10);
+        bot.goToward(40, 40);
     });
 
     stage.update();
