@@ -281,7 +281,8 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         }
         tile.amount -= amountMined; //Reduce the amount left on the tile
 
-        playerState.changeResource('money', 1);
+        _this.resourceAmountByType['money'] = _this.resourceAmountByType['money'] || 0;
+        _this.resourceAmountByType['money']++;
     };
 
     // This gets called from the updateTileAndResources
