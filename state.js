@@ -64,6 +64,13 @@ var playerState = (function() {
         }
     };
 
+    state.addResources = function(resourceAmountsByType) {
+        for (var resourceType in resourceAmountsByType) {
+            var resourceAmount = resourceAmountsByType[resourceType];
+            state.changeResource(resourceType, resourceAmount);
+        }
+    };
+
     state.getAsteroid = function() {
         return currentAsteroid;
     };

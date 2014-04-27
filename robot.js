@@ -294,7 +294,6 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         if (tile.harvestable && _this.storage > 0) {
             addResources(amountMined, tile.getType());
         }
-        playerState.changeResource(tile.getType(), amountMined);
         tile.amount -= amountMined; //Reduce the amount left on the tile
 
         playerState.changeResource('money', 1);
@@ -333,6 +332,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         _this.salvageValue = baseAttrs.cost * salvageValueMultiplier;
         _this.dead = true;
         deadBots.push(_this);
+        playerState.addResources(_this.resourceAmountByType);
     };
 
     var updateDirection = function(newX, newY) {
