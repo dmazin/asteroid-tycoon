@@ -19,11 +19,11 @@ var robotLevels = {
     'squirrelBot': [
         robots['squirrelBot'],
         _.extend(robots['squirrelBot'], {
-            energy: 2500,
+            baseEnergy: 2500,
             wobble: 0.75
         }),
         _.extend(robots['squirrelBot'], {
-            energy: 3000,
+            baseEnergy: 3000,
             wobble: 0.6
         }),
     ],
