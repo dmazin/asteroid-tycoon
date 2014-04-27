@@ -63,7 +63,9 @@ function Tile(pixel_x, pixel_y, size, type, amount) {
     this.init();
 }
 
+var bot;
 function tick() {
+    bot.goToward(20, 20);
     stage.update();
 }
 
@@ -74,7 +76,7 @@ function init_stage(width, height, size, surface_px) {
     for (var i = 0; i < width; i++) {
       var line = [];
       for (var j = 0; j < height; j++) {
-        var resourceName = ["dirt", "rock", "iron"][Math.floor(Math.random() * 3)];
+        var resourceName = ["dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "rock", "iron"][Math.floor(Math.random() * 10)];
         if (j === 0) {
             resourceName = "dirt";
         }
