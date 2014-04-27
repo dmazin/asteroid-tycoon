@@ -13,7 +13,7 @@ var Robot = function(baseAttrs, startX, destX, destY) {
 
     this.init = function () {
         var spriteSheet = new createjs.SpriteSheet({
-            images: ["pics/rubble_2x.png"],
+            images: [baseAttrs.spriteSheet, "pics/explosion_2x.png", "pics/rubble_2x.png"],
             frames: {width:40, height:40},
             animations: {
                 run: [0, 1, 'run', baseAttrs.spriteSpeed],
