@@ -176,48 +176,54 @@ var robotLevels = {
     ]
 };
 
+function loadImage(src) {
+    i = new Image();
+    i.src = src;
+    return i;
+}
+
 var resources = {
     'backfill': {
         'hardness': 0,
         'harvestable': false,
         'value': 0,
-        'image': 'pics/backfill03.png'
+        'image': loadImage('pics/backfill03.png')
     },
     'dirt': {
         'hardness': 0,
         'harvestable': false,
         'value': 0,
-        'image': 'pics/rock11.png'
+        'image': loadImage('pics/rock11.png')
     },
     'rock': {
         'hardness': 0.3,
         'harvestable': false,
         'value': 0,
-        'image': 'pics/rock01.png'
+        'image': loadImage('pics/rock01.png')
     },
     'iron': {
         'hardness': 0.3,
         'harvestable': true,
         'value': 10,
-        'image': 'pics/rock04.png'
+        'image': loadImage('pics/rock04.png')
     },
     'mintium': {
         'hardness': 0.4,
         'harvestable': true,
         'value': 10,
-        'image': 'pics/rock09.png'
+        'image': loadImage('pics/rock09.png')
     },
     'junipum': {
         'hardness': 0.5,
         'harvestable': true,
         'value': 10,
-        'image': 'pics/rock07.png'
+        'image': loadImage('pics/rock07.png')
     },
     'unexplored': {
         'hardness': 0.1,
         'harvestable': false,
         'value': 0,
-        'image': 'pics/defaultTile_2x.png'
+        'image': loadImage('pics/defaultTile_2x.png')
     }
 };
 

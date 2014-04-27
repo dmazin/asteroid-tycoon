@@ -72,11 +72,7 @@ function Tile(pixel_x, pixel_y, size, type, amount, pos) {
     };
 
     this.refresh = function () {
-        stage.removeChild(this.shape);
-        this.shape = new createjs.Bitmap(resources[this.getType()].image);
-        this.shape.x = pixel_x;
-        this.shape.y = pixel_y;
-        stage.addChildAt(this.shape, 0);
+        this.shape.image = resources[this.getType()].image;
     };
 
     this.getType = function() {
