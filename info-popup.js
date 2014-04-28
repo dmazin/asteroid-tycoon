@@ -27,9 +27,10 @@ function infoPopupClickOnStage(e) {
 function robotPopupClick(robot, button) {
     return function (e) {
         if (!infoPopupActive) {
-            var x = button.offset().left - 100,
-                y = button.offset().top,
-                popup = robotPopup(robots[robot]);
+            var x     = button.offset().left - 100,
+                y     = button.offset().top,
+                level = playerState.getRobotLevel(robot),
+                popup = robotPopup(robotLevels[robot][level]);
 
             popup.offset({left : x, top : y});
             popup.appendTo($('#game'));

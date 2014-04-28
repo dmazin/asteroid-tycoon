@@ -25,7 +25,8 @@ var robots = {
         'spriteSpeed': 0.3,
         'gifName': 'scout',
         'lockedTil': null,
-        'exploreRadius' : 3
+        'exploreRadius' : 3,
+        'level' : 0
     },
     'bearBot': {
         'uiName': 'Bear',
@@ -51,7 +52,8 @@ var robots = {
             asteroid: 'Paydirteroid',
             row: 3
         },
-       'exploreRadius' : 1
+        'exploreRadius' : 1,
+        'level' : 0
     },
     'antBot': {
         'uiName': 'Ant',
@@ -73,7 +75,8 @@ var robots = {
             asteroid: 'Cheddaroid',
             row: 14
         },
-        'exploreRadius' : 1
+        'exploreRadius' : 1,
+        'level' : 0
     },
     'goatBot': {
         'uiName': 'Goat',
@@ -95,7 +98,8 @@ var robots = {
             asteroid: 'Fatlooteroid',
             row: 14
         },
-        'exploreRadius' : 1
+        'exploreRadius' : 1,
+        'level' : 0
     },
     'vultureBot': {
         'uiName': 'Vulture',
@@ -118,7 +122,8 @@ var robots = {
             asteroid: 'Paydirteroid',
             row: 14
         },
-        'exploreRadius' : 1
+        'exploreRadius' : 1,
+        'level' : 0
     },
     'badgerBot': {
         'uiName': 'Badger',
@@ -144,7 +149,8 @@ var robots = {
             row: 24,
             specialCondition: true
         },
-        'exploreRadius' : 1
+        'exploreRadius' : 1,
+        'level' : 0
     }
 };
 
@@ -230,7 +236,8 @@ var robotLevels = {
             'hardness': 0.25,
             'spriteSheet': 'pics/bots/scout1.png',
             'spriteSpeed': 0.6,
-            'exploreRadius' : 4
+            'exploreRadius' : 4,
+            'level' : 1
         }),
         _.extend(_.clone(robots['squirrelBot']), {
             'baseEnergy': 3000,
@@ -238,7 +245,8 @@ var robotLevels = {
             'hardness': 0.35,
             'spriteSheet': 'pics/bots/scout2.png',
             'spriteSpeed': 1.0,
-            'exploreRadius' : 5
+            'exploreRadius' : 5,
+            'level' : 2
         }),
     ],
     'bearBot': [
@@ -256,7 +264,8 @@ var robotLevels = {
             },
             'hardness': 0.35,
             'spriteSheet': 'pics/bots/allaround1.png',
-            'spriteSpeed': 0.6
+            'spriteSpeed': 0.6,
+            'level' : 1
         }),
         _.extend(_.clone(robots['bearBot']), {
             'baseEnergy': 1600,
@@ -272,7 +281,8 @@ var robotLevels = {
             },
             'hardness': 0.45,
             'spriteSheet': 'pics/bots/allaround2.png',
-            'spriteSpeed': 1.0
+            'spriteSpeed': 1.0,
+            'level' : 2
         }),
     ],
     'antBot': [
@@ -283,7 +293,8 @@ var robotLevels = {
             'harvestEfficiency': 0.9,
             'hardness': 0.55,
             'spriteSheet': 'pics/bots/harvester1.png',
-            'spriteSpeed': 0.6
+            'spriteSpeed': 0.6,
+            'level' : 1
         }),
         _.extend(_.clone(robots['antBot']), {
             'baseEnergy': 1500,
@@ -291,7 +302,8 @@ var robotLevels = {
             'harvestEfficiency': 1.0,
             'hardness': 0.85,
             'spriteSheet': 'pics/bots/harvester2.png',
-            'spriteSpeed': 1.0
+            'spriteSpeed': 1.0,
+            'level' : 2
         }),
     ],
     'goatBot': [
@@ -300,13 +312,15 @@ var robotLevels = {
             'baseEnergy': 1100,
             'hardness': 0.75,
             'spriteSheet': 'pics/bots/smasher1.png',
-            'spriteSpeed': 0.6
+            'spriteSpeed': 0.6,
+            'level' : 1
         }),
         _.extend(_.clone(robots['goatBot']), {
             'baseEnergy': 1200,
             'hardness': 0.95,
             'spriteSheet': 'pics/bots/smasher2.png',
-            'spriteSpeed': 1.0
+            'spriteSpeed': 1.0,
+            'level' : 2
         }),
     ],
     'vultureBot': [
@@ -316,14 +330,16 @@ var robotLevels = {
             'storage': 250,
             'harvestEfficiency': 0.4,
             'spriteSheet': 'pics/bots/scavenger1.png',
-            'spriteSpeed': 0.6
+            'spriteSpeed': 0.6,
+            'level' : 1
         }),
         _.extend(_.clone(robots['vultureBot']), {
             'baseEnergy': 2000,
             'storage': 300,
             'harvestEfficiency': 0.6,
             'spriteSheet': 'pics/bots/scavenger2.png',
-            'spriteSpeed': 1.0
+            'spriteSpeed': 1.0,
+            'level' : 2
         }),
     ],
     'badgerBot': [
