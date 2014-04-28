@@ -1,15 +1,17 @@
 .sound {
-    width: 80px;
+    width: 183px;
     margin: 0 auto;
 }
 .sound a {
-    color: white;
+    color: #fff;
+    opacity: .4
 }
 
 .credits {
     width:470px;
     color: #fff;
     margin: 0 auto;
+    margin-bottom: 10px;
 }
 
 .credits a {
