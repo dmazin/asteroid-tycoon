@@ -25,7 +25,7 @@ function printout(text, type) {
         printout = $("<pre class='printout " + (type ? type : '') + "'>"),
         envelope  = $("<img src='pics/other/envelope.png' alt='envelope' />");
 
-    var height = 0;
+    var height = lines.length * 15;
 
     envelope.currOpacity = 1;
 
@@ -67,7 +67,6 @@ function printout(text, type) {
 
     function hide() {
         if (type == 'modalyesno') { return false; }
-        height = $('.printout').css('height');
         printout.css('cursor', 'default');
         envelope.animate({'opacity' : envelope.currOpacity}, 600);
         printout.animate({'top': 110,
