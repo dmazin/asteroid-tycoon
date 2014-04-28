@@ -16,7 +16,7 @@ SquirrelBot.defaultBehavior = function(_this) {
 };
 
 BearBot.defaultBehavior = function(_this) {
-	var otherBehaviors = [AntBot, GoatBot];
+	var otherBehaviors = [AntBot];
 	if (!_this.currentBehaviorStep) _this.currentBehaviorStep = 0;
 	// Idea: do the same behavior 3 times in a row to bounce around less.
 	if (!_this.currentBehavior || !_this.currentBehaviorStep) {
