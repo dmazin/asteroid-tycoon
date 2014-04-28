@@ -4,6 +4,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
 
     this.energy = baseAttrs.baseEnergy * energy_scale;
     this.baseEnergy = baseAttrs.baseEnergy * energy_scale;
+    this.baseAttrs = baseAttrs;
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; // the stuff you pick up
     this.position = {'x': startX, 'y': 0};
@@ -14,7 +15,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
 
     this.init = function () {
         var spriteSheet = new createjs.SpriteSheet({
-            images: [baseAttrs.spriteSheet, "pics/explosion_2x.png", "pics/rubble_2x.png"],
+            images: [baseAttrs.spriteSheet, "pics/other/explosion.png", "pics/other/rubble.png"],
             frames: {width:40, height:40},
             animations: {
                 run: [0, 1, 'run', baseAttrs.spriteSpeed],
@@ -27,7 +28,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         stage.addChild(this.animation);
 
         var healthbarSpriteSheet = new createjs.SpriteSheet({
-            images: ["pics/healthbar_2x.png"],
+            images: ["pics/other/healthbar.png"],
             frames: {width:40, height:4}
         });
         this.healthbar = new createjs.Sprite(healthbarSpriteSheet);
@@ -173,19 +174,17 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         dirs = this.getViableDirections();
         dirs=dirs.filter(function(dir) {
             var dest = {'x': _this.position.x + dir[0], 'y': _this.position.y + dir[1]};
-                if ((dir[0] === reverseHeading.x) && (dir[1] === reverseHeading.y)){
-                    return false;
-                }
-                else {
-                    return true;
-                }
-
+            if ((dir[0] === reverseHeading.x) && (dir[1] === reverseHeading.y)){
+                return false;
+            }
+            else {
+                return true;
+            }
         });
         var randomDir = Math.floor(Math.random() * dirs.length);
         chosenDir = dirs[randomDir];
         _this.moveTo(_this.position.x + chosenDir[0], _this.position.y + chosenDir[1]);
         return true;
-
     };
 
     this.getViableDirections = function(){
@@ -243,11 +242,13 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
                 this.currentlyDigging = null;
                 this.position.x = newX;
                 this.position.y = newY;
-                grid[this.position.x][this.position.y].setType('backfill');
+                if (newTile.getType != 'backfill') {
+                    grid[this.position.x][this.position.y].setType('backfill');
+                    playerState.changeResource('money', explorationBonus);
+                }
             } else {
                 this.hit(newTile);
                 this.currentlyDigging = {x: newX, y: newY};
-
             }
         }
 
@@ -295,8 +296,6 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
             addResources(amountMined, tile.getType());
         }
         tile.amount -= amountMined; //Reduce the amount left on the tile
-
-        playerState.changeResource('money', 1);
     };
 
     // This gets called from the updateTileAndResources
