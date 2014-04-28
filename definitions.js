@@ -141,7 +141,7 @@ var robots = {
         'gifName': 'mecha',
         'lockedTil': {
             asteroid: 'Cashmonoid',
-            row: 24,
+            row: 27,
             specialCondition: true
         },
         'exploreRadius' : 1
@@ -155,11 +155,11 @@ var upgrades = {
             null,
             {
                 asteroid: 'Cheddaroid',
-                row: 24
+                row: 27
             },
             {
                 asteroid: 'Affluoid',
-                row: 24
+                row: 27
             }
         ]
     },
@@ -169,11 +169,11 @@ var upgrades = {
             null,
             {
                 asteroid: 'Cheddaroid',
-                row: 24
+                row: 27
             },
             {
                 asteroid: 'Affluoid',
-                row: 24
+                row: 27
             }
         ]
     },
@@ -183,11 +183,11 @@ var upgrades = {
             null,
             {
                 asteroid: 'Fatlooteroid',
-                row: 24
+                row: 27
             },
             {
                 asteroid: 'Affluoid',
-                row: 24
+                row: 27
             }
         ]
     },
@@ -197,11 +197,11 @@ var upgrades = {
             null,
             {
                 asteroid: 'Fatlooteroid',
-                row: 24
+                row: 27
             },
             {
                 asteroid: 'Affluoid',
-                row: 24
+                row: 27
             }
         ]
     },
@@ -211,11 +211,11 @@ var upgrades = {
             null,
             {
                 asteroid: 'Fatlooteroid',
-                row: 24
+                row: 27
             },
             {
                 asteroid: 'Affluoid',
-                row: 24
+                row: 27
             }
         ]
     },

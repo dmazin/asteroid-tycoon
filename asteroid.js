@@ -45,7 +45,8 @@ var Asteroid = function (params) {
                 if (robot.lockedTil.specialCondition) {
                     // badger
                     if (playerState.totalUpgradesReceived == 10) {
-                        Robot.unlock(robotType)
+                        Robot.unlock(robotType);
+                        $('.robot-shop').addClass('with-badger');
                     } else {
                         playerState.badgerFound = true;
                     }
