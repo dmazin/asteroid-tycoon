@@ -83,8 +83,13 @@ var playerState = (function() {
             stage.removeAllChildren();
             stage.clear();
         }
-        init_stage();
+
+        window.stage = new createjs.Stage("mainCanvas");
+
+        currentAsteroid.init();
         currentAsteroid.refresh();
+
+        init_stage();
     };
 
     return state;

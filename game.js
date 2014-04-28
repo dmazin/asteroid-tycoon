@@ -62,10 +62,6 @@ function init_ui() {
 }
 
 function init_stage() {
-    window.stage = new createjs.Stage("mainCanvas");
-
-    playerState.getAsteroid().init();
-
     createSpawn(Math.floor(game_width/2));
     stage.update();
 
