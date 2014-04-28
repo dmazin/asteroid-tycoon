@@ -105,9 +105,11 @@ function init_stage() {
     createjs.Ticker.setFPS(FPS);
 
     stage.enableMouseOver(10);
+}
 
+function setup_stage_event_handler() {
     stage.on('stagemouseup', function(e) {
-        $('.printout').fadeOut();
+        hidePrintout();
 
         if ($('canvas').hasClass('botSpawner')) {
             // Change canvas back

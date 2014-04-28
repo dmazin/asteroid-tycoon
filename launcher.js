@@ -3,8 +3,8 @@ var robotSelectionActive = false;
 
 $(document).ready(function () {
     init_ui();
-
     playerState.setAsteroid(asteroids['Paydirteroid']);
+    setup_stage_event_handler();
 
     _.each(robots, function(val, key) {
         var data = _.extend(val, {'name': key});
@@ -57,6 +57,11 @@ $(document).ready(function () {
         }
     }, 50);
 });
+
+var hidePrintout = function () {
+    $('.printout').css('cursor', 'default');
+    $('.printout').animate({'top': 500, 'opacity': 0}, 1000);
+}
 
 var updateRobotShop = function() {
     _.each(robots, function(val, key) {
