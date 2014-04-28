@@ -289,6 +289,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
             });
         }
 
+        playerState.getAsteroid().reachLine(newY);
         this.energy -= 1;
         this.render();
     };
@@ -369,8 +370,8 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         return baseAttrs.hardness - resource.hardness;
     };
 
-    function displayDeathText(string, timeout_frames) {
-        var text = new createjs.Text(string, "10px Arial", "#00ff00");
+    var displayDeathText = function(string, timeout_frames) {
+        var text = new createjs.Text(string, "15px Arial", "#00ff00");
         text.x = _this.animation.x;
         text.y = _this.animation.y;
         text.timeout = timeout_frames;
@@ -395,7 +396,6 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
     // This is called when a robot's energy reaches
     // 0 from the handleMove function.
     var handleDeath = function() {
-
         _this.animation.gotoAndPlay('explode');
         _this.healthbar.visible = false;
         _this.capacitybar.visible = false;
@@ -406,11 +406,16 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         playerState.addResources(_this.resourceAmountByType);
 
         var deathString = "";
+        var totalResourceValue = 0;
         _.each(_this.resourceAmountByType, function(val, key) {
-            deathString = deathString + key + ": " + Math.floor(val) + "\n";
+            totalResourceValue += resources[key].value * val;
+            deathString = deathString + Math.floor(val) + ' ' + key + ' found' + "\n";
         });
+        if (totalResourceValue > 0) {
+            deathString = deathString + "$" + Math.floor(totalResourceValue) + ' get!' + "\n";
+        }
         if (deathString === "") {
-            deathString = "Died in vain";
+            deathString = "died in vain :-(";
         }
 
         displayDeathText(deathString, 20);

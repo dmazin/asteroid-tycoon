@@ -63,7 +63,10 @@ var playerState = (function() {
     };
 
     function getArtifactValue() {
-        return 20;
+        var r = Math.random();
+        var val = r * (60 - 5) + 5;
+        val *= currentAsteroid.artifactScaleValue;
+        return val;
     }
 
     state.addResources = function(resourceAmountsByType) {
@@ -103,6 +106,8 @@ var playerState = (function() {
 
         init_stage();
     };
+
+    state.unlockedRobots = ['squirrelBot'];
 
     return state;
 })();
