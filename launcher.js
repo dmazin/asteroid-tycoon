@@ -15,7 +15,7 @@ $(document).ready(function () {
 
         var money = playerState.getResource('money');
 
-        if (money > robots[robotType].cost) {
+        if (money > robots[robotType].cost && Robot.unlocked(robotType)) {
             spawnBot(robotType, Math.floor(spawner.x/grid_size));
         }
     });
