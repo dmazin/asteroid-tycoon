@@ -7,7 +7,7 @@ var spawner;
 var grid_size = 40;
 var game_width = 25;
 var game_height = 30;
-var surface_height = 140;
+var surface_height = 180;
 var FPS = 10;
 
 function createSpawn(xpos){
@@ -18,7 +18,7 @@ function createSpawn(xpos){
     spawner = new createjs.Sprite(spaceshipSpritesheet);
     spawner.gotoAndPlay(0);
     spawner.x = grid_size*xpos - 110;
-    spawner.y = grid_size - 40;
+    spawner.y = grid_size - 20;
 
     spawner_back = new createjs.Shape();
     spawner_back.graphics.beginFill('red')
@@ -36,7 +36,7 @@ function createSpawn(xpos){
         var gs = grid_size;
 
         var x = Math.round((evt.stageX + this.offset.x - gs / 2) / gs) * gs + gs / 2;
-        if (x < gs || x > gs * (game_width + 1)) {
+        if (x < 0.5 * gs || x > gs * (game_width + 0.2)) {
             return;
         }
         this.x = x;
@@ -63,6 +63,7 @@ function tick() {
 
 function init_ui() {
     window.statTemplate = _.template($('#mineral-stat-template').html());
+    window.buy_button_template = _.template($('#robot-buy-button-template').html());
 
     _.each(resources, function(val, key) {
         if (val.harvestable) {
