@@ -309,7 +309,7 @@ var resources = {
         'harvestable': false,
         'value': 0,
         'imagePath' : 'pics/tiles/backfill.png',
-        'image': loadImage('pics/tiles/backfill.png')
+        'image': loadImage('pics/tiles/backfill.png'),
         'text': "Backfill from mining operation"
     },
     'dirtite': {
