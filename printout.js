@@ -21,6 +21,8 @@ function cycle(envelope, k) {
 }
 
 function printout(text, type) {
+    playSound('dingdong');
+
     var lines    = text.split(/\n/),
         printout = $("<pre class='printout " + (type ? type : '') + "'>"),
         envelope  = $("<img src='pics/other/envelope.png' alt='envelope' />");
@@ -83,6 +85,7 @@ function printout(text, type) {
     }
 
     function show() {
+        playSound('dingdong');
         printout.show();
         printout.animate({'top' : 100,
                           'left' : '50%',

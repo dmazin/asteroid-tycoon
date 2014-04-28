@@ -149,6 +149,7 @@ function setup_stage_event_handler() {
             //Update the player
             updatePlayerMoney(currentlySpawning.type);
 
+            playSound('beam');
             cratebeam.gotoAndPlay('beam');
 
             // Make a new bot based on the position.
