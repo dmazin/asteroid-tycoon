@@ -182,7 +182,7 @@ var robotLevels = {
             'baseEnergy': 1250,
             'storage': 300,
             'harvestEfficiency': 0.9,
-            'hardness': 0.65,
+            'hardness': 0.55,
             'spriteSheet': 'pics/bots/harvester1.png',
             'spriteSpeed': 0.6,
             'gif': 'pics/bots/harvester1.gif'
