@@ -49,9 +49,10 @@ Robot.prototype.render = function() {
         [p.y-1, p.y, p.y+1].forEach(function (y) {
             if (_this.getGrid()[x] && _this.getGrid()[x][y]) {
                 var tile = _this.getGrid()[x][y];
+                var explored = tile.explored;
                 tile.setExplored();
                 var resource = resources[tile.getType()];
-                if(resource.harvestable) {
+                if(resource.harvestable && !explored) {
                     playerState.changeResource('money', resource.hardness * explorationBonus);
                 }
             }
@@ -62,7 +63,7 @@ Robot.prototype.render = function() {
 Robot.unlocked = function(type) {
     needMineral = robots[type].lockedTil;
     return needMineral ? (playerState.getResource(needMineral) > 0) : true;
-}
+};
 
 // Determines if an upgrad is possible for a bot
 // based on it's type, which level it wants to upgrade to
