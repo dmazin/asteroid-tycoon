@@ -1,15 +1,14 @@
 var infoPopupActive = false;
 
-$('#mainCanvas').click(function (e) {
-    if (!infoPopupActive && !robotSelectionActive) {
-        var x = e.offsetX,
-            y = e.offsetY;
+function popupClickOnStage(e) {
+    if (!infoPopupActive) {
+        var x = e.stageX,
+            y = e.stageY;
 
         if (y >= surface_height) {
             var popup = infoPopup(tileInfo(tileTypeAt(x, y)));
-
             popup.offset({left : x, top : y + 200});
-            $('#game').append(popup);
+            popup.appendTo($('#game'));
 
             infoPopupActive = true;
         }
@@ -18,9 +17,7 @@ $('#mainCanvas').click(function (e) {
     } else {
         hidePopups();
     }
-});
-
-$('body').click(hidePopups);
+}
 
 // Hides all the current info popups.
 function hidePopups() {
@@ -42,7 +39,7 @@ function tileTypeAt(canvasX, canvasY) {
     var grid         = playerState.getAsteroid().getGrid(),
         canvasWidth  = $("#mainCanvas").width(),
         canvasHeight = $("#mainCanvas").height(),
-        stepX        = canvasWidth / game_width, 
+        stepX        = canvasWidth / game_width,
         stepY        = (canvasHeight - surface_height) / game_height,
         x            = Math.floor(canvasX / stepX),
         y            = Math.floor((canvasY - surface_height) / stepY),
@@ -57,14 +54,16 @@ function tileInfo(type) {
 
     var stats = resources[type];
 
-    if (type == 'unexplored') {
+    switch (type) {
+    case 'unexplored':
+    case 'artifact':
         return {
             name     : type,
             image    : stats.imagePath,
             hardness : "??",
             value    : "??"
         }
-    } else {
+    default:
         return {
             name     : type,
             image    : stats.imagePath,
@@ -73,4 +72,3 @@ function tileInfo(type) {
         };
     }
 }
-

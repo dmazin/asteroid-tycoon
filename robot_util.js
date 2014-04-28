@@ -123,29 +123,15 @@ var remainingMineralsTillUpgrade = function(type, level) {
     return mineralReq - playerState.getResource(mineral);
 };
 
+var currentlySpawning = {};
 var spawnBot = function(type, startX) {
     var robotAttrs = robotLevels[type][state.getRobotLevel(type)];
-    // Canvas act different if you can now spawn a bot
     $('canvas').addClass('botSpawner');
-
-    // Have stage listen to mouseup once and make a new bot based on that
-    stage.on('stagemouseup', function(e) {
-        // Change canvas back
-        $('canvas').removeClass('botSpawner');
-
-        // Reset if the mouse is out of bounds.
-        if(!stage.mouseInBounds) { return; }
-
-        //Update the player
-        updatePlayerMoney(type);
-
-        // Make a new bot based on the position.
-        var destX = parseInt(e.stageX / grid_size);
-        var destY = parseInt((e.stageY - surface_height) / grid_size);
-        var bot = new Robot(robotAttrs, startX, destX, destY, playerState.getAsteroid());
-        activeBots.push(bot);
-        return bot;
-    }, null, true);
+    currentlySpawning = {
+        type: type,
+        startX: startX,
+        robotAttrs: robotAttrs
+    };
 };
 
 var updatePlayerMoney = function(robotType) {

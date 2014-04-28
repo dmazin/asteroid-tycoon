@@ -28,10 +28,12 @@
 <script id="info-popup-template" type="text/html">
   <div class="info-popup">
     <h1> <%= name %> </h1>
-    <img src="<%= image %>" alt=" <%= name %> texture " />
+    <div class="info-popup-icon">
+      <img src="<%= image %>" alt=" <%= name %> texture " />
+    </div>
     <ul>
-      <li> Hardness: <%= hardness %> </li>
-      <li> Value: <%= value %> </li>
+      <li> hardness: <%= hardness %> </li>
+      <li> value: <%= value %> </li>
     </ul>
   </div>
 </script>
