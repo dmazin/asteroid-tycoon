@@ -78,8 +78,15 @@ var Asteroid = function (name, terrainParameters, artifactValueScale) {
             return _.map(array, function(x) { return x / total; });
         }
 
+
         var resources = [];
         var maxDepth = game_height;
+
+        if (depth == maxDepth - 3) {
+            // row of imperviousite
+            return 'imperviousite';
+        }
+
         var probs = _.map(terrainParameters, function(x, r) {
             var minDepth = Math.round(x.minDepth * maxDepth); // % -> row #
             resources.push(r);
