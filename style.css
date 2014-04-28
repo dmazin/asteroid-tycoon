@@ -40,8 +40,8 @@
 .money-stats {
     color: #191F18;
     background-color: #008000;
-    border: 2px inset #83AF83;
-    width: 372px;
+    border: 1px inset #83AF83;
+    width: 376px;
 }
 
 .money-stats .amount {
@@ -52,7 +52,7 @@
 .general-stats {
     margin-right: 10px;
     background-color: #548EA0;
-    border: 2px inset #9BBFD3;
+    border: 1px inset #9BBFD3;
 }
 
 .stats {
@@ -61,7 +61,7 @@
     padding: 2px 7px 5px;
     display: inline-block;
     vertical-align: top;
-    height: 36px;
+    height: 26px;
 }
 
 body {
