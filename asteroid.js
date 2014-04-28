@@ -63,7 +63,7 @@ var Asteroid = function (params) {
                 if (j === 0) {
                     resourceName = "dirtite";
                 }
-                var amount = Math.floor(Math.random() * 20);
+                var amount = resourceName == 'artifact' ? 1 : Math.floor(Math.random() * 20);
                 var g = new Tile(i * grid_size,
                                  surface_height + j * grid_size,
                                  grid_size,
