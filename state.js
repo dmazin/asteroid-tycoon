@@ -41,8 +41,6 @@ var playerState = (function() {
         resourceAmounts[resource] = resourceAmounts[resource] || 0;
         resourceAmounts[resource] += amount;
 
-        
-
         $('.money-stats .amount').text('$' + parseInt(resourceAmounts['money']));
         $('.notification.money .amount').text(parseInt(resourceAmounts['money']));
 

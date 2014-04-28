@@ -83,9 +83,11 @@ var upgradeBot = function(type, level) {
         return;
     }
 
-    var cost = upgrades[type][costs][level];
+    var cost = upgrades[type].costs[level];
     playerState.changeResource('money', -cost);
     playerState.setRobotLevel(type, level);
+
+    updateRobotShop();
 };
 
 var remainingMineralsTillUpgrade = function(type, level) {
