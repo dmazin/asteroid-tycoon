@@ -15,6 +15,9 @@ var playerState = (function() {
 
     state = {};
 
+    // Set initial displays
+    $('.money-stats .amount').text('$' + parseInt(resourceAmounts['money']));
+
     state.getRobotLevel = function(robotType) {
         return robotLevels[robotType];
     };
@@ -35,7 +38,7 @@ var playerState = (function() {
         resourceAmounts[resource] = resourceAmounts[resource] || 0;
         resourceAmounts[resource] += amount;
 
-        $('.money-stats .amount').text('$ ' + parseInt(resourceAmounts['money']));
+        $('.money-stats .amount').text('$' + parseInt(resourceAmounts['money']));
         $('.notification.money .amount').text(parseInt(resourceAmounts['money']));
 
         if (resource === 'money' || resources[resource].harvestable === false) {

@@ -11,8 +11,14 @@
     width: 220px;
 }
 
+.display {
+    font-family: 'VT323', '';
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px #4A5E47;
+}
+
 .money-stats .tiny-description {
-    font-size: 10px;
+    font-size: 12px;
     position: relative;
     top: -4px;
     width: 80px;
@@ -21,7 +27,6 @@
 
 .money-stats {
     margin-top: 5px;
-    text-shadow: 1px 1px 1px #4A5E47;
     color: #191F18;
     background-color: #008000;
     border: 2px inset #83AF83;
@@ -29,7 +34,7 @@
 
 .money-stats .amount {
     float: right;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .general-stats {
