@@ -75,6 +75,7 @@ var updateTopMenuSize = function() {
         menuIsShrunk = true;
 
         $('#asteroidButton, #messages').hide();
+
         if($('.title-container').data('size') == 'big') {
             $('.title-container').data('size','small');
             $('.title-container').stop().animate({
@@ -108,6 +109,11 @@ var updateTopMenuSize = function() {
 
         $('.title').show();
         $('#menu').removeClass('shrunk');
+        $(".robot-shop .robot-container:not(.disabled) img").show();
+        $(".robot-shop .robot-container:not(.disabled) img")
+            .animate({height : 46}, options);
+        $(".robot-shop").animate({height : 77}, options);
+
         if($('.title-container').data('size') == 'small') {
             $('.title-container').data('size','big');
             $('.title-container').show().stop().animate({
