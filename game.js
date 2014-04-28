@@ -41,10 +41,7 @@ function Tile(pixel_x, pixel_y, size, type, amount, pos) {
      */
 
     this.init = function () {
-        this.shape = new createjs.Bitmap(resources[this.getType()].image);
-        this.shape.x = pixel_x;
-        this.shape.y = pixel_y;
-        stage.addChild(this.shape);
+        this.addToStage();
 
         this.amount = amount;
         this.baseAmount = amount;
@@ -55,6 +52,13 @@ function Tile(pixel_x, pixel_y, size, type, amount, pos) {
         }
 
         this.refresh();
+    };
+
+    this.addToStage = function () {
+        this.shape = new createjs.Bitmap(resources[this.getType()].image);
+        this.shape.x = pixel_x;
+        this.shape.y = pixel_y;
+        stage.addChild(this.shape);
     };
 
     this.refresh = function () {
@@ -106,8 +110,6 @@ function init_ui() {
 }
 
 function init_stage() {
-    init_ui();
-
     window.stage = new createjs.Stage("mainCanvas");
 
     playerState.getAsteroid().init();
@@ -117,7 +119,7 @@ function init_stage() {
 
     stage.destTile = new createjs.Shape();
     stage.destTile.graphics.beginFill('blue')
-                            .drawCircle(0,0,8);
+                           .drawCircle(0,0,8);
     stage.addChild(stage.destTile);
 
     createjs.Ticker.addEventListener("tick", tick);

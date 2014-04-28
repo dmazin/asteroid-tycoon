@@ -1,7 +1,7 @@
 $(document).ready(function () {
-    playerState.setAsteroid(asteroids['Bananasteroid']);
+    init_ui();
 
-    init_stage();
+    playerState.setAsteroid(asteroids['Bananasteroid']);
 
     var buy_button_template = _.template($('#robot-buy-button-template').html());
     _.each(robots, function(val, key) {

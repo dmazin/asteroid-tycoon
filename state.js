@@ -72,6 +72,15 @@ var playerState = (function() {
 
     state.setAsteroid = function(asteroid) {
         currentAsteroid = asteroid;
+        activeBots = [];
+        deadBots = [];
+
+        if (stage) {
+            stage.removeAllChildren();
+            stage.clear();
+        }
+        init_stage();
+        currentAsteroid.refresh();
     };
 
     return state;

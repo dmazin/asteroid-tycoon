@@ -1,12 +1,27 @@
 var Asteroid = function (terrainParameters) {
     var grid = [];
+    var initialized = false;
+    var startSeed = Math.random();
+    var seed;
 
     this.init = function () {
-        initialize_grid();
+        seed = startSeed;
+        if (!initialized) {
+            initialized = true;
+            initialize_grid();
+        }
     }
 
     this.getGrid = function () {
         return grid;
+    }
+
+    this.refresh = function () {
+        for (var i = 0; i < game_width; i++) {
+            for (var j = 0; j < game_height; j++) {
+                grid[i][j].addToStage();
+            }
+        }
     }
 
     function initialize_grid() {
@@ -32,6 +47,11 @@ var Asteroid = function (terrainParameters) {
     }
 
     function generate_terrain(depth) {
+        function random () {
+            var x = Math.sin(seed++) * 10000;
+            return x - Math.floor(x);
+        }
+
         function normalize(array) {
             var total = _.reduce(array,
                     function(m, n) { return m + n;},
