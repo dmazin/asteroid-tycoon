@@ -406,7 +406,7 @@ body {
 }
 
 .robot-container div.robot-button.shrunk {
-    top : -44px;
+    top: -44px;
 }
 
 .robot-shop.with-badger .lvl1, .robot-shop.with-badger .lvl2 {
@@ -423,8 +423,12 @@ body {
 }
 
 .robot-shop.with-badger .robot-button {
-    top: -65px;
+    top: -65px !important;
     margin-right: 24px;
+}
+
+.shrunk .robot-shop.with-badger div.robot-button {
+    display: none;
 }
 
 #circle {

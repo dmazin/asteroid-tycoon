@@ -181,7 +181,7 @@ var updateRobotShop = function() {
         }
 
         var pathPrefix = 'pics/2x_gifs/' + data['gifName'];
-        if (upgradeUnlocked(key, 1) && level < 2) {
+        if (upgradeUnlocked(key, 1) && level == 1) {
             $('.robot-container.' + key + ' img.lvl2').addClass('upgradeEnabled')
                 .attr('src', pathPrefix + '1.gif');
             $('.controls .robot-shop .robot-container.' + key + ' .upgradeCost.lvl2').text('$' + currentUpgradeCost(key));
@@ -190,13 +190,20 @@ var updateRobotShop = function() {
             $('.controls .robot-shop .robot-container.' + key + ' .upgradeCost.lvl2').text('');
         }
 
-        if (upgradeUnlocked(key, 2) && level < 3) {
+        if (upgradeUnlocked(key, 2) && level == 2) {
             $('.robot-container.' + key + ' img.lvl3').addClass('upgradeEnabled')
                 .attr('src', pathPrefix + '2.gif');
             $('.controls .robot-shop .robot-container.' + key + ' .upgradeCost.lvl3').text('$' + currentUpgradeCost(key));
         } else {
             $('.robot-container.' + key + ' img.lvl3').removeClass('upgradeEnabled');
             $('.controls .robot-shop .robot-container.' + key + ' .upgradeCost.lvl3').text('');
+        }
+
+        // cheat here because badger only has lvl1 but we're displaying lvl3
+        if (key == 'badgerBot') {
+            $('.robot-container.' + key + ' img.lvl3').addClass('current')
+                .removeClass('unused')
+                .attr('src', pathPrefix + '0.gif');
         }
     });
 };

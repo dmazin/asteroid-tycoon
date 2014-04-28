@@ -44,10 +44,10 @@
 
 <script id="robot-popup-template" type="text/html">
   <div class="info-popup <%= displayName %>">
-    <h1> <%= displayName %> </h1>
+    <h1> <%= displayName %> <%= level + 1 %>.0 </h1>
     <p> <%= displayText %> </p>
     <div class="info-popup-icon">
-      <img src="pics/2x_gifs/<%= gifName %>0.gif" alt=" <%= name %> bot icon " />
+      <img src="pics/2x_gifs/<%= gifName %><%= level %>.gif" alt=" <%= name %> bot icon " />
     </div>
     <ul>
       <li> price: <%= cost %> </li>
