@@ -206,6 +206,7 @@ body {
 
 .robot-shop .robot {
     padding: 3px 0;
+    padding-right: 15px;
     height: 20px;
     display: inline-block;
 }
@@ -266,7 +267,7 @@ body {
 
 .robot-shop .robot-container.disabled {
     position: relative;
-    top: -53px;
+    top: -62px;
     background: #666;
     padding: 15px 0;
 }
