@@ -298,9 +298,17 @@ var robotLevels = {
 };
 
 function loadImage(src) {
-    i = new Image();
+    var i = new Image();
     i.src = src;
     return i;
+}
+
+function loadImageFromSpriteSheet(src) {
+    var sheet = new createjs.SpriteSheet({
+        images: [src],
+        frames: {width:40, height:40}
+    });
+    return sheet;
 }
 
 var resources = {
@@ -412,7 +420,8 @@ var resources = {
         'hardness': 0,
         'harvestable': true,
         'value': null,
-        'image': loadImage('pics/tiles/artifact.png')
+        'image': loadImage('pics/tiles/dirt1.png'),
+        'sprite': loadImageFromSpriteSheet('pics/other/artifact.png')
     },
     'unexplored': {
         'hardness': 0,

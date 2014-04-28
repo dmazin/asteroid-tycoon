@@ -25,13 +25,22 @@ function Tile(pixel_x, pixel_y, size, type, amount, pos) {
 
     this.addToStage = function () {
         var _this = this;
+
         this.shape = new createjs.Bitmap(resources[this.getType()].image);
         this.shape.x = pixel_x;
         this.shape.y = pixel_y;
-        this.shape.on('click', function() {
+        /*this.shape.on('click', function() {
             _this.displayInfo();
-        });
+        });*/
         stage.addChild(this.shape);
+
+        if (resources[this.getType()].sprite) {
+            this.sprite = new createjs.Sprite(resources[this.getType()].sprite);
+            this.sprite.gotoAndPlay(0);
+            this.sprite.x = pixel_x;
+            this.sprite.y = pixel_y;
+            stage.addChild(this.sprite);
+        }
 
         this.deterioration = new createjs.Sprite(deteriorationSpriteSheet);
         this.deterioration.gotoAndStop(0);
