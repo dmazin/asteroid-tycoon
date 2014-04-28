@@ -24,7 +24,7 @@ function Tile(pixel_x, pixel_y, size, type, amount, pos) {
     };
 
     this.addToStage = function () {
-        this.shape = new createjs.Bitmap(resources[this.getType()].image);
+        this.shape = new createjs.Bitmap(resources[this.getType()].imagedef);
         this.shape.x = pixel_x;
         this.shape.y = pixel_y;
         stage.addChild(this.shape);

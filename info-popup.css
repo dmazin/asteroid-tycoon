@@ -1,0 +1,7 @@
+/* CSS Document */
+.info-popup {
+    position : fixed;
+    z-index : 10;
+    height : 150px;
+    width : 200px;
+}

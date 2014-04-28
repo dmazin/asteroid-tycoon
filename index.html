@@ -21,6 +21,17 @@
     </span>
 </script>
 
+<script id="info-popup-template" type="text/html">
+  <div class="info-popup">
+    <h1> <%= name %> </h1>
+    <img src="<%= image %>" alt=" <%= name %> texture " />
+    <ul>
+      <li> Hardness: <%= hardness %> </li>
+      <li> Value: <%= value %> </li>
+    </ul>
+  </div>
+</script>
+
 <div id='game'>
     <div id='menu'>
         <div class='title-container'>
@@ -84,6 +95,7 @@
 <script src='definitions.js'></script>
 
 <script src='game.js'></script>
+<script src='info-popup.js'></script>
 <script src='tile.js'></script>
 <script src='state.js'></script>
 <script src='robot.js'></script>
