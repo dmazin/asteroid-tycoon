@@ -11,7 +11,10 @@
         <div class='robot' data-robot='<%= name %>'>
             <img src="<%= gif %>"><%= uiName %> $<%= cost %>
         </div>
-        <div class='upgrade' data-robot='<%= name %>'>Upgrade</div>
+        <div class='upgrade' data-robot='<%= name %>'>
+        	Upgrade
+        	<span class="upgradeCost">locked</span>
+        </div>
         <div class='unlockMessage' data-robot='<%= name %>'>unavailable</div>
     </span>
 </script>

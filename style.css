@@ -213,6 +213,7 @@ body {
 .robot-shop .robot:hover {
     cursor: pointer;
     background-color: #FFF;
+    color: #222;
 }
 
 .robot-shop .unlockMessage {
