@@ -90,7 +90,7 @@ var robots = {
 
 // constants for scaling robot attributes for balancing purposes
 var energy_scale = 0.1;
-var WobbleConstant = 0.0;
+var WobbleConstant = 0.2;
 
 var upgradeCosts = {
     'squirrelBot': [0, 1500, 3000],
