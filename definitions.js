@@ -140,115 +140,115 @@ var upgrades = {
 
 var robotLevels = {
     'squirrelBot': [
-        robots['squirrelBot'],
-        _.extend(_.clone(robots['squirrelBot']), {
-            'baseEnergy': 2500,
-            'wobble': 0.75,
-            'hardness': 0.25,
-            'spriteSheet': 'pics/bots/scout1.png',
-            'spriteSpeed': 0.6,
-            'gif': 'pics/bots/scout1.gif',
+    robots['squirrelBot'],
+    _.extend(_.clone(robots['squirrelBot']), {
+        'baseEnergy': 2500,
+        'wobble': 0.75,
+        'hardness': 0.25,
+        'spriteSheet': 'pics/bots/scout1.png',
+        'spriteSpeed': 0.6,
+        'gif': 'pics/bots/scout1.gif',
         'exploreRadius' : 4
-        }),
-        _.extend(_.clone(robots['squirrelBot']), {
-            'baseEnergy': 3000,
-            'wobble': 0.6,
-            'hardness': 0.35,
-            'spriteSheet': 'pics/bots/scout2.png',
-            'spriteSpeed': 1.0,
-            'gif': 'pics/bots/scout2.gif',
+    }),
+    _.extend(_.clone(robots['squirrelBot']), {
+        'baseEnergy': 3000,
+        'wobble': 0.6,
+        'hardness': 0.35,
+        'spriteSheet': 'pics/bots/scout2.png',
+        'spriteSpeed': 1.0,
+        'gif': 'pics/bots/scout2.gif',
         'exploreRadius' : 5
-        }),
+    }),
     ],
     'bearBot': [
-        robots['bearBot'],
-        _.extend(_.clone(robots['bearBot']), {
-            'baseEnergy': 1400,
-            'storage': 125,
-            'wobble': 0.65,
-            'harvestEfficiency': 0.6,
-            'affinity': {
+    robots['bearBot'],
+    _.extend(_.clone(robots['bearBot']), {
+        'baseEnergy': 1400,
+        'storage': 125,
+        'wobble': 0.65,
+        'harvestEfficiency': 0.6,
+        'affinity': {
             'dirtite': 3,
             'dregsite': 3
         },
-            'hardness': 0.35,
-            'spriteSheet': 'pics/bots/allaround1.png',
-            'spriteSpeed': 0.6,
-            'gif': 'pics/bots/allaround1.gif'
-        }),
-        _.extend(_.clone(robots['bearBot']), {
-            'baseEnergy': 1600,
-            'storage': 150,
-            'wobble': 0.6,
-            'harvestEfficiency': 0.8,
-            'affinity': {
+        'hardness': 0.35,
+        'spriteSheet': 'pics/bots/allaround1.png',
+        'spriteSpeed': 0.6,
+        'gif': 'pics/bots/allaround1.gif'
+    }),
+    _.extend(_.clone(robots['bearBot']), {
+        'baseEnergy': 1600,
+        'storage': 150,
+        'wobble': 0.6,
+        'harvestEfficiency': 0.8,
+        'affinity': {
             'dirtite': 3,
             'dregsite': 3,
             'rubbishite': 3
         },
-            'hardness': 0.45,
-            'spriteSheet': 'pics/bots/allaround2.png',
-            'spriteSpeed': 1.0,
-            'gif': 'pics/bots/allaround2.gif'
-        }),
+        'hardness': 0.45,
+        'spriteSheet': 'pics/bots/allaround2.png',
+        'spriteSpeed': 1.0,
+        'gif': 'pics/bots/allaround2.gif'
+    }),
     ],
     'antBot': [
-        robots['antBot'],
-        _.extend(_.clone(robots['antBot']), {
-            'baseEnergy': 1250,
-            'storage': 300,
-            'harvestEfficiency': 0.9,
-            'hardness': 0.55,
-            'spriteSheet': 'pics/bots/harvester1.png',
-            'spriteSpeed': 0.6,
-            'gif': 'pics/bots/harvester1.gif'
-        }),
-        _.extend(_.clone(robots['antBot']), {
-            'baseEnergy': 1500,
-            'storage': 400,
-            'harvestEfficiency': 1.0,
-            'hardness': 0.85,
-            'spriteSheet': 'pics/bots/harvester2.png',
-            'spriteSpeed': 1.0,
-            'gif': 'pics/bots/harvester2.gif'
-        }),
+    robots['antBot'],
+    _.extend(_.clone(robots['antBot']), {
+        'baseEnergy': 1250,
+        'storage': 300,
+        'harvestEfficiency': 0.9,
+        'hardness': 0.55,
+        'spriteSheet': 'pics/bots/harvester1.png',
+        'spriteSpeed': 0.6,
+        'gif': 'pics/bots/harvester1.gif'
+    }),
+    _.extend(_.clone(robots['antBot']), {
+        'baseEnergy': 1500,
+        'storage': 400,
+        'harvestEfficiency': 1.0,
+        'hardness': 0.85,
+        'spriteSheet': 'pics/bots/harvester2.png',
+        'spriteSpeed': 1.0,
+        'gif': 'pics/bots/harvester2.gif'
+    }),
     ],
     'goatBot': [
-        robots['goatBot'],
-        _.extend(_.clone(robots['goatBot']), {
-            'baseEnergy': 1100,
-            'hardness': 0.75,
-            'spriteSheet': 'pics/bots/smasher1.png',
-            'spriteSpeed': 0.6,
-            'gif': 'pics/bots/smasher1.gif'
-        }),
-        _.extend(_.clone(robots['goatBot']), {
-            'baseEnergy': 1200,
-            'hardness': 0.95,
-            'spriteSheet': 'pics/bots/smasher2.png',
-            'spriteSpeed': 1.0,
-            'gif': 'pics/bots/smasher2.gif'
+    robots['goatBot'],
+    _.extend(_.clone(robots['goatBot']), {
+        'baseEnergy': 1100,
+        'hardness': 0.75,
+        'spriteSheet': 'pics/bots/smasher1.png',
+        'spriteSpeed': 0.6,
+        'gif': 'pics/bots/smasher1.gif'
+    }),
+    _.extend(_.clone(robots['goatBot']), {
+        'baseEnergy': 1200,
+        'hardness': 0.95,
+        'spriteSheet': 'pics/bots/smasher2.png',
+        'spriteSpeed': 1.0,
+        'gif': 'pics/bots/smasher2.gif'
 
-        }),
+    }),
     ],
     'vultureBot': [
-        robots['vultureBot'],
-        _.extend(_.clone(robots['vultureBot']), {
-            'baseEnergy': 1750,
-            'storage': 250,
-            'harvestEfficiency': 0.4,
-            'spriteSheet': 'pics/bots/scavenger1.png',
-            'spriteSpeed': 0.6,
-            'gif': 'pics/bots/scavenger1.gif'
-        }),
-        _.extend(_.clone(robots['vultureBot']), {
-            'baseEnergy': 2000,
-            'storage': 300,
-            'harvestEfficiency': 0.6,
-            'spriteSheet': 'pics/bots/scavenger2.png',
-            'spriteSpeed': 1.0,
-            'gif': 'pics/bots/scavenger2.gif'
-        }),
+    robots['vultureBot'],
+    _.extend(_.clone(robots['vultureBot']), {
+        'baseEnergy': 1750,
+        'storage': 250,
+        'harvestEfficiency': 0.4,
+        'spriteSheet': 'pics/bots/scavenger1.png',
+        'spriteSpeed': 0.6,
+        'gif': 'pics/bots/scavenger1.gif'
+    }),
+    _.extend(_.clone(robots['vultureBot']), {
+        'baseEnergy': 2000,
+        'storage': 300,
+        'harvestEfficiency': 0.6,
+        'spriteSheet': 'pics/bots/scavenger2.png',
+        'spriteSpeed': 1.0,
+        'gif': 'pics/bots/scavenger2.gif'
+    }),
     ]
 };
 
@@ -378,14 +378,29 @@ var resources = {
 
 var asteroids = {
     "Paydirteroid": new Asteroid("Paydirteroid", {
+        //dirt and rocks
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
-        'dregsite': {pTop: 0.1, pBottom: 0.4, minDepth: 1},
-        'rubbishite': {pTop: 0.01, pBottom: 0.2, minDepth: 1},
-        'imperviousite': {pTop: 100, pBottom: 0, minDepth: 25},
-        'paydirtium': {pTop: 0.4, pBottom: 0.4, minDepth: 1},
-        'cheddarium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
-        'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
-        'artifact': {pTop: 0.1, pBottom: 0.5, minDepth: 1}
+        'dregsite': {pTop: .7, pBottom: 1, minDepth: .05},
+        'rubbishite': {pTop: 0.3, pBottom: 0.6, minDepth: 0.25},
+        'junkite': {pTop: 0.2, pBottom: 0.5, minDepth: 0.25},
+        'scrapite': {pTop: 0.3, pBottom: 0.3, minDepth: 0.80},
+        // 'crapite': {pTop: 0, pBottom: 0, minDepth: 0},
+        // 'densite': {pTop: 0, pBottom: 0, minDepth: 0},
+        // 'rigidite': {pTop: 0, pBottom: 0, minDepth: 0},
+        // 'toughite': {pTop: 0, pBottom: 0, minDepth: 0},
+        // 'unyieldite': {pTop: 0, pBottom: 0, minDepth: 0},
+            'imperviousite': {pTop: 0, pBottom: 0, minDepth: 0.9},
+
+        // minerals and goodies
+        'artifact': {pTop: 0.4, pBottom: 0.8, minDepth: .3},
+        'paydirtium':{pTop: 0.1, pBottom: 1, minDepth: 0},
+        'cheddarium':{pTop: 0.4, pBottom: 1, minDepth: 0.6},
+        'fatlootium': {pTop: 0.4, pBottom: 0.4, minDepth: 0.85},
+        // 'affluentium': {pTop: 0, pBottom: 0, minDepth: 0},
+        // 'cashmonium': {pTop: 0, pBottom: 0, minDepth: 0},
+
+        // pain and death
+        // 'lava': {pTop: 0, pBottom: 0, minDepth: 0}
     }),
     "Cheddaroid": new Asteroid("Cheddaroid", {
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
@@ -396,8 +411,7 @@ var asteroids = {
         'crapite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
         'paydirtium': {pTop: 0.1, pBottom: 0.05, minDepth: 1},
         'cheddarium': {pTop: 0.1, pBottom: 0.5, minDepth: 1},
-        'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 5},
-        'artifact': {pTop: 0.01, pBottom: 0.05, minDepth: 10}
+        'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 5}
     }),
     "Fatlooteroid": new Asteroid("Fatlooteroid", {
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
@@ -411,8 +425,7 @@ var asteroids = {
         'paydirtium': {pTop: 0.05, pBottom: 0.05, minDepth: 1},
         'cheddarium': {pTop: 0.05, pBottom: 0.1, minDepth: 1},
         'fatlootium': {pTop: 0.3, pBottom: 0.5, minDepth: 10},
-        'affluentium': {pTop: 0.01, pBottom: 0.05, minDepth: 15},
-        'artifact': {pTop: 0.01, pBottom: 0.05, minDepth: 10}
+        'affluentium': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
     }),
     "Affluoid": new Asteroid("Affluoid", {
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
@@ -428,8 +441,7 @@ var asteroids = {
         'cheddarium': {pTop: 0.02, pBottom: 0.1, minDepth: 1},
         'fatlootium': {pTop: 0.05, pBottom: 0.1, minDepth: 10},
         'affluentium': {pTop: 0.3, pBottom: 0.5, minDepth: 15},
-        'cashmonium': {pTop: 0.01, pBottom: 0.05, minDepth: 15},
-        'artifact': {pTop: 0.01, pBottom: 0.05, minDepth: 10}
+        'cashmonium': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
     }),
     "Cashmonoid": new Asteroid("Cashmonoid", {
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
@@ -443,7 +455,6 @@ var asteroids = {
         'cheddarium': {pTop: 0.02, pBottom: 0.3, minDepth: 1},
         'fatlootium': {pTop: 0.05, pBottom: 0.3, minDepth: 10},
         'affluentium': {pTop: 0.05, pBottom: 0.3, minDepth: 15},
-        'cashmonium': {pTop: 0.2, pBottom: 0.5, minDepth: 15},
-        'artifact': {pTop: 0.01, pBottom: 0.05, minDepth: 10}
+        'cashmonium': {pTop: 0.2, pBottom: 0.5, minDepth: 15}
     })
-};
+}

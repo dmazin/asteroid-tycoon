@@ -71,11 +71,12 @@ var Asteroid = function (name, terrainParameters) {
         var resources = [];
         var maxDepth = game_height;
         var probs = _.map(terrainParameters, function(x, r) {
+            var minDepth = Math.round(x.minDepth * maxDepth); // % -> row #
             resources.push(r);
-            if (depth < x.minDepth) {
+            if (depth < minDepth) {
                 return 0;
             } else {
-                return (maxDepth - depth - 1) * x.pTop + (depth - x.minDepth) * x.pBottom;
+                return (maxDepth - depth - 1) * x.pTop + (depth - minDepth) * x.pBottom;
             }
         });
 
