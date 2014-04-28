@@ -77,6 +77,14 @@ var upgradeBot = function(type, level) {
     playerState.setRobotLevel(type, level);
 };
 
+var remainingMineralsTillUpgrade = function(type, level) {
+    var upgrade = upgrades[type];
+    var cost = upgrade.cost[level];
+    var mineralReq = upgrade.mineralReq[level];
+    var mineral = upgrade.mineral;
+    return mineralReq - playerState.getResource(mineral);
+};
+
 var spawnBot = function(type, startX) {
     var robotAttrs = robotLevels[type][state.getRobotLevel(type)];
     // Canvas act different if you can now spawn a bot
