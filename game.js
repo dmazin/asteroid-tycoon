@@ -52,11 +52,13 @@ function tick() {
         bot.handleMove(bot.destX, bot.destY);
     });
 
-    var gs = grid_size;
-    stage.destTile.x = Math.round((stage.mouseX - gs / 2) / gs) * gs - 2;
-    stage.destTile.y = Math.round(((stage.mouseY + 20) - gs / 2) / gs) * gs - 22;
-    stage.destTile.visible = $('canvas').hasClass('botSpawner')
-        && stage.mouseInBounds && stage.destTile.y >= surface_height - 10;
+    if (stage.destTile) {
+        var gs = grid_size;
+        stage.destTile.x = Math.round((stage.mouseX - gs / 2) / gs) * gs - 2;
+        stage.destTile.y = Math.round(((stage.mouseY + 20) - gs / 2) / gs) * gs - 22;
+        stage.destTile.visible = $('canvas').hasClass('botSpawner')
+            && stage.mouseInBounds && stage.destTile.y >= surface_height - 10;
+    }
 
     stage.update();
 }

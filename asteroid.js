@@ -109,3 +109,27 @@ var Asteroid = function (name, terrainParameters, artifactValueScale) {
         }
     }
 }
+
+function drawAsteroidSelectionScreen() {
+    var asteroidCoords = {
+        "Paydirteroid": [300, 400],
+        "Cheddaroid": [400, 200],
+        "Fatlooteroid": [200, 500],
+        "Affluoid": [300, 600],
+        "Cashmonoid": [200, 800]
+    }
+
+    stage.removeAllChildren();
+    stage.clear();
+
+    window.stage = new createjs.Stage("mainCanvas");
+
+    for (asteroid in asteroids) {
+        var asteroidShape = new createjs.Shape();
+        asteroidShape.graphics.beginFill('red')
+                              .drawCircle(0, 0, 40);
+        asteroidShape.x = asteroidCoords[asteroid][0];
+        asteroidShape.y = asteroidCoords[asteroid][1];
+        stage.addChild(asteroidShape);
+    }
+}
