@@ -51,11 +51,13 @@ $(document).ready(function () {
 
     $('.title-container').data('size', 'big');
 
-    $(window).scroll(function(){
-        if($(document).scrollTop() > 0)
-        {
-            if($('.title-container').data('size') == 'big')
-            {
+    $(window).scroll(updateTopMenuSize);
+    setInterval(updateTopMenuSize, 1000);
+});
+
+var updateTopMenuSize = function() {
+        if($(document).scrollTop() > 0) {
+            if($('.title-container').data('size') == 'big') {
                 $('.title-container').data('size','small');
                 $('#asteroidButton, #messages').hide();
                 $('.title-container').stop().animate({
@@ -71,27 +73,24 @@ $(document).ready(function () {
                 $('#game').click();
             }
         }
-        else
-        {
-            if($('.title-container').data('size') == 'small')
-            {
+        else {
+            $('.title').show();
+            $('#menu').removeClass('shrunk');
+            if($('.title-container').data('size') == 'small') {
                 $('.title-container').data('size','big');
-                $('.title').show();
                 $('.title-container').show().stop().animate({
                     height:'100px'
                 }, 600);
                 $('#menu').stop().animate({
                     height:'290px',
                 }, 600);
-                $('#menu').removeClass('shrunk');
                 setTimeout(function () {
                     $('#asteroidButton, #messages').show();
                 }, 600);
                 $('#game').click();
             }
         }
-    });
-});
+    }
 
 var updateRobotShop = function() {
     _.each(robots, function(val, key) {
