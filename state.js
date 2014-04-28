@@ -62,12 +62,12 @@ var playerState = (function() {
         }
     };
 
-    function getArtifactValue() {
+    state.getArtifactValue = function() {
         var r = Math.random();
         var val = r * (60 - 5) + 5;
         val *= currentAsteroid.artifactScaleValue;
         return val;
-    }
+    };
 
     state.addResources = function(resourceAmountsByType) {
         for (var resourceType in resourceAmountsByType) {
@@ -76,7 +76,7 @@ var playerState = (function() {
 
             var resourceValue;
             if (resourceType === 'artifact') {
-                resourceValue = getArtifactValue();
+                resourceValue = state.getArtifactValue();
             } else {
                 resourceValue = resources[resourceType].value;
             }
