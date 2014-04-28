@@ -111,25 +111,36 @@ var Asteroid = function (name, terrainParameters, artifactValueScale) {
 }
 
 function drawAsteroidSelectionScreen() {
+    $('canvas').addClass('asteroidSelect');
+
     var asteroidCoords = {
-        "Paydirteroid": [300, 400],
-        "Cheddaroid": [400, 200],
-        "Fatlooteroid": [200, 500],
-        "Affluoid": [300, 600],
-        "Cashmonoid": [200, 800]
-    }
+        "Paydirteroid": [100, 200],
+        "Cheddaroid": [200, 200],
+        "Fatlooteroid": [300, 200],
+        "Affluoid": [400, 200],
+        "Cashmonoid": [500, 200]
+    };
 
     stage.removeAllChildren();
     stage.clear();
 
-    window.stage = new createjs.Stage("mainCanvas");
+    stage = new createjs.Stage("mainCanvas");
 
     for (asteroid in asteroids) {
-        var asteroidShape = new createjs.Shape();
-        asteroidShape.graphics.beginFill('red')
-                              .drawCircle(0, 0, 40);
+        var asteroidShape = new createjs.Bitmap("pics/asteroid.png");
         asteroidShape.x = asteroidCoords[asteroid][0];
         asteroidShape.y = asteroidCoords[asteroid][1];
         stage.addChild(asteroidShape);
+
+        asteroidHitbox = new createjs.Shape();
+        asteroidHitbox.graphics.beginFill('red')
+                                         .drawCircle(0, 0, 40);
+        asteroidHitbox.x = asteroidCoords[asteroid][0] + 20;
+        asteroidHitbox.y = asteroidCoords[asteroid][1] + 20;
+        asteroidHitbox.alpha = 0.2;
+        asteroidHitbox.on('click', function (e, data) {
+            playerState.setAsteroid(asteroids[data.asteroid]);
+        }, {}, false, {asteroid: asteroid});
+        stage.addChild(asteroidHitbox);
     }
 }

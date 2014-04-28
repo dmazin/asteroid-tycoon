@@ -90,6 +90,8 @@ var playerState = (function() {
     };
 
     state.setAsteroid = function(asteroid) {
+        $('canvas').removeClass('asteroidSelect');
+
         currentAsteroid = asteroid;
         activeBots = [];
         deadBots = [];

@@ -92,14 +92,14 @@ function init_stage() {
     stage.destTile = new createjs.Sprite(reticuleSpritesheet);
     stage.destTile.gotoAndStop(0);
     $('canvas').on("mousedown", function() {
-        if (robotSelectionActive) {
-            setTimeout(function () {robotSelectionActive = false}, 0);
+        if (stage.destTile) {
+            stage.destTile.gotoAndStop(1);
         }
-
-        stage.destTile.gotoAndStop(1);
     });
     $('canvas').on("mouseup", function() {
-        stage.destTile.gotoAndStop(0);
+        if (stage.destTile) {
+            stage.destTile.gotoAndStop(0);
+        }
     });
     stage.addChild(stage.destTile);
 
@@ -109,7 +109,9 @@ function init_stage() {
     stage.enableMouseOver(10);
 
     stage.on('stagemouseup', function(e) {
-        if ($('canvas').hasClass('botSpawner')) {
+        if ($('canvas').hasClass('asteroidSelect')) {
+            return;
+        } else if ($('canvas').hasClass('botSpawner')) {
             // Change canvas back
             $('canvas').removeClass('botSpawner');
 
