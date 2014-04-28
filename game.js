@@ -12,7 +12,7 @@ var FPS = 10;
 
 function createSpawn(xpos){
     var spaceshipSpritesheet = new createjs.SpriteSheet({
-        images: ["pics/defaultspaceship.png"],
+        images: ["pics/other/spaceship.png"],
         frames: {width:240, height:120}
     });
     spawner = new createjs.Sprite(spaceshipSpritesheet);
@@ -22,10 +22,10 @@ function createSpawn(xpos){
 
     spawner_back = new createjs.Shape();
     spawner_back.graphics.beginFill('red')
-                       .rect(-120,-60,240,120);
+                         .rect(-120,-60,240,120);
     spawner_back.x = grid_size*(xpos + 0.5);
     spawner_back.y = grid_size*(0 + 0.5);
-    spawner_back.alpha = 0.51;
+    spawner_back.alpha = 0.01;
 
     spawner_back.on("mousedown", function(evt) {
         this.offset = {x:this.x-evt.stageX, y:this.y-evt.stageY};
@@ -35,10 +35,12 @@ function createSpawn(xpos){
     spawner_back.on("pressmove", function(evt) {
         var gs = grid_size;
 
-        this.x = Math.round((evt.stageX + this.offset.x - gs / 2) / gs) * gs + gs / 2;
-
+        var x = Math.round((evt.stageX + this.offset.x - gs / 2) / gs) * gs + gs / 2;
+        if (x < gs || x > gs * (game_width + 1)) {
+            return;
+        }
+        this.x = x;
         spawner.x = Math.round((evt.stageX + spawner.offset.x - gs / 2) / gs) * gs + gs / 2;
-
     });
 
     stage.addChild(spawner_back);
