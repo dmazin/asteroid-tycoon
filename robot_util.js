@@ -54,6 +54,11 @@ Robot.prototype.render = function() {
     });
 };
 
+Robot.unlocked = function(type) {
+    needMineral = robots[type].lockedTil;
+    return needMineral ? (playerState.getResource(needMineral) > 0) : true;
+}
+
 // Determines if an upgrad is possible for a bot
 // based on it's type, which level it wants to upgrade to
 // and whether the player has collected enough of the right
