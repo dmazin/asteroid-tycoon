@@ -2,12 +2,15 @@ var SquirrelBot = {}, BearBot = {}, AntBot = {}, GoatBot = {}, VultureBot = {};
 
 // move in a random direction for 10 moves at a time
 SquirrelBot.defaultBehavior = function(_this) {
-	if (!_this.directionPicked || _this.movesLeft <= 0) {
-		_this.directionPicked = _this.makeRandomMove();
-		_this.movesLeft = 10;
+	var unexploredSelectionCallback = function(tile) {
+		return resources[tile.getType()].hardness < _this.baseAttrs.hardness
+			&& tile.getType() != 'backfill';
+	};
+	var dest = findNearestResource(_this.position, _this.getGrid(), unexploredSelectionCallback);
+	if(dest) {
+		_this.moveTowardDestination(dest.x, dest.y);
 	} else {
-		_this.moveInDirectionOrRandom(_this.directionPicked[0], _this.directionPicked[1]);
-		_this.movesLeft--;
+		_this.makeRandomMove();
 	}
 };
 
