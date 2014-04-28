@@ -32,6 +32,10 @@ var playerState = (function() {
         robotLevels[robotType] = level;
     };
 
+    state.getResources = function() {
+        return resourceAmounts;
+    };
+
     state.getResource = function(resource) {
         return resourceAmounts[resource] || 0;
     };
@@ -52,13 +56,7 @@ var playerState = (function() {
             amount: parseInt(resourceAmounts[resource])
         }));
 
-        if (resource === 'fatlootium') {
-            $('.notification.fatlootium .amount').text(parseInt(resourceAmounts[resource]));
-        }
-
-        if (resource === 'iron') {
-            $('.notification.iron .amount').text(parseInt(resourceAmounts[resource]));
-        }
+        $('.notification.' + resource + ' .amount').text(parseInt(resourceAmounts[resource]));
     };
 
     state.getArtifactValue = function() {

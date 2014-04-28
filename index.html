@@ -46,7 +46,6 @@
     <div id='menu'>
         <div class='title-container'>
             <div id='messages'>
-              <img src='pics/other/envelope.png' alt='envelope' />
             </div>
             <div class='title'>
 <pre class='title-text'>
@@ -67,11 +66,8 @@
             <div class='printer'></div>
         </div>
         <pre class='printout'></pre>
-        <marquee behavior="alternate">
-            <span class='money notification'>YOU HAVE <span class='amount'></span> NORMALIZED SPACE DOLLARS</span>
-            <span class='iron notification'>IRON REPORT! IRON LEVELS AT <span class='amount'></span> IRONS</span>
-            <span class='alert'>PRODUCTION DECLINING, CORPORATE OVERSIGHT IMMINENT</span>
-            <span class='paydirtium notification'>CONGRATULATIONS, YOU HAVE OBTAINED <span class='amount'></span></span>
+        <marquee>
+            <span class='notification alert'>PRODUCTION DECLINING, CORPORATE OVERSIGHT IMMINENT</span>
         </marquee>
         <div class='controls'>
             <div class='information' style="display: none;">
@@ -116,7 +112,9 @@
 <script src='state.js'></script>
 <script src='robot.js'></script>
 <script src='robot_util.js'></script>
+<script src='marquees.js'></script>
 <script src='launcher.js'></script>
+<script src='printout.js'></script>
 
 <script id='first-email' type='text'>
     EMAIL PRINTOUT
@@ -138,23 +136,29 @@
     are wasteful with your financial resources.
 
     Here is the verdict. We don't trust you with robots advanced enough to mine
-    anything precious, but we always need iron. Collect 10,000 units of iron,
+    anything precious, so we've given you the SquirrelBot. No, it can't mine.
+    No, it can't dig through anything harder than sand. Yes, an idiot can order
+    a SquirrelBot around.
+
+    Here's your chance to prove to use that you're not an idiot. Dig around a bit,
     and we'll see if R&D can get you a better robot.
+
     OTHERWISE YOU ARE A FIGMENT OF MY IMAGINATION!!!!
 
     - Corporate
 </script>
-<script id='unlock-bear' type='text'>
+<script id='unlock-bearBot' type='text'>
     EMAIL PRINTOUT
     --------------------------------------------------
 
     You're not going to get very far with scouts alone. R&D's cooked up the
-    BearBot: a mining robot that can pick up some minerals. Might as well make
-    your stay on this godforsaken rock useful.
+    BearBot: a mining robot that can quickly clear away sand and can even pick
+    up some minerals along the way. Might as well make your stay on this
+    godforsaken rock useful.
 
     - Corporate
 </script>
-<script id='unlock-scavenger' type='text'>
+<script id='unlock-vultureBot' type='text'>
     EMAIL PRINTOUT
     --------------------------------------------------
 
@@ -165,6 +169,32 @@
     And you do realize that this isn't the only asteroid you're supposed to deal
     with, right? There are four more waiting for your attention. We do hope that
     we don't have to remind you about the [BUTTON DESCRIPTION].
+
+    - Corporate
+</script>
+<script id='unlock-antBot' type='text'>
+    EMAIL PRINTOUT
+    --------------------------------------------------
+
+    Your performance so far, while far from being commendable, has at least
+    demonstrated to us a basic competence in maneuvering heavy machinery.
+
+    The AntBot has significantly higher drill power than the BearBot, with
+    capacity to match. Count is as a gift from us. Don't expect a bonus this year.
+
+    - Corporate
+</script>
+<script id='unlock-goatBot' type='text'>
+    EMAIL PRINTOUT
+    --------------------------------------------------
+
+    As per protocol, we are required to send you over a GoatBot at this time.
+    It will smash through most obstacles you've encountered so far, but is unable
+    to harvest any minerals, destroying them instead. Use the GoatBot with care.
+
+    Repeat -- use the GoatBot with care. Company policy forbids the GoatBot
+    from being used to waste minerals. If we catch you doing so, there will
+    be consequences.
 
     - Corporate
 </script>

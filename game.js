@@ -110,6 +110,8 @@ function init_stage() {
 function setup_stage_event_handler() {
     stage.on('stagemouseup', function(e) {
         if ($('canvas').hasClass('botSpawner')) {
+            hidePopups();
+
             // Change canvas back
             $('canvas').removeClass('botSpawner');
 
