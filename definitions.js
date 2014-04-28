@@ -98,7 +98,7 @@ var WobbleConstant = 0.2;
 var upgrades = {
     'squirrelBot': {
         costs: [0, 1500, 3000],
-        mineralReqs: [0, 1500, 3000],
+        mineralReqs: [0, 1, 200],
         mineral: "paydirtium"
     },
     'bearBot': {
