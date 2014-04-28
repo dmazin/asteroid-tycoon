@@ -51,6 +51,15 @@ function Tile(pixel_x, pixel_y, size, type, amount, pos) {
 
     this.refresh = function () {
         this.shape.image = resources[this.getType()].image;
+
+        if (resources[this.getType()].sprite && !this.sprite) {
+            this.sprite = new createjs.Sprite(resources[this.getType()].sprite);
+            this.sprite.gotoAndPlay(0);
+            this.sprite.x = pixel_x;
+            this.sprite.y = pixel_y;
+            stage.addChild(this.sprite);
+        }
+
         if (this.baseAmount == 0) {
             this.deterioration.gotoAndStop(0);
         } else if (this.amount <= 0) {
