@@ -367,9 +367,33 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         return baseAttrs.hardness - resource.hardness;
     };
 
+    function displayDeathText(string, timeout_frames) {
+        var text = new createjs.Text(string, "10px Arial", "#00ff00");
+        text.x = _this.animation.x;
+        text.y = _this.animation.y;
+        text.timeout = timeout_frames;
+        stage.addChild(text);
+
+        var fadeout = Math.floor(timeout_frames/2);
+
+        createjs.Ticker.addEventListener('tick', function() {
+            text.timeout -= 1;
+            text.y -= 1;
+            if (text.timeout <= fadeout) {
+                text.alpha -= (1/fadeout);
+            }
+
+            if (text.timeout === 0) {
+                stage.removeChild(text);
+                createjs.Ticker.removeEventListener('tick', arguments.callee);
+            }
+        });
+    }
+
     // This is called when a robot's energy reaches
     // 0 from the handleMove function.
     var handleDeath = function() {
+
         _this.animation.gotoAndPlay('explode');
         _this.healthbar.visible = false;
         _this.capacitybar.visible = false;
@@ -378,6 +402,16 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         deadBots.push(_this);
         _this.salvageValue = baseAttrs.cost * salvageValueMultiplier;
         playerState.addResources(_this.resourceAmountByType);
+
+        var deathString = "";
+        _.each(_this.resourceAmountByType, function(val, key) {
+            deathString = deathString + key + ": " + Math.floor(val) + "\n";
+        });
+        if (deathString === "") {
+            deathString = "Died in vain";
+        }
+
+        displayDeathText(deathString, 20);
     };
 
     var updateDirection = function(newX, newY) {

@@ -1,7 +1,7 @@
 $(document).ready(function () {
     init_ui();
 
-    playerState.setAsteroid(asteroids['Bananasteroid']);
+    playerState.setAsteroid(asteroids['Paydirteroid']);
 
     var buy_button_template = _.template($('#robot-buy-button-template').html());
     _.each(robots, function(val, key) {
@@ -19,5 +19,10 @@ $(document).ready(function () {
         if (money > robots[robotType].cost && Robot.unlocked(robotType)) {
             spawnBot(robotType, Math.floor(spawner.x/grid_size));
         }
+    });
+
+    $('.level').click(function() {
+        var asteroidName = $(this).attr('id');
+        playerState.setAsteroid(asteroids[asteroidName]);
     });
 });
