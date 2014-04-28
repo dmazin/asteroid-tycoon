@@ -6,6 +6,16 @@
     color: white;
 }
 
+.credits {
+    width:470px;
+    color: #fff;
+    margin: 0 auto;
+}
+
+.credits a {
+    color: #fff;
+}
+
 .information {
     display: inline-block;
     width: 206px;
