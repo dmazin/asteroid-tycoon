@@ -25,6 +25,17 @@
     </span>
 </script>
 
+<script id="info-popup-template" type="text/html">
+  <div class="info-popup">
+    <h1> <%= name %> </h1>
+    <img src="<%= image %>" alt=" <%= name %> texture " />
+    <ul>
+      <li> Hardness: <%= hardness %> </li>
+      <li> Value: <%= value %> </li>
+    </ul>
+  </div>
+</script>
+
 <div id='game'>
     <div id='menu'>
         <div class='title-container'>
@@ -77,6 +88,7 @@
 
 <link href='http://fonts.googleapis.com/css?family=VT323|Roboto:400,100,300' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="info-popup.css">
 
 <script src='lib/jquery.js'></script>
 <script src='lib/underscore.js'></script>
@@ -88,6 +100,7 @@
 <script src='definitions.js'></script>
 
 <script src='game.js'></script>
+<script src='info-popup.js'></script>
 <script src='tile.js'></script>
 <script src='state.js'></script>
 <script src='robot.js'></script>
