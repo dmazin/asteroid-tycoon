@@ -30,11 +30,18 @@ var updateRobotShop = function() {
     _.each(robots, function(val, key) {
         var data = _.extend(val, {'name': key});
         var rendered = buy_button_template(data);
-        $('.controls .robot-shop .robot-container.' + key).replaceWith(rendered);
+
+        var level = playerState.getRobotLevel(key) + 1;
+
+        if (canUpgrade(key, level)) {
+            $('.controls .robot-shop .robot-container.' + key + ' .upgrade').addClass('enabled');
+        } else {
+            $('.controls .robot-shop .robot-container.' + key + ' .upgrade').removeClass('enabled');
+        }
     });
 };
 
-setInterval(updateRobotShop, 5000);
+setInterval(updateRobotShop, 1000);
 
 $('.robot-shop').on('click', '.upgrade.enabled', function() {
     var robot = $(this).data('robot');
