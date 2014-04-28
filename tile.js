@@ -24,10 +24,23 @@ function Tile(pixel_x, pixel_y, size, type, amount, pos) {
     };
 
     this.addToStage = function () {
+        var _this = this;
+
         this.shape = new createjs.Bitmap(resources[this.getType()].image);
         this.shape.x = pixel_x;
         this.shape.y = pixel_y;
+        /*this.shape.on('click', function() {
+            _this.displayInfo();
+        });*/
         stage.addChild(this.shape);
+
+        if (resources[this.getType()].sprite) {
+            this.sprite = new createjs.Sprite(resources[this.getType()].sprite);
+            this.sprite.gotoAndPlay(0);
+            this.sprite.x = pixel_x;
+            this.sprite.y = pixel_y;
+            stage.addChild(this.sprite);
+        }
 
         this.deterioration = new createjs.Sprite(deteriorationSpriteSheet);
         this.deterioration.gotoAndStop(0);
@@ -38,8 +51,13 @@ function Tile(pixel_x, pixel_y, size, type, amount, pos) {
 
     this.refresh = function () {
         this.shape.image = resources[this.getType()].image;
-        if (this.baseAmount == 0 || this.amount == 0) {
+        if (this.baseAmount == 0) {
             this.deterioration.gotoAndStop(0);
+        } else if (this.amount <= 0) {
+            this.deterioration.gotoAndStop(3);
+            if (this.sprite) {
+                this.sprite.visible = false;
+            }
         } else {
             this.deterioration.gotoAndStop(Math.min(Math.floor((1 - this.amount / this.baseAmount) * 4), 3));
         }
@@ -62,6 +80,32 @@ function Tile(pixel_x, pixel_y, size, type, amount, pos) {
     this.mineAmount = function (amtMined) {
         this.amount -= amtMined;
         this.refresh();
+    }
+
+    this.displayInfo = function() {
+        //console.log(this.type);
+        var msg = resources[this.type].text;
+        if (typeof msg === 'undefined') {
+            throw "Undefined resource text";
+        }
+        var text = new createjs.Text(msg, "10px Arial", "#ffffff");
+        text.x = this.shape.x;
+        text.y = this.shape.y;
+        text.timeout = 40;
+        var fadeout = 20;
+
+        stage.addChild(text);
+        createjs.Ticker.addEventListener('tick', function() {
+            text.timeout -= 1;
+            if (text.timeout <= fadeout) {
+                text.alpha -= (1/fadeout);
+            }
+
+            if (text.timeout === 0) {
+                stage.removeChild(text);
+                createjs.Ticker.removeEventListener('tick', arguments.callee);
+            }
+        });
     }
 
     this.init();
