@@ -63,7 +63,7 @@ var Asteroid = function (params) {
                 if (j === 0) {
                     resourceName = "dirtite";
                 }
-                var amount = Math.floor(Math.random() * 20);
+                var amount = resourceName == 'artifact' ? 1 : Math.floor(Math.random() * 20);
                 var g = new Tile(i * grid_size,
                                  surface_height + j * grid_size,
                                  grid_size,
@@ -324,11 +324,20 @@ function drawAsteroidSelectionScreen() {
     stage.backdrop.y = 0;
     stage.addChild(stage.backdrop);
 
+    stage.enableMouseOver(10);
+
     for (asteroid in asteroidCoords) {
         var asteroidShape = new createjs.Bitmap(asteroidCoords[asteroid].src);
         asteroidShape.x = asteroidCoords[asteroid].x;
         asteroidShape.y = asteroidCoords[asteroid].y;
+        asteroidShape.startX = asteroidCoords[asteroid].x;
+        asteroidShape.startY = asteroidCoords[asteroid].y;
         stage.addChild(asteroidShape);
+
+        var fontSize = Math.floor(asteroidCoords[asteroid].width / 15);
+        var text = new createjs.Text(asteroid, fontSize + "px VT323, Arial", "white");
+        text.visible = false;
+        stage.addChild(text);
 
         asteroidHitbox = new createjs.Shape();
         asteroidHitbox.graphics.beginFill('blue')
@@ -336,9 +345,32 @@ function drawAsteroidSelectionScreen() {
         asteroidHitbox.x = asteroidCoords[asteroid].x;
         asteroidHitbox.y = asteroidCoords[asteroid].y;
         asteroidHitbox.alpha = 0.01;
+        stage.addChild(asteroidHitbox);
+
+        asteroidHitbox.on('mouseover', function (e, data) {
+            data.shape.x = data.shape.startX - asteroidCoords[asteroid].width * 0.1;
+            data.shape.y = data.shape.startY - asteroidCoords[asteroid].height * 0.1;
+            data.shape.scaleX = 1.2;
+            data.shape.scaleY = 1.2;
+            data.text.x = data.shape.x + asteroidCoords[asteroid].width * 0.3;
+            data.text.y = data.shape.y + asteroidCoords[asteroid].height * 0.3;
+            data.text.visible = true;
+            document.body.style.cursor = "pointer"
+        }, {}, false, {shape: asteroidShape, text: text});
+
+        asteroidHitbox.on('mouseout', function (e, data) {
+            data.shape.scaleX = 1;
+            data.shape.scaleY = 1;
+            data.shape.x = data.shape.startX;
+            data.shape.y = data.shape.startY;
+            data.text.visible = false;
+            document.body.style.cursor = "default"
+        }, {}, false, {shape: asteroidShape, text: text});
+
         asteroidHitbox.on('click', function (e, data) {
             playerState.setAsteroid(asteroids[data.asteroid]);
         }, {}, false, {asteroid: asteroid});
-        stage.addChild(asteroidHitbox);
+
+
     }
 }
