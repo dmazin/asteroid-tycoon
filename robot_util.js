@@ -88,8 +88,6 @@ var unlockUpgrade = function (type, level) {
 var canUpgrade = function(type, level) {
     var upgrade = upgrades[type];
     var cost = upgrade.costs[level];
-    var mineralReq = upgrade.mineralReqs[level];
-    var mineral = upgrade.mineral;
     return playerState.getResource('money') >= cost && upgradeUnlocked(type, level);
 };
 

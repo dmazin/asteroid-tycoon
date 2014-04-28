@@ -1,5 +1,4 @@
 var activeBots = [];
-var deadBots = [];
 
 var playerState = (function() {
     var robotLevels = {
@@ -92,7 +91,11 @@ var playerState = (function() {
     state.setAsteroid = function(asteroid) {
         currentAsteroid = asteroid;
         activeBots = [];
-        deadBots = [];
+
+        asteroid.getDeadBots().forEach(function (bot) {
+            console.log("Rendering", bot);
+            bot.render();
+        });
 
         if (stage) {
             stage.removeAllChildren();

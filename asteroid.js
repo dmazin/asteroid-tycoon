@@ -1,5 +1,6 @@
 var Asteroid = function (name, terrainParameters, artifactValueScale) {
     var grid = [];
+    var deadBots = [];
     var initialized = false;
     var startSeed = Math.random();
     var seed;
@@ -16,6 +17,10 @@ var Asteroid = function (name, terrainParameters, artifactValueScale) {
 
     this.getGrid = function () {
         return grid;
+    }
+
+    this.getDeadBots = function () {
+        return deadBots;
     }
 
     this.refresh = function () {

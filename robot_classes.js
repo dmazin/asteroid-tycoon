@@ -62,7 +62,7 @@ VultureBot.defaultBehavior = function(_this) {
 	if (_this.currentlyVacuuming) {
 		_this.moveTo(_this.position.x, _this.position.y); // stay in place
 	} else {
-		var dest = findNearestBot(_this.position);  // TODO: find nearest rubble vs. nearest bot?
+		var dest = findNearestBot(_this.position, _this.asteroid);  // TODO: find nearest rubble vs. nearest bot?
 		if(dest) {
 			_this.moveTowardDestination(dest.x, dest.y);
 		} else {
@@ -72,7 +72,9 @@ VultureBot.defaultBehavior = function(_this) {
 };
 
 // nearest deadBot for vulture
-var findNearestBot = function(position) {
+var findNearestBot = function(position, asteroid) {
+	deadBots = asteroid.getDeadBots();
+
 	if (deadBots.length === 0) {
 		return false;
 	}
