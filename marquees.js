@@ -106,4 +106,6 @@ function updateNotifications() {
 }
 
 addToMarquee();
+addToMarquee();
+addToMarquee();
 setInterval(addToMarquee, 5000);

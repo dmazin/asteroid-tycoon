@@ -453,7 +453,15 @@ var resources = {
         'image': loadImage('pics/tiles/mineral5.png'),
         'text' : 'The rarest of all asteroid minerals.'
     },
-    'artifact': {
+    'motherlodium': {
+        'hardness': 0.99,
+        'harvestable': true,
+        'value': 1000,
+        'imagePath' : 'pics/tiles/mineral6.png',
+        'image': loadImage('pics/tiles/mineral6.png'),
+        'text' : 'Weapons grade motherlodium... we\re gonna be rich!'
+    },
+        'artifact': {
         'hardness': 0,
         'harvestable': true,
         'value': null,
@@ -505,6 +513,7 @@ var asteroids = {
             'fatlootium': {pTop: 0.3, pBottom: 0.3, minDepth: 0.85},
             // 'affluentium': {pTop: 0, pBottom: 0, minDepth: 0},
             // 'cashmonium': {pTop: 0, pBottom: 0, minDepth: 0},
+            'motherlodium': {pTop: 1, pBottom: 1, minDepth: .95},
 
             // pain and death
             // 'lava': {pTop: 0, pBottom: 0, minDepth: 0}

@@ -3,6 +3,7 @@
 
 var stage;
 var spawner;
+var cratebeam;
 
 var grid_size = 40;
 var game_width = 25;
@@ -11,6 +12,7 @@ var surface_height = 180;
 var FPS = 10;
 
 function createSpawn(xpos){
+
     var spaceshipSpritesheet = new createjs.SpriteSheet({
         images: ["pics/other/spaceship.png"],
         frames: {width:240, height:120}
@@ -27,6 +29,20 @@ function createSpawn(xpos){
     spawner_back.y = grid_size*(0 + 0.5);
     spawner_back.alpha = 0.01;
 
+    var cratebeamSpritesheet = new createjs.SpriteSheet({
+        images: ["pics/other/cratebeam.png"],
+        frames: {width:80, height:160},
+        animations: {
+            beam: [0,9,'idle',0.5],
+            idle: [10]
+        }
+    });
+    cratebeam = new createjs.Sprite(cratebeamSpritesheet);
+    cratebeam.x = spawner.x + 90;
+    cratebeam.y = spawner.y + 50;
+    stage.addChild(cratebeam);
+    cratebeam.gotoAndStop('idle');
+
     spawner_back.on("mousedown", function(evt) {
         this.offset = {x:this.x-evt.stageX, y:this.y-evt.stageY};
         spawner.offset = {x:spawner.x-evt.stageX, y:spawner.y-evt.stageY};
@@ -41,8 +57,11 @@ function createSpawn(xpos){
         }
         this.x = x;
         spawner.x = Math.round((evt.stageX + spawner.offset.x - gs / 2) / gs) * gs + gs / 2;
+        cratebeam.x = spawner.x + 90;
+        cratebeam.y = spawner.y + 50;
     });
 
+    stage.addChild(cratebeam);
     stage.addChild(spawner_back);
     stage.addChild(spawner);
 }
@@ -127,11 +146,18 @@ function setup_stage_event_handler() {
             //Update the player
             updatePlayerMoney(currentlySpawning.type);
 
+            cratebeam.gotoAndPlay('beam');
+
             // Make a new bot based on the position.
-            var destX = parseInt(e.stageX / grid_size);
-            var destY = parseInt((e.stageY - surface_height) / grid_size);
-            var bot = new Robot(currentlySpawning.type, currentlySpawning.robotAttrs, currentlySpawning.startX, destX, destY, playerState.getAsteroid());
-            activeBots.push(bot);
+
+            var bot;
+            setTimeout(function () {
+                var destX = parseInt(e.stageX / grid_size);
+                var destY = parseInt((e.stageY - surface_height) / grid_size);
+                bot = new Robot(currentlySpawning.type, currentlySpawning.robotAttrs, currentlySpawning.startX, destX, destY, playerState.getAsteroid());
+                activeBots.push(bot);
+            }, 1400);
+
             return bot;
         } else if (stage.mouseInBounds) {
             infoPopupClickOnStage(e);
