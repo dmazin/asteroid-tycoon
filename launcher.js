@@ -1,5 +1,6 @@
 // Is there a robot currently being placed?
-var robotSelectionActive = false;
+var robotSelectionActive = false,
+    menuIsShrunk         = false;
 
 $(document).ready(function () {
     init_ui();
@@ -59,6 +60,8 @@ var updateTopMenuSize = function() {
     var options = { duration : 660, queue : false };
 
     if($(document).scrollTop() > 0) {
+        menuIsShrunk = true;
+
         $('#asteroidButton, #messages').hide();
         if($('.title-container').data('size') == 'big') {
             $('.title-container').data('size','small');
@@ -79,6 +82,7 @@ var updateTopMenuSize = function() {
             $(".robot-shop").animate({height : 22}, options);
             $(".robot-container:not(.disabled) .robot-button")
                 .animate({top : -44}, options);
+            $(".robot-container.disabled *").addClass("shrunk");
             $(".robot-container.disabled")
                 .animate({ paddingTop : 0, paddingBottom : 0, top : -42 }, options);
             setTimeout(function () {
@@ -88,6 +92,8 @@ var updateTopMenuSize = function() {
             $('#game').click();
         }
     } else {
+        menuIsShrunk = false;
+
         $('.title').show();
         $('#menu').removeClass('shrunk');
         if($('.title-container').data('size') == 'small') {
@@ -104,6 +110,7 @@ var updateTopMenuSize = function() {
             $(".robot-shop").animate({height : 77}, options);
             $(".robot-container:not(.disabled) .robot-button")
                 .animate({top : -88}, options);
+            $(".robot-container *").removeClass("shrunk");
             $(".robot-container.disabled")
                 .animate({ paddingTop : 15, paddingBottom : 15, top : -62 }, options);
             setTimeout(function () {
@@ -125,6 +132,10 @@ var updateRobotShop = function() {
                 $(".robot-container." + key).append(robotButton(key));
             }
             $('.robot-container.' + key).removeClass('disabled');
+            $('.robot-container.' + key).css({
+                paddingTop : 0,
+                paddingBottom : 0
+            });
         } else {
             $('.robot-container.' + key).addClass('disabled');
         }

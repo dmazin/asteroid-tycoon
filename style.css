@@ -70,6 +70,7 @@
 .general-stats .stat {
     display: inline-block;
     width: 85px;
+    margin-top: 1px;
     min-width: 85px;
     text-align: center;
 }
@@ -165,12 +166,11 @@ body {
     height: 290px;
     padding: 10px;
     background: linear-gradient(#060D22, #021E2D);
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-radius: 5px;
 }
 
 #mainCanvas {
-    margin-top: 310px;
+    margin-top: 304px;
     background-color: #060D22;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -285,11 +285,15 @@ body {
     background-color: #996161;
     border-radius: 5px;
     padding: 3px;
+    height: 46px;
+    width: 46px;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
 }
 
 .robot-shop img.current:hover, .robot-shop img.upgradeEnabled:hover {
     border: 2px solid white;
-    margin: -2px 0;
     cursor: pointer;
 }
 

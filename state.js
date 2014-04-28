@@ -54,6 +54,7 @@ var playerState = (function() {
 
         $('.general-stats .' + resource).html(statTemplate({
             name: resource,
+            abbrev: resources[resource].abbrev,
             amount: parseInt(resourceAmounts[resource])
         }));
 

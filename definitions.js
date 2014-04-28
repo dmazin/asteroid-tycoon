@@ -495,7 +495,7 @@ var resources = {
         'image': loadImage('pics/tiles/dirt1.png'),
         'sprite': loadImageFromSpriteSheet('pics/other/artifact.png'),
         'text' : "I wonder what it is.",
-        'abbrev': 'ART'
+        'abbrev': 'ARTI'
     },
     'motherlodium': {
         'hardness': 0.99,
