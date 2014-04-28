@@ -60,6 +60,7 @@
 <div id='game'>
     <div id='menu'>
         <div class='title-container'>
+        	<a id="asteroidButton"><img src="pics/asteroids/asteroidbutton.png" /></a>
             <div id='messages'>
             </div>
             <div class='title'>
@@ -78,25 +79,28 @@
             <span class='notification alert'>PRODUCTION DECLINING, CORPORATE OVERSIGHT IMMINENT</span>
         </marquee>
         <div class='controls'>
-            <div class='information' style="display: none;">
-                <div class='general-stats stats display'>
+            <div class='information'>
+                <div class='general-stats stats display'></div>
+                <div class='money-stats stats display'>
+                    <span class='tiny-description'>NORMALIZED SPACE DOLLARS</span>
+                    <span class='amount'></span>
                 </div>
             </div>
             <div class='robot-shop display'>
-            </div>
-            <div class='money-stats stats display'>
-                <span class='tiny-description'>NORMALIZED SPACE DOLLARS</span>
-                <span class='amount'></span>
             </div>
         </div>
     </div>
     <canvas id='mainCanvas' width=1000 height=1380></canvas>
 </div>
 
+<div class='credits'>
+  Made by Alex, <a href='https://twitter.com/thelobsterclub'>Dmitry</a>, Greg, Jourdan, Jimmy, Natasha, and <a href="http://jelv.is">Tikhon</a>
+</div>
+
 <div class='sound'>
-    <audio id="audio" src="slow-loop.ogg" loop></audio>
-    <a href='javascript://' onclick="document.getElementById('audio').play()">play</a>
-    <a href='javascript://' onclick="document.getElementById('audio').pause()">pause</a>
+    <audio id="audio" src="slow-loop.ogg" loop autoplay></audio>
+    <a href='javascript://' onclick="document.getElementById('audio').play()">play music</a>
+    <a href='javascript://' onclick="document.getElementById('audio').pause()">pause music</a>
 </div>
 
 
