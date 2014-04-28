@@ -48,6 +48,49 @@ $(document).ready(function () {
     $('#asteroidButton').click(function () {
         drawAsteroidSelectionScreen();
     });
+
+    $('.title-container').data('size', 'big');
+
+    $(window).scroll(function(){
+        if($(document).scrollTop() > 0)
+        {
+            if($('.title-container').data('size') == 'big')
+            {
+                $('.title-container').data('size','small');
+                $('#asteroidButton, #messages').hide();
+                $('.title-container').stop().animate({
+                    height:'0px',
+                }, 600);
+                $('#menu').stop().animate({
+                    height:'190px',
+                }, 600);
+                setTimeout(function () {
+                    $('.title').hide();
+                    $('#menu').addClass('shrunk');
+                }, 600);
+                $('#game').click();
+            }
+        }
+        else
+        {
+            if($('.title-container').data('size') == 'small')
+            {
+                $('.title-container').data('size','big');
+                $('.title').show();
+                $('.title-container').show().stop().animate({
+                    height:'100px'
+                }, 600);
+                $('#menu').stop().animate({
+                    height:'290px',
+                }, 600);
+                $('#menu').removeClass('shrunk');
+                setTimeout(function () {
+                    $('#asteroidButton, #messages').show();
+                }, 600);
+                $('#game').click();
+            }
+        }
+    });
 });
 
 var updateRobotShop = function() {

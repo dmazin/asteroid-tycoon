@@ -338,3 +338,11 @@ body {
     right: 25px;
     top: 25px;
 }
+
+#menu.shrunk .printer {
+    margin-top: -3px;
+}
+
+#menu.shrunk .printout {
+    top: 2px !important;
+}

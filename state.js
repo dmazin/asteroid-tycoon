@@ -61,7 +61,7 @@ var playerState = (function() {
 
     state.getArtifactValue = function() {
         var r = Math.random();
-        var val = r * (60 - 5) + 5;
+        var val = 10 * (r * (60 - 5) + 5);
         val *= currentAsteroid.artifactValueScale;
         return val;
     };
