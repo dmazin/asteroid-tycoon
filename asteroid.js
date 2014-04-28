@@ -27,11 +27,19 @@ var Asteroid = function (name, terrainParameters, artifactValueScale) {
     }
 
     this.reachLine = function (lineNum) {
-        _.each(robots, function (robot, key) {
+        _.each(robots, function (robot, robotType) {
             if (robot.lockedTil && robot.lockedTil.asteroid == name
                     && robot.lockedTil.row <= lineNum) {
-                Robot.unlock(key);
+                Robot.unlock(robotType);
             }
+        });
+
+        _.each(upgrades, function (upgrade, robotType) {
+            _.each(upgrade.lockedTil, function (level, levelNum) {
+                if (level && level.asteroid == name && level.row <= lineNum) {
+                    unlockUpgrade(robotType, levelNum);
+                }
+            });
         });
     }
 

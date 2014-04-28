@@ -109,5 +109,13 @@ var playerState = (function() {
 
     state.unlockedRobots = ['squirrelBot'];
 
+    state.unlockedUpgrades = {
+        'squirrelBot': 0,
+        'bearBot': 0,
+        'antBot': 0,
+        'goatBot': 0,
+        'vultureBot': 0
+    };
+
     return state;
 })();
