@@ -73,7 +73,7 @@ var robots = {
     'vultureBot': {
         'uiName': 'Vulture',
         'description': 'VultureBot 1000 - Scavenger',
-        'hardness': 0.1,
+        'hardness': 0.01,
         'baseEnergy': 1500,
         'storage': 200,
         'wobble': 0.1,
