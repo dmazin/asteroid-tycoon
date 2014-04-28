@@ -62,11 +62,23 @@ var playerState = (function() {
         }
     };
 
+    function getArtifactValue() {
+        return 20;
+    }
+
     state.addResources = function(resourceAmountsByType) {
         for (var resourceType in resourceAmountsByType) {
             var resourceAmount = resourceAmountsByType[resourceType];
             state.changeResource(resourceType, resourceAmount);
-            state.changeResource('money', resources[resourceType].value * resourceAmount);
+
+            var resourceValue;
+            if (resourceType === 'artifact') {
+                resourceValue = getArtifactValue();
+            } else {
+                resourceValue = resources[resourceType].value;
+            }
+            state.changeResource('money', resourceValue * resourceAmount);
+
         }
     };
 
