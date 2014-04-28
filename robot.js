@@ -360,9 +360,10 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         _this.animation.gotoAndPlay('explode');
         _this.healthbar.visible = false;
         _this.capacitybar.visible = false;
-        _this.salvageValue = baseAttrs.cost * salvageValueMultiplier;
+
         _this.dead = true;
         deadBots.push(_this);
+        _this.salvageValue = baseAttrs.cost * salvageValueMultiplier;
         playerState.addResources(_this.resourceAmountByType);
     };
 

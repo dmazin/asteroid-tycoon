@@ -131,12 +131,19 @@ body {
     border-bottom-right-radius: 5px;
 }
 
+.robot-shop .upgrade {
+    color: #A2A2A2;
+}
+
+.robot-shop .upgrade.enabled {
+    color: #fff;
+    cursor: pointer;
+}
+
 .robot-container {
     display: inline-block;
-    cursor: pointer;
-    width: 100px;
-    opacity: .9;
-    vertical-align: top;
+    max-width: 140px;
+    text-align: center;
 }
 
 .robot-container .money {
@@ -211,6 +218,9 @@ body {
 .robot-shop img {
     vertical-align: bottom;
     margin-right: 3px;
+    background-color: #996161;
+    border-radius: 5px;
+    padding: 3px;
 }
 
 .title .title-text {

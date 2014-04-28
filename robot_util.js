@@ -60,11 +60,11 @@ Robot.prototype.render = function() {
 // mineral.
 var canUpgrade = function(type, level) {
     var upgrade = upgrades[type];
-    var cost = upgrade.cost[level];
-    var mineralReq = upgrade.mineralReq[level];
+    var cost = upgrade.costs[level];
+    var mineralReq = upgrade.mineralReqs[level];
     var mineral = upgrade.mineral;
-    return playerState.getResource('money') > cost &&
-        playerState.getResource(mineral) > mineralReq;
+    return playerState.getResource('money') >= cost &&
+        playerState.getResource(mineral) >= mineralReq;
 };
 
 var upgradeBot = function(type, level) {
@@ -79,8 +79,8 @@ var upgradeBot = function(type, level) {
 
 var remainingMineralsTillUpgrade = function(type, level) {
     var upgrade = upgrades[type];
-    var cost = upgrade.cost[level];
-    var mineralReq = upgrade.mineralReq[level];
+    var cost = upgrade.costs[level];
+    var mineralReq = upgrade.mineralReqs[level];
     var mineral = upgrade.mineral;
     return mineralReq - playerState.getResource(mineral);
 };
