@@ -77,9 +77,21 @@ var canUpgrade = function(type, level) {
     var cost = upgrade.costs[level];
     var mineralReq = upgrade.mineralReqs[level];
     var mineral = upgrade.mineral;
-    return playerState.getResource('money') >= cost &&
-        playerState.getResource(mineral) >= mineralReq;
+    return playerState.getResource('money') >= cost && upgradeUnlocked(type, level);
 };
+
+var upgradeUnlocked = function(type, level) {
+    var upgrade = upgrades[type];
+    var mineralReq = upgrade.mineralReqs[level];
+    var mineral = upgrade.mineral;
+    return playerState.getResource(mineral) >= mineralReq;
+};
+
+var currentUpgradeCost = function(type) {
+    var upgrade = upgrades[type];
+    var level = playerState.getRobotLevel(type);
+    return upgrade.costs[level + 1];
+}
 
 var upgradeBot = function(type, level) {
     if (!canUpgrade(type, level)) {

@@ -173,6 +173,12 @@ body {
     cursor: pointer;
 }
 
+.robot-shop .upgrade.enabled:hover {
+    cursor: pointer;
+    background-color: #FFF;
+    color: #222;
+}
+
 .robot-container {
     display: inline-block;
     max-width: 140px;
@@ -213,6 +219,7 @@ body {
 .robot-shop .robot:hover {
     cursor: pointer;
     background-color: #FFF;
+    color: #222;
 }
 
 .robot-shop .unlockMessage {

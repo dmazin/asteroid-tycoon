@@ -31,6 +31,11 @@ $(document).ready(function () {
         playerState.setAsteroid(asteroids[asteroidName]);
     });
 
+    // prevents text select cursor
+    $('canvas').mousedown(function(event){
+        event.preventDefault();
+    });
+
     updateRobotShop();
     setInterval(updateRobotShop, 1000);
 });
@@ -42,10 +47,12 @@ var updateRobotShop = function() {
 
         var level = playerState.getRobotLevel(key) + 1;
 
-        if (canUpgrade(key, level)) {
+        if (upgradeUnlocked(key, level)) {
             $('.controls .robot-shop .robot-container.' + key + ' .upgrade').addClass('enabled');
+            $('.controls .robot-shop .robot-container.' + key + ' .upgradeCost').text('$' + currentUpgradeCost(key));
         } else {
             $('.controls .robot-shop .robot-container.' + key + ' .upgrade').removeClass('enabled');
+            $('.controls .robot-shop .robot-container.' + key + ' .upgradeCost').text('locked');
         }
 
         if (Robot.unlocked(key)) {

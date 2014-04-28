@@ -349,6 +349,12 @@ var resources = {
         'value': 60,
         'image': loadImage('pics/tiles/mineral5.png')
     },
+    'artifact': {
+        'hardness': 0,
+        'harvestable': true,
+        'value': null,
+        'image': loadImage('pics/tiles/artifact.png')
+    },
     'unexplored': {
         'hardness': 0,
         'harvestable': false,
@@ -438,5 +444,5 @@ var asteroids = {
     'fatlootium': {pTop: 0.05, pBottom: 0.3, minDepth: 10},
     'affluentium': {pTop: 0.05, pBottom: 0.3, minDepth: 15},
     'cashmonium': {pTop: 0.2, pBottom: 0.5, minDepth: 15}
-})
 };
+}
