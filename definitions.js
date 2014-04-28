@@ -316,6 +316,7 @@ var resources = {
         'hardness': 0,
         'harvestable': false,
         'value': 0,
+        'imagePath' : 'pics/tiles/backfill.png',
         'image': loadImage('pics/tiles/backfill.png'),
         'text': "Backfill from mining operation"
     },
@@ -323,6 +324,7 @@ var resources = {
         'hardness': 0.04,
         'harvestable': false,
         'value': 0,
+        'imagePath' : 'pics/tiles/dirt1.png',
         'image': loadImage('pics/tiles/dirt1.png'),
         'text': "Dirtite: \nAsteroids are made\nof dirt. You schmuck."
     },
@@ -330,90 +332,105 @@ var resources = {
         'hardness': 0.14,
         'harvestable': false,
         'value': 0,
+        'imagePath' : 'pics/tiles/dirt2.png',
         'image': loadImage('pics/tiles/dirt2.png')
     },
     'rubbishite': {
         'hardness': 0.24,
         'harvestable': false,
         'value': 0,
+        'imagePath' : 'pics/tiles/dirt3.png',
         'image': loadImage('pics/tiles/dirt3.png')
     },
     'junkite': {
         'hardness': 0.34,
         'harvestable': false,
         'value': 0,
+        'imagePath' : 'pics/tiles/dirt4.png',
         'image': loadImage('pics/tiles/dirt4.png')
     },
     'scrapite': {
         'hardness': 0.44,
         'harvestable': false,
         'value': 0,
+        'imagePath' : 'pics/tiles/dirt5.png',
         'image': loadImage('pics/tiles/dirt5.png')
     },
     'crapite': {
         'hardness': 0.54,
         'harvestable': false,
         'value': 0,
+        'imagePath' : 'pics/tiles/dirt6.png',
         'image': loadImage('pics/tiles/dirt6.png')
     },
     'densite': {
         'hardness': 0.64,
         'harvestable': false,
         'value': 0,
+        'imagePath' : 'pics/tiles/rock1.png',
         'image': loadImage('pics/tiles/rock1.png')
     },
     'rigidite': {
         'hardness': 0.74,
         'harvestable': false,
         'value': 0,
+        'imagePath' : 'pics/tiles/rock2.png',
         'image': loadImage('pics/tiles/rock2.png')
     },
     'toughite': {
         'hardness': 0.84,
         'harvestable': false,
         'value': 0,
+        'imagePath' : 'pics/tiles/rock3.png',
         'image': loadImage('pics/tiles/rock3.png')
     },
     'unyieldite': {
         'hardness': 0.94,
         'harvestable': false,
         'value': 0,
+        'imagePath' : 'pics/tiles/rock4.png',
         'image': loadImage('pics/tiles/rock4.png')
     },
     'imperviousite': {
         'hardness': 0.99,
         'harvestable': false,
         'value': 0,
+        'imagePath' : 'pics/tiles/rock5.png',
         'image': loadImage('pics/tiles/rock5.png')
     },
     'paydirtium': {
         'hardness': 0.2,
         'harvestable': true,
         'value': 20,
+        'imagePath' : 'pics/tiles/mineral1.png',
         'image': loadImage('pics/tiles/mineral1.png')
     },
     'cheddarium': {
         'hardness': 0.3,
         'harvestable': true,
         'value': 30,
+        'imagePath' : 'pics/tiles/mineral2.png',
         'image': loadImage('pics/tiles/mineral2.png')
     },
     'fatlootium': {
         'hardness': 0.4,
         'harvestable': true,
         'value': 40,
+        'imagePath' : 'pics/tiles/mineral3.png',
         'image': loadImage('pics/tiles/mineral3.png')
     },
     'affluentium': {
         'hardness': 0.5,
         'harvestable': true,
         'value': 50,
+        'imagePath' : 'pics/tiles/mineral4.png',
         'image': loadImage('pics/tiles/mineral4.png')
     },
     'cashmonium': {
         'hardness': 0.6,
         'harvestable': true,
         'value': 60,
+        'imagePath' : 'pics/tiles/mineral5.png',
         'image': loadImage('pics/tiles/mineral5.png')
     },
     'artifact': {
@@ -427,6 +444,7 @@ var resources = {
         'hardness': 0,
         'harvestable': false,
         'value': 0,
+        'imagePath' : 'pics/tiles/undiscovered.png',
         'image': loadImage('pics/tiles/undiscovered.png')
     },
     'lava': {
