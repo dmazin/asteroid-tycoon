@@ -3,7 +3,7 @@ var energy_scale = 0.1;
 var WobbleConstant = 0.4;
 
 // other constants
-var explorationBonus = 1;
+var explorationBonus = 10;
 var salvageValueMultiplier = 0.5;
 
 // Definitions of base-level robots - spawn using robotLevels, not robots
