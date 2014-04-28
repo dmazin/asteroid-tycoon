@@ -15,6 +15,13 @@ var marqueeMessages = [
 		}
 	},
 	{
+		'html': "HEY YOU, STOP STARING AT THIS MARQUEE AND GET BACK TO WORK!",
+		'class': 'alert',
+		'condition': function () {
+			return true;
+		}
+	},
+	{
 		'html': "<span class='amount'>0</span> ROBOTS HAVE DIED AT YOUR HANDS. HOW MANY MORE MUST SUFFER?",
 		'class': 'killed',
 		'condition': function () {
@@ -74,7 +81,8 @@ var marqueeMessages = [
 
 function addToMarquee() {
 	var possibleMessages = marqueeMessages.filter(function (msg) {
-		return msg.condition();
+		return msg.condition()
+			&& ('notification ') + msg.class != $('marquee').children().last().attr('class');
 	});
 	console.log(possibleMessages);
 	var msg = possibleMessages[_.random(possibleMessages.length - 1)];
