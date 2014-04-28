@@ -34,7 +34,7 @@ function createSpawn(xpos){
         images: ["pics/other/cratebeam.png"],
         frames: {width:80, height:160},
         animations: {
-            beam: [0,9,'idle',0.5],
+            beam: [0,9,'idle',2],
             idle: [10]
         }
     });
@@ -159,7 +159,7 @@ function setup_stage_event_handler() {
                 var destY = parseInt((e.stageY - surface_height) / grid_size);
                 bot = new Robot(currentlySpawning.type, currentlySpawning.robotAttrs, currentlySpawning.startX, destX, destY, playerState.getAsteroid());
                 activeBots.push(bot);
-            }, 1400);
+            }, 320);
 
             return bot;
         } else if (stage.mouseInBounds) {
