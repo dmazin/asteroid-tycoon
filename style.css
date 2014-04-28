@@ -170,6 +170,7 @@ body {
 }
 
 .robot-shop {
+    text-align: center;
     border: 4px inset #FFF;
     background-color: #40536B;
     border-radius: 9px;
