@@ -291,7 +291,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         }
         var proportionMined = hardness - resource.hardness;
         var amountMined = tile.baseAmount * proportionMined;
-        if (tile.harvestable && _this.storage > 0) {
+        if (resource.harvestable && _this.storage > 0) {
             addResources(amountMined, tile.getType());
         }
         tile.amount -= amountMined; //Reduce the amount left on the tile
