@@ -75,7 +75,7 @@ function printout(text) {
 
     function show() {
         printout.show();
-        printout.animate({'top' : 128,
+        printout.animate({'top' : 100,
                           'left' : '50%',
                           'width' : 670,
                           'height' : height,
