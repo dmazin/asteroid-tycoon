@@ -316,3 +316,10 @@ body {
     z-index: 1000;
     display: none;
 }
+
+#asteroidButton {
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+}

@@ -44,6 +44,10 @@ $(document).ready(function () {
     setInterval(updateRobotShop, 1000);
 
     printout($('#first-email').text());
+
+    $('#asteroidButton').click(function () {
+        drawAsteroidSelectionScreen();
+    });
 });
 
 var updateRobotShop = function() {
