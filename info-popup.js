@@ -3,9 +3,14 @@ var infoPopupActive = false;
 function infoPopupClickOnStage(e) {
     if (!infoPopupActive) {
         var x = e.stageX,
-            y = e.stageY;
+            y = e.stageY,
+            top = $("body").scrollTop();
 
-        if (y >= surface_height) {
+        console.log("Top", top);
+        console.log("SY", y);
+
+        if (y >= surface_height && (y - top + surface_height) > 70) {
+            console.log("Popping");
             var popup = infoPopup(tileInfo(tileTypeAt(x, y)));
             popup.offset({left : x, top : y + 200});
             popup.appendTo($('#game'));
