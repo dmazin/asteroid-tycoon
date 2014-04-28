@@ -40,8 +40,8 @@ function tick() {
     });
 
     var gs = grid_size;
-    stage.destTile.x = Math.round((stage.mouseX - gs / 2) / gs) * gs + gs / 2;
-    stage.destTile.y = Math.round((stage.mouseY - gs / 2) / gs) * gs + gs / 2;
+    stage.destTile.x = Math.round((stage.mouseX - gs / 2) / gs) * gs - 2;
+    stage.destTile.y = Math.round((stage.mouseY - gs / 2) / gs) * gs - 6;
     stage.destTile.visible = $('canvas').hasClass('botSpawner')
         && stage.mouseInBounds && stage.destTile.y >= surface_height;
 
@@ -65,9 +65,18 @@ function init_stage() {
     createSpawn(Math.floor(game_width/2));
     stage.update();
 
-    stage.destTile = new createjs.Shape();
-    stage.destTile.graphics.beginFill('blue')
-                           .drawCircle(0,0,8);
+    var reticuleSpritesheet = new createjs.SpriteSheet({
+        images: ["pics/other/reticle.png"],
+        frames: {width:44, height:44}
+    });
+    stage.destTile = new createjs.Sprite(reticuleSpritesheet);
+    stage.destTile.gotoAndStop(0);
+    $('canvas').on("mousedown", function() {
+        stage.destTile.gotoAndStop(1);
+    });
+    $('canvas').on("mouseup", function() {
+        stage.destTile.gotoAndStop(0);
+    });
     stage.addChild(stage.destTile);
 
     createjs.Ticker.addEventListener("tick", tick);
