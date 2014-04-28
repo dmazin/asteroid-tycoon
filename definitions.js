@@ -17,9 +17,7 @@ var robots = {
         'wobble': 0.9,
         'harvestEfficiency': 0,
         'cost': 150,
-        // 'affinity': {
-        //     'dirtite': 3
-        // },
+        'affinity': {},
         'klass': SquirrelBot,
         'spriteSheet': 'pics/bots/scout0.png',
         'spriteSpeed': 0.3,
