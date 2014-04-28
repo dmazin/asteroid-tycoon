@@ -320,6 +320,7 @@ var resources = {
     }
 };
 
+
 var asteroids = {
     "Bananasteroid": new Asteroid({
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},

@@ -92,7 +92,22 @@ function tick() {
     stage.update();
 }
 
+function init_ui() {
+    window.statTemplate = _.template($('#mineral-stat-template').html());
+
+    _.each(resources, function(val, key) {
+        if (val.harvestable) {
+            $('.general-stats').append(statTemplate({
+                name: key,
+                amount: 0
+            }));
+        }
+    });
+}
+
 function init_stage() {
+    init_ui();
+
     window.stage = new createjs.Stage("mainCanvas");
 
     playerState.getAsteroid().init();
