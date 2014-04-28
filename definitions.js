@@ -1,6 +1,7 @@
 // Definitions of base-level robots - spawn using robotLevels, not robots
 var robots = {
     'squirrelBot': {
+        'uiName': 'Squirrel',
         'description': 'SquirrelBot 1.0 - Scout',
         'hardness': 0.13,
         'baseEnergy': 2000,
@@ -17,6 +18,7 @@ var robots = {
         'gif': 'pics/scout0.gif'
     },
     'bearBot': {
+        'uiName': 'Bear',
         'description': 'BearBot 1.0 - All Around',
         'hardness': 0.25,
         'baseEnergy': 1200,
@@ -24,12 +26,14 @@ var robots = {
         'wobble': 0.7,
         'harvestEfficiency': 0.6,
         'cost': 300,
+        'affinity': {},
         'klass': BearBot,
         'spriteSheet': 'pics/allaround0_2x.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/allaround0.gif'
     },
     'antBot': {
+        'uiName': 'Ant',
         'description': 'AntBot 1000 - Harvester',
         'hardness': 0.35,
         'baseEnergy': 1000,
@@ -37,12 +41,14 @@ var robots = {
         'wobble': 0.4,
         'harvestEfficiency': 0.8,
         'cost': 550,
+        'affinity': {},
         'klass': AntBot,
         'spriteSheet': 'pics/harvester0_2x.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/harvester0.gif'
     },
     'goatBot': {
+        'uiName': 'Goat',
         'description': 'GoatBot 1000 - Smasher',
         'hardness': 0.55,
         'baseEnergy': 1000,
@@ -50,12 +56,14 @@ var robots = {
         'wobble': 0.5,
         'harvestEfficiency': 0,
         'cost': 1050,
+        'affinity': {},
         'klass': GoatBot,
         'spriteSheet': 'pics/smasher0_2x.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/smasher0.gif'
     },
     'vultureBot': {
+        'uiName': 'Vulture',
         'description': 'VultureBot 1000 - Scavenger',
         'hardness': 0.1,
         'baseEnergy': 1500,
@@ -63,23 +71,21 @@ var robots = {
         'wobble': 0.1,
         'harvestEfficiency': 0.7,
         'cost': 650,
+        'affinity': {},
         'klass': VultureBot,
+        'canSalvage': true,
         'spriteSheet': 'pics/vulture0_2x.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/scavenger0.gif'
     }
 };
 
-var buy_button_template = _.template($('#robot-buy-button-template').html());
-_.each(robots, function(val, key) {
-    var data = _.extend(val, {'name': key});
-    var rendered = buy_button_template(data);
-    $('.controls .robot-spawn').append(rendered);
-});
-
 // constants for scaling robot attributes for balancing purposes
 var energy_scale = 0.1;
-var WobbleConstant = 0.5;
+var WobbleConstant = 0.75;
+
+// other constants
+var salvageValueMultiplier = 0.5;
 
 var upgradeCosts = {
     'squirrelBot': [0, 1500, 3000],
@@ -237,12 +243,13 @@ var resources = {
     }
 };
 
-/* maps resources to function from depth to prob at depth */
-var resource_weights = {
-    'dirt': {pTop: 1, pBottom: 1, minDepth: 0},
-    'rock': {pTop: 0.1, pBottom: 0.4, minDepth: 1},
-    'iron': {pTop: 0.01, pBottom: 0.2, minDepth: 1},
-    'mintium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
-    'junipum': {pTop: 0.01, pBottom: 0.05, minDepth: 15},
-    'paprikum': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
-}
+var asteroids = {
+    "Bananasteroid": new Asteroid({
+        'dirt': {pTop: 1, pBottom: 1, minDepth: 0},
+        'rock': {pTop: 0.1, pBottom: 0.4, minDepth: 1},
+        'iron': {pTop: 0.01, pBottom: 0.2, minDepth: 1},
+        'mintium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
+        'junipum': {pTop: 0.01, pBottom: 0.05, minDepth: 15},
+        'paprikum': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
+    })
+};

@@ -1,4 +1,5 @@
 var activeBots = [];
+var deadBots = [];
 
 var playerState = (function() {
     var robotLevels = {
@@ -10,10 +11,10 @@ var playerState = (function() {
     };
 
     var resourceAmounts = {
-        'money': 5000,
-        'iron': 0,
-        'dirt': 0
+        'money': 5000
     };
+
+    var currentAsteroid = null;
 
     state = {};
 
@@ -34,19 +35,49 @@ var playerState = (function() {
     };
 
     state.changeResource = function(resource, amount) {
+        resourceAmounts[resource] = resourceAmounts[resource] || 0;
         resourceAmounts[resource] += amount;
 
-        // broken idk why
-        //resourceAmounts['money'] += resources[resource].value;
+        $('.money-stats .amount').text(parseInt(resourceAmounts['money']));
+        $('.notification.money .amount').text(parseInt(resourceAmounts['money']));
+
+        if (resource === 'money' || resources[resource].harvestable === false) {
+            return;
+        }
+
+        var statTemplate = _.template($('#mineral-stat-template').html());
+
+        if ($('.general-stats .' + resource).length > 0) {
+            $('.general-stats .' + resource).html(statTemplate({
+                name: resource,
+                amount: parseInt(resourceAmounts[resource])
+            }));
+        } else {
+            $('.general-stats').append(statTemplate({
+                name: resource,
+                amount: parseInt(resourceAmounts[resource])
+            }));
+        }
 
         if (resource === 'iron') {
-            $('.stats .iron').text(parseInt(resourceAmounts[resource]));
             $('.notification.iron .amount').text(parseInt(resourceAmounts[resource]));
         }
-        if (resource === 'dirt') {
-            $('.money-stats .amount').text(parseInt(resourceAmounts['money']));
-            $('.notification.money .amount').text(parseInt(resourceAmounts['money']));
+    };
+
+    state.addResources = function(resourceAmountsByType) {
+        for (var resourceType in resourceAmountsByType) {
+            var resourceAmount = resourceAmountsByType[resourceType];
+            state.changeResource(resourceType, resourceAmount);
+            state.changeResource('money', resources[resourceType].value * resourceAmount);
         }
+    };
+
+    state.getAsteroid = function() {
+        return currentAsteroid;
+    };
+
+    state.setAsteroid = function(asteroid) {
+        currentAsteroid = asteroid;
     };
 
     return state;

@@ -1,0 +1,154 @@
+.sound {
+    width: 80px;
+    margin: 0 auto;
+}
+.sound a {
+    color: white;
+}
+
+.information {
+    display: inline-block;
+    width: 220px;
+}
+
+.money-stats .tiny-description {
+    font-size: 10px;
+    position: relative;
+    top: -4px;
+    width: 80px;
+    display: inline-block;
+}
+
+.money-stats {
+    margin-top: 5px;
+    text-shadow: 1px 1px 1px #4A5E47;
+    color: #191F18;
+}
+
+.money-stats .amount {
+    float: right;
+    font-size: 20px;
+}
+
+.stats {
+    background-color: #008000;
+    width: 200px;
+    font-size: 13px;
+    border: 2px inset #83AF83;
+    border-radius: 3px;
+    padding: 7px;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+body {
+    font-family: 'Roboto', 'sans-serif';
+    background-color: #000;
+}
+
+.controls {
+    background-color: #C9C9C9;
+    margin-top: -4px;
+    padding: 10px 57px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.notification {
+    border: 4px outset #89B96E;
+    background-color: #527E3A;
+    padding: 5px;
+    font-weight: 800;
+    color: rgba(214, 214, 214, 0.7);
+}
+
+.notification.iron {
+    border: 4px outset #9B842A;
+    background-color: #9C7842;
+}
+
+.alert {
+    border: 4px outset #994C7A;
+    background-color: #7E3A63;
+    padding: 5px;
+    font-weight: 800;
+    color: rgba(214, 214, 214, 0.7);
+}
+
+.title-container {
+    background-color: #C9C9C9;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 7px;
+}
+
+.title {
+    border: 7px inset #FFF;
+    background-color: #1B3B64;
+    border-radius: 12px;
+    color: #FFF;
+    width: 850px;
+    margin: 0 auto;
+    font-size: 11px;
+}
+
+#game {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+#menu {
+    position: relative;
+    font-weight: 300;
+    width: 980px;
+    height: 210px;
+    padding: 10px;
+    background-color: #060D22;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.robot-spawn {
+    display: inline-block;
+    vertical-align: top;
+    width: 560px;
+}
+
+#mainCanvas {
+    background-color: #060D22;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.robot-container {
+    display: inline-block;
+    cursor: pointer;
+    width: 100px;
+    opacity: .9;
+    vertical-align: top;
+}
+
+.robot-container .money {
+    width: 92px;
+    display: inline-block;
+    text-align: center;
+    padding: 1px 0 3px;
+    border: 4px outset #BDBDBD;
+    border-radius: 10px;
+    background-color: #8B8B8B;
+}
+
+.robot {
+    display: inline-block;
+    color: #FFF;
+    text-align: center;
+    padding: 1px 0 3px;
+    border: 4px outset #BDBDBD;
+    border-radius: 10px;
+    background-color: #8B8B8B;
+}
+
+.robot-container:hover {
+    opacity: 1;
+}
