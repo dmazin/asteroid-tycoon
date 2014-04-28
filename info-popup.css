@@ -67,3 +67,19 @@
     background-color: #ccc;
     color: #666;
 }
+
+.BearBot div.info-popup-icon {
+    background-color : #738B60;
+}
+
+.GoatBot div.info-popup-icon {
+    background-color : #BB9340;
+}
+
+.AntBot div.info-popup-icon {
+    background-color : #EDF590;
+}
+
+.VultureBot div.info-popup-icon {
+    background-color : #996161;
+}

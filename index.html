@@ -43,7 +43,7 @@
 </script>
 
 <script id="robot-popup-template" type="text/html">
-  <div class="info-popup">
+  <div class="info-popup <%= displayName %>">
     <h1> <%= displayName %> </h1>
     <p> <%= displayText %> </p>
     <div class="info-popup-icon">
@@ -79,15 +79,14 @@
             <span class='notification alert'>PRODUCTION DECLINING, CORPORATE OVERSIGHT IMMINENT</span>
         </marquee>
         <div class='controls'>
-            <div class='information' style="display: none;">
-                <div class='general-stats stats display'>
+            <div class='information'>
+                <div class='general-stats stats display'></div>
+                <div class='money-stats stats display'>
+                    <span class='tiny-description'>NORMALIZED SPACE DOLLARS</span>
+                    <span class='amount'></span>
                 </div>
             </div>
             <div class='robot-shop display'>
-            </div>
-            <div class='money-stats stats display'>
-                <span class='tiny-description'>NORMALIZED SPACE DOLLARS</span>
-                <span class='amount'></span>
             </div>
         </div>
     </div>
