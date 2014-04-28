@@ -105,4 +105,26 @@ function init_stage() {
     createjs.Ticker.setFPS(FPS);
 
     stage.enableMouseOver(10);
+
+    stage.on('stagemouseup', function(e) {
+        if ($('canvas').hasClass('botSpawner')) {
+            // Change canvas back
+            $('canvas').removeClass('botSpawner');
+
+            // Reset if the mouse is out of bounds.
+            if(!stage.mouseInBounds) { return; }
+
+            //Update the player
+            updatePlayerMoney(currentlySpawning.type);
+
+            // Make a new bot based on the position.
+            var destX = parseInt(e.stageX / grid_size);
+            var destY = parseInt((e.stageY - surface_height) / grid_size);
+            var bot = new Robot(currentlySpawning.robotAttrs, currentlySpawning.startX, destX, destY, playerState.getAsteroid());
+            activeBots.push(bot);
+            return bot;
+        } else {
+            popupClickOnStage(e);
+        }
+    });
 }
