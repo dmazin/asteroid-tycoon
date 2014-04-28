@@ -48,6 +48,8 @@ function robotButton(robot) {
     var button = $("<div class='robot-button'>?</div>");
 
     button.click(robotPopupClick(robot, button));
+    
+    if (menuIsShrunk) button.addClass ("shrunk");
 
     return button;
 }

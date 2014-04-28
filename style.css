@@ -369,3 +369,12 @@ body {
 #menu.shrunk .printout {
     top: 2px !important;
 }
+
+.robot-container div.images.shrunk {
+    display : none;
+}
+
+.robot-container div.robot-button.shrunk {
+    top : -44px;
+}
+
