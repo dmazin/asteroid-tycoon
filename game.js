@@ -123,7 +123,7 @@ function init_stage() {
             var bot = new Robot(currentlySpawning.robotAttrs, currentlySpawning.startX, destX, destY, playerState.getAsteroid());
             activeBots.push(bot);
             return bot;
-        } else {
+        } else if (stage.mouseInBounds) {
             popupClickOnStage(e);
         }
     });
