@@ -1,5 +1,4 @@
 var activeBots = [];
-var deadBots = [];
 
 var playerState = (function() {
     var robotLevels = {
@@ -33,6 +32,10 @@ var playerState = (function() {
         robotLevels[robotType] = level;
     };
 
+    state.getResources = function() {
+        return resourceAmounts;
+    };
+
     state.getResource = function(resource) {
         return resourceAmounts[resource] || 0;
     };
@@ -53,19 +56,13 @@ var playerState = (function() {
             amount: parseInt(resourceAmounts[resource])
         }));
 
-        if (resource === 'fatlootium') {
-            $('.notification.fatlootium .amount').text(parseInt(resourceAmounts[resource]));
-        }
-
-        if (resource === 'iron') {
-            $('.notification.iron .amount').text(parseInt(resourceAmounts[resource]));
-        }
+        $('.notification.' + resource + ' .amount').text(parseInt(resourceAmounts[resource]));
     };
 
     state.getArtifactValue = function() {
         var r = Math.random();
         var val = r * (60 - 5) + 5;
-        val *= currentAsteroid.artifactScaleValue;
+        val *= currentAsteroid.artifactValueScale;
         return val;
     };
 
@@ -94,7 +91,6 @@ var playerState = (function() {
 
         currentAsteroid = asteroid;
         activeBots = [];
-        deadBots = [];
 
         if (stage) {
             stage.removeAllChildren();
@@ -107,6 +103,11 @@ var playerState = (function() {
         currentAsteroid.refresh();
 
         init_stage();
+
+        asteroid.getDeadBots().forEach(function (bot) {
+            stage.addChild(bot.animation);
+            bot.render();
+        });
     };
 
     state.unlockedRobots = ['squirrelBot'];
@@ -118,6 +119,20 @@ var playerState = (function() {
         'goatBot': 0,
         'vultureBot': 0
     };
+
+    state.robotsKilled = {
+        'squirrelBot': 0,
+        'bearBot': 0,
+        'antBot': 0,
+        'goatBot': 0,
+        'vultureBot': 0
+    };
+
+    state.getTotalRobotsKilled = function () {
+        return _.reduce(state.robotsKilled, function(memo, num) {
+            return memo + num;
+        }, 0);
+    }
 
     return state;
 })();

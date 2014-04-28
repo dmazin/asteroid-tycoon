@@ -107,11 +107,15 @@ function init_stage() {
     createjs.Ticker.setFPS(FPS);
 
     stage.enableMouseOver(10);
+}
 
+function setup_stage_event_handler() {
     stage.on('stagemouseup', function(e) {
         if ($('canvas').hasClass('asteroidSelect')) {
             return;
         } else if ($('canvas').hasClass('botSpawner')) {
+            hidePopups();
+
             // Change canvas back
             $('canvas').removeClass('botSpawner');
 
@@ -124,11 +128,58 @@ function init_stage() {
             // Make a new bot based on the position.
             var destX = parseInt(e.stageX / grid_size);
             var destY = parseInt((e.stageY - surface_height) / grid_size);
-            var bot = new Robot(currentlySpawning.robotAttrs, currentlySpawning.startX, destX, destY, playerState.getAsteroid());
+            var bot = new Robot(currentlySpawning.type, currentlySpawning.robotAttrs, currentlySpawning.startX, destX, destY, playerState.getAsteroid());
             activeBots.push(bot);
             return bot;
         } else if (stage.mouseInBounds) {
             popupClickOnStage(e);
         }
     });
+}
+
+document.onkeydown = checkKey;
+
+function moveSpawn(direction){
+  if (direction=="left"){
+    spawn.shape.x = spawn.shape.x - grid_size;
+
+  }
+  else if (direction=="right"){
+    spawn.shape.x = spawn.shape.x + grid_size;
+
+  }
+}
+
+function checkKey(key) {
+
+    key = key || window.event;
+
+    if (key.keyCode == '83') {
+        // s
+        robotType = 'squirrelBot';
+    }
+    else if (key.keyCode == '66') {
+        // b
+        robotType = 'bearBot';
+    }
+    else if (key.keyCode == '65') {
+        // a
+        robotType = 'antBot';
+    }
+    else if (key.keyCode == '71') {
+        // g
+        robotType = 'goatBot';
+    }
+    else if (key.keyCode == '86') {
+        // v
+        robotType = 'vultureBot';
+    }
+    else{
+        return;
+    }
+
+    var money = playerState.getResource('money');
+    if (money > robots[robotType].cost && Robot.unlocked(robotType)) {
+        spawnBot(robotType, Math.floor(spawner.x/grid_size + 3));
+    }
 }

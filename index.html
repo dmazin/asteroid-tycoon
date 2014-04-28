@@ -9,11 +9,14 @@
 <script id="robot-buy-button-template" type="text/html">
     <div class='robot-container <%= name %>'>
         <div class='robot' data-robot='<%= name %>'>
-            <img src="<%= gif %>"><%= uiName %> $<%= cost %>
+            <%= uiName %> $<%= cost %>
         </div>
-        <div class='upgrade' data-robot='<%= name %>'>
-        	Upgrade
-        	<span class="upgradeCost">locked</span>
+        <div class='images'>
+        	<img src="pics/2x_gifs/<%= gifName %>0.gif" data-robot='<%= name %>' class="lvl1">
+        	<img src="pics/other/closedlock.png" data-robot='<%= name %>' class="lvl2 unused">
+        	<div class="upgradeCost lvl2"></div>
+        	<img src="pics/other/closedlock.png" data-robot='<%= name %>' class="lvl3 unused">
+        	<div class="upgradeCost lvl3"></div>
         </div>
         <div class='unlockMessage' data-robot='<%= name %>'>unavailable</div>
     </div>
@@ -28,10 +31,13 @@
 <script id="info-popup-template" type="text/html">
   <div class="info-popup">
     <h1> <%= name %> </h1>
-    <img src="<%= image %>" alt=" <%= name %> texture " />
+    <p> <%= text %> </p>
+    <div class="info-popup-icon">
+      <img src="<%= image %>" alt=" <%= name %> texture " />
+    </div>
     <ul>
-      <li> Hardness: <%= hardness %> </li>
-      <li> Value: <%= value %> </li>
+      <li> hardness: <%= hardness %> </li>
+      <li> value: <%= value %> </li>
     </ul>
   </div>
 </script>
@@ -39,6 +45,8 @@
 <div id='game'>
     <div id='menu'>
         <div class='title-container'>
+            <div id='messages'>
+            </div>
             <div class='title'>
 <pre class='title-text'>
             .........             ___   _____________________  ____  ________     ________  ____________  ____  _   __
@@ -55,25 +63,23 @@
                     <span class='level' id="Cashmonoid">Cashmonoid</span>
                 </div>
             </div>
+            <div class='printer'></div>
         </div>
-        <marquee behavior="alternate">
-            <span class='money notification'>YOU HAVE <span class='amount'></span> NORMALIZED SPACE DOLLARS</span>
-            <span class='iron notification'>IRON REPORT! IRON LEVELS AT <span class='amount'></span> IRONS</span>
-            <span class='alert'>PRODUCTION DECLINING, CORPORATE OVERSIGHT IMMINENT</span>
-            <span class='paydirtium notification'>CONGRATULATIONS, YOU HAVE OBTAINED <span class='amount'></span></span>
+        <pre class='printout'></pre>
+        <marquee>
+            <span class='notification alert'>PRODUCTION DECLINING, CORPORATE OVERSIGHT IMMINENT</span>
         </marquee>
         <div class='controls'>
-            <div class='information'>
+            <div class='information' style="display: none;">
                 <div class='general-stats stats display'>
-                </div>
-                <div class='money-stats stats display'>
-                    <span class='tiny-description'>NORMALIZED SPACE DOLLARS</span>
-                    <span class='amount'></span>
                 </div>
             </div>
             <div class='robot-shop display'>
             </div>
-            <div class='robot-spawn'></div>
+            <div class='money-stats stats display'>
+                <span class='tiny-description'>NORMALIZED SPACE DOLLARS</span>
+                <span class='amount'></span>
+            </div>
         </div>
     </div>
     <canvas id='mainCanvas' width=1000 height=1380></canvas>
@@ -90,6 +96,7 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <link rel="stylesheet" type="text/css" href="info-popup.css">
 
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 <script src='lib/jquery.js'></script>
 <script src='lib/underscore.js'></script>
 <script src='lib/easeljs-0.7.1.min.js'></script>
@@ -105,8 +112,91 @@
 <script src='state.js'></script>
 <script src='robot.js'></script>
 <script src='robot_util.js'></script>
-
+<script src='marquees.js'></script>
 <script src='launcher.js'></script>
+<script src='printout.js'></script>
 
+<script id='first-email' type='text'>
+    EMAIL PRINTOUT
+    --------------------------------------------------
+
+    Whoa, whoa, whoa! Look who relaxedly sat down with a cup of coffee
+    to read email!
+
+    Are we at Asteroid Tycoon known for relaxedly reading email? No, that is
+    not what we are known for. We are known for our efficiency, and more
+    importantly, we are known in our productivity.
+
+    Sometimes I tear up, thinking about our growth over the last eight quarters.
+    We have grown by 50% or more each year. And this year we will deplete our
+    10,000th asteroid.
+
+    But you are not part of that equation. Your operation is always the weakest
+    showing of the year, you let your colonies nearly starve to death, and you
+    are wasteful with your financial resources.
+
+    Here is the verdict. We don't trust you with robots advanced enough to mine
+    anything precious, so we've given you the SquirrelBot. No, it can't mine.
+    No, it can't dig through anything harder than sand. Yes, an idiot can order
+    a SquirrelBot around.
+
+    Here's your chance to prove to use that you're not an idiot. Dig around a bit,
+    and we'll see if R&D can get you a better robot.
+
+    OTHERWISE YOU ARE A FIGMENT OF MY IMAGINATION!!!!
+
+    - Corporate
+</script>
+<script id='unlock-bearBot' type='text'>
+    EMAIL PRINTOUT
+    --------------------------------------------------
+
+    You're not going to get very far with scouts alone. R&D's cooked up the
+    BearBot: a mining robot that can quickly clear away sand and can even pick
+    up some minerals along the way. Might as well make your stay on this
+    godforsaken rock useful.
+
+    - Corporate
+</script>
+<script id='unlock-vultureBot' type='text'>
+    EMAIL PRINTOUT
+    --------------------------------------------------
+
+    Oh boy, judging by the trail of dead robots you've left in your wake, you're
+    really gonna need this one. The VultureBot sucks up the rubble strewn
+    about this asteroid and lets you recoup some of your costly, costly losses.
+
+    And you do realize that this isn't the only asteroid you're supposed to deal
+    with, right? There are four more waiting for your attention. We do hope that
+    we don't have to remind you about the [BUTTON DESCRIPTION].
+
+    - Corporate
+</script>
+<script id='unlock-antBot' type='text'>
+    EMAIL PRINTOUT
+    --------------------------------------------------
+
+    Your performance so far, while far from being commendable, has at least
+    demonstrated to us a basic competence in maneuvering heavy machinery.
+
+    The AntBot has significantly higher drill power than the BearBot, with
+    capacity to match. Count is as a gift from us. Don't expect a bonus this year.
+
+    - Corporate
+</script>
+<script id='unlock-goatBot' type='text'>
+    EMAIL PRINTOUT
+    --------------------------------------------------
+
+    As per protocol, we are required to send you over a GoatBot at this time.
+    It will smash through most obstacles you've encountered so far, but is unable
+    to harvest any minerals, destroying them instead. Use the GoatBot with care.
+
+    Repeat -- use the GoatBot with care. Company policy forbids the GoatBot
+    from being used to waste minerals. If we catch you doing so, there will
+    be consequences.
+
+    - Corporate
+</script>
 </body>
 </html>

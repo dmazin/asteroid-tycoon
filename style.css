@@ -21,7 +21,7 @@
     font-size: 12px;
     position: relative;
     top: -4px;
-    width: 80px;
+    width: 150px;
     display: inline-block;
 }
 
@@ -43,10 +43,10 @@
 }
 
 .stats {
-    width: 185px;
+    width: 937px;
     font-size: 16px;
     border-radius: 3px;
-    padding: 7px;
+    padding: 2px 7px 5px;
     margin-right: 10px;
     display: inline-block;
     vertical-align: top;
@@ -73,17 +73,25 @@ body {
     color: rgba(214, 214, 214, 0.7);
 }
 
-.notification.iron {
+.notification.resource {
     border: 4px outset #9B842A;
     background-color: #9C7842;
 }
 
-.alert {
+.notification.killed {
+    border: 4px outset #FF8888;
+    background-color: #FF0000;
+}
+
+.notification.ad {
+    border: 4px outset #88FFFF;
+    background-color: #00FFFF;
+    color: black;
+}
+
+.notification.alert {
     border: 4px outset #994C7A;
     background-color: #7E3A63;
-    padding: 5px;
-    font-weight: 800;
-    color: rgba(214, 214, 214, 0.7);
 }
 
 .title-container {
@@ -108,6 +116,22 @@ body {
     margin: 0 auto;
 }
 
+#messages {
+    position : absolute;
+    bottom : 180px;
+    left : 25px;
+
+    width : 25px;
+
+    cursor : pointer;
+}
+
+#messages img {
+    position : absolute;
+
+    top : -20px;
+}
+
 #menu {
     position: relative;
     font-weight: 300;
@@ -117,12 +141,6 @@ body {
     background: linear-gradient(#060D22, #021E2D);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-}
-
-.robot-spawn {
-    display: inline-block;
-    vertical-align: top;
-    width: 560px;
 }
 
 #mainCanvas {
@@ -155,34 +173,19 @@ body {
     border: 4px inset #FFF;
     background-color: #40536B;
     border-radius: 9px;
-    width: 735px;
+    width: 940px;
     padding: 3px;
     color: #FFF;
     font-size: 19px;
     display: inline-block;
-    height: 100px;
+    height: 77px;
     vertical-align: top;
-}
-
-.robot-shop .upgrade {
-    color: #A2A2A2;
-}
-
-.robot-shop .upgrade.enabled {
-    color: #fff;
-    cursor: pointer;
-}
-
-.robot-shop .upgrade.enabled:hover {
-    cursor: pointer;
-    background-color: #FFF;
-    color: #222;
 }
 
 .robot-container {
     display: inline-block;
-    max-width: 140px;
-    width: 140px;
+    max-width: 180px;
+    width: 180px;
     text-align: center;
 }
 
@@ -196,23 +199,13 @@ body {
     background-color: #8B8B8B;
 }
 
-.robot-spawn .robot {
-    display: inline-block;
-    color: #FFF;
-    text-align: center;
-    padding: 1px 0 3px;
-    border: 4px outset #BDBDBD;
-    border-radius: 10px;
-    background-color: #8B8B8B;
-}
-
 .robot-container:hover {
     opacity: 1;
 }
 
 .robot-shop .robot {
-    padding: 3px;
-    height: 24px;
+    padding: 3px 0;
+    height: 20px;
     display: inline-block;
 }
 
@@ -220,6 +213,29 @@ body {
     cursor: pointer;
     background-color: #FFF;
     color: #222;
+}
+
+.robot-shop .robot::first-letter {
+    color: yellow;
+}
+
+.robot-shop .images {
+    position: relative;
+}
+
+.robot-shop .upgradeCost {
+    pointer-events: none;
+    position: absolute;
+    top: 12px;
+    width: 40px;
+}
+
+.robot-shop .upgradeCost.lvl2 {
+    left: 69px;
+}
+
+.robot-shop .upgradeCost.lvl3 {
+    left: 125px;
 }
 
 .robot-shop .unlockMessage {
@@ -234,9 +250,22 @@ body {
     padding: 3px;
 }
 
+.robot-shop img.current:hover, .robot-shop img.upgradeEnabled:hover {
+    border: 2px solid white;
+    margin: -2px 0;
+    cursor: pointer;
+}
+
+.robot-shop img.unused {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
 .robot-shop .robot-container.disabled {
     position: relative;
-    top: -10px;
+    top: -43px;
     background: #666;
     padding: 15px 0;
 }
@@ -249,10 +278,36 @@ body {
     display: none;
 }
 
+.robot-shop .robot-container.disabled .images {
+    display: none;
+}
+
 .robot-shop .robot-container.disabled .unlockMessage {
     visibility: visible;
 }
 
 .title .title-text {
     margin: 0;
+}
+
+.printer {
+    width: 700px;
+    height: 5px;
+    background-color: #7A7575;
+    box-shadow: inset 1px 1px 1px #575757;
+    border-radius: 5px;
+    margin: 7px auto 0px;
+}
+
+.printout {
+    border-top: 2px solid #92ADB8;
+    top: 128px;
+    color: #4D4D4D;
+    position: absolute;
+    background-color: #FFF;
+    width: 670px;
+    left: 50%;
+    margin-left: -335px;
+    z-index: 1000;
+    display: none;
 }

@@ -15,7 +15,7 @@ function Tile(pixel_x, pixel_y, size, type, amount, pos) {
         this.amount = amount;
         this.baseAmount = amount;
         this.type = type;
-        this.explored = true; // true to disable fog of war
+        this.explored = false; // true to disable fog of war
         if (pos[1] < 2) { // no FOW on first two rows, let's say
             this.explored = true;
         }
