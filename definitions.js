@@ -442,7 +442,7 @@ var asteroids = {
         // 'unyieldite': {pTop: 0, pBottom: 0, minDepth: 0},
 
         // minerals and goodies
-        'artifact': {pTop: 0.4, pBottom: 0.4, minDepth: .3},
+        'artifact': {pTop: 0, pBottom: 0.1, minDepth: 0},
         'paydirtium':{pTop: 0.1, pBottom: 1, minDepth: 0},
         'cheddarium':{pTop: 0.4, pBottom: 1, minDepth: 0.6},
         'fatlootium': {pTop: 0.3, pBottom: 0.3, minDepth: 0.85},
@@ -455,10 +455,10 @@ var asteroids = {
 
     "Cheddaroid": new Asteroid("Cheddaroid", {
         //dirt and rocks
-        'dirtite': {pTop: 1, pBottom: .5, minDepth: 0},
+        'dirtite': {pTop: 1.5, pBottom: .5, minDepth: 0},
         'dregsite': {pTop: 1, pBottom: 1, minDepth: 0},
-        'rubbishite': {pTop: .4, pBottom: .6, minDepth: 0.5},
-        'junkite': {pTop: 0.3, pBottom: 0.4, minDepth: 0.7},
+        'rubbishite': {pTop: 0.1, pBottom: .6, minDepth: 0.5},
+        'junkite': {pTop: 0.1, pBottom: 0.4, minDepth: 0.7},
         // 'scrapite': {pTop: 0, pBottom: 0, minDepth: 0},
         // 'crapite': {pTop: 0, pBottom: 0, minDepth: 0},
         // 'densite': {pTop: 0, pBottom: 0, minDepth: 0},
@@ -467,10 +467,10 @@ var asteroids = {
         // 'unyieldite': {pTop: 0, pBottom: 0, minDepth: 0},
 
         // minerals and goodies
-        'artifact': {pTop: 0.4, pBottom: 0.4, minDepth: .3},
-        'paydirtium':{pTop: 1, pBottom: .6, minDepth: 0},
-        'cheddarium':{pTop: 0.8, pBottom: 1, minDepth: 0},
-        'fatlootium': {pTop: 0.3, pBottom: 0.5, minDepth: 0.6},
+        'artifact': {pTop: 0, pBottom: 0.1, minDepth: 0},
+        'paydirtium':{pTop: 0.3, pBottom: .6, minDepth: 0},
+        'cheddarium':{pTop: 0.2, pBottom: 1, minDepth: 0},
+        'fatlootium': {pTop: 0.2, pBottom: 0.5, minDepth: 0.6},
         // 'affluentium': {pTop: 0, pBottom: 0, minDepth: 0},
         // 'cashmonium': {pTop: 0, pBottom: 0, minDepth: 0},
 
@@ -492,7 +492,7 @@ var asteroids = {
         // 'unyieldite': {pTop: 0, pBottom: 0, minDepth: 0},
 
         // minerals and goodies
-        'artifact': {pTop: 0.4, pBottom: 0.4, minDepth: .3},
+        'artifact': {pTop: 0, pBottom: 0.1, minDepth: 0},
         'paydirtium':{pTop: 0.7, pBottom: 0, minDepth: 0},
         'cheddarium':{pTop: 1, pBottom: 0.1, minDepth: 0},
         'fatlootium': {pTop: 0.1, pBottom: 1, minDepth: 0},
@@ -517,7 +517,7 @@ var asteroids = {
         // 'unyieldite': {pTop: 0, pBottom: 0, minDepth: 0},
 
         // minerals and goodies
-        'artifact': {pTop: 0.4, pBottom: 0.4, minDepth: .3},
+        'artifact': {pTop: 0, pBottom: 0.1, minDepth: 0},
         // 'paydirtium':{pTop: 0, pBottom: 0, minDepth: 0},
         // 'cheddarium':{pTop: 0, pBottom: 0, minDepth: 0},
         'fatlootium': {pTop: 0.8, pBottom: 0, minDepth: 0},
@@ -542,7 +542,7 @@ var asteroids = {
         'unyieldite': {pTop: 0.01, pBottom: 1, minDepth: 0},
 
         // minerals and goodies
-        'artifact': {pTop: 0.4, pBottom: 0.4, minDepth: .3},
+        'artifact': {pTop: 0, pBottom: 0.1, minDepth: 0},
         'paydirtium':{pTop: 0, pBottom: 0, minDepth: 0},
         'cheddarium':{pTop: 0, pBottom: 0, minDepth: 0},
         'fatlootium': {pTop: 0, pBottom: 0, minDepth: 0},
