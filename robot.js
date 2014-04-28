@@ -1,7 +1,9 @@
 var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
     var _this = this;
     var grid = asteroid.getGrid();
+    var deadBots = asteroid.getDeadBots();
 
+    this.asteroid = asteroid;
     this.energy = baseAttrs.baseEnergy * energy_scale;
     this.baseEnergy = baseAttrs.baseEnergy * energy_scale;
     this.baseAttrs = baseAttrs;
