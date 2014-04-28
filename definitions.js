@@ -389,7 +389,7 @@ var asteroids = {
 
     // pain and death
     // 'lava': {pTop: 0, pBottom: 0, minDepth: 0}
-}),
+}, 1.0),
 "Cheddaroid": new Asteroid({
     'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
     'dregsite': {pTop: 0.2, pBottom: 0.4, minDepth: 1},
@@ -400,7 +400,7 @@ var asteroids = {
     'paydirtium': {pTop: 0.1, pBottom: 0.05, minDepth: 1},
     'cheddarium': {pTop: 0.1, pBottom: 0.5, minDepth: 1},
     'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 5}
-}),
+}, 1.0),
 "Fatlooteroid": new Asteroid({
     'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
     'dregsite': {pTop: 0.2, pBottom: 0.4, minDepth: 1},
@@ -414,7 +414,7 @@ var asteroids = {
     'cheddarium': {pTop: 0.05, pBottom: 0.1, minDepth: 1},
     'fatlootium': {pTop: 0.3, pBottom: 0.5, minDepth: 10},
     'affluentium': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
-}),
+}, 1.25),
 "Affluoid": new Asteroid({
     'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
     'dregsite': {pTop: 0.2, pBottom: 0.4, minDepth: 1},
@@ -430,7 +430,7 @@ var asteroids = {
     'fatlootium': {pTop: 0.05, pBottom: 0.1, minDepth: 10},
     'affluentium': {pTop: 0.3, pBottom: 0.5, minDepth: 15},
     'cashmonium': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
-}),
+}, 1.5),
 "Cashmonoid": new Asteroid({
     'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
     'dregsite': {pTop: 0.2, pBottom: 0.4, minDepth: 1},
@@ -444,5 +444,5 @@ var asteroids = {
     'fatlootium': {pTop: 0.05, pBottom: 0.3, minDepth: 10},
     'affluentium': {pTop: 0.05, pBottom: 0.3, minDepth: 15},
     'cashmonium': {pTop: 0.2, pBottom: 0.5, minDepth: 15}
+}, 2.0)
 };
-}
