@@ -7,7 +7,7 @@ SquirrelBot.defaultBehavior = function(_this) {
 			&& tile.getType() != 'backfill';
 	};
 	var dest = findNearestResource(_this.position, _this.getGrid(), unexploredSelectionCallback);
-	if(dest) {
+	if (dest && (dest.x != _this.position.x || dest.y != _this.position.y)) {
 		_this.moveTowardDestination(dest.x, dest.y);
 	} else {
 		_this.makeRandomMove();
