@@ -92,12 +92,32 @@ var robots = {
 var energy_scale = 0.1;
 var WobbleConstant = 0.2;
 
-var upgradeCosts = {
-    'squirrelBot': [0, 1500, 3000],
-    'bearBot': [0, 3000, 6000],
-    'antBot': [0, 5500, 11000],
-    'goatBot': [0, 10500, 21000],
-    'vultureBot': [0, 6500, 13000]
+var upgrades = {
+    'squirrelBot': {
+        costs: [0, 1500, 3000],
+        mineralReqs: [0, 1500, 3000],
+        mineral: "paydirtium"
+    },
+    'bearBot': {
+        costs: [0, 3000, 6000],
+        mineralReqs: [0, 3000, 6000],
+        mineral: "cheddarium"
+    },
+    'antBot': {
+        costs: [0, 5500, 11000],
+        mineralReqs: [0, 5500, 11000],
+        mineral: "fatlootium"
+    },
+    'goatBot': {
+        costs: [0, 10500, 21000],
+        mineralReqs: [0, 10500, 21000],
+        mineral: "affluentium"
+    },
+    'vultureBot': {
+        costs: [0, 6500, 13000],
+        mineralReqs: [0, 6500, 13000],
+        mineral: "cashmonium"
+    }
 };
 
 var robotLevels = {
