@@ -8,7 +8,7 @@
 
 .information {
     display: inline-block;
-    width: 220px;
+    width: 206px;
 }
 
 .display {
@@ -43,7 +43,7 @@
 }
 
 .stats {
-    width: 200px;
+    width: 185px;
     font-size: 16px;
     border-radius: 3px;
     padding: 7px;
@@ -60,7 +60,7 @@ body {
 .controls {
     background-color: #C9C9C9;
     margin-top: -4px;
-    padding: 10px 57px;
+    padding: 10px 10px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
@@ -131,6 +131,39 @@ body {
     border-bottom-right-radius: 5px;
 }
 
+.level-select {
+    text-align: center;
+    background-color: #3A4F6B;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-top: 12px;
+    padding: 5px 0 5px 10px;
+    font-size: 14px;
+}
+
+.level-select .level {
+    padding: 3px;
+}
+
+.level-select .level:hover {
+    cursor: pointer;
+    background-color: #757D9B;
+    border-radius: 3px;
+}
+
+.robot-shop {
+    border: 4px inset #FFF;
+    background-color: #40536B;
+    border-radius: 9px;
+    width: 735px;
+    padding: 3px;
+    color: #FFF;
+    font-size: 19px;
+    display: inline-block;
+    height: 100px;
+    vertical-align: top;
+}
+
 .robot-shop .upgrade {
     color: #A2A2A2;
 }
@@ -140,9 +173,16 @@ body {
     cursor: pointer;
 }
 
+.robot-shop .upgrade.enabled:hover {
+    cursor: pointer;
+    background-color: #FFF;
+    color: #222;
+}
+
 .robot-container {
     display: inline-block;
     max-width: 140px;
+    width: 140px;
     text-align: center;
 }
 
@@ -170,40 +210,6 @@ body {
     opacity: 1;
 }
 
-.level-select {
-    text-align: center;
-    background-color: #3A4F6B;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    margin-top: 12px;
-    padding: 5px 0 5px 10px;
-    font-size: 14px;
-}
-
-.level-select .level {
-    padding: 3px;
-}
-
-.level-select .level:hover {
-    cursor: pointer;
-    background-color: #757D9B;
-    border-radius: 3px;
-}
-
-.robot-shop {
-    border: 4px inset #FFF;
-    background-color: #40536B;
-    border-radius: 9px;
-    width: 625px;
-    padding: 3px;
-    color: #FFF;
-    font-size: 19px;
-    display: inline-block;
-    height: 100px;
-    vertical-align: top;
-}
-
-
 .robot-shop .robot {
     padding: 3px;
     height: 24px;
@@ -213,6 +219,11 @@ body {
 .robot-shop .robot:hover {
     cursor: pointer;
     background-color: #FFF;
+    color: #222;
+}
+
+.robot-shop .unlockMessage {
+    visibility: hidden;
 }
 
 .robot-shop img {
@@ -221,6 +232,25 @@ body {
     background-color: #996161;
     border-radius: 5px;
     padding: 3px;
+}
+
+.robot-shop .robot-container.disabled {
+    position: relative;
+    top: -10px;
+    background: #666;
+    padding: 15px 0;
+}
+
+.robot-shop .robot-container.disabled .robot {
+    display: none;
+}
+
+.robot-shop .robot-container.disabled .upgrade {
+    display: none;
+}
+
+.robot-shop .robot-container.disabled .unlockMessage {
+    visibility: visible;
 }
 
 .title .title-text {

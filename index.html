@@ -7,12 +7,16 @@
 <body>
 
 <script id="robot-buy-button-template" type="text/html">
-    <span class='robot-container <%= name %>'>
+    <div class='robot-container <%= name %>'>
         <div class='robot' data-robot='<%= name %>'>
             <img src="<%= gif %>"><%= uiName %> $<%= cost %>
         </div>
-        <div class='upgrade' data-robot='<%= name %>'>Upgrade</div>
-    </span>
+        <div class='upgrade' data-robot='<%= name %>'>
+        	Upgrade
+        	<span class="upgradeCost">locked</span>
+        </div>
+        <div class='unlockMessage' data-robot='<%= name %>'>unavailable</div>
+    </div>
 </script>
 
 <script id="mineral-stat-template" type="text/html">
@@ -69,6 +73,7 @@
     <a href='javascript://' onclick="document.getElementById('audio').play()">play</a>
     <a href='javascript://' onclick="document.getElementById('audio').pause()">pause</a>
 </div>
+
 
 <link href='http://fonts.googleapis.com/css?family=VT323|Roboto:400,100,300' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="style.css">
