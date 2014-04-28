@@ -374,6 +374,10 @@ body {
     top: 2px !important;
 }
 
+#menu.shrunk #modalyesno {
+    margin-top: -100px;
+}
+
 #modalyesno {
     position: absolute;
     font-family: monospace;
