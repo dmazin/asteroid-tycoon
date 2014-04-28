@@ -54,17 +54,25 @@ Robot.prototype.render = function() {
     });
 };
 
+// Determines if an upgrad is possible for a bot
+// based on it's type, which level it wants to upgrade to
+// and whether the player has collected enough of the right
+// mineral.
 var canUpgrade = function(type, level) {
-    return playerState.getResource('money') < cost;
+    var upgrade = upgrades[type];
+    var cost = upgrade.cost[level];
+    var mineralReq = upgrade.mineralReq[level];
+    var mineral = upgrade.mineral;
+    return playerState.getResource('money') > cost &&
+        playerState.getResource(mineral) > mineralReq;
 };
 
 var upgradeBot = function(type, level) {
-    var cost = upgradeCosts[type][level];
-
     if (!canUpgrade(type, level)) {
         return;
     }
 
+    var cost = upgrades[type][costs][level];
     playerState.changeResource('money', -cost);
     playerState.setRobotLevel(type, level);
 };
