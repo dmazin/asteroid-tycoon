@@ -468,9 +468,9 @@ var asteroids = {
 
         // minerals and goodies
         'artifact': {pTop: 0, pBottom: 0.1, minDepth: 0},
-        'paydirtium':{pTop: 0.3, pBottom: .6, minDepth: 0},
+        'paydirtium':{pTop: 0.3, pBottom: 0.2, minDepth: 0},
         'cheddarium':{pTop: 0.2, pBottom: 1, minDepth: 0},
-        'fatlootium': {pTop: 0.2, pBottom: 0.5, minDepth: 0.6},
+        'fatlootium': {pTop: 0.2, pBottom: 0.8, minDepth: 0.6},
         // 'affluentium': {pTop: 0, pBottom: 0, minDepth: 0},
         // 'cashmonium': {pTop: 0, pBottom: 0, minDepth: 0},
 
