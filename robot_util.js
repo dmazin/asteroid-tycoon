@@ -45,8 +45,11 @@ Robot.prototype.render = function() {
     this.animation.y = grid_size*y + surface_height;
 
     var p = this.position;
-    [p.x-1, p.x, p.x+1].forEach(function (x) {
-        [p.y-1, p.y, p.y+1].forEach(function (y) {
+    var radius = this.exploreRadius;
+    var xs = _.range(-radius, radius + 1).map(function (x) {return p.x + x;});
+    var ys = _.range(-radius, radius + 1).map(function (y) {return p.y + y;});
+    xs.forEach(function (x) {
+        ys.forEach(function (y) {
             if (_this.getGrid()[x] && _this.getGrid()[x][y]) {
                 var tile = _this.getGrid()[x][y];
                 var explored = tile.explored;

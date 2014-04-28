@@ -114,7 +114,7 @@ body {
     width: 980px;
     height: 290px;
     padding: 10px;
-    background-color: #060D22;
+    background: linear-gradient(#060D22, #021E2D);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
