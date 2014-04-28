@@ -131,6 +131,8 @@ var Asteroid = function (params) {
 }
 
 function drawAsteroidSelectionScreen() {
+    playSound('blip');
+
     // first kill all current bots
     activeBots.forEach(function (bot) {
         bot.handleDeath('abandonment');

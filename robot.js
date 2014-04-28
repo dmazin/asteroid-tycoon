@@ -319,6 +319,7 @@ var Robot = function(type, baseAttrs, startX, destX, destY, asteroid) {
         if (this.vacuumState <= 0) {
             playerState.changeResource('money', this.salvageValue * efficiency);
             this.animation.visible = false;
+            playSound('suck');
             return true;
         } else {
             this.vacuumState -= 0.1;
@@ -408,6 +409,7 @@ var Robot = function(type, baseAttrs, startX, destX, destY, asteroid) {
         _this.capacitybar.visible = false;
         _this.energy = 0;
 
+
         _this.dead = true;
         playerState.robotsKilled[type]++;
         $('.notification.killed .amount').text(playerState.getTotalRobotsKilled());
@@ -441,6 +443,11 @@ var Robot = function(type, baseAttrs, startX, destX, destY, asteroid) {
             setTimeout(function () {
                 displayDeathText(deathString, 20);
             }, 750);
+        }
+        if (totalResourceValue == 0) {
+            playSound('break');
+        } else {
+            playSound('coin');
         }
     };
     this.handleDeath = handleDeath;

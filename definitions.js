@@ -41,8 +41,8 @@ var robots = {
         'cost': 250,
         'affinity': {
             'dirtite': 3,
-            'dregsite': 3,
-            'rubbishite': 3
+            'dregsite': 2,
+            'rubbishite': 1
         },
         'klass': BearBot,
         'spriteSheet': 'pics/bots/allaround0.png',
@@ -156,7 +156,8 @@ var robots = {
 
 var upgrades = {
     'squirrelBot': {
-        costs: [0, 1500, 3000],
+        // costs: [0, 1500, 3000],
+        costs: [0, 1500, 4500],
         lockedTil: [
             null,
             {
@@ -170,7 +171,8 @@ var upgrades = {
         ]
     },
     'bearBot': {
-        costs: [0, 3000, 6000],
+        // costs: [0, 3000, 6000],
+        costs: [0, 3000, 9000],
         lockedTil: [
             null,
             {
@@ -184,7 +186,8 @@ var upgrades = {
         ]
     },
     'antBot': {
-        costs: [0, 5500, 11000],
+        // costs: [0, 5500, 11000],
+        costs: [0, 5500, 16500],
         lockedTil: [
             null,
             {
@@ -198,7 +201,8 @@ var upgrades = {
         ]
     },
     'goatBot': {
-        costs: [0, 10500, 21000],
+        // costs: [0, 10500, 21000],
+        costs: [0, 10500, 31500],
         lockedTil: [
             null,
             {
@@ -212,7 +216,8 @@ var upgrades = {
         ]
     },
     'vultureBot': {
-        costs: [0, 6500, 13000],
+        // costs: [0, 6500, 13000],
+        costs: [0, 6500, 19500],
         lockedTil: [
             null,
             {
@@ -257,10 +262,10 @@ var robotLevels = {
             'wobble': 0.65,
             'harvestEfficiency': 0.6,
             'affinity': {
-                'dirtite': 3,
+                'dirtite': 1,
                 'dregsite': 3,
                 'rubbishite': 3,
-                'junkite': 3
+                'junkite': 2
             },
             'hardness': 0.35,
             'spriteSheet': 'pics/bots/allaround1.png',
@@ -273,13 +278,14 @@ var robotLevels = {
             'wobble': 0.6,
             'harvestEfficiency': 0.8,
             'affinity': {
-                'dirtite': 3,
-                'dregsite': 3,
-                'rubbishite': 3,
-                'junkite': 3,
-                'scrapite': 3
+                'dirtite': 1,
+                'dregsite': 1,
+                'rubbishite': 2,
+                'junkite': 2,
+                'scrapite': 3,
+                'densite': 3,
             },
-            'hardness': 0.45,
+            'hardness': 0.55,
             'spriteSheet': 'pics/bots/allaround2.png',
             'spriteSpeed': 1.0,
             'level' : 2
@@ -300,7 +306,7 @@ var robotLevels = {
             'baseEnergy': 1500,
             'storage': 400,
             'harvestEfficiency': 1.0,
-            'hardness': 0.85,
+            'hardness': 0.65,
             'spriteSheet': 'pics/bots/harvester2.png',
             'spriteSpeed': 1.0,
             'level' : 2

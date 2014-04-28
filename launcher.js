@@ -16,6 +16,8 @@ $(document).ready(function () {
     });
 
     $('.robot-shop').on('click', '.robot, img.current', function() {
+        playSound('blip');
+
         var $this = $(this);
         var robotType = $this.data('robot');
 
@@ -29,6 +31,7 @@ $(document).ready(function () {
     });
 
     $('.robot-shop').on('click', '.upgradeEnabled', function() {
+        playSound('blip');
         var robot = $(this).data('robot');
         var nextLevel = playerState.getRobotLevel(robot) + 1;
         upgradeBot(robot, nextLevel);
@@ -207,3 +210,7 @@ var updateRobotShop = function() {
         }
     });
 };
+
+var playSound = function(snd) {
+    document.getElementById('sfx_' + snd).play();
+}
