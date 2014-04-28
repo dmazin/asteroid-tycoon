@@ -31,6 +31,11 @@ $(document).ready(function () {
         playerState.setAsteroid(asteroids[asteroidName]);
     });
 
+    // prevents text select cursor
+    $('canvas').mousedown(function(event){
+        event.preventDefault();
+    });
+
     updateRobotShop();
     setInterval(updateRobotShop, 1000);
 });
