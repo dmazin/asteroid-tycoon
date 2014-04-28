@@ -9,11 +9,16 @@
 <script id="robot-buy-button-template" type="text/html">
     <div class='robot-container <%= name %>'>
         <div class='robot' data-robot='<%= name %>'>
-            <img src="<%= gif %>"><%= uiName %> $<%= cost %>
+            <%= uiName %> $<%= cost %>
         </div>
         <div class='upgrade' data-robot='<%= name %>'>
         	Upgrade
         	<span class="upgradeCost">locked</span>
+        </div>
+        <div class='images'>
+        	<img src="pics/2x_gifs/<%= gifName %>0.gif">
+        	<img src="pics/2x_gifs/<%= gifName %>1.gif" class="<%= lvl2 %>">
+        	<img src="pics/2x_gifs/<%= gifName %>2.gif" class="<%= lvl3 %>">
         </div>
         <div class='unlockMessage' data-robot='<%= name %>'>unavailable</div>
     </div>
@@ -68,7 +73,7 @@
             <span class='paydirtium notification'>CONGRATULATIONS, YOU HAVE OBTAINED <span class='amount'></span></span>
         </marquee>
         <div class='controls'>
-            <div class='information'>
+            <div class='information' style="display: none;">
                 <div class='general-stats stats display'>
                 </div>
                 <div class='money-stats stats display'>

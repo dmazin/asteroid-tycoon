@@ -64,7 +64,7 @@ var playerState = (function() {
     state.getArtifactValue = function() {
         var r = Math.random();
         var val = r * (60 - 5) + 5;
-        val *= currentAsteroid.artifactScaleValue;
+        val *= currentAsteroid.artifactValueScale;
         return val;
     };
 
@@ -92,11 +92,6 @@ var playerState = (function() {
         currentAsteroid = asteroid;
         activeBots = [];
 
-        asteroid.getDeadBots().forEach(function (bot) {
-            console.log("Rendering", bot);
-            bot.render();
-        });
-
         if (stage) {
             stage.removeAllChildren();
             stage.clear();
@@ -108,6 +103,11 @@ var playerState = (function() {
         currentAsteroid.refresh();
 
         init_stage();
+
+        asteroid.getDeadBots().forEach(function (bot) {
+            stage.addChild(bot.animation);
+            bot.render();
+        });
     };
 
     state.unlockedRobots = ['squirrelBot'];
