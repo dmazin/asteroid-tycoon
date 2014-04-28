@@ -7,7 +7,7 @@ $(document).ready(function () {
     _.each(robots, function(val, key) {
         var data = _.extend(val, {'name': key});
         var rendered = buy_button_template(data);
-        $('.controls .robot-spawn').append(rendered);
+        $('.controls .robot-shop').append(rendered);
     });
 
     $('.robot').click(function() {
