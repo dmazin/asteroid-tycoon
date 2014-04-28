@@ -2,9 +2,40 @@
 .info-popup {
     position : absolute;
     z-index : 10;
-    height : 200px;
     width : 250px;
 
-    background : white;
+    border : 4px inset #FFF;
+    border-radius : 9px;
+    background-color : #40536B;
 }
 
+.info-popup h1 {
+    color : white;
+    font-family :  'VT323', '';
+    margin-top : 0;
+    margin-left : 4px;
+}
+
+.info-popup-icon {
+    position : absolute;
+    right : 8px;
+    bottom : 8px;
+
+    background-color : #60738B;
+    border-radius : 5px;
+}
+
+.info-popup-icon img {
+    margin : 8px 10px;
+}
+
+.info-popup ul {
+    position : relative;
+    margin-top : -14px;
+    margin-left : -20px;
+
+    font-family: monospace;
+    font-size : 120%;
+
+    list-style : none;
+}
