@@ -211,6 +211,9 @@ body {
 .robot-shop img {
     vertical-align: bottom;
     margin-right: 3px;
+    background-color: #996161;
+    border-radius: 5px;
+    padding: 3px;
 }
 
 .title .title-text {
