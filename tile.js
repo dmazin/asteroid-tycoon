@@ -38,10 +38,10 @@ function Tile(pixel_x, pixel_y, size, type, amount, pos) {
 
     this.refresh = function () {
         this.shape.image = resources[this.getType()].image;
-        if (this.baseAmount == 0) {
+        if (this.baseAmount == 0 || this.amount == 0) {
             this.deterioration.gotoAndStop(0);
         } else {
-            this.deterioration.gotoAndStop(Math.floor((1 - this.amount / this.baseAmount) * 3.5));
+            this.deterioration.gotoAndStop(Math.min(Math.floor((1 - this.amount / this.baseAmount) * 4), 3));
         }
     };
 
