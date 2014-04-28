@@ -16,9 +16,14 @@ SquirrelBot.defaultBehavior = function(_this) {
 };
 
 BearBot.defaultBehavior = function(_this) {
-	var otherBehaviors = [SquirrelBot, AntBot, GoatBot];
-	var randomChoice = Math.floor(Math.random() * 3);
-	otherBehaviors[randomChoice].defaultBehavior(_this);
+	var otherBehaviors = [AntBot];
+	if (!_this.currentBehaviorStep) _this.currentBehaviorStep = 0;
+	// Idea: do the same behavior 3 times in a row to bounce around less.
+	if (!_this.currentBehavior || !_this.currentBehaviorStep) {
+		_this.currentBehavior = Math.floor(Math.random() * otherBehaviors.length);
+	}
+	otherBehaviors[_this.currentBehavior].defaultBehavior(_this);
+ 	_this.currentBehaviorStep++;
 };
 
 //Sseeks out nearest minerals to harvest

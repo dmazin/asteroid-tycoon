@@ -5,6 +5,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
     this.energy = baseAttrs.baseEnergy * energy_scale;
     this.baseEnergy = baseAttrs.baseEnergy * energy_scale;
     this.baseAttrs = baseAttrs;
+    this.exploreRadius = baseAttrs.exploreRadius;
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; // the stuff you pick up
     this.position = {'x': startX, 'y': 0};
@@ -277,7 +278,8 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         if (baseAttrs.canSalvage) {
             deadBots.forEach(function (bot, i) {
                 if (bot.position.x == newX && bot.position.y == newY) {
-                    if (bot.getSalvaged()) { // are we done vacuuming this bot?
+                    // are we done vacuuming this bot?
+                    if (bot.getSalvaged(baseAttrs.harvestEfficiency)) {
                         _this.currentlyVacuuming = false;
                         deadBots.splice(i, 1); // remove from array
                     } else {
@@ -302,12 +304,12 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
     };
 
     // returns if the dead robot has been fully vacuumed up
-    this.getSalvaged = function () {
+    this.getSalvaged = function (efficiency) {
         if (!this.vacuumState) {
             this.vacuumState = 1.0;
         }
         if (this.vacuumState <= 0) {
-            playerState.changeResource('money', this.salvageValue);
+            playerState.changeResource('money', this.salvageValue * efficiency);
             this.animation.visible = false;
             return true;
         } else {
@@ -400,7 +402,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
 
         _this.dead = true;
         deadBots.push(_this);
-        _this.salvageValue = baseAttrs.cost * salvageValueMultiplier;
+        _this.salvageValue = baseAttrs.cost;
         playerState.addResources(_this.resourceAmountByType);
 
         var deathString = "";
