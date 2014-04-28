@@ -48,19 +48,10 @@ var playerState = (function() {
             return;
         }
 
-        var statTemplate = _.template($('#mineral-stat-template').html());
-
-        if ($('.general-stats .' + resource).length > 0) {
-            $('.general-stats .' + resource).html(statTemplate({
-                name: resource,
-                amount: parseInt(resourceAmounts[resource])
-            }));
-        } else {
-            $('.general-stats').append(statTemplate({
-                name: resource,
-                amount: parseInt(resourceAmounts[resource])
-            }));
-        }
+        $('.general-stats .' + resource).html(statTemplate({
+            name: resource,
+            amount: parseInt(resourceAmounts[resource])
+        }));
 
         if (resource === 'iron') {
             $('.notification.iron .amount').text(parseInt(resourceAmounts[resource]));
