@@ -49,6 +49,7 @@ $(document).ready(function () {
     var lines = $('#first-email').text().split('\n');
 
     $('.printout').fadeIn(100);
+    $("#game").one('click', hidePrintout);
     var i = 0;
     var interval = setInterval(function() {
         $('.printout').prepend(lines[lines.length - i - 1] + '\n');
@@ -62,8 +63,29 @@ $(document).ready(function () {
 
 var hidePrintout = function () {
     $('.printout').css('cursor', 'default');
-    $('.printout').animate({'top': 500, 'opacity': 0}, 1000);
+    $("#messages").fadeIn(1000);
+    $('.printout').animate({'top': 110,
+                            'left' : 350,
+                            'width' : 15,
+                            'height' : 15,
+                            'opacity': 0},
+                           1000);
 }
+
+var showPrintout = function () {
+    $(".printout").animate({'top' : 128,
+                            'left' : '50%',
+                            'width' : 670,
+                            'height' : '390',
+                            'opacity' : 100 },
+                           1000);
+
+    $("#messages").fadeOut(600);
+
+    setTimeout(function () {$("#game").one('click', hidePrintout);}, 0);
+}
+
+$("#messages").click(showPrintout);
 
 var updateRobotShop = function() {
     _.each(robots, function(val, key) {
