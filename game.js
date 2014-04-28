@@ -109,8 +109,6 @@ function init_stage() {
 
 function setup_stage_event_handler() {
     stage.on('stagemouseup', function(e) {
-        hidePrintout();
-
         if ($('canvas').hasClass('botSpawner')) {
             // Change canvas back
             $('canvas').removeClass('botSpawner');
