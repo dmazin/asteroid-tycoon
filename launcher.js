@@ -33,11 +33,6 @@ $(document).ready(function () {
         upgradeBot(robot, nextLevel);
     });
 
-    $('.level').click(function() {
-        var asteroidName = $(this).attr('id');
-        playerState.setAsteroid(asteroids[asteroidName]);
-    });
-
     // prevents text select cursor
     $('canvas').mousedown(function(event){
         event.preventDefault();
@@ -46,7 +41,8 @@ $(document).ready(function () {
     updateRobotShop();
     setInterval(updateRobotShop, 1000);
 
-    printout($('#first-email').text());
+    //printout($('#first-email').text());
+    drawAsteroidSelectionScreen();
 });
 
 var updateRobotShop = function() {
