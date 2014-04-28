@@ -17,9 +17,8 @@ var robots = {
         'wobble': 0.9,
         'harvestEfficiency': 0,
         'cost': 150,
-        // 'affinity': {
-        //     'dirtite': 3
-        // },
+        'affinity': {
+        },
         'klass': SquirrelBot,
         'spriteSheet': 'pics/bots/scout0.png',
         'spriteSpeed': 0.3,
@@ -28,7 +27,7 @@ var robots = {
     'bearBot': {
         'uiName': 'Bear',
         'description': 'BearBot 1.0 - All Around',
-        'hardness': 0.15,
+        'hardness': 0.25,
         'baseEnergy': 1200,
         'storage': 100,
         'wobble': 0.7,
@@ -156,7 +155,7 @@ var robotLevels = {
             'dirtite': 3,
             'dregsite': 3
         },
-            'hardness': 0.25,
+            'hardness': 0.35,
             'spriteSheet': 'pics/bots/allaround1.png',
             'spriteSpeed': 0.6,
             'gif': 'pics/bots/allaround1.gif'
@@ -171,7 +170,7 @@ var robotLevels = {
             'dregsite': 3,
             'rubbishite': 3
         },
-            'hardness': 0.35,
+            'hardness': 0.45,
             'spriteSheet': 'pics/bots/allaround2.png',
             'spriteSpeed': 1.0,
             'gif': 'pics/bots/allaround2.gif'
