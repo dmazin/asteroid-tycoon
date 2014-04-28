@@ -23,7 +23,8 @@ var robots = {
         'klass': SquirrelBot,
         'spriteSheet': 'pics/bots/scout0.png',
         'spriteSpeed': 0.3,
-        'gif': 'pics/bots/scout0.gif'
+        'gif': 'pics/bots/scout0.gif',
+	'exploreRadius' : 3
     },
     'bearBot': {
         'uiName': 'Bear',
@@ -38,7 +39,8 @@ var robots = {
         'klass': BearBot,
         'spriteSheet': 'pics/bots/allaround0.png',
         'spriteSpeed': 0.3,
-        'gif': 'pics/bots/allaround0.gif'
+        'gif': 'pics/bots/allaround0.gif',
+	'exploreRadius' : 1
     },
     'antBot': {
         'uiName': 'Ant',
@@ -54,7 +56,8 @@ var robots = {
         'spriteSheet': 'pics/bots/harvester0.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/bots/harvester0.gif',
-        'lockedTil': 'paydirtium'
+        'lockedTil': 'paydirtium',
+	'exploreRadius' : 1
     },
     'goatBot': {
         'uiName': 'Goat',
@@ -70,7 +73,8 @@ var robots = {
         'spriteSheet': 'pics/bots/smasher0.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/bots/smasher0.gif',
-        'lockedTil': 'cheddarium'
+        'lockedTil': 'cheddarium',
+	'exploreRadius' : 1
     },
     'vultureBot': {
         'uiName': 'Vulture',
@@ -87,7 +91,8 @@ var robots = {
         'spriteSheet': 'pics/bots/scavenger0.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/bots/scavenger0.gif',
-        'lockedTil': 'fatlootium'
+        'lockedTil': 'fatlootium',
+	'exploreRadius' : 1
     }
 };
 
