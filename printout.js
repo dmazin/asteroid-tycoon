@@ -20,9 +20,9 @@ function cycle(envelope, k) {
     setTimeout(k, 150);
 }
 
-function printout(text) {
+function printout(text, type) {
     var lines    = text.split(/\n/),
-        printout = $("<pre class='printout'>"),
+        printout = $("<pre class='printout " + (type ? type : '') + "'>"),
         envelope  = $("<img src='pics/other/envelope.png' alt='envelope' />");
 
     var height = 0;
@@ -36,9 +36,11 @@ function printout(text) {
     insert();
 
     function hideFirst() {
+        if (type == 'modalyesno') { return; }
         cycle(envelope, function () {
-            $("#messages").append(envelope);
-            hide();
+            if (hide()) {
+                $("#messages").append(envelope);
+            }
         });
     }
 
@@ -53,12 +55,18 @@ function printout(text) {
             printout.css('clip', 'rect(0, 670px, ' + i * 20 + 'px, 0)');
             i++;
             if (i === lines.length) {
+                if (type == 'modalyesno') {
+                    $('#modalyesno').show().css({
+                        'top': (i+1) * 20
+                    })
+                }
                 clearInterval(interval);
             }
         }, 50);
     }
 
     function hide() {
+        if (type == 'modalyesno') { return false; }
         height = $('.printout').css('height');
         printout.css('cursor', 'default');
         envelope.animate({'opacity' : envelope.currOpacity}, 600);
@@ -71,6 +79,7 @@ function printout(text) {
                           function () {
                               printout.hide();
                           });
+        return true;
     }
 
     function show() {

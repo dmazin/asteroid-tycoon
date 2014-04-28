@@ -362,10 +362,37 @@ body {
     top: 25px;
 }
 
+#asteroidButton:hover, #messages img:hover {
+    opacity: 0.5 !important;
+}
+
 #menu.shrunk .printer {
     margin-top: -3px;
 }
 
 #menu.shrunk .printout {
     top: 2px !important;
+}
+
+#modalyesno {
+    position: absolute;
+    font-family: monospace;
+    color: #4D4D4D;
+    background-color: #FFF;
+    width: 670px;
+    left: 50%;
+    margin-left: -335px;
+    z-index: 1000;
+    display: none;
+    text-align: center;
+}
+
+#modalyesno a {
+    margin: 0 100px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#modalyesno a:hover {
+    text-decoration: none;
 }

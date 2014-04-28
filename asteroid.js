@@ -121,6 +121,11 @@ var Asteroid = function (params) {
 }
 
 function drawAsteroidSelectionScreen() {
+    // first kill all current bots
+    activeBots.forEach(function (bot) {
+        bot.handleDeath('abandonment');
+    });
+
     $('canvas').addClass('asteroidSelect');
     $('canvas')[0].height = 600;
 
