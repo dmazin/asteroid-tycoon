@@ -27,7 +27,7 @@ $(document).ready(function () {
         }
     });
 
-    $('.robot-shop').on('click', '.upgrade.enabled', function() {
+    $('.robot-shop').on('click', '.upgradeEnabled', function() {
         var robot = $(this).data('robot');
         var nextLevel = playerState.getRobotLevel(robot) + 1;
         upgradeBot(robot, nextLevel);
@@ -69,16 +69,7 @@ var updateRobotShop = function() {
     _.each(robots, function(val, key) {
         var data = _.extend(val, {'name': key});
         var rendered = buy_button_template(data);
-
         var level = playerState.getRobotLevel(key) + 1;
-
-        if (upgradeUnlocked(key, level)) {
-            $('.controls .robot-shop .robot-container.' + key + ' .upgrade').addClass('enabled');
-            $('.controls .robot-shop .robot-container.' + key + ' .upgradeCost').text('$' + currentUpgradeCost(key));
-        } else {
-            $('.controls .robot-shop .robot-container.' + key + ' .upgrade').removeClass('enabled');
-            $('.controls .robot-shop .robot-container.' + key + ' .upgradeCost').text('locked');
-        }
 
         if (Robot.unlocked(key)) {
             $('.robot-container.' + key).removeClass('disabled');
@@ -109,12 +100,22 @@ var updateRobotShop = function() {
         }
 
         var pathPrefix = 'pics/2x_gifs/' + data['gifName'];
-        if (upgradeUnlocked(key, 1)) {
-            $('.robot-container.' + key + ' img.lvl2').attr('src', pathPrefix + '1.gif');
+        if (upgradeUnlocked(key, 1) && level < 2) {
+            $('.robot-container.' + key + ' img.lvl2').addClass('upgradeEnabled')
+                .attr('src', pathPrefix + '1.gif');
+            $('.controls .robot-shop .robot-container.' + key + ' .upgradeCost.lvl2').text('$' + currentUpgradeCost(key));
+        } else {
+            $('.robot-container.' + key + ' img.lvl2').removeClass('upgradeEnabled');
+            $('.controls .robot-shop .robot-container.' + key + ' .upgradeCost.lvl2').text('');
         }
 
-        if (upgradeUnlocked(key, 2)) {
-            $('.robot-container.' + key + ' img.lvl3').attr('src', pathPrefix + '2.gif');
+        if (upgradeUnlocked(key, 2) && level < 3) {
+            $('.robot-container.' + key + ' img.lvl3').addClass('upgradeEnabled')
+                .attr('src', pathPrefix + '2.gif');
+            $('.controls .robot-shop .robot-container.' + key + ' .upgradeCost.lvl3').text('$' + currentUpgradeCost(key));
+        } else {
+            $('.robot-container.' + key + ' img.lvl3').removeClass('upgradeEnabled');
+            $('.controls .robot-shop .robot-container.' + key + ' .upgradeCost.lvl3').text('');
         }
     });
 };
