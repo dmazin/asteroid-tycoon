@@ -70,6 +70,7 @@
 .general-stats .stat {
     display: inline-block;
     width: 85px;
+    margin-top: 1px;
     min-width: 85px;
     text-align: center;
 }
@@ -165,8 +166,7 @@ body {
     height: 290px;
     padding: 10px;
     background: linear-gradient(#060D22, #021E2D);
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-radius: 5px;
 }
 
 #mainCanvas {
