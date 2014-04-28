@@ -29,6 +29,13 @@ var marqueeMessages = [
 		}
 	},
 	{
+		'html': "GRUMBLING IS HEARD AMONG THE RANKS OF YOURS ROBOTS. THERE IS TALK OF STARTING A UNION.",
+		'class': 'alert',
+		'condition': function () {
+			return playerState.getTotalRobotsKilled() > 10;
+		}
+	},
+	{
 		'html': "CONGRATULATIONS, YOU HAVE OBTAINED <span class='amount'>0</span> PAYDIRTIUM",
 		'class': 'resource paydirtium',
 		'condition': function () {
@@ -64,14 +71,14 @@ var marqueeMessages = [
 		}
 	},
 	{
-		'html': "YOU HAVE DISCOVERED <span class='amount'>0</span> ALIEN ARTIFACTS. WHAT PURPOSE DO THEY HOLD?",
+		'html': "YOU HAVE DISCOVERED <span class='amount'>0</span> ALIEN ARTIFACTS. WHAT SECRETS DO THEY HOLD?",
 		'class': 'resource artifacts',
 		'condition': function () {
-			return playerState.getResource('artifacts') > 0;
+			return playerState.getResource('artifact') > 0;
 		}
 	},
 	{
-		'html': "4 OUT OF 5 ASTEROID MINERS RECOMMEND TERRAFORMING. ASK YOUR MINING PROFESSIONAL ABOUT TERRAFORMING TODAY!",
+		'html': "4 OUT OF 5 ASTEROID MINERS RECOMMEND TERRAFORMING",
 		'class': 'ad',
 		'condition': function () {
 			return true;
@@ -84,13 +91,18 @@ function addToMarquee() {
 		return msg.condition()
 			&& ('notification ') + msg.class != $('marquee').children().last().attr('class');
 	});
-	console.log(possibleMessages);
 	var msg = possibleMessages[_.random(possibleMessages.length - 1)];
-	if (msg.condition() === true) {
-		$('<span class="notification">').addClass(msg.class)
-			.html(msg.html)
-			.appendTo($('marquee'));
-	}
+	$('<span class="notification">').addClass(msg.class)
+		.html(msg.html)
+		.appendTo($('marquee'));
+	updateNotifications();
+}
+
+function updateNotifications() {
+	_.each(playerState.getResources(), function (amount, resource) {
+		$('.notification.' + resource + ' .amount').text(parseInt(amount));
+	});
+	$('.notification.killed .amount').text(playerState.getTotalRobotsKilled());
 }
 
 addToMarquee();
