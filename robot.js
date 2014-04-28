@@ -173,19 +173,17 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         dirs = this.getViableDirections();
         dirs=dirs.filter(function(dir) {
             var dest = {'x': _this.position.x + dir[0], 'y': _this.position.y + dir[1]};
-                if ((dir[0] === reverseHeading.x) && (dir[1] === reverseHeading.y)){
-                    return false;
-                }
-                else {
-                    return true;
-                }
-
+            if ((dir[0] === reverseHeading.x) && (dir[1] === reverseHeading.y)){
+                return false;
+            }
+            else {
+                return true;
+            }
         });
         var randomDir = Math.floor(Math.random() * dirs.length);
         chosenDir = dirs[randomDir];
         _this.moveTo(_this.position.x + chosenDir[0], _this.position.y + chosenDir[1]);
         return true;
-
     };
 
     this.getViableDirections = function(){
@@ -243,11 +241,13 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
                 this.currentlyDigging = null;
                 this.position.x = newX;
                 this.position.y = newY;
-                grid[this.position.x][this.position.y].setType('backfill');
+                if (newTile.getType != 'backfill') {
+                    grid[this.position.x][this.position.y].setType('backfill');
+                    playerState.changeResource('money', explorationBonus);
+                }
             } else {
                 this.hit(newTile);
                 this.currentlyDigging = {x: newX, y: newY};
-
             }
         }
 
@@ -295,8 +295,6 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
             addResources(amountMined, tile.getType());
         }
         tile.amount -= amountMined; //Reduce the amount left on the tile
-
-        playerState.changeResource('money', 1);
     };
 
     // This gets called from the updateTileAndResources

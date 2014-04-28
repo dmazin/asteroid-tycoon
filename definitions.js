@@ -1,3 +1,11 @@
+// constants for scaling robot attributes for balancing purposes
+var energy_scale = 0.1;
+var WobbleConstant = 0.75;
+
+// other constants
+var explorationBonus = 1;
+var salvageValueMultiplier = 0.5;
+
 // Definitions of base-level robots - spawn using robotLevels, not robots
 var robots = {
     'squirrelBot': {
@@ -79,13 +87,6 @@ var robots = {
         'gif': 'pics/scavenger0.gif'
     }
 };
-
-// constants for scaling robot attributes for balancing purposes
-var energy_scale = 0.1;
-var WobbleConstant = 0.75;
-
-// other constants
-var salvageValueMultiplier = 0.5;
 
 var upgradeCosts = {
     'squirrelBot': [0, 1500, 3000],
