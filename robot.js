@@ -356,6 +356,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
     // This is called when a robot's energy reaches
     // 0 from the handleMove function.
     var handleDeath = function() {
+        _this.animation.rotation = 0;
         _this.animation.gotoAndPlay('explode');
         _this.healthbar.visible = false;
         _this.capacitybar.visible = false;
