@@ -3,7 +3,8 @@ var SquirrelBot = {}, BearBot = {}, AntBot = {}, GoatBot = {}, VultureBot = {};
 // move in a random direction for 10 moves at a time
 SquirrelBot.defaultBehavior = function(_this) {
 	var unexploredSelectionCallback = function(tile) {
-		return resources[tile.getType()].hardness < _this.baseAttrs.hardness
+		return resources[tile.getType()].harvestable === false
+			&& resources[tile.getType()].hardness < _this.baseAttrs.hardness
 			&& tile.getType() != 'backfill';
 	};
 	var dest = findNearestResource(_this.position, _this.getGrid(), unexploredSelectionCallback);
