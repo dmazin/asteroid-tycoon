@@ -102,8 +102,8 @@ var spawnBot = function(type, startX) {
         updatePlayerMoney(type);
 
         // Make a new bot based on the position.
-        var destX = parseInt(e.stageX / 40);
-        var destY = parseInt(e.stageY / 40);
+        var destX = parseInt(e.stageX / grid_size);
+        var destY = parseInt((e.stageY - surface_height) / grid_size);
         var bot = new Robot(robotAttrs, startX, destX, destY, playerState.getAsteroid());
         activeBots.push(bot);
         return bot;

@@ -20,7 +20,7 @@ BearBot.defaultBehavior = function(_this) {
 //Sseeks out nearest minerals to harvest
 AntBot.defaultBehavior = function(_this) {
 	var harvestableSelectionCallback = function(tile) {
-		return resources[tile.getType()].harvestable
+		return resources[tile.getType()].harvestable === true
 			&& resources[tile.getType()].hardness < _this.baseAttrs.hardness;
 	};
 	var dest = findNearestResource(_this.position, _this.getGrid(), harvestableSelectionCallback);
@@ -34,7 +34,7 @@ AntBot.defaultBehavior = function(_this) {
 //seeks out nearest hard rocks to smash
 GoatBot.defaultBehavior = function(_this) {
 	var rockSelectionCallback = function(tile) {
-		return !resources[tile.getType()].harvestable
+		return resources[tile.getType()].harvestable === false
 			&& tile.getType() != 'backfill'
 			&& tile.getType() != 'dirtite'
 			&& tile.getType() != 'dregsite'
@@ -93,6 +93,9 @@ var findNearestItem = function(position, itemPositionArray) {
 			nearestPosition = itemPos;
 		}
 	});
+
+	// console.log(itemPositionArray);
+	// console.log(nearestPosition);
 	return nearestPosition;
 };
 

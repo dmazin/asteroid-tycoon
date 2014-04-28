@@ -76,6 +76,8 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
             }
             return;
         }
+
+        // console.log(destX + "," + destY);
         this.makeMove(destX, destY);
     };
 
@@ -86,13 +88,18 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         // If they are digging, keep digging.
         // If they haven't reached their destination and aren't digging,
         // try to go to the given destination.
+        // console.log(this.reachedDestination);
         if (this.reachedDestination ||
             (this.position.x === destX && this.position.y === destY)) {
-            this.makeDefaultMove();
+                // console.log('making default move')
+                this.reachedDestination = true;
+                this.makeDefaultMove();
         } else if (this.currentlyDigging &&
                     !this.giveUpDigging()){ //if digging continue to dig unless the robot decides to give up
+            // console.log('currently digging')
             this.moveTo(this.currentlyDigging.x, this.currentlyDigging.y);
         } else {
+            // console.log('moving toward destination')
             this.moveTowardDestination(destX, destY);
         }
     };
@@ -100,7 +107,6 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
     // Once a robot has reached its default destination,
     // this gets called to make the default move for the bot.
     this.makeDefaultMove = function() {
-        this.reachedDestination = this.reachedDestination || true;
         baseAttrs.klass.defaultBehavior(this);
     };
 
@@ -118,29 +124,34 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
                     this.goToward(destX, destY);
                 } else {
                     //changed wobble so robots will not move in the complete opposite direction
+                    // console.log('wobbling');
                     this.makeSemiRandomMove(destX,destY);
                 }
             } else {
                 // destination either already reached or unreachable
                 this.reachedDestination = true;
             }
-        } else {
+        } else { // The destination is clearly set wrong
+            // console.log('making random move');
+            this.reachedDestination = true;
             this.makeRandomMove();
         }
     };
 
-    this.setDestination =function(destinX, destinY){
-        this.destX=destinX;
-        this.destY=destinY;
+    this.setDestination = function(destinX, destinY) {
+        this.destX = destinX;
+        this.destY = destinY;
     };
 
-    this.getHeading = function (destX, destY){
+    this.getHeading = function (destX, destY) {
         //returns the direction and coordinates of the start of the path to our intended destination.
         var g = grid.map(function (row) {
             return row.map(function (tile) {
                 return canPassTile(tile) ? timeToPassTile(tile) : 0;
             });
         });
+        // console.log('current coordinates: ' + this.position.x + ',' + this.position.y)
+        // console.log(g);
 
         var graph = new Graph(g);
         var start = graph.nodes[this.position.x][this.position.y];
@@ -156,6 +167,8 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
             var pathExists = false;
         }
 
+        // console.log(result);
+
         return {
             'direction': direction,
             'coordinates': coordinates,
@@ -167,6 +180,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         //finds the optimal path to the destination if it exists
         var heading = this.getHeading(destX,destY);
 
+        // console.log(heading);
         if (heading.pathExists) {
             this.moveTo(heading.coordinates.x, heading.coordinates.y);
         } else {
@@ -207,7 +221,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         //moves the robot in a random direction
         dirs = this.getViableDirections();
         if(dirs.length === 0) {
-            console.log('trying to makeRandomMove but no place to go!')
+            // console.log('trying to makeRandomMove but no place to go!')
             return false;
         } //In case it's trapped somehow
 
@@ -250,7 +264,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
                 this.currentlyDigging = null;
                 this.position.x = newX;
                 this.position.y = newY;
-                if (newTile.getType != 'backfill') {
+                if (newTile.getType() != 'backfill') {
                     grid[this.position.x][this.position.y].setType('backfill');
                     playerState.changeResource('money', explorationBonus);
                 }
@@ -350,12 +364,35 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
 
     var timeToPassTile = function(tile) {
         var resource = resources[tile.getType()];
-        return (baseAttrs.hardness - resource.hardness) * tile.amount;
+        return baseAttrs.hardness - resource.hardness;
     };
+
+    function displayDeathText(string, timeout_frames) {
+        var text = new createjs.Text(string, "10px Arial", "#ffffff");
+        text.x = _this.animation.x;
+        text.y = _this.animation.y;
+        text.timeout = timeout_frames;
+        stage.addChild(text);
+
+        var fadeout = Math.floor(timeout_frames/2);
+
+        createjs.Ticker.addEventListener('tick', function() {
+            text.timeout -= 1;
+            if (text.timeout <= fadeout) {
+                text.alpha -= (1/fadeout);
+            }
+
+            if (text.timeout === 0) {
+                stage.removeChild(text);
+                createjs.Ticker.removeEventListener('tick', arguments.callee);
+            }
+        });
+    }
 
     // This is called when a robot's energy reaches
     // 0 from the handleMove function.
     var handleDeath = function() {
+
         _this.animation.gotoAndPlay('explode');
         _this.healthbar.visible = false;
         _this.capacitybar.visible = false;
@@ -364,6 +401,16 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         deadBots.push(_this);
         _this.salvageValue = baseAttrs.cost * salvageValueMultiplier;
         playerState.addResources(_this.resourceAmountByType);
+
+        var deathString = "";
+        _.each(_this.resourceAmountByType, function(val, key) {
+            deathString = deathString + key + ": " + val.toFixed(3) + "\n";
+        });
+        if (deathString === "") {
+            deathString = "Died in vain";
+        }
+
+        displayDeathText(deathString, 30);
     };
 
     var updateDirection = function(newX, newY) {
