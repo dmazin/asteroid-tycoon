@@ -368,7 +368,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
     };
 
     function displayDeathText(string, timeout_frames) {
-        var text = new createjs.Text(string, "10px Arial", "#ffffff");
+        var text = new createjs.Text(string, "10px Arial", "#00ff00");
         text.x = _this.animation.x;
         text.y = _this.animation.y;
         text.timeout = timeout_frames;
@@ -378,6 +378,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
 
         createjs.Ticker.addEventListener('tick', function() {
             text.timeout -= 1;
+            text.y -= 1;
             if (text.timeout <= fadeout) {
                 text.alpha -= (1/fadeout);
             }
@@ -404,13 +405,13 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
 
         var deathString = "";
         _.each(_this.resourceAmountByType, function(val, key) {
-            deathString = deathString + key + ": " + val.toFixed(3) + "\n";
+            deathString = deathString + key + ": " + Math.floor(val) + "\n";
         });
         if (deathString === "") {
             deathString = "Died in vain";
         }
 
-        displayDeathText(deathString, 30);
+        displayDeathText(deathString, 20);
     };
 
     var updateDirection = function(newX, newY) {

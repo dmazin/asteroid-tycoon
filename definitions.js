@@ -53,7 +53,8 @@ var robots = {
         'klass': AntBot,
         'spriteSheet': 'pics/bots/harvester0.png',
         'spriteSpeed': 0.3,
-        'gif': 'pics/bots/harvester0.gif'
+        'gif': 'pics/bots/harvester0.gif',
+        'lockedTil': 'paydirtium'
     },
     'goatBot': {
         'uiName': 'Goat',
@@ -68,7 +69,8 @@ var robots = {
         'klass': GoatBot,
         'spriteSheet': 'pics/bots/smasher0.png',
         'spriteSpeed': 0.3,
-        'gif': 'pics/bots/smasher0.gif'
+        'gif': 'pics/bots/smasher0.gif',
+        'lockedTil': 'cheddarium'
     },
     'vultureBot': {
         'uiName': 'Vulture',
@@ -84,7 +86,8 @@ var robots = {
         'canSalvage': true,
         'spriteSheet': 'pics/bots/scavenger0.png',
         'spriteSpeed': 0.3,
-        'gif': 'pics/bots/scavenger0.gif'
+        'gif': 'pics/bots/scavenger0.gif',
+        'lockedTil': 'fatlootium'
     }
 };
 
