@@ -60,6 +60,7 @@
 <div id='game'>
     <div id='menu'>
         <div class='title-container'>
+        	<a id="asteroidButton"><img src="pics/asteroids/asteroidbutton.png" /></a>
             <div id='messages'>
             </div>
             <div class='title'>
@@ -70,13 +71,6 @@
       `''''MMMMM88&&&&''''`    / ___ |___/ // / / /___/ _, _/ /_/ // // /_/ /    / /  ___/ / /___/ /_/ / /_/ / /|  /
             'MMM8&&&'         /_/  |_/____//_/ /_____/_/ |_|\____/___/_____/    /_/  /____/\____/\____/\____/_/ |_/
 </pre>
-                <div class='level-select display'>
-                    <span class='level' id="Paydirteroid">Paydirteroid</span>
-                    <span class='level' id="Cheddaroid">Cheddaroid</span>
-                    <span class='level' id="Fatlooteroid">Fatlooteroid</span>
-                    <span class='level' id="Affluoid">Affluoid</span>
-                    <span class='level' id="Cashmonoid">Cashmonoid</span>
-                </div>
             </div>
             <div class='printer'></div>
         </div>
@@ -100,10 +94,14 @@
     <canvas id='mainCanvas' width=1000 height=1380></canvas>
 </div>
 
+<div class='credits'>
+    Made by Alex, <a href='https://twitter.com/thelobsterclub'>Dmitry</a>, Greg, Jourdan, Jimmy, Natasha, and Tikhon
+</div>
+
 <div class='sound'>
-    <audio id="audio" src="slow-loop.ogg" loop></audio>
-    <a href='javascript://' onclick="document.getElementById('audio').play()">play</a>
-    <a href='javascript://' onclick="document.getElementById('audio').pause()">pause</a>
+    <audio id="audio" src="slow-loop.ogg" loop autoplay></audio>
+    <a href='javascript://' onclick="document.getElementById('audio').play()">play music</a>
+    <a href='javascript://' onclick="document.getElementById('audio').pause()">pause music</a>
 </div>
 
 

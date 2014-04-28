@@ -50,15 +50,20 @@
 
 .robot-button {
     position : relative;
-    margin-right : -4px;
+    margin-right : 11px;
     margin-left : auto;
-    top : -87px;
+    top : -88px;
 
     cursor : pointer;
-    
+
     border-radius : 4px;
     background-color : #666;
     color : #CCC;
     width : 20px;
     height : 20px;
+}
+
+.robot-button:hover {
+    background-color: #ccc;
+    color: #666;
 }
