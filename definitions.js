@@ -43,7 +43,7 @@ var robots = {
         'gif': 'pics/bots/allaround0.gif',
         'lockedTil': {
             asteroid: 'Paydirteroid',
-            row: 5
+            row: 3
         },
        'exploreRadius' : 1
     },
@@ -113,28 +113,73 @@ var robots = {
 var upgrades = {
     'squirrelBot': {
         costs: [0, 1500, 3000],
-        mineralReqs: [0, 1, 200],
-        mineral: "paydirtium"
+        lockedTil: [
+            null,
+            {
+                asteroid: 'Cheddaroid',
+                row: 24
+            },
+            {
+                asteroid: 'Affluoid',
+                row: 24
+            }
+        ]
     },
     'bearBot': {
         costs: [0, 3000, 6000],
-        mineralReqs: [0, 3000, 6000],
-        mineral: "cheddarium"
+        lockedTil: [
+            null,
+            {
+                asteroid: 'Cheddaroid',
+                row: 24
+            },
+            {
+                asteroid: 'Affluoid',
+                row: 24
+            }
+        ]
     },
     'antBot': {
         costs: [0, 5500, 11000],
-        mineralReqs: [0, 5500, 11000],
-        mineral: "fatlootium"
+        lockedTil: [
+            null,
+            {
+                asteroid: 'Fatlooteroid',
+                row: 24
+            },
+            {
+                asteroid: 'Affluoid',
+                row: 24
+            }
+        ]
     },
     'goatBot': {
         costs: [0, 10500, 21000],
-        mineralReqs: [0, 10500, 21000],
-        mineral: "affluentium"
+        lockedTil: [
+            null,
+            {
+                asteroid: 'Fatlooteroid',
+                row: 24
+            },
+            {
+                asteroid: 'Affluoid',
+                row: 24
+            }
+        ]
     },
     'vultureBot': {
         costs: [0, 6500, 13000],
-        mineralReqs: [0, 6500, 13000],
-        mineral: "cashmonium"
+        lockedTil: [
+            null,
+            {
+                asteroid: 'Fatlooteroid',
+                row: 24
+            },
+            {
+                asteroid: 'Affluoid',
+                row: 24
+            }
+        ]
     }
 };
 
