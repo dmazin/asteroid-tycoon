@@ -106,7 +106,7 @@ var updateTopMenuSize = function() {
             }, options);
             $(".robot-shop .robot-container:not(.disabled) img").show();
             $(".robot-shop .robot-container:not(.disabled) img")
-                .animate({height : 40}, options);
+                .animate({height : 46}, options);
             $(".robot-shop").animate({height : 77}, options);
             $(".robot-container:not(.disabled) .robot-button")
                 .animate({top : -88}, options);
