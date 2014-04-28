@@ -368,8 +368,8 @@ var asteroids = {
     "Paydirteroid": new Asteroid({
     //dirt and rocks
     'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
-    'dregsite': {pTop: .7, pBottom: 1, minDepth: .05},
-    'rubbishite': {pTop: 0.3, pBottom: 0.6, minDepth: 0.25},
+    'dregsite': {pTop: .1, pBottom: .8, minDepth: .05},
+    'rubbishite': {pTop: 0.1, pBottom: 0.6, minDepth: 0.25},
     'junkite': {pTop: 0.2, pBottom: 0.5, minDepth: 0.25},
     'scrapite': {pTop: 0.3, pBottom: 0.3, minDepth: 0.80},
     // 'crapite': {pTop: 0, pBottom: 0, minDepth: 0},
@@ -380,7 +380,7 @@ var asteroids = {
         'imperviousite': {pTop: 0, pBottom: 0, minDepth: 0.9},
 
     // minerals and goodies
-    'artifact': {pTop: 0.4, pBottom: 0.8, minDepth: .3},
+    'artifact': {pTop: 0.4, pBottom: 0.4, minDepth: .3},
     'paydirtium':{pTop: 0.1, pBottom: 1, minDepth: 0},
     'cheddarium':{pTop: 0.4, pBottom: 1, minDepth: 0.6},
     'fatlootium': {pTop: 0.4, pBottom: 0.4, minDepth: 0.85},
