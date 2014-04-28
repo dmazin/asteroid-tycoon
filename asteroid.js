@@ -88,7 +88,11 @@ var Asteroid = function (params) {
         var resources = [];
         var maxDepth = game_height;
 
-        if (depth == maxDepth - 3) {
+         if (depth == maxDepth - 1) {
+            // row of motherlodium
+            return 'motherlodium';
+        }
+        if (depth == maxDepth - 2) {
             // row of imperviousite
             return 'imperviousite';
         }
