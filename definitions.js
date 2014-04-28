@@ -344,14 +344,16 @@ var resources = {
         'harvestable': false,
         'value': 0,
         'imagePath' : 'pics/tiles/dirt4.png',
-        'image': loadImage('pics/tiles/dirt4.png')
+        'image': loadImage('pics/tiles/dirt4.png'),
+        'text' : 'One man\'s trash is our trash too.'
     },
     'scrapite': {
         'hardness': 0.44,
         'harvestable': false,
         'value': 0,
         'imagePath' : 'pics/tiles/dirt5.png',
-        'image': loadImage('pics/tiles/dirt5.png')
+        'image': loadImage('pics/tiles/dirt5.png'),
+        'text' : 'Not even the useful kind of scrap.'
     },
     'crapite': {
         'hardness': 0.54,
@@ -366,35 +368,40 @@ var resources = {
         'harvestable': false,
         'value': 0,
         'imagePath' : 'pics/tiles/rock1.png',
-        'image': loadImage('pics/tiles/rock1.png')
+        'image': loadImage('pics/tiles/rock1.png'),
+        'text' : 'Don\'t be dense.'
     },
     'rigidite': {
         'hardness': 0.74,
         'harvestable': false,
         'value': 0,
         'imagePath' : 'pics/tiles/rock2.png',
-        'image': loadImage('pics/tiles/rock2.png')
+        'image': loadImage('pics/tiles/rock2.png'),
+        'text' : 'A particularly stubborn sort of rock.'
     },
     'toughite': {
         'hardness': 0.84,
         'harvestable': false,
         'value': 0,
         'imagePath' : 'pics/tiles/rock3.png',
-        'image': loadImage('pics/tiles/rock3.png')
+        'image': loadImage('pics/tiles/rock3.png'),
+        'text' : 'This one\'s a toughie.'
     },
     'unyieldite': {
         'hardness': 0.94,
         'harvestable': false,
         'value': 0,
         'imagePath' : 'pics/tiles/rock4.png',
-        'image': loadImage('pics/tiles/rock4.png')
+        'image': loadImage('pics/tiles/rock4.png'),
+        'text' : 'It won\'t budge an inch.'
     },
     'imperviousite': {
         'hardness': 0.99,
         'harvestable': false,
         'value': 0,
         'imagePath' : 'pics/tiles/rock5.png',
-        'image': loadImage('pics/tiles/rock5.png')
+        'image': loadImage('pics/tiles/rock5.png'),
+        'text' : 'Hmm, how do we get through this?'
     },
     'paydirtium': {
         'hardness': 0.2,
@@ -409,28 +416,32 @@ var resources = {
         'harvestable': true,
         'value': 30,
         'imagePath' : 'pics/tiles/mineral2.png',
-        'image': loadImage('pics/tiles/mineral2.png')
+        'image': loadImage('pics/tiles/mineral2.png'),
+        'text' : 'Delicious AND valuable.'
     },
     'fatlootium': {
         'hardness': 0.4,
         'harvestable': true,
         'value': 40,
         'imagePath' : 'pics/tiles/mineral3.png',
-        'image': loadImage('pics/tiles/mineral3.png')
+        'image': loadImage('pics/tiles/mineral3.png'),
+        'text' : 'Not to be confused with \'phatlootium\'.'
     },
     'affluentium': {
         'hardness': 0.5,
         'harvestable': true,
         'value': 50,
         'imagePath' : 'pics/tiles/mineral4.png',
-        'image': loadImage('pics/tiles/mineral4.png')
+        'image': loadImage('pics/tiles/mineral4.png'),
+        'text' : 'This mineral is comfortably well-off.'
     },
     'cashmonium': {
         'hardness': 0.6,
         'harvestable': true,
         'value': 60,
         'imagePath' : 'pics/tiles/mineral5.png',
-        'image': loadImage('pics/tiles/mineral5.png')
+        'image': loadImage('pics/tiles/mineral5.png'),
+        'text' : 'The rarest of all asteroid minerals.'
     },
     'artifact': {
         'hardness': 0,
@@ -446,14 +457,16 @@ var resources = {
         'harvestable': false,
         'value': 0,
         'imagePath' : 'pics/tiles/undiscovered.png',
-        'image': loadImage('pics/tiles/undiscovered.png')
+        'image': loadImage('pics/tiles/undiscovered.png'),
+        'text' : '???!'
     },
     'lava': {
         'hardness': 0,
         'harvestable': false,
         'value': 0,
         'imagePath' : 'pics/tiles/totally_lava.png',
-        'image': loadImage('pics/tiles/totally_lava.png')
+        'image': loadImage('pics/tiles/totally_lava.png'),
+        'text' : 'Oh my!'
     }
 };
 

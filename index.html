@@ -66,11 +66,13 @@
             <div class='printer'></div>
         </div>
         <pre class='printout'></pre>
-        <marquee behavior="alternate">
-            <span class='money notification'>YOU HAVE <span class='amount'></span> NORMALIZED SPACE DOLLARS</span>
-            <span class='iron notification'>IRON REPORT! IRON LEVELS AT <span class='amount'></span> IRONS</span>
+        <marquee>
+        	<!--
+            <span class='money notification'>YOU HAVE $<span class='amount'>5000</span> NORMALIZED SPACE DOLLARS</span>
             <span class='alert'>PRODUCTION DECLINING, CORPORATE OVERSIGHT IMMINENT</span>
-            <span class='paydirtium notification'>CONGRATULATIONS, YOU HAVE OBTAINED <span class='amount'></span></span>
+            <span class='paydirtium notification'>CONGRATULATIONS, YOU HAVE OBTAINED <span class='amount'>NO</span> PAYDIRTIUM</span>
+            <span class='killed notification'><span class='amount'>0</span> ROBOTS HAVE DIED AT YOUR HANDS. HOW MANY MORE MUST SUFFER?</span>
+        	-->
         </marquee>
         <div class='controls'>
             <div class='information' style="display: none;">
@@ -115,6 +117,7 @@
 <script src='state.js'></script>
 <script src='robot.js'></script>
 <script src='robot_util.js'></script>
+<script src='marquees.js'></script>
 <script src='launcher.js'></script>
 <script src='printout.js'></script>
 
@@ -151,6 +154,20 @@
     You're not going to get very far with scouts alone. R&D's cooked up the
     BearBot: a mining robot that can pick up some minerals. Might as well make
     your stay on this godforsaken rock useful.
+
+    - Corporate
+</script>
+<script id='unlock-scavenger' type='text'>
+    EMAIL PRINTOUT
+    --------------------------------------------------
+
+    Oh boy, judging by the trail of dead robots you've left in your wake, you're
+    really gonna need this one. The VultureBot sucks up the rubble strewn
+    about this asteroid and lets you recoup some of your costly, costly losses.
+
+    And you do realize that this isn't the only asteroid you're supposed to deal
+    with, right? There are four more waiting for your attention. We do hope that
+    we don't have to remind you about the [BUTTON DESCRIPTION].
 
     - Corporate
 </script>

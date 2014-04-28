@@ -52,13 +52,7 @@ var playerState = (function() {
             amount: parseInt(resourceAmounts[resource])
         }));
 
-        if (resource === 'fatlootium') {
-            $('.notification.fatlootium .amount').text(parseInt(resourceAmounts[resource]));
-        }
-
-        if (resource === 'iron') {
-            $('.notification.iron .amount').text(parseInt(resourceAmounts[resource]));
-        }
+        $('.notification.' + resource + ' .amount').text(parseInt(resourceAmounts[resource]));
     };
 
     state.getArtifactValue = function() {
@@ -119,6 +113,20 @@ var playerState = (function() {
         'goatBot': 0,
         'vultureBot': 0
     };
+
+    state.robotsKilled = {
+        'squirrelBot': 0,
+        'bearBot': 0,
+        'antBot': 0,
+        'goatBot': 0,
+        'vultureBot': 0
+    };
+
+    state.getTotalRobotsKilled = function () {
+        return _.reduce(state.robotsKilled, function(memo, num) {
+            return memo + num;
+        }, 0);
+    }
 
     return state;
 })();
