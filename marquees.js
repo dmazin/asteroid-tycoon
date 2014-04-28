@@ -86,4 +86,4 @@ function addToMarquee() {
 }
 
 addToMarquee();
-setInterval(addToMarquee, 10000);
+setInterval(addToMarquee, 5000);

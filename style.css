@@ -212,6 +212,10 @@ body {
     color: #222;
 }
 
+.robot-shop .robot::first-letter {
+    color: yellow;
+}
+
 .robot-shop .images {
     position: relative;
 }
