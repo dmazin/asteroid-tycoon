@@ -63,9 +63,15 @@ Robot.prototype.render = function() {
     });
 };
 
+Robot.unlock = function (type) {
+    if (!Robot.unlocked(type)) {
+        playerState.unlockedRobots.push(type);
+        updateRobotShop();
+    }
+}
+
 Robot.unlocked = function(type) {
-    needMineral = robots[type].lockedTil;
-    return needMineral ? (playerState.getResource(needMineral) > 0) : true;
+    return playerState.unlockedRobots.indexOf(type) != -1;
 };
 
 // Determines if an upgrad is possible for a bot
