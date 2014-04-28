@@ -11,14 +11,12 @@
         <div class='robot' data-robot='<%= name %>'>
             <%= uiName %> $<%= cost %>
         </div>
-        <div class='upgrade' data-robot='<%= name %>'>
-        	Upgrade
-        	<span class="upgradeCost">locked</span>
-        </div>
         <div class='images'>
-        	<img src="pics/2x_gifs/<%= gifName %>0.gif" class="lvl1">
-        	<img src="pics/2x_gifs/<%= gifName %>1.gif" class="lvl2 unused">
-        	<img src="pics/2x_gifs/<%= gifName %>2.gif" class="lvl3 unused">
+        	<img src="pics/2x_gifs/<%= gifName %>0.gif" data-robot='<%= name %>' class="lvl1">
+        	<img src="pics/other/closedlock.png" data-robot='<%= name %>' class="lvl2 unused">
+        	<div class="upgradeCost lvl2"></div>
+        	<img src="pics/other/closedlock.png" data-robot='<%= name %>' class="lvl3 unused">
+        	<div class="upgradeCost lvl3"></div>
         </div>
         <div class='unlockMessage' data-robot='<%= name %>'>unavailable</div>
     </div>
@@ -47,6 +45,9 @@
 <div id='game'>
     <div id='menu'>
         <div class='title-container'>
+            <div id='messages'>
+              <img src='pics/other/envelope.png' alt='envelope' />
+            </div>
             <div class='title'>
 <pre class='title-text'>
             .........             ___   _____________________  ____  ________     ________  ____________  ____  _   __
@@ -76,12 +77,12 @@
             <div class='information' style="display: none;">
                 <div class='general-stats stats display'>
                 </div>
-                <div class='money-stats stats display'>
-                    <span class='tiny-description'>NORMALIZED SPACE DOLLARS</span>
-                    <span class='amount'></span>
-                </div>
             </div>
             <div class='robot-shop display'>
+            </div>
+            <div class='money-stats stats display'>
+                <span class='tiny-description'>NORMALIZED SPACE DOLLARS</span>
+                <span class='amount'></span>
             </div>
         </div>
     </div>
@@ -138,8 +139,32 @@
 
     Here is the verdict. We don't trust you with robots advanced enough to mine
     anything precious, but we always need iron. Collect 10,000 units of iron,
-    and we'll see if R&D can get you a better scout.
+    and we'll see if R&D can get you a better robot.
     OTHERWISE YOU ARE A FIGMENT OF MY IMAGINATION!!!!
+
+    - Corporate
+</script>
+<script id='unlock-bear' type='text'>
+    EMAIL PRINTOUT
+    --------------------------------------------------
+
+    You're not going to get very far with scouts alone. R&D's cooked up the
+    BearBot: a mining robot that can pick up some minerals. Might as well make
+    your stay on this godforsaken rock useful.
+
+    - Corporate
+</script>
+<script id='unlock-scavenger' type='text'>
+    EMAIL PRINTOUT
+    --------------------------------------------------
+
+    Oh boy, judging by the trail of dead robots you've left in your wake, you're
+    really gonna need this one. The VultureBot sucks up the rubble strewn
+    about this asteroid and lets you recoup some of your costly, costly losses.
+
+    And you do realize that this isn't the only asteroid you're supposed to deal
+    with, right? There are four more waiting for your attention. We do hope that
+    we don't have to remind you about the [BUTTON DESCRIPTION].
 
     - Corporate
 </script>

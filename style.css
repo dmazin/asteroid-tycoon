@@ -21,7 +21,7 @@
     font-size: 12px;
     position: relative;
     top: -4px;
-    width: 80px;
+    width: 150px;
     display: inline-block;
 }
 
@@ -43,10 +43,10 @@
 }
 
 .stats {
-    width: 185px;
+    width: 937px;
     font-size: 16px;
     border-radius: 3px;
-    padding: 7px;
+    padding: 2px 7px 5px;
     margin-right: 10px;
     display: inline-block;
     vertical-align: top;
@@ -108,6 +108,19 @@ body {
     margin: 0 auto;
 }
 
+#messages {
+    position : absolute;
+    top : 100px;
+    left : 25px;
+    
+    display : none;
+
+    height : 25px;
+    width : 25px;
+
+    cursor : pointer;
+}
+
 #menu {
     position: relative;
     font-weight: 300;
@@ -154,25 +167,8 @@ body {
     color: #FFF;
     font-size: 19px;
     display: inline-block;
-    height: 100px;
+    height: 77px;
     vertical-align: top;
-}
-
-.robot-shop .upgrade {
-    color: #A2A2A2;
-    margin-top: -6px;
-    margin-bottom: 6px;
-}
-
-.robot-shop .upgrade.enabled {
-    color: #fff;
-    cursor: pointer;
-}
-
-.robot-shop .upgrade.enabled:hover {
-    cursor: pointer;
-    background-color: #FFF;
-    color: #222;
 }
 
 .robot-container {
@@ -197,8 +193,8 @@ body {
 }
 
 .robot-shop .robot {
-    padding: 1px;
-    height: 24px;
+    padding: 3px 0;
+    height: 20px;
     display: inline-block;
 }
 
@@ -206,6 +202,25 @@ body {
     cursor: pointer;
     background-color: #FFF;
     color: #222;
+}
+
+.robot-shop .images {
+    position: relative;
+}
+
+.robot-shop .upgradeCost {
+    pointer-events: none;
+    position: absolute;
+    top: 12px;
+    width: 40px;
+}
+
+.robot-shop .upgradeCost.lvl2 {
+    left: 69px;
+}
+
+.robot-shop .upgradeCost.lvl3 {
+    left: 125px;
 }
 
 .robot-shop .unlockMessage {
@@ -220,6 +235,12 @@ body {
     padding: 3px;
 }
 
+.robot-shop img.current:hover, .robot-shop img.upgradeEnabled:hover {
+    border: 2px solid white;
+    margin: -2px 0;
+    cursor: pointer;
+}
+
 .robot-shop img.unused {
     -webkit-filter: grayscale(100%);
     -moz-filter: grayscale(100%);
@@ -229,7 +250,7 @@ body {
 
 .robot-shop .robot-container.disabled {
     position: relative;
-    top: -55px;
+    top: -43px;
     background: #666;
     padding: 15px 0;
 }

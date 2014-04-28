@@ -66,6 +66,9 @@ Robot.prototype.render = function() {
 Robot.unlock = function (type) {
     if (!Robot.unlocked(type)) {
         playerState.unlockedRobots.push(type);
+        if (type == 'bearBot') {
+            displayPrintout('#unlock-bear');
+        }
         updateRobotShop();
     }
 };

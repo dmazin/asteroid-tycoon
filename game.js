@@ -109,8 +109,6 @@ function init_stage() {
 
 function setup_stage_event_handler() {
     stage.on('stagemouseup', function(e) {
-        hidePrintout();
-
         if ($('canvas').hasClass('botSpawner')) {
             // Change canvas back
             $('canvas').removeClass('botSpawner');
@@ -124,7 +122,7 @@ function setup_stage_event_handler() {
             // Make a new bot based on the position.
             var destX = parseInt(e.stageX / grid_size);
             var destY = parseInt((e.stageY - surface_height) / grid_size);
-            var bot = new Robot(currentlySpawning.robotAttrs, currentlySpawning.startX, destX, destY, playerState.getAsteroid());
+            var bot = new Robot(currentlySpawning.type, currentlySpawning.robotAttrs, currentlySpawning.startX, destX, destY, playerState.getAsteroid());
             activeBots.push(bot);
             return bot;
         } else if (stage.mouseInBounds) {
@@ -150,7 +148,7 @@ function checkKey(key) {
 
     key = key || window.event;
 
-    if (key.keyCode == '83') { 
+    if (key.keyCode == '83') {
         // s
         robotType = 'squirrelBot';
     }
@@ -161,11 +159,11 @@ function checkKey(key) {
     else if (key.keyCode == '65') {
         // a
         robotType = 'antBot';
-    }    
+    }
     else if (key.keyCode == '71') {
         // g
         robotType = 'goatBot';
-    }    
+    }
     else if (key.keyCode == '86') {
         // v
         robotType = 'vultureBot';
