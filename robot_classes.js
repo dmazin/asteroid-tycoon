@@ -20,12 +20,12 @@ BearBot.defaultBehavior = function(_this) {
 //Sseeks out nearest minerals to harvest
 AntBot.defaultBehavior = function(_this) {
 	var harvestableSelectionCallback = function(tile) {
-		return resources[tile.getType()].harvestable
+		return resources[tile.getType()].harvestable === true
 			&& resources[tile.getType()].hardness < _this.baseAttrs.hardness;
 	};
 	var dest = findNearestResource(_this.position, _this.getGrid(), harvestableSelectionCallback);
 	if(dest) {
-		_this.goToward(dest.x, dest.y);
+		_this.moveTowardDestination(dest.x, dest.y);
 	} else {
 		_this.makeRandomMove();
 	}
@@ -34,7 +34,7 @@ AntBot.defaultBehavior = function(_this) {
 //seeks out nearest hard rocks to smash
 GoatBot.defaultBehavior = function(_this) {
 	var rockSelectionCallback = function(tile) {
-		return !resources[tile.getType()].harvestable
+		return resources[tile.getType()].harvestable === false
 			&& tile.getType() != 'backfill'
 			&& tile.getType() != 'dirtite'
 			&& tile.getType() != 'dregsite'
@@ -42,7 +42,7 @@ GoatBot.defaultBehavior = function(_this) {
 	};
 	var dest = findNearestResource(_this.position, _this.getGrid(), rockSelectionCallback);
 	if(dest) {
-		_this.goToward(dest.x, dest.y);
+		_this.moveTowardDestination(dest.x, dest.y);
 	} else {
 		_this.makeRandomMove();
 	}
@@ -51,11 +51,11 @@ GoatBot.defaultBehavior = function(_this) {
 //seeks out rubble to suck up
 VultureBot.defaultBehavior = function(_this) {
 	if (_this.currentlyVacuuming) {
-		_this.moveTo(_this.position.x, _this.position.y) // stay in place
+		_this.moveTo(_this.position.x, _this.position.y); // stay in place
 	} else {
 		var dest = findNearestBot(_this.position);  // TODO: find nearest rubble vs. nearest bot?
 		if(dest) {
-			_this.goToward(dest.x, dest.y);
+			_this.moveTowardDestination(dest.x, dest.y);
 		} else {
 			_this.makeRandomMove();
 		}
@@ -64,7 +64,7 @@ VultureBot.defaultBehavior = function(_this) {
 
 // nearest deadBot for vulture
 var findNearestBot = function(position) {
-	if (deadBots.length == 0) {
+	if (deadBots.length === 0) {
 		return false;
 	}
 
@@ -93,6 +93,9 @@ var findNearestItem = function(position, itemPositionArray) {
 			nearestPosition = itemPos;
 		}
 	});
+
+	// console.log(itemPositionArray);
+	// console.log(nearestPosition);
 	return nearestPosition;
 };
 

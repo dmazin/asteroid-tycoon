@@ -54,19 +54,35 @@ Robot.prototype.render = function() {
     });
 };
 
+// Determines if an upgrad is possible for a bot
+// based on it's type, which level it wants to upgrade to
+// and whether the player has collected enough of the right
+// mineral.
 var canUpgrade = function(type, level) {
-    return playerState.getResource('money') < cost;
+    var upgrade = upgrades[type];
+    var cost = upgrade.costs[level];
+    var mineralReq = upgrade.mineralReqs[level];
+    var mineral = upgrade.mineral;
+    return playerState.getResource('money') >= cost &&
+        playerState.getResource(mineral) >= mineralReq;
 };
 
 var upgradeBot = function(type, level) {
-    var cost = upgradeCosts[type][level];
-
     if (!canUpgrade(type, level)) {
         return;
     }
 
+    var cost = upgrades[type][costs][level];
     playerState.changeResource('money', -cost);
     playerState.setRobotLevel(type, level);
+};
+
+var remainingMineralsTillUpgrade = function(type, level) {
+    var upgrade = upgrades[type];
+    var cost = upgrade.costs[level];
+    var mineralReq = upgrade.mineralReqs[level];
+    var mineral = upgrade.mineral;
+    return mineralReq - playerState.getResource(mineral);
 };
 
 var spawnBot = function(type, startX) {
@@ -86,8 +102,8 @@ var spawnBot = function(type, startX) {
         updatePlayerMoney(type);
 
         // Make a new bot based on the position.
-        var destX = parseInt(e.stageX / 40);
-        var destY = parseInt(e.stageY / 40);
+        var destX = parseInt(e.stageX / grid_size);
+        var destY = parseInt((e.stageY - surface_height) / grid_size);
         var bot = new Robot(robotAttrs, startX, destX, destY, playerState.getAsteroid());
         activeBots.push(bot);
         return bot;

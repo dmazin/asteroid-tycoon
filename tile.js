@@ -41,7 +41,7 @@ function Tile(pixel_x, pixel_y, size, type, amount, pos) {
         if (this.baseAmount == 0) {
             this.deterioration.gotoAndStop(0);
         } else {
-            this.deterioration.gotoAndStop(Math.floor((1 - this.amount / this.baseAmount) * 4));
+            this.deterioration.gotoAndStop(Math.floor((1 - this.amount / this.baseAmount) * 3.5));
         }
     };
 

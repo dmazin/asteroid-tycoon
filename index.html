@@ -7,7 +7,12 @@
 <body>
 
 <script id="robot-buy-button-template" type="text/html">
-    <span class='robot' data-robot='<%= name %>'><img src="<%= gif %>"><%= uiName %> $<%= cost %></span>
+    <span class='robot-container'>
+        <div class='robot' data-robot='<%= name %>'>
+            <img src="<%= gif %>"><%= uiName %> $<%= cost %>
+        </div>
+        <div class='upgrade <% if (canUpgrade(name, playerState.getRobotLevel(name) + 1)) { %>enabled<% } %>'>Upgrade</div>
+    </span>
 </script>
 
 <script id="mineral-stat-template" type="text/html">
@@ -28,12 +33,8 @@
             'MMM8&&&'         /_/  |_/____//_/ /_____/_/ |_|\____/___/_____/    /_/  /____/\____/\____/\____/_/ |_/
 </pre>
                 <div class='level-select display'>
-                    <span class='level'>Asteroid 1</span>
-                    <span class='level'>Asteroid 1</span>
-                    <span class='level'>Asteroid 1</span>
-                    <span class='level'>Asteroid 1</span>
-                    <span class='level'>Asteroid 1</span>
-                    <span class='level'>Asteroid 1</span>
+                    <span class='level' id="Paydirteroid">Paydirteroid</span>
+                    <span class='level' id="Cheddaroid">Cheddaroid</span>
                 </div>
             </div>
         </div>
@@ -41,7 +42,7 @@
             <span class='money notification'>YOU HAVE <span class='amount'></span> NORMALIZED SPACE DOLLARS</span>
             <span class='iron notification'>IRON REPORT! IRON LEVELS AT <span class='amount'></span> IRONS</span>
             <span class='alert'>PRODUCTION DECLINING, CORPORATE OVERSIGHT IMMINENT</span>
-            <span class='paydirtium notification'>CONGRADULATIONS, YOU HAVE OBTAINED <span class='amount'></span></span>
+            <span class='paydirtium notification'>CONGRATULATIONS, YOU HAVE OBTAINED <span class='amount'></span></span>
         </marquee>
         <div class='controls'>
             <div class='information'>

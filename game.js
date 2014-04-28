@@ -7,7 +7,7 @@ var spawner;
 var grid_size = 40;
 var game_width = 25;
 var game_height = 30;
-var surface_height = 75;
+var surface_height = 100;
 var FPS = 10;
 
 function createSpawn(xpos){
@@ -40,10 +40,10 @@ function tick() {
     });
 
     var gs = grid_size;
-    stage.destTile.x = Math.round((stage.mouseX - gs / 2) / gs) * gs + gs / 2;
-    stage.destTile.y = Math.round((stage.mouseY - gs / 2) / gs) * gs + gs / 2;
+    stage.destTile.x = Math.round((stage.mouseX - gs / 2) / gs) * gs - 2;
+    stage.destTile.y = Math.round(((stage.mouseY + 20) - gs / 2) / gs) * gs - 22;
     stage.destTile.visible = $('canvas').hasClass('botSpawner')
-        && stage.mouseInBounds && stage.destTile.y >= surface_height;
+        && stage.mouseInBounds && stage.destTile.y >= surface_height - 10;
 
     stage.update();
 }
@@ -62,16 +62,21 @@ function init_ui() {
 }
 
 function init_stage() {
-    window.stage = new createjs.Stage("mainCanvas");
-
-    playerState.getAsteroid().init();
-
     createSpawn(Math.floor(game_width/2));
     stage.update();
 
-    stage.destTile = new createjs.Shape();
-    stage.destTile.graphics.beginFill('blue')
-                           .drawCircle(0,0,8);
+    var reticuleSpritesheet = new createjs.SpriteSheet({
+        images: ["pics/other/reticle.png"],
+        frames: {width:44, height:44}
+    });
+    stage.destTile = new createjs.Sprite(reticuleSpritesheet);
+    stage.destTile.gotoAndStop(0);
+    $('canvas').on("mousedown", function() {
+        stage.destTile.gotoAndStop(1);
+    });
+    $('canvas').on("mouseup", function() {
+        stage.destTile.gotoAndStop(0);
+    });
     stage.addChild(stage.destTile);
 
     createjs.Ticker.addEventListener("tick", tick);

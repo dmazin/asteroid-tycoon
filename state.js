@@ -34,12 +34,14 @@ var playerState = (function() {
     };
 
     state.getResource = function(resource) {
-        return resourceAmounts[resource];
+        return resourceAmounts[resource] || 0;
     };
 
     state.changeResource = function(resource, amount) {
         resourceAmounts[resource] = resourceAmounts[resource] || 0;
         resourceAmounts[resource] += amount;
+
+        
 
         $('.money-stats .amount').text('$' + parseInt(resourceAmounts['money']));
         $('.notification.money .amount').text(parseInt(resourceAmounts['money']));
@@ -83,8 +85,13 @@ var playerState = (function() {
             stage.removeAllChildren();
             stage.clear();
         }
-        init_stage();
+
+        window.stage = new createjs.Stage("mainCanvas");
+
+        currentAsteroid.init();
         currentAsteroid.refresh();
+
+        init_stage();
     };
 
     return state;
