@@ -1,8 +1,10 @@
-var Asteroid = function (terrainParameters) {
+var Asteroid = function (name, terrainParameters, artifactValueScale) {
     var grid = [];
     var initialized = false;
     var startSeed = Math.random();
     var seed;
+
+    this.artifactValueScale = artifactValueScale;
 
     this.init = function () {
         seed = startSeed;
@@ -22,6 +24,23 @@ var Asteroid = function (terrainParameters) {
                 grid[i][j].addToStage();
             }
         }
+    }
+
+    this.reachLine = function (lineNum) {
+        _.each(robots, function (robot, robotType) {
+            if (robot.lockedTil && robot.lockedTil.asteroid == name
+                    && robot.lockedTil.row <= lineNum) {
+                Robot.unlock(robotType);
+            }
+        });
+
+        _.each(upgrades, function (upgrade, robotType) {
+            _.each(upgrade.lockedTil, function (level, levelNum) {
+                if (level && level.asteroid == name && level.row <= lineNum) {
+                    unlockUpgrade(robotType, levelNum);
+                }
+            });
+        });
     }
 
     function initialize_grid() {
@@ -59,14 +78,22 @@ var Asteroid = function (terrainParameters) {
             return _.map(array, function(x) { return x / total; });
         }
 
+
         var resources = [];
         var maxDepth = game_height;
+
+        if (depth == maxDepth - 3) {
+            // row of imperviousite
+            return 'imperviousite';
+        }
+
         var probs = _.map(terrainParameters, function(x, r) {
+            var minDepth = Math.round(x.minDepth * maxDepth); // % -> row #
             resources.push(r);
-            if (depth < x.minDepth) {
+            if (depth < minDepth) {
                 return 0;
             } else {
-                return (maxDepth - depth - 1) * x.pTop + (depth - x.minDepth) * x.pBottom;
+                return (maxDepth - depth - 1) * x.pTop + (depth - minDepth) * x.pBottom;
             }
         });
 

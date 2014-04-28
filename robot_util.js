@@ -63,9 +63,22 @@ Robot.prototype.render = function() {
     });
 };
 
+Robot.unlock = function (type) {
+    if (!Robot.unlocked(type)) {
+        playerState.unlockedRobots.push(type);
+        updateRobotShop();
+    }
+};
+
 Robot.unlocked = function(type) {
-    needMineral = robots[type].lockedTil;
-    return needMineral ? (playerState.getResource(needMineral) > 0) : true;
+    return playerState.unlockedRobots.indexOf(type) != -1;
+};
+
+var unlockUpgrade = function (type, level) {
+    if (!upgradeUnlocked(type, level)) {
+        playerState.unlockedUpgrades[type] = level;
+        updateRobotShop();
+    }
 };
 
 // Determines if an upgrad is possible for a bot
@@ -77,8 +90,17 @@ var canUpgrade = function(type, level) {
     var cost = upgrade.costs[level];
     var mineralReq = upgrade.mineralReqs[level];
     var mineral = upgrade.mineral;
-    return playerState.getResource('money') >= cost &&
-        playerState.getResource(mineral) >= mineralReq;
+    return playerState.getResource('money') >= cost && upgradeUnlocked(type, level);
+};
+
+var upgradeUnlocked = function(type, level) {
+    return playerState.unlockedUpgrades[type] >= level;
+};
+
+var currentUpgradeCost = function(type) {
+    var upgrade = upgrades[type];
+    var level = playerState.getRobotLevel(type);
+    return upgrade.costs[level + 1];
 };
 
 var upgradeBot = function(type, level) {

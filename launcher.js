@@ -25,10 +25,24 @@ $(document).ready(function () {
         }
     });
 
+    $('.robot-shop').on('click', '.upgrade.enabled', function() {
+        var robot = $(this).data('robot');
+        var nextLevel = playerState.getRobotLevel(robot) + 1;
+        upgradeBot(robot, nextLevel);
+    });
+
     $('.level').click(function() {
         var asteroidName = $(this).attr('id');
         playerState.setAsteroid(asteroids[asteroidName]);
     });
+
+    // prevents text select cursor
+    $('canvas').mousedown(function(event){
+        event.preventDefault();
+    });
+
+    updateRobotShop();
+    setInterval(updateRobotShop, 1000);
 });
 
 var updateRobotShop = function() {
@@ -38,21 +52,21 @@ var updateRobotShop = function() {
 
         var level = playerState.getRobotLevel(key) + 1;
 
-        if (canUpgrade(key, level)) {
+        if (upgradeUnlocked(key, level)) {
             $('.controls .robot-shop .robot-container.' + key + ' .upgrade').addClass('enabled');
+            $('.controls .robot-shop .robot-container.' + key + ' .upgradeCost').text('$' + currentUpgradeCost(key));
         } else {
             $('.controls .robot-shop .robot-container.' + key + ' .upgrade').removeClass('enabled');
+            $('.controls .robot-shop .robot-container.' + key + ' .upgradeCost').text('locked');
+        }
+
+        if (Robot.unlocked(key)) {
+            $('.robot-container.' + key).removeClass('disabled');
+        } else {
+            $('.robot-container.' + key).addClass('disabled');
         }
 
         var robotGif = robotLevels[key][playerState.getRobotLevel(key)].gif;
         $('.robot[data-robot=' + key + '] img').attr('src', robotGif);
     });
 };
-
-setInterval(updateRobotShop, 1000);
-
-$('.robot-shop').on('click', '.upgrade.enabled', function() {
-    var robot = $(this).data('robot');
-    var nextLevel = playerState.getRobotLevel(robot) + 1;
-    upgradeBot(robot, nextLevel);
-});
