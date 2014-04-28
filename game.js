@@ -21,6 +21,7 @@ function createSpawn(xpos){
     spawner.gotoAndPlay(0);
     spawner.x = grid_size*xpos - 110;
     spawner.y = grid_size - 20;
+    $('#circle').css('left', spawner.x + 126);
 
     spawner_back = new createjs.Shape();
     spawner_back.graphics.beginFill('red')
@@ -59,6 +60,7 @@ function createSpawn(xpos){
         spawner.x = Math.round((evt.stageX + spawner.offset.x - gs / 2) / gs) * gs + gs / 2;
         cratebeam.x = spawner.x + 90;
         cratebeam.y = spawner.y + 50;
+        $('#circle').css('left', spawner.x + 126);
     });
 
     stage.addChild(cratebeam);
