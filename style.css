@@ -41,18 +41,12 @@
     color: #191F18;
     background-color: #008000;
     border: 1px inset #83AF83;
-    width: 376px;
+    width: 176px;
 }
 
 .money-stats .amount {
     float: right;
     font-size: 25px;
-}
-
-.general-stats {
-    margin-right: 10px;
-    background-color: #548EA0;
-    border: 1px inset #9BBFD3;
 }
 
 .stats {
@@ -62,6 +56,22 @@
     display: inline-block;
     vertical-align: top;
     height: 26px;
+}
+
+.general-stats {
+    margin-right: 10px;
+    background-color: #548EA0;
+    border: 1px inset #9BBFD3;
+    padding-top: 6px;
+    padding-bottom: 0;
+    width: 730px;
+}
+
+.general-stats .stat {
+    display: inline-block;
+    width: 115px;
+    min-width: 115px;
+    text-align: center;
 }
 
 body {
