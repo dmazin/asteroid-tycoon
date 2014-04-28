@@ -1,6 +1,6 @@
 var infoPopupActive = false;
 
-function popupClickOnStage(e) {
+function infoPopupClickOnStage(e) {
     if (!infoPopupActive) {
         var x = e.stageX,
             y = e.stageY;
@@ -19,6 +19,32 @@ function popupClickOnStage(e) {
     }
 }
 
+function robotPopupClick(robot) {
+    return function (e) {
+        if (!infoPopupActive) {
+            var x = e.offsetX,
+                y = e.offsetY,
+                popup = robotPopup(robots[robot]);
+
+            popup.offset({left : x, right : y});
+            popup.appendTo($('#game'));
+
+            infoPopupActive = true;
+            return false;
+        } else {
+            hidePopups();
+        }
+    }
+}
+
+function robotButton(robot) {
+    var button = $("<div class='robot-button'>?</div>");
+
+    button.click(robotPopupClick(robot));
+
+    return button;
+}
+
 // Hides all the current info popups.
 function hidePopups() {
     if (infoPopupActive) {
@@ -31,6 +57,10 @@ function hidePopups() {
 // tile description object should look like this:
 function infoPopup(tile) {
     return $(_.template($("#info-popup-template").html())(tile));
+}
+
+function robotPopup(robot) {
+    return $(_.template($("#robot-popup-template").html())(robot));
 }
 
 // Return the tile type at the given physical coordinates on the

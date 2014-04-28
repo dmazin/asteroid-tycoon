@@ -126,7 +126,7 @@ function setup_stage_event_handler() {
             activeBots.push(bot);
             return bot;
         } else if (stage.mouseInBounds) {
-            popupClickOnStage(e);
+            infoPopupClickOnStage(e);
         }
     });
 }

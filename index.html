@@ -8,9 +8,9 @@
 
 <script id="robot-buy-button-template" type="text/html">
     <div class='robot-container <%= name %>'>
-        <div class='robot' data-robot='<%= name %>'>
-            <%= uiName %> $<%= cost %>
-        </div>
+      <div class='robot' data-robot='<%= name %>'>
+        <%= uiName %> $<%= cost %>
+      </div>
         <div class='images'>
         	<img src="pics/2x_gifs/<%= gifName %>0.gif" data-robot='<%= name %>' class="lvl1">
         	<img src="pics/other/closedlock.png" data-robot='<%= name %>' class="lvl2 unused">
@@ -38,6 +38,21 @@
     <ul>
       <li> hardness: <%= hardness %> </li>
       <li> value: <%= value %> </li>
+    </ul>
+  </div>
+</script>
+
+<script id="robot-popup-template" type="text/html">
+  <div class="info-popup">
+    <h1> <%= uiName %> </h1>
+    <p> <%= description %> </p>
+    <div class="info-popup-icon">
+      <img src="<%= image %>" alt=" <%= name %> bot icon " />
+    </div>
+    <ul>
+      <li> price: <%= cost %> </li>
+      <li> drill: <%= hardness %> </li>
+      <li> energy: <%= baseEnergy %> </li>
     </ul>
   </div>
 </script>
