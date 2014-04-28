@@ -10,6 +10,8 @@ var salvageValueMultiplier = 0.5;
 var robots = {
     'squirrelBot': {
         'uiName': 'Squirrel',
+        'displayName' : 'SquirrelBot',
+        'displayText' : 'A scout that sees further than its peers.',
         'description': 'SquirrelBot 1.0 - Scout',
         'hardness': 0.13,
         'baseEnergy': 2000,
@@ -27,6 +29,8 @@ var robots = {
     },
     'bearBot': {
         'uiName': 'Bear',
+        'displayName' : 'BearBot',
+        'displayText' : 'Clears dirt quickly and harvests minerals.',
         'description': 'BearBot 1.0 - All Around',
         'hardness': 0.25,
         'baseEnergy': 1200,
@@ -51,6 +55,8 @@ var robots = {
     },
     'antBot': {
         'uiName': 'Ant',
+        'displayName' : 'AntBot',
+        'displayText' : 'Most effective mineral harverster.',
         'description': 'AntBot 1000 - Harvester',
         'hardness': 0.35,
         'baseEnergy': 1000,
@@ -71,6 +77,8 @@ var robots = {
     },
     'goatBot': {
         'uiName': 'Goat',
+        'displayName' : 'GoatBot',
+        'displayText' : 'Smashes rocks!',
         'description': 'GoatBot 1000 - Smasher',
         'hardness': 0.55,
         'baseEnergy': 1000,
@@ -91,6 +99,8 @@ var robots = {
     },
     'vultureBot': {
         'uiName': 'Vulture',
+        'displayName' : 'VultureBot',
+        'displayText' : 'Reclaims the wreckage of dead bots.',
         'description': 'VultureBot 1000 - Scavenger',
         'hardness': 0.01,
         'baseEnergy': 1500,
@@ -597,7 +607,7 @@ var asteroids = {
         'lava': {pTop: 0, pBottom: 0, minDepth: 0}
     }, 2.0),
 
-    "Lavaroid": new Asteroid({
+    /*"Lavaroid": new Asteroid({
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
         'dregsite': {pTop: 0.1, pBottom: 0.4, minDepth: 1},
         'rubbishite': {pTop: 0.01, pBottom: 0.2, minDepth: 1},
@@ -606,5 +616,5 @@ var asteroids = {
         'cheddarium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
         'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
         'lava': {pTop:.1, pBottom: .3, minDepth:5}
-    }, 2.5)
+    }, 2.5)*/
 };
