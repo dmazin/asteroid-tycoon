@@ -112,6 +112,12 @@ var upgradeBot = function(type, level) {
     playerState.setRobotLevel(type, level);
 
     updateRobotShop();
+
+    playerState.totalUpgradesReceived++;
+    if (playerState.totalUpgradesReceived == 10 && playerState.badgerFound) {
+        Robot.unlock('badgerBot');
+        $('.robot-shop').addClass('with-badger');
+    }
 };
 
 var remainingMineralsTillUpgrade = function(type, level) {

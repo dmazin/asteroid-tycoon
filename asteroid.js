@@ -42,7 +42,16 @@ var Asteroid = function (params) {
         _.each(robots, function (robot, robotType) {
             if (robot.lockedTil && robot.lockedTil.asteroid == name
                     && robot.lockedTil.row <= lineNum) {
-                Robot.unlock(robotType);
+                if (robot.lockedTil.specialCondition) {
+                    // badger
+                    if (playerState.totalUpgradesReceived == 10) {
+                        Robot.unlock(robotType)
+                    } else {
+                        playerState.badgerFound = true;
+                    }
+                } else {
+                    Robot.unlock(robotType);
+                }
             }
         });
 

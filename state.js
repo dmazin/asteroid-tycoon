@@ -112,6 +112,9 @@ var playerState = (function() {
         });
     };
 
+    state.totalUpgradesReceived = 0;
+    state.badgerFound = false;
+
     state.unlockedRobots = ['squirrelBot'];
 
     state.unlockedUpgrades = {
