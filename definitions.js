@@ -436,7 +436,7 @@ var resources = {
         'hardness': 0,
         'harvestable': true,
         'value': null,
-        'imagePath' : 'pics/other/artifact.png',
+        'imagePath' : 'pics/2x_gifs/artifact.gif',
         'image': loadImage('pics/tiles/dirt1.png'),
         'sprite': loadImageFromSpriteSheet('pics/other/artifact.png'),
         'text' : "I wonder what it is."
@@ -452,6 +452,7 @@ var resources = {
         'hardness': 0,
         'harvestable': false,
         'value': 0,
+        'imagePath' : 'pics/tiles/totally_lava.png',
         'image': loadImage('pics/tiles/totally_lava.png')
     }
 };
