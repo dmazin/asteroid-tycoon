@@ -35,7 +35,9 @@ var robots = {
         'harvestEfficiency': 0.5,
         'cost': 300,
         'affinity': {
-            'dirtite': 3
+            'dirtite': 3,
+            'dregsite': 3,
+            'rubbishite': 3
         },
         'klass': BearBot,
         'spriteSheet': 'pics/bots/allaround0.png',
@@ -214,7 +216,9 @@ var robotLevels = {
         'harvestEfficiency': 0.6,
         'affinity': {
             'dirtite': 3,
-            'dregsite': 3
+            'dregsite': 3,
+            'rubbishite': 3,
+            'junkite': 3
         },
         'hardness': 0.35,
         'spriteSheet': 'pics/bots/allaround1.png',
@@ -229,7 +233,9 @@ var robotLevels = {
         'affinity': {
             'dirtite': 3,
             'dregsite': 3,
-            'rubbishite': 3
+            'rubbishite': 3,
+            'junkite': 3,
+            'scrapite': 3
         },
         'hardness': 0.45,
         'spriteSheet': 'pics/bots/allaround2.png',
