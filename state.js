@@ -6,7 +6,8 @@ var playerState = (function() {
         'bearBot': 0,
         'antBot': 0,
         'goatBot': 0,
-        'vultureBot': 0
+        'vultureBot': 0,
+        'badgerBot': 0
     };
 
     var resourceAmounts = {

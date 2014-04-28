@@ -90,6 +90,7 @@ function init_ui() {
         if (val.harvestable) {
             $('.general-stats').append(statTemplate({
                 name: key,
+                abbrev: val.abbrev,
                 amount: 0
             }));
         }

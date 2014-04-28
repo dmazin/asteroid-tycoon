@@ -119,6 +119,32 @@ var robots = {
             row: 14
         },
         'exploreRadius' : 1
+    },
+    'badgerBot': {
+        'uiName': 'Badger',
+        'displayName' : 'BadgerBot',
+        'displayText' : 'Destroys all in its path.',
+        'description': 'BadgerBot 9000',
+        'hardness': 1,
+        'baseEnergy': 5000,
+        'storage': 1000,
+        'wobble': 0.1,
+        'harvestEfficiency': 1,
+        'cost': 5000,
+        'affinity': {
+            'motherlodium': 1.05
+        },
+        'klass': BadgerBot,
+        'canSalvage': false,
+        'spriteSheet': 'pics/bots/mecha.png',
+        'spriteSpeed': 0.3,
+        'gifName': 'mecha',
+        'lockedTil': {
+            asteroid: 'Cashmonoid',
+            row: 24,
+            specialCondition: true
+        },
+        'exploreRadius' : 1
     }
 };
 
@@ -192,7 +218,7 @@ var upgrades = {
                 row: 24
             }
         ]
-    }
+    },
 };
 
 var robotLevels = {
@@ -299,6 +325,9 @@ var robotLevels = {
             'spriteSheet': 'pics/bots/scavenger2.png',
             'spriteSpeed': 1.0
         }),
+    ],
+    'badgerBot': [
+        robots['badgerBot']
     ]
 };
 
@@ -419,7 +448,8 @@ var resources = {
         'value': 20,
         'imagePath' : 'pics/tiles/mineral1.png',
         'image': loadImage('pics/tiles/mineral1.png'),
-        'text' : "It's just dirt. Or is it?"
+        'text' : "It's just dirt. Or is it?",
+        'abbrev': 'PAYD'
     },
     'cheddarium': {
         'hardness': 0.3,
@@ -427,7 +457,8 @@ var resources = {
         'value': 30,
         'imagePath' : 'pics/tiles/mineral2.png',
         'image': loadImage('pics/tiles/mineral2.png'),
-        'text' : 'Delicious AND valuable.'
+        'text' : 'Delicious AND valuable.',
+        'abbrev': 'CHED'
     },
     'fatlootium': {
         'hardness': 0.4,
@@ -435,7 +466,8 @@ var resources = {
         'value': 40,
         'imagePath' : 'pics/tiles/mineral3.png',
         'image': loadImage('pics/tiles/mineral3.png'),
-        'text' : 'Not to be confused with \'phatlootium\'.'
+        'text' : 'Not to be confused with \'phatlootium\'.',
+        'abbrev': 'FATL'
     },
     'affluentium': {
         'hardness': 0.5,
@@ -443,7 +475,8 @@ var resources = {
         'value': 50,
         'imagePath' : 'pics/tiles/mineral4.png',
         'image': loadImage('pics/tiles/mineral4.png'),
-        'text' : 'This mineral is comfortably well-off.'
+        'text' : 'This mineral is comfortably well-off.',
+        'abbrev': 'AFFL'
     },
     'cashmonium': {
         'hardness': 0.6,
@@ -451,7 +484,18 @@ var resources = {
         'value': 60,
         'imagePath' : 'pics/tiles/mineral5.png',
         'image': loadImage('pics/tiles/mineral5.png'),
-        'text' : 'The rarest of all asteroid minerals.'
+        'text' : 'The rarest of all asteroid minerals.',
+        'abbrev': 'CASH'
+    },
+    'artifact': {
+        'hardness': 0,
+        'harvestable': true,
+        'value': null,
+        'imagePath' : 'pics/2x_gifs/artifact.gif',
+        'image': loadImage('pics/tiles/dirt1.png'),
+        'sprite': loadImageFromSpriteSheet('pics/other/artifact.png'),
+        'text' : "I wonder what it is.",
+        'abbrev': 'ART'
     },
     'motherlodium': {
         'hardness': 0.99,
@@ -459,16 +503,8 @@ var resources = {
         'value': 1000,
         'imagePath' : 'pics/tiles/mineral6.png',
         'image': loadImage('pics/tiles/mineral6.png'),
-        'text' : 'Weapons grade motherlodium... we\re gonna be rich!'
-    },
-        'artifact': {
-        'hardness': 0,
-        'harvestable': true,
-        'value': null,
-        'imagePath' : 'pics/2x_gifs/artifact.gif',
-        'image': loadImage('pics/tiles/dirt1.png'),
-        'sprite': loadImageFromSpriteSheet('pics/other/artifact.png'),
-        'text' : "I wonder what it is."
+        'text' : 'Weapons grade motherlodium... we\re gonna be rich!',
+        'abbrev': 'MOTH'
     },
     'unexplored': {
         'hardness': 0,
