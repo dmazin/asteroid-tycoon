@@ -1,9 +1,21 @@
 .sound {
-    width: 80px;
+    width: 183px;
     margin: 0 auto;
 }
 .sound a {
-    color: white;
+    color: #fff;
+    opacity: .4
+}
+
+.credits {
+    width:470px;
+    color: #fff;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.credits a {
+    color: #fff;
 }
 
 .information {
@@ -20,8 +32,8 @@
 .money-stats .tiny-description {
     font-size: 12px;
     position: relative;
-    top: -4px;
-    width: 150px;
+    top: -1px;
+    width: 104px;
     display: inline-block;
 }
 
@@ -84,8 +96,8 @@ body {
 }
 
 .notification.ad {
-    border: 4px outset #88FFFF;
-    background-color: #00FFFF;
+    border: 4px outset #71DADA;
+    background-color: #B0E4E4;
     color: black;
 }
 
@@ -271,8 +283,10 @@ body {
 .robot-shop .robot-container.disabled {
     position: relative;
     top: -62px;
-    background: #666;
+    background: #514E64;
     padding: 15px 0;
+    border-radius: 5px;
+    opacity: .4;
 }
 
 .robot-shop .robot-container.disabled .robot {

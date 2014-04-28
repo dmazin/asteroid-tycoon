@@ -84,7 +84,7 @@ var findNearestBot = function(position, asteroid) {
 	deadBots.forEach(function(bot) {
 		var diffX = Math.abs(bot.position.x - position.x);
 		var diffY = Math.abs(bot.position.y - position.y);
-		if((diffX + diffY) < currDiff) {
+		if((diffX + diffY) < currDiff && (diffX + diffY) > 0) {
 			currDiff = diffX + diffY;
 			nearestBot = bot;
 		}
