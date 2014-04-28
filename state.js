@@ -53,6 +53,10 @@ var playerState = (function() {
             amount: parseInt(resourceAmounts[resource])
         }));
 
+        if (resource === 'fatlootium') {
+            $('.notification.fatlootium .amount').text(parseInt(resourceAmounts[resource]));
+        }
+
         if (resource === 'iron') {
             $('.notification.iron .amount').text(parseInt(resourceAmounts[resource]));
         }

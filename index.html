@@ -19,18 +19,29 @@
 <div id='game'>
     <div id='menu'>
         <div class='title-container'>
-            <pre class='title'>
+            <div class='title'>
+<pre class='title-text'>
             .........             ___   _____________________  ____  ________     ________  ____________  ____  _   __
        _...MMMMM88&&&&..._       /   | / ___/_  __/ ____/ __ \/ __ \/  _/ __ \   /_  __/\ \/ / ____/ __ \/ __ \/ | / /
    '::....MMMMM88&&&&&&....::'  / /| | \__ \ / / / __/ / /_/ / / / // // / / /    / /    \  / /   / / / / / / /  |/ /
       `''''MMMMM88&&&&''''`    / ___ |___/ // / / /___/ _, _/ /_/ // // /_/ /    / /  ___/ / /___/ /_/ / /_/ / /|  /
             'MMM8&&&'         /_/  |_/____//_/ /_____/_/ |_|\____/___/_____/    /_/  /____/\____/\____/\____/_/ |_/
-            </pre>
+</pre>
+                <div class='level-select display'>
+                    <span class='level'>Asteroid 1</span>
+                    <span class='level'>Asteroid 1</span>
+                    <span class='level'>Asteroid 1</span>
+                    <span class='level'>Asteroid 1</span>
+                    <span class='level'>Asteroid 1</span>
+                    <span class='level'>Asteroid 1</span>
+                </div>
+            </div>
         </div>
         <marquee behavior="alternate">
             <span class='money notification'>YOU HAVE <span class='amount'></span> NORMALIZED SPACE DOLLARS</span>
             <span class='iron notification'>IRON REPORT! IRON LEVELS AT <span class='amount'></span> IRONS</span>
-            <span class='alert'>PRODUCTION DECLINING, PICK UP SLACK OR FACE CORPORATE OVERSIGHT</span>
+            <span class='alert'>PRODUCTION DECLINING, CORPORATE OVERSIGHT IMMINENT</span>
+            <span class='paydirtium notification'>CONGRADULATIONS, YOU HAVE OBTAINED <span class='amount'></span></span>
         </marquee>
         <div class='controls'>
             <div class='information'>
@@ -51,6 +62,26 @@
 </div>
 
 <style>
+    .level-select {
+        text-align: center;
+        background-color: #3A4F6B;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        margin-top: 12px;
+        padding: 5px 0 5px 10px;
+        font-size: 14px;
+    }
+
+    .level-select .level {
+        padding: 3px;
+    }
+
+    .level-select .level:hover {
+        cursor: pointer;
+        background-color: #757D9B;
+        border-radius: 3px;
+    }
+
     .robot-shop {
         border: 4px inset #FFF;
         background-color: #7660BD;
@@ -75,6 +106,10 @@
     .robot-shop img {
         vertical-align: bottom;
         margin-right: 3px;
+    }
+
+    .title .title-text {
+        margin: 0;
     }
 </style>
 
