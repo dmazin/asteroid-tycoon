@@ -57,9 +57,9 @@ $(document).ready(function () {
 
 var updateTopMenuSize = function() {
         if($(document).scrollTop() > 0) {
+            $('#asteroidButton, #messages').hide();
             if($('.title-container').data('size') == 'big') {
                 $('.title-container').data('size','small');
-                $('#asteroidButton, #messages').hide();
                 $('.title-container').stop().animate({
                     height:'0px',
                 }, 600);
