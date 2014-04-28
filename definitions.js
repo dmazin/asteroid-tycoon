@@ -16,7 +16,7 @@ var robots = {
         'storage': 0,
         'wobble': 0.9,
         'harvestEfficiency': 0,
-        'cost': 150,
+        'cost': 100,
         'affinity': {},
         'klass': SquirrelBot,
         'spriteSheet': 'pics/bots/scout0.png',
@@ -33,7 +33,7 @@ var robots = {
         'storage': 100,
         'wobble': 0.7,
         'harvestEfficiency': 0.5,
-        'cost': 300,
+        'cost': 250,
         'affinity': {
             'dirtite': 3,
             'dregsite': 3,
