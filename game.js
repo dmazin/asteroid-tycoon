@@ -78,7 +78,7 @@ function init_ui() {
 }
 
 function init_stage() {
-    stage.backdrop = new createjs.Bitmap('pics/other/upperlayer1.png');
+    stage.backdrop = new createjs.Bitmap(playerState.getAsteroid().bgImage);
     stage.backdrop.x = 0;
     stage.backdrop.y = 0;
     stage.addChild(stage.backdrop);

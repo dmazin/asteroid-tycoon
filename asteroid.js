@@ -1,11 +1,14 @@
-var Asteroid = function (name, terrainParameters, artifactValueScale) {
+var Asteroid = function (params) {
+    var name = params.name;
+
     var grid = [];
     var deadBots = [];
     var initialized = false;
     var startSeed = Math.random();
     var seed;
 
-    this.artifactValueScale = artifactValueScale;
+    this.bgImage = params.bgImage;
+    this.artifactValueScale = params.artifactValueScale;
 
     this.init = function () {
         seed = startSeed;
@@ -75,18 +78,12 @@ var Asteroid = function (name, terrainParameters, artifactValueScale) {
     }
 
     function generate_terrain(depth) {
-        function random () {
-            var x = Math.sin(seed++) * 10000;
-            return x - Math.floor(x);
-        }
-
         function normalize(array) {
             var total = _.reduce(array,
                     function(m, n) { return m + n;},
                     0);
             return _.map(array, function(x) { return x / total; });
         }
-
 
         var resources = [];
         var maxDepth = game_height;
@@ -96,7 +93,7 @@ var Asteroid = function (name, terrainParameters, artifactValueScale) {
             return 'imperviousite';
         }
 
-        var probs = _.map(terrainParameters, function(x, r) {
+        var probs = _.map(params.terrainParameters, function(x, r) {
             var minDepth = Math.round(x.minDepth * maxDepth); // % -> row #
             resources.push(r);
             if (depth < minDepth) {
