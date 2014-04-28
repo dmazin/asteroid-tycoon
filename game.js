@@ -34,54 +34,6 @@ function createSpawn(xpos){
     stage.addChild(spawner);
 }
 
-function Tile(pixel_x, pixel_y, size, type, amount, pos) {
-    /* create the easeljs shape object that
-     * draws this Tile, and add it to the
-     * stage
-     */
-
-    this.init = function () {
-        this.addToStage();
-
-        this.amount = amount;
-        this.baseAmount = amount;
-        this.type = type;
-        this.explored = false; // true to disable fog of war
-        if (pos[1] < 2) { // no FOW on first two rows, let's say
-            this.explored = true;
-        }
-
-        this.refresh();
-    };
-
-    this.addToStage = function () {
-        this.shape = new createjs.Bitmap(resources[this.getType()].image);
-        this.shape.x = pixel_x;
-        this.shape.y = pixel_y;
-        stage.addChild(this.shape);
-    };
-
-    this.refresh = function () {
-        this.shape.image = resources[this.getType()].image;
-    };
-
-    this.getType = function() {
-        return this.explored ? (this.type || type) : "unexplored";
-    };
-
-    this.setExplored = function() {
-        this.explored = true;
-        this.refresh();
-    };
-
-   this.setType = function (newType) {
-        this.type = newType;
-        this.refresh();
-    };
-
-    this.init();
-}
-
 function tick() {
     activeBots.forEach(function(bot) {
         bot.handleMove(bot.destX, bot.destY);
