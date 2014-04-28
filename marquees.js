@@ -29,7 +29,7 @@ var marqueeMessages = [
 		}
 	},
 	{
-		'html': "GRUMBLING IS HEARD AMONG THE RANKS OF YOURS ROBOTS. THERE IS TALK OF STARTING A UNION.",
+		'html': "GRUMBLING IS HEARD AMONG THE ROBOT RANKS. THERE IS TALK OF STARTING A UNION.",
 		'class': 'alert',
 		'condition': function () {
 			return playerState.getTotalRobotsKilled() > 10;
@@ -72,7 +72,7 @@ var marqueeMessages = [
 	},
 	{
 		'html': "YOU HAVE DISCOVERED <span class='amount'>0</span> ALIEN ARTIFACTS. WHAT SECRETS DO THEY HOLD?",
-		'class': 'resource artifacts',
+		'class': 'resource artifact',
 		'condition': function () {
 			return playerState.getResource('artifact') > 0;
 		}
