@@ -21,7 +21,7 @@ var robots = {
         'klass': SquirrelBot,
         'spriteSheet': 'pics/bots/scout0.png',
         'spriteSpeed': 0.3,
-        'gif': 'pics/bots/scout0.gif',
+        'gif': 'pics/2x_gifs/scout0.gif',
         'lockedTil': null,
         'exploreRadius' : 3
     },
@@ -42,7 +42,7 @@ var robots = {
         'klass': BearBot,
         'spriteSheet': 'pics/bots/allaround0.png',
         'spriteSpeed': 0.3,
-        'gif': 'pics/bots/allaround0.gif',
+        'gif': 'pics/2x_gifs/allaround0.gif',
         'lockedTil': {
             asteroid: 'Paydirteroid',
             row: 3
@@ -62,7 +62,7 @@ var robots = {
         'klass': AntBot,
         'spriteSheet': 'pics/bots/harvester0.png',
         'spriteSpeed': 0.3,
-        'gif': 'pics/bots/harvester0.gif',
+        'gif': 'pics/2x_gifs/harvester0.gif',
         'lockedTil': {
             asteroid: 'Cheddaroid',
             row: 14
@@ -82,7 +82,7 @@ var robots = {
         'klass': GoatBot,
         'spriteSheet': 'pics/bots/smasher0.png',
         'spriteSpeed': 0.3,
-        'gif': 'pics/bots/smasher0.gif',
+        'gif': 'pics/2x_gifs/smasher0.gif',
         'lockedTil': {
             asteroid: 'Fatlooteroid',
             row: 14
@@ -103,7 +103,7 @@ var robots = {
         'canSalvage': true,
         'spriteSheet': 'pics/bots/scavenger0.png',
         'spriteSpeed': 0.3,
-        'gif': 'pics/bots/scavenger0.gif',
+        'gif': 'pics/2x_gifs/scavenger0.gif',
         'lockedTil': {
             asteroid: 'Paydirteroid',
             row: 14
@@ -194,7 +194,7 @@ var robotLevels = {
         'hardness': 0.25,
         'spriteSheet': 'pics/bots/scout1.png',
         'spriteSpeed': 0.6,
-        'gif': 'pics/bots/scout1.gif',
+        'gif': 'pics/2x_gifs/scout1.gif',
         'exploreRadius' : 4
     }),
     _.extend(_.clone(robots['squirrelBot']), {
@@ -203,7 +203,7 @@ var robotLevels = {
         'hardness': 0.35,
         'spriteSheet': 'pics/bots/scout2.png',
         'spriteSpeed': 1.0,
-        'gif': 'pics/bots/scout2.gif',
+        'gif': 'pics/2x_gifs/scout2.gif',
         'exploreRadius' : 5
     }),
     ],
@@ -223,7 +223,7 @@ var robotLevels = {
         'hardness': 0.35,
         'spriteSheet': 'pics/bots/allaround1.png',
         'spriteSpeed': 0.6,
-        'gif': 'pics/bots/allaround1.gif'
+        'gif': 'pics/2x_gifs/allaround1.gif'
     }),
     _.extend(_.clone(robots['bearBot']), {
         'baseEnergy': 1600,
@@ -240,7 +240,7 @@ var robotLevels = {
         'hardness': 0.45,
         'spriteSheet': 'pics/bots/allaround2.png',
         'spriteSpeed': 1.0,
-        'gif': 'pics/bots/allaround2.gif'
+        'gif': 'pics/2x_gifs/allaround2.gif'
     }),
     ],
     'antBot': [
@@ -252,7 +252,7 @@ var robotLevels = {
         'hardness': 0.55,
         'spriteSheet': 'pics/bots/harvester1.png',
         'spriteSpeed': 0.6,
-        'gif': 'pics/bots/harvester1.gif'
+        'gif': 'pics/2x_gifs/harvester1.gif'
     }),
     _.extend(_.clone(robots['antBot']), {
         'baseEnergy': 1500,
@@ -261,7 +261,7 @@ var robotLevels = {
         'hardness': 0.85,
         'spriteSheet': 'pics/bots/harvester2.png',
         'spriteSpeed': 1.0,
-        'gif': 'pics/bots/harvester2.gif'
+        'gif': 'pics/2x_gifs/harvester2.gif'
     }),
     ],
     'goatBot': [
@@ -271,14 +271,14 @@ var robotLevels = {
         'hardness': 0.75,
         'spriteSheet': 'pics/bots/smasher1.png',
         'spriteSpeed': 0.6,
-        'gif': 'pics/bots/smasher1.gif'
+        'gif': 'pics/2x_gifs/smasher1.gif'
     }),
     _.extend(_.clone(robots['goatBot']), {
         'baseEnergy': 1200,
         'hardness': 0.95,
         'spriteSheet': 'pics/bots/smasher2.png',
         'spriteSpeed': 1.0,
-        'gif': 'pics/bots/smasher2.gif'
+        'gif': 'pics/2x_gifs/smasher2.gif'
 
     }),
     ],
@@ -290,7 +290,7 @@ var robotLevels = {
         'harvestEfficiency': 0.4,
         'spriteSheet': 'pics/bots/scavenger1.png',
         'spriteSpeed': 0.6,
-        'gif': 'pics/bots/scavenger1.gif'
+        'gif': 'pics/2x_gifs/scavenger1.gif'
     }),
     _.extend(_.clone(robots['vultureBot']), {
         'baseEnergy': 2000,
@@ -298,7 +298,7 @@ var robotLevels = {
         'harvestEfficiency': 0.6,
         'spriteSheet': 'pics/bots/scavenger2.png',
         'spriteSpeed': 1.0,
-        'gif': 'pics/bots/scavenger2.gif'
+        'gif': 'pics/2x_gifs/scavenger2.gif'
     }),
     ]
 };
