@@ -1,13 +1,19 @@
 var infoPopupActive = false;
 
 $('#mainCanvas').click(function (e) {
-    if (!infoPopupActive) {
+    if (!infoPopupActive && !robotSelectionActive) {
         var x = e.offsetX,
-        y = e.offsetY,
-        popup = infoPopup(tileInfo(tileTypeAt(x, y)));
+            y = e.offsetY;
 
-        $('#game').append(popup);
-        infoPopupActive = true;
+        if (y >= surface_height) {
+            var popup = infoPopup(tileInfo(tileTypeAt(x, y)));
+
+            popup.offset({left : x, top : y + 200});
+            $('#game').append(popup);
+
+            infoPopupActive = true;
+        }
+
         return false;
     } else {
         hidePopups();
@@ -37,21 +43,34 @@ function tileTypeAt(canvasX, canvasY) {
         canvasWidth  = $("#mainCanvas").width(),
         canvasHeight = $("#mainCanvas").height(),
         stepX        = canvasWidth / game_width, 
-        stepY        = canvasHeight / game_height,
-        tile = grid[Math.floor(canvasX / stepX)][Math.floor(canvasY / stepY)];
+        stepY        = (canvasHeight - surface_height) / game_height,
+        x            = Math.floor(canvasX / stepX),
+        y            = Math.floor((canvasY - surface_height) / stepY),
+        tile         = y >= 0 ? grid[x][y] : null;
 
-    return tile.explored ? tile.type : null;
+    return tile && tile.explored ? tile.type : null;
 }
 
 // Returns a tile info object given the type of a tile.
 function tileInfo(type) {
-    var stats = type ? resources[type] : resources['unexplored'];
+    type = type || 'unexplored';
 
-    return {
-        name     : type,
-        image    : stats.imagePath,
-        hardness : stats.hardness,
-        value    : stats.value
-    };
+    var stats = resources[type];
+
+    if (type == 'unexplored') {
+        return {
+            name     : type,
+            image    : stats.imagePath,
+            hardness : "??",
+            value    : "??"
+        }
+    } else {
+        return {
+            name     : type,
+            image    : stats.imagePath,
+            hardness : stats.hardness,
+            value    : "$" + stats.value
+        };
+    }
 }
 

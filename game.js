@@ -90,6 +90,10 @@ function init_stage() {
     stage.destTile = new createjs.Sprite(reticuleSpritesheet);
     stage.destTile.gotoAndStop(0);
     $('canvas').on("mousedown", function() {
+        if (robotSelectionActive) {
+            setTimeout(function () {robotSelectionActive = false}, 0);
+        }
+
         stage.destTile.gotoAndStop(1);
     });
     $('canvas').on("mouseup", function() {

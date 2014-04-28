@@ -1,3 +1,6 @@
+// Is there a robot currently being placed?
+var robotSelectionActive = false;
+
 $(document).ready(function () {
     init_ui();
 
@@ -12,6 +15,8 @@ $(document).ready(function () {
     $('.robot-shop').on('click', '.robot', function() {
         var $this = $(this);
         var robotType = $this.data('robot');
+
+        robotSelectionActive = true;
 
         var money = playerState.getResource('money');
 
