@@ -68,6 +68,7 @@ var playerState = (function() {
         for (var resourceType in resourceAmountsByType) {
             var resourceAmount = resourceAmountsByType[resourceType];
             state.changeResource(resourceType, resourceAmount);
+            state.changeResource('money', resources[resourceType].value * resourceAmount);
         }
     };
 
