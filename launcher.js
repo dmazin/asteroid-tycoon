@@ -41,8 +41,7 @@ $(document).ready(function () {
     updateRobotShop();
     setInterval(updateRobotShop, 1000);
 
-    //printout($('#first-email').text());
-    drawAsteroidSelectionScreen();
+    printout($('#first-email').text());
 });
 
 var updateRobotShop = function() {
