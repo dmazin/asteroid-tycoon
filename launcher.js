@@ -7,12 +7,14 @@ $(document).ready(function () {
     setup_stage_event_handler();
 
     _.each(robots, function(val, key) {
-        var data = _.extend(val, {'name': key});
+        var data = _.extend(val, {
+            'name': key
+        });
         var rendered = buy_button_template(data);
         $('.controls .robot-shop').append(rendered);
     });
 
-    $('.robot-shop').on('click', '.robot', function() {
+    $('.robot-shop').on('click', '.robot, img.current', function() {
         var $this = $(this);
         var robotType = $this.data('robot');
 
@@ -74,7 +76,7 @@ var showPrintout = function () {
     $(".printout").animate({'top' : 128,
                             'left' : '50%',
                             'width' : 670,
-                            'height' : '100%',
+                            'height' : '390',
                             'opacity' : 100 },
                            1000);
 
@@ -106,7 +108,35 @@ var updateRobotShop = function() {
             $('.robot-container.' + key).addClass('disabled');
         }
 
-        var robotGif = robotLevels[key][playerState.getRobotLevel(key)].gif;
-        $('.robot[data-robot=' + key + '] img').attr('src', robotGif);
+        // image warblegarb starts here
+
+        $('.robot-container.' + key + ' img').removeClass('current').removeClass('unused');
+
+        if (level == 1) {
+            $('.robot-container.' + key + ' img.lvl1').addClass('current');
+        } else {
+            $('.robot-container.' + key + ' img.lvl1').addClass('unused');
+        }
+
+        if (level == 2) {
+            $('.robot-container.' + key + ' img.lvl2').addClass('current');
+        } else {
+            $('.robot-container.' + key + ' img.lvl2').addClass('unused');
+        }
+
+        if (level == 3) {
+            $('.robot-container.' + key + ' img.lvl3').addClass('current');
+        } else {
+            $('.robot-container.' + key + ' img.lvl3').addClass('unused');
+        }
+
+        var pathPrefix = 'pics/2x_gifs/' + data['gifName'];
+        if (upgradeUnlocked(key, 1)) {
+            $('.robot-container.' + key + ' img.lvl2').attr('src', pathPrefix + '1.gif');
+        }
+
+        if (upgradeUnlocked(key, 2)) {
+            $('.robot-container.' + key + ' img.lvl3').attr('src', pathPrefix + '2.gif');
+        }
     });
 };

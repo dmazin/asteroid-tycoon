@@ -9,11 +9,16 @@
 <script id="robot-buy-button-template" type="text/html">
     <div class='robot-container <%= name %>'>
         <div class='robot' data-robot='<%= name %>'>
-            <img src="<%= gif %>"><%= uiName %> $<%= cost %>
+            <%= uiName %> $<%= cost %>
         </div>
         <div class='upgrade' data-robot='<%= name %>'>
         	Upgrade
         	<span class="upgradeCost">locked</span>
+        </div>
+        <div class='images'>
+        	<img src="pics/2x_gifs/<%= gifName %>0.gif" data-robot='<%= name %>' class="lvl1">
+        	<img src="pics/other/closedlock.png" data-robot='<%= name %>' class="lvl2 unused">
+        	<img src="pics/other/closedlock.png" data-robot='<%= name %>' class="lvl3 unused">
         </div>
         <div class='unlockMessage' data-robot='<%= name %>'>unavailable</div>
     </div>
@@ -71,7 +76,7 @@
             <span class='paydirtium notification'>CONGRATULATIONS, YOU HAVE OBTAINED <span class='amount'></span></span>
         </marquee>
         <div class='controls'>
-            <div class='information'>
+            <div class='information' style="display: none;">
                 <div class='general-stats stats display'>
                 </div>
                 <div class='money-stats stats display'>
@@ -81,7 +86,6 @@
             </div>
             <div class='robot-shop display'>
             </div>
-            <div class='robot-spawn'></div>
         </div>
     </div>
     <canvas id='mainCanvas' width=1000 height=1380></canvas>

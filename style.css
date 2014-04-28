@@ -132,12 +132,6 @@ body {
     border-top-right-radius: 5px;
 }
 
-.robot-spawn {
-    display: inline-block;
-    vertical-align: top;
-    width: 560px;
-}
-
 #mainCanvas {
     background-color: #060D22;
     border-bottom-left-radius: 5px;
@@ -168,7 +162,7 @@ body {
     border: 4px inset #FFF;
     background-color: #40536B;
     border-radius: 9px;
-    width: 735px;
+    width: 940px;
     padding: 3px;
     color: #FFF;
     font-size: 19px;
@@ -177,25 +171,10 @@ body {
     vertical-align: top;
 }
 
-.robot-shop .upgrade {
-    color: #A2A2A2;
-}
-
-.robot-shop .upgrade.enabled {
-    color: #fff;
-    cursor: pointer;
-}
-
-.robot-shop .upgrade.enabled:hover {
-    cursor: pointer;
-    background-color: #FFF;
-    color: #222;
-}
-
 .robot-container {
     display: inline-block;
-    max-width: 140px;
-    width: 140px;
+    max-width: 180px;
+    width: 180px;
     text-align: center;
 }
 
@@ -209,27 +188,34 @@ body {
     background-color: #8B8B8B;
 }
 
-.robot-spawn .robot {
-    display: inline-block;
-    color: #FFF;
-    text-align: center;
-    padding: 1px 0 3px;
-    border: 4px outset #BDBDBD;
-    border-radius: 10px;
-    background-color: #8B8B8B;
-}
-
 .robot-container:hover {
     opacity: 1;
 }
 
 .robot-shop .robot {
-    padding: 3px;
-    height: 24px;
+    padding: 3px 0;
+    height: 20px;
     display: inline-block;
 }
 
 .robot-shop .robot:hover {
+    cursor: pointer;
+    background-color: #FFF;
+    color: #222;
+}
+
+.robot-shop .upgrade {
+    color: #A2A2A2;
+    margin-top: -4px;
+    margin-bottom: 4px;
+}
+
+.robot-shop .upgrade.enabled {
+    color: #fff;
+    cursor: pointer;
+}
+
+.robot-shop .upgrade.enabled:hover {
     cursor: pointer;
     background-color: #FFF;
     color: #222;
@@ -247,9 +233,21 @@ body {
     padding: 3px;
 }
 
+.robot-shop img.current:hover {
+    border: 2px solid white;
+    margin: -2px 0;
+}
+
+.robot-shop img.unused {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
 .robot-shop .robot-container.disabled {
     position: relative;
-    top: -10px;
+    top: -55px;
     background: #666;
     padding: 15px 0;
 }
@@ -259,6 +257,10 @@ body {
 }
 
 .robot-shop .robot-container.disabled .upgrade {
+    display: none;
+}
+
+.robot-shop .robot-container.disabled .images {
     display: none;
 }
 
