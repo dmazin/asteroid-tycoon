@@ -155,7 +155,7 @@ body {
     border: 4px inset #FFF;
     background-color: #40536B;
     border-radius: 9px;
-    width: 735px;
+    width: 940px;
     padding: 3px;
     color: #FFF;
     font-size: 19px;
@@ -181,8 +181,8 @@ body {
 
 .robot-container {
     display: inline-block;
-    max-width: 140px;
-    width: 140px;
+    max-width: 180px;
+    width: 180px;
     text-align: center;
 }
 
@@ -234,6 +234,13 @@ body {
     padding: 3px;
 }
 
+.robot-shop img.unused {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
 .robot-shop .robot-container.disabled {
     position: relative;
     top: -10px;
@@ -246,6 +253,10 @@ body {
 }
 
 .robot-shop .robot-container.disabled .upgrade {
+    display: none;
+}
+
+.robot-shop .robot-container.disabled .images {
     display: none;
 }
 

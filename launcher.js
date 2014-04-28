@@ -7,7 +7,12 @@ $(document).ready(function () {
     setup_stage_event_handler();
 
     _.each(robots, function(val, key) {
-        var data = _.extend(val, {'name': key});
+        var data = _.extend(val, {
+            'name': key,
+            'lvl1': playerState.getRobotLevel(key) !== 1 ? 'unused' : '',
+            'lvl2': playerState.getRobotLevel(key) !== 2 ? 'unused' : '',
+            'lvl3': playerState.getRobotLevel(key) !== 3 ? 'unused' : ''
+        });
         var rendered = buy_button_template(data);
         $('.controls .robot-shop').append(rendered);
     });
