@@ -33,7 +33,7 @@
     font-size: 12px;
     position: relative;
     top: -1px;
-    width: 104px;
+    width: 124px;
     display: inline-block;
 }
 
@@ -41,7 +41,7 @@
     color: #191F18;
     background-color: #008000;
     border: 1px inset #83AF83;
-    width: 176px;
+    width: 256px;
 }
 
 .money-stats .amount {
@@ -64,14 +64,18 @@
     border: 1px inset #9BBFD3;
     padding-top: 6px;
     padding-bottom: 0;
-    width: 730px;
+    width: 650px;
 }
 
 .general-stats .stat {
     display: inline-block;
-    width: 115px;
-    min-width: 115px;
+    width: 85px;
+    min-width: 85px;
     text-align: center;
+}
+
+.general-stats .stat.motherlodium {
+    visibility: hidden;
 }
 
 body {
@@ -211,6 +215,10 @@ body {
     max-width: 180px;
     width: 180px;
     text-align: center;
+}
+
+.robot-container.badgerBot {
+    display: none;
 }
 
 .robot-container .money {

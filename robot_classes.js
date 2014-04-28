@@ -1,4 +1,4 @@
-var SquirrelBot = {}, BearBot = {}, AntBot = {}, GoatBot = {}, VultureBot = {};
+var SquirrelBot = {}, BearBot = {}, AntBot = {}, GoatBot = {}, VultureBot = {}, BadgerBot = {};
 
 // move in a random direction for 10 moves at a time
 SquirrelBot.defaultBehavior = function(_this) {
@@ -70,6 +70,8 @@ VultureBot.defaultBehavior = function(_this) {
 		}
 	}
 };
+
+BadgerBot.defaultBehavior = AntBot.defaultBehavior;
 
 // nearest deadBot for vulture
 var findNearestBot = function(position, asteroid) {
