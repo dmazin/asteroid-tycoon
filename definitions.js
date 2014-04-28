@@ -54,7 +54,7 @@ var robots = {
         'spriteSheet': 'pics/bots/harvester0.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/bots/harvester0.gif',
-        'lockedTil': 'cheddarium'
+        'lockedTil': 'paydirtium'
     },
     'goatBot': {
         'uiName': 'Goat',
