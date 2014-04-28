@@ -417,7 +417,7 @@ var resources = {
         'harvestable': false,
         'value': 0,
         'image': loadImage('pics/tiles/undiscovered.png')
-    },    
+    },
     'lava': {
         'hardness': 0,
         'harvestable': false,
@@ -428,20 +428,19 @@ var resources = {
 
 
 var asteroids = {
-    "Paydirteroid": new Asteroid({
-
-    //dirt and rocks
-    'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
-    'dregsite': {pTop: .1, pBottom: .8, minDepth: .05},
-    'rubbishite': {pTop: 0.1, pBottom: 0.6, minDepth: 0.25},
-    'junkite': {pTop: 0.2, pBottom: 0.5, minDepth: 0.25},
-    'scrapite': {pTop: 0.3, pBottom: 0.3, minDepth: 0.80},
-    // 'crapite': {pTop: 0, pBottom: 0, minDepth: 0},
-    // 'densite': {pTop: 0, pBottom: 0, minDepth: 0},
-    // 'rigidite': {pTop: 0, pBottom: 0, minDepth: 0},
-    // 'toughite': {pTop: 0, pBottom: 0, minDepth: 0},
-    // 'unyieldite': {pTop: 0, pBottom: 0, minDepth: 0},
-        'imperviousite': {pTop: 0, pBottom: 0, minDepth: 0.9},
+    "Paydirteroid": new Asteroid("Paydirteroid", {
+        //dirt and rocks
+        'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
+        'dregsite': {pTop: .1, pBottom: .8, minDepth: .05},
+        'rubbishite': {pTop: 0.1, pBottom: 0.6, minDepth: 0.25},
+        'junkite': {pTop: 0.2, pBottom: 0.5, minDepth: 0.25},
+        'scrapite': {pTop: 0.3, pBottom: 0.3, minDepth: 0.80},
+        // 'crapite': {pTop: 0, pBottom: 0, minDepth: 0},
+        // 'densite': {pTop: 0, pBottom: 0, minDepth: 0},
+        // 'rigidite': {pTop: 0, pBottom: 0, minDepth: 0},
+        // 'toughite': {pTop: 0, pBottom: 0, minDepth: 0},
+        // 'unyieldite': {pTop: 0, pBottom: 0, minDepth: 0},
+            'imperviousite': {pTop: 0, pBottom: 0, minDepth: 0.9},
 
     // minerals and goodies
     'artifact': {pTop: 0.4, pBottom: 0.4, minDepth: .3},
@@ -569,4 +568,5 @@ var asteroids = {
     'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
     'lava': {pTop:.1, pBottom: .3, minDepth:5}
 }, 2.5)
+
 };
