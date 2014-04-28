@@ -83,7 +83,7 @@ var buy_button_template = _.template($('#robot-buy-button-template').html());
 _.each(robots, function(val, key) {
     var data = _.extend(val, {'name': key});
     var rendered = buy_button_template(data);
-    $('.controls .robot-spawn').append(rendered);
+    $('.controls .robot-shop').append(rendered);
 });
 
 // constants for scaling robot attributes for balancing purposes
