@@ -75,7 +75,7 @@ var robots = {
         'description': 'VultureBot 1000 - Scavenger',
         'hardness': 0.01,
         'baseEnergy': 1500,
-        'storage': 200,
+        'storage': 0,
         'wobble': 0.1,
         'harvestEfficiency': 0.7,
         'cost': 650,
@@ -87,8 +87,6 @@ var robots = {
         'gif': 'pics/bots/scavenger0.gif'
     }
 };
-
-
 
 // constants for scaling robot attributes for balancing purposes
 var energy_scale = 0.1;
@@ -327,7 +325,7 @@ var asteroids = {
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
         'dregsite': {pTop: 0.1, pBottom: 0.4, minDepth: 1},
         'rubbishite': {pTop: 0.01, pBottom: 0.2, minDepth: 1},
-        'paydirtium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
+        'paydirtium': {pTop: 0.4, pBottom: 0.4, minDepth: 1},
         'cheddarium': {pTop: 0.01, pBottom: 0.05, minDepth: 15},
         'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
     })

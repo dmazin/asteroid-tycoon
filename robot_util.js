@@ -17,6 +17,14 @@ Robot.prototype.render = function() {
     this.healthbar.y = grid_size*y + surface_height - grid_size / 3;
     this.healthbar.gotoAndStop(Math.floor(this.energy / this.baseEnergy * 20));
 
+    this.capacitybar.x = grid_size*x;
+    this.capacitybar.y = grid_size*y + surface_height - grid_size / 3 + 6;
+    if (this.storage == 0) {
+        this.capacitybar.visible = false;
+    } else {
+        this.capacitybar.gotoAndStop(Math.floor(this.currentCapacity() / this.storage * 20));
+    }
+
     this.animation.rotation = 0;
     this.animation.scaleX = 1;
     if (this.direction == 'down') {
