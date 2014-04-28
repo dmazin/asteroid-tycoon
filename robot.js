@@ -325,7 +325,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         if (resource.harvestable && _this.storage > 0) {
             addResources(amountMined, tile.getType());
         }
-        tile.amount -= amountMined; //Reduce the amount left on the tile
+        tile.mineAmount(amountMined); //Reduce the amount left on the tile
     };
 
     // This gets called from the updateTileAndResources
