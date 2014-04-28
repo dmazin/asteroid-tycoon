@@ -47,10 +47,22 @@ $(document).ready(function () {
     printout($('#first-email').text());
 
     $('#asteroidButton').click(function () {
-        drawAsteroidSelectionScreen();
+        if (_(activeBots).some(function (b) { return !b.dead })) {
+            printout($('#nobotleftbehind').text(), 'modalyesno');
+            $('#modalyesno #yes').click(function () {
+                drawAsteroidSelectionScreen();
+            });
+        } else {
+            drawAsteroidSelectionScreen();
+        }
     });
 
     $('.title-container').data('size', 'big');
+
+    $('#modalyesno a').click(function () {
+        $('.printout.modalyesno').remove();
+        $('#modalyesno').hide();
+    });
 
     $(window).scroll(updateTopMenuSize);
     setInterval(updateTopMenuSize, 1000);
