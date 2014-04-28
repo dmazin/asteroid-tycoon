@@ -66,7 +66,8 @@ var Asteroid = function (terrainParameters) {
             if (depth < x.minDepth) {
                 return 0;
             } else {
-                return (maxDepth - depth) * x.pTop + depth * x.pBottom;
+                var d = x.minDepth - depth;
+                return (maxDepth - d) * x.pTop + d * x.pBottom;
             }
         });
 
