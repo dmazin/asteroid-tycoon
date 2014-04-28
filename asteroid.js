@@ -1,8 +1,10 @@
-var Asteroid = function (name, terrainParameters) {
+var Asteroid = function (name, terrainParameters, artifactValueScale) {
     var grid = [];
     var initialized = false;
     var startSeed = Math.random();
     var seed;
+
+    this.artifactValueScale = artifactValueScale;
 
     this.init = function () {
         seed = startSeed;
