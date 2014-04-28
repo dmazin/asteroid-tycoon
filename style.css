@@ -119,12 +119,6 @@ body {
     border-top-right-radius: 5px;
 }
 
-.robot-spawn {
-    display: inline-block;
-    vertical-align: top;
-    width: 560px;
-}
-
 #mainCanvas {
     background-color: #060D22;
     border-bottom-left-radius: 5px;
@@ -166,6 +160,8 @@ body {
 
 .robot-shop .upgrade {
     color: #A2A2A2;
+    margin-top: -6px;
+    margin-bottom: 6px;
 }
 
 .robot-shop .upgrade.enabled {
@@ -196,22 +192,12 @@ body {
     background-color: #8B8B8B;
 }
 
-.robot-spawn .robot {
-    display: inline-block;
-    color: #FFF;
-    text-align: center;
-    padding: 1px 0 3px;
-    border: 4px outset #BDBDBD;
-    border-radius: 10px;
-    background-color: #8B8B8B;
-}
-
 .robot-container:hover {
     opacity: 1;
 }
 
 .robot-shop .robot {
-    padding: 3px;
+    padding: 1px;
     height: 24px;
     display: inline-block;
 }
@@ -243,7 +229,7 @@ body {
 
 .robot-shop .robot-container.disabled {
     position: relative;
-    top: -10px;
+    top: -55px;
     background: #666;
     padding: 15px 0;
 }

@@ -8,10 +8,7 @@ $(document).ready(function () {
 
     _.each(robots, function(val, key) {
         var data = _.extend(val, {
-            'name': key,
-            'lvl1': playerState.getRobotLevel(key) !== 1 ? 'unused' : '',
-            'lvl2': playerState.getRobotLevel(key) !== 2 ? 'unused' : '',
-            'lvl3': playerState.getRobotLevel(key) !== 3 ? 'unused' : ''
+            'name': key
         });
         var rendered = buy_button_template(data);
         $('.controls .robot-shop').append(rendered);
@@ -89,7 +86,15 @@ var updateRobotShop = function() {
             $('.robot-container.' + key).addClass('disabled');
         }
 
-        var robotGif = robotLevels[key][playerState.getRobotLevel(key)].gif;
-        $('.robot[data-robot=' + key + '] img').attr('src', robotGif);
+        $('.robot-container.' + key + ' img').removeClass('unused');
+        if (level != 1) {
+            $('.robot-container.' + key + ' img.lvl1').addClass('unused');
+        }
+        if (level != 2) {
+            $('.robot-container.' + key + ' img.lvl2').addClass('unused');
+        }
+        if (level != 3) {
+            $('.robot-container.' + key + ' img.lvl3').addClass('unused');
+        }
     });
 };
