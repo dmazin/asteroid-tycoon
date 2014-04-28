@@ -458,7 +458,7 @@ var resources = {
         'value': 0,
         'imagePath' : 'pics/tiles/undiscovered.png',
         'image': loadImage('pics/tiles/undiscovered.png'),
-        'text' : 'You haven\'t been here yet, dummy.'
+        'text' : '???!'
     },
     'lava': {
         'hardness': 0,
