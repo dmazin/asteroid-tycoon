@@ -20,7 +20,7 @@
 
 .information {
     display: inline-block;
-    width: 206px;
+    margin-bottom: 7px;
 }
 
 .display {
@@ -38,10 +38,10 @@
 }
 
 .money-stats {
-    margin-top: 5px;
     color: #191F18;
     background-color: #008000;
     border: 2px inset #83AF83;
+    width: 372px;
 }
 
 .money-stats .amount {
@@ -50,18 +50,18 @@
 }
 
 .general-stats {
+    margin-right: 10px;
     background-color: #548EA0;
     border: 2px inset #9BBFD3;
 }
 
 .stats {
-    width: 937px;
     font-size: 16px;
     border-radius: 3px;
     padding: 2px 7px 5px;
-    margin-right: 10px;
     display: inline-block;
     vertical-align: top;
+    height: 36px;
 }
 
 body {
