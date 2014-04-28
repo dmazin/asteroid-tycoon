@@ -410,6 +410,7 @@ var Robot = function(type, baseAttrs, startX, destX, destY, asteroid) {
 
         _this.dead = true;
         playerState.robotsKilled[type]++;
+        $('.notification.killed .amount').text(playerState.getTotalRobotsKilled());
         deadBots.push(_this);
 
         _this.salvageValue = baseAttrs.cost;
