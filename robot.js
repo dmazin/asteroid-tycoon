@@ -297,7 +297,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
 
         playerState.getAsteroid().reachLine(newY);
         this.energy -= 1;
-        
+
         this.render();
     };
 
@@ -410,12 +410,11 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
 
         _this.dead = true;
         deadBots.push(_this);
-        
+
         _this.salvageValue = baseAttrs.cost;
         if (deathType!= null && deathType === 'energy'){
             playerState.addResources(_this.resourceAmountByType);
         }
-
 
         var deathString = "";
         var totalResourceValue = 0;
@@ -431,10 +430,12 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         }
 
         if (deathType != null && deathType === 'lava'){
-            deathString = "Fell in Lava \n";
+            deathString = "a fiery death";
         }
 
-        displayDeathText(deathString, 20);
+        setTimeout(function () {
+            displayDeathText(deathString, 20);
+        }, 750);
     };
 
     var updateDirection = function(newX, newY) {
