@@ -4,6 +4,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
 
     this.energy = baseAttrs.baseEnergy * energy_scale;
     this.baseEnergy = baseAttrs.baseEnergy * energy_scale;
+    this.baseAttrs = baseAttrs;
     this.storage = baseAttrs.storage;
     this.resourceAmountByType = {}; // the stuff you pick up
     this.position = {'x': startX, 'y': 0};
