@@ -46,7 +46,11 @@ $(document).ready(function () {
     updateRobotShop();
     setInterval(updateRobotShop, 1000);
 
-    var lines = $('#first-email').text().split('\n');
+    displayPrintout('#first-email');
+});
+
+var displayPrintout = function (msg) {
+    var lines = $(msg).text().split('\n');
 
     $('.printout').fadeIn(100);
     $("#game").one('click', hidePrintout);
@@ -59,7 +63,7 @@ $(document).ready(function () {
             clearInterval(interval);
         }
     }, 50);
-});
+}
 
 var hidePrintout = function () {
     $('.printout').css('cursor', 'default');
