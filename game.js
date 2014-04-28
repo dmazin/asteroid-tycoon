@@ -7,30 +7,43 @@ var spawner;
 var grid_size = 40;
 var game_width = 25;
 var game_height = 30;
-var surface_height = 100;
+var surface_height = 140;
 var FPS = 10;
 
 function createSpawn(xpos){
-    spawner = new createjs.Shape();
-    spawner.graphics.beginFill('#22B709')
-                       .drawCircle(0,0,8);
-    spawner.x = grid_size*(xpos + 0.5);
-    spawner.y = grid_size*(0 + 0.5) + surface_height;
+    var spaceshipSpritesheet = new createjs.SpriteSheet({
+        images: ["pics/other/spaceship.png"],
+        frames: {width:240, height:120}
+    });
+    spawner = new createjs.Sprite(spaceshipSpritesheet);
+    spawner.gotoAndPlay(0);
+    spawner.x = grid_size*xpos - 110;
+    spawner.y = grid_size - 40;
 
-    spawner.on("mousedown", function(evt) {
+    spawner_back = new createjs.Shape();
+    spawner_back.graphics.beginFill('red')
+                         .rect(-120,-60,240,120);
+    spawner_back.x = grid_size*(xpos + 0.5);
+    spawner_back.y = grid_size*(0 + 0.5);
+    spawner_back.alpha = 0.01;
+
+    spawner_back.on("mousedown", function(evt) {
         this.offset = {x:this.x-evt.stageX, y:this.y-evt.stageY};
+        spawner.offset = {x:spawner.x-evt.stageX, y:spawner.y-evt.stageY};
     });
 
-    spawner.on("pressmove", function(evt) {
+    spawner_back.on("pressmove", function(evt) {
         var gs = grid_size;
-        this.x = Math.round((evt.stageX + this.offset.x - gs / 2) / gs) * gs + gs / 2;
-        if (this.x < 0) {
-            this.x = 0;
-        } else if (this.x > gs * game_width) {
-            this.x = gs * game_width;
+
+        var x = Math.round((evt.stageX + this.offset.x - gs / 2) / gs) * gs + gs / 2;
+        if (x < gs || x > gs * (game_width + 1)) {
+            return;
         }
+        this.x = x;
+        spawner.x = Math.round((evt.stageX + spawner.offset.x - gs / 2) / gs) * gs + gs / 2;
     });
 
+    stage.addChild(spawner_back);
     stage.addChild(spawner);
 }
 
@@ -62,8 +75,12 @@ function init_ui() {
 }
 
 function init_stage() {
+    stage.backdrop = new createjs.Bitmap('pics/other/upperlayer.png');
+    stage.backdrop.x = 0;
+    stage.backdrop.y = 0;
+    stage.addChild(stage.backdrop);
+
     createSpawn(Math.floor(game_width/2));
-    stage.update();
 
     var reticuleSpritesheet = new createjs.SpriteSheet({
         images: ["pics/other/reticle.png"],
