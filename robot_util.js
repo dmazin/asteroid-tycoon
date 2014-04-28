@@ -22,7 +22,7 @@ Robot.prototype.render = function() {
     if (this.storage == 0) {
         this.capacitybar.visible = false;
     } else {
-        this.capacitybar.gotoAndStop(Math.floor(this.currentCapacity() / this.storage * 20));
+        this.capacitybar.gotoAndStop(Math.floor(this.currentCapacity() / this.baseAttrs.storage * 20));
     }
 
     this.animation.rotation = 0;
@@ -112,6 +112,12 @@ var upgradeBot = function(type, level) {
     playerState.setRobotLevel(type, level);
 
     updateRobotShop();
+
+    playerState.totalUpgradesReceived++;
+    if (playerState.totalUpgradesReceived == 10 && playerState.badgerFound) {
+        Robot.unlock('badgerBot');
+        $('.robot-shop').addClass('with-badger');
+    }
 };
 
 var remainingMineralsTillUpgrade = function(type, level) {

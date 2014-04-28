@@ -406,5 +406,32 @@ body {
 }
 
 .robot-container div.robot-button.shrunk {
-    top : -44px;
+    top: -44px;
+}
+
+.robot-shop.with-badger .lvl1, .robot-shop.with-badger .lvl2 {
+    display: none !important;
+}
+
+.robot-shop.with-badger .robot-container {
+    width: 140px;
+    max-width: 140px;
+}
+
+.robot-shop.with-badger .robot-container.badgerBot {
+    display: inline-block;
+}
+
+.robot-shop.with-badger .robot-button {
+    top: -65px !important;
+    margin-right: 24px;
+}
+
+.shrunk .robot-shop.with-badger div.robot-button {
+    display: none;
+}
+
+#circle {
+    position: absolute;
+    bottom: 16px;
 }

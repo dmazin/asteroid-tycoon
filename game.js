@@ -21,6 +21,7 @@ function createSpawn(xpos){
     spawner.gotoAndPlay(0);
     spawner.x = grid_size*xpos - 110;
     spawner.y = grid_size - 20;
+    $('#circle').css('left', spawner.x + 126);
 
     spawner_back = new createjs.Shape();
     spawner_back.graphics.beginFill('red')
@@ -33,7 +34,7 @@ function createSpawn(xpos){
         images: ["pics/other/cratebeam.png"],
         frames: {width:80, height:160},
         animations: {
-            beam: [0,9,'idle',0.5],
+            beam: [0,9,'idle',2],
             idle: [10]
         }
     });
@@ -59,6 +60,7 @@ function createSpawn(xpos){
         spawner.x = Math.round((evt.stageX + spawner.offset.x - gs / 2) / gs) * gs + gs / 2;
         cratebeam.x = spawner.x + 90;
         cratebeam.y = spawner.y + 50;
+        $('#circle').css('left', spawner.x + 126);
     });
 
     stage.addChild(cratebeam);
@@ -157,7 +159,7 @@ function setup_stage_event_handler() {
                 var destY = parseInt((e.stageY - surface_height) / grid_size);
                 bot = new Robot(currentlySpawning.type, currentlySpawning.robotAttrs, currentlySpawning.startX, destX, destY, playerState.getAsteroid());
                 activeBots.push(bot);
-            }, 1400);
+            }, 320);
 
             return bot;
         } else if (stage.mouseInBounds) {
