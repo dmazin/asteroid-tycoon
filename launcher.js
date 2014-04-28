@@ -30,3 +30,9 @@ var updateRobotShop = function() {
 };
 
 setInterval(updateRobotShop, 5000);
+
+$('.robot-shop').on('click', '.upgrade.enabled', function() {
+    var robot = $(this).data('robot');
+    var nextLevel = playerState.getRobotLevel(robot) + 1;
+    upgradeBot(robot, nextLevel);
+});

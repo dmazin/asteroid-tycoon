@@ -11,7 +11,7 @@
         <div class='robot' data-robot='<%= name %>'>
             <img src="<%= gif %>"><%= uiName %> $<%= cost %>
         </div>
-        <div class='upgrade <% if (canUpgrade(name, playerState.getRobotLevel(name) + 1)) { %>enabled<% } %>'>Upgrade</div>
+        <div data-robot='<%= name %>' class='upgrade <% if (canUpgrade(name, playerState.getRobotLevel(name) + 1)) { %>enabled<% } %>'>Upgrade</div>
     </span>
 </script>
 
@@ -58,7 +58,6 @@
                 </div>
             </div>
             <div class='robot-shop display'>
-                <center>ROBOT DEPOT</center>
             </div>
             <div class='robot-spawn'></div>
         </div>
