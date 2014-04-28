@@ -14,7 +14,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
 
     this.init = function () {
         var spriteSheet = new createjs.SpriteSheet({
-            images: [baseAttrs.spriteSheet, "pics/explosion_2x.png", "pics/rubble_2x.png"],
+            images: [baseAttrs.spriteSheet, "pics/other/explosion.png", "pics/other/rubble.png"],
             frames: {width:40, height:40},
             animations: {
                 run: [0, 1, 'run', baseAttrs.spriteSpeed],
@@ -27,7 +27,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         stage.addChild(this.animation);
 
         var healthbarSpriteSheet = new createjs.SpriteSheet({
-            images: ["pics/healthbar_2x.png"],
+            images: ["pics/other/healthbar.png"],
             frames: {width:40, height:4}
         });
         this.healthbar = new createjs.Sprite(healthbarSpriteSheet);

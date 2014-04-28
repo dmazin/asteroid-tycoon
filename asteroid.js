@@ -15,7 +15,7 @@ var Asteroid = function (terrainParameters) {
             for (var j = 0; j < game_height; j++) {
                 var resourceName = generate_terrain(j, game_height);
                 if (j === 0) {
-                    resourceName = "dirt";
+                    resourceName = "dirtite";
                 }
                 var amount = Math.floor(Math.random() * 20);
                 var g = new Tile(i * grid_size,
