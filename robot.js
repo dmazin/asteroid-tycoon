@@ -73,7 +73,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         //It can't move if it's dead.
         if (this.energy <= 0) {
             if (!this.dead) {
-                handleDeath();
+                handleDeath('energy');
             }
             return;
         }
@@ -260,6 +260,10 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
 
         grid[this.position.x][this.position.y].setType('backfill');
 
+        if(newTile.getType() =='lava'){
+            handleDeath('lava');
+            return;
+        }
         if (canPassTile(newTile)) {
             if (newTile.amount <= 0) {
                 this.currentlyDigging = null;
@@ -291,6 +295,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
 
         playerState.getAsteroid().reachLine(newY);
         this.energy -= 1;
+        
         this.render();
     };
 
@@ -395,15 +400,20 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
 
     // This is called when a robot's energy reaches
     // 0 from the handleMove function.
-    var handleDeath = function() {
+    var handleDeath = function(deathType) {
         _this.animation.gotoAndPlay('explode');
         _this.healthbar.visible = false;
         _this.capacitybar.visible = false;
+        _this.energy = 0;
 
         _this.dead = true;
         deadBots.push(_this);
+        
         _this.salvageValue = baseAttrs.cost;
-        playerState.addResources(_this.resourceAmountByType);
+        if (deathType!= null && deathType === 'energy'){
+            playerState.addResources(_this.resourceAmountByType);
+        }
+
 
         var deathString = "";
         var totalResourceValue = 0;
@@ -416,6 +426,10 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         }
         if (deathString === "") {
             deathString = "died in vain :-(";
+        }
+
+        if (deathType != null && deathType === 'lava'){
+            deathString = "Fell in Lava \n";
         }
 
         displayDeathText(deathString, 20);

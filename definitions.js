@@ -43,7 +43,7 @@ var robots = {
         'gif': 'pics/bots/allaround0.gif',
         'lockedTil': {
             asteroid: 'Paydirteroid',
-            row: 5
+            row: 3
         },
        'exploreRadius' : 1
     },
@@ -113,28 +113,73 @@ var robots = {
 var upgrades = {
     'squirrelBot': {
         costs: [0, 1500, 3000],
-        mineralReqs: [0, 1, 200],
-        mineral: "paydirtium"
+        lockedTil: [
+            null,
+            {
+                asteroid: 'Cheddaroid',
+                row: 24
+            },
+            {
+                asteroid: 'Affluoid',
+                row: 24
+            }
+        ]
     },
     'bearBot': {
         costs: [0, 3000, 6000],
-        mineralReqs: [0, 3000, 6000],
-        mineral: "cheddarium"
+        lockedTil: [
+            null,
+            {
+                asteroid: 'Cheddaroid',
+                row: 24
+            },
+            {
+                asteroid: 'Affluoid',
+                row: 24
+            }
+        ]
     },
     'antBot': {
         costs: [0, 5500, 11000],
-        mineralReqs: [0, 5500, 11000],
-        mineral: "fatlootium"
+        lockedTil: [
+            null,
+            {
+                asteroid: 'Fatlooteroid',
+                row: 24
+            },
+            {
+                asteroid: 'Affluoid',
+                row: 24
+            }
+        ]
     },
     'goatBot': {
         costs: [0, 10500, 21000],
-        mineralReqs: [0, 10500, 21000],
-        mineral: "affluentium"
+        lockedTil: [
+            null,
+            {
+                asteroid: 'Fatlooteroid',
+                row: 24
+            },
+            {
+                asteroid: 'Affluoid',
+                row: 24
+            }
+        ]
     },
     'vultureBot': {
         costs: [0, 6500, 13000],
-        mineralReqs: [0, 6500, 13000],
-        mineral: "cashmonium"
+        lockedTil: [
+            null,
+            {
+                asteroid: 'Fatlooteroid',
+                row: 24
+            },
+            {
+                asteroid: 'Affluoid',
+                row: 24
+            }
+        ]
     }
 };
 
@@ -372,12 +417,19 @@ var resources = {
         'harvestable': false,
         'value': 0,
         'image': loadImage('pics/tiles/undiscovered.png')
+    },    
+    'lava': {
+        'hardness': 0,
+        'harvestable': false,
+        'value': 0,
+        'image': loadImage('pics/tiles/totally_lava.png')
     }
 };
 
 
 var asteroids = {
     "Paydirteroid": new Asteroid({
+
     //dirt and rocks
     'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
     'dregsite': {pTop: .1, pBottom: .8, minDepth: .05},
@@ -505,5 +557,16 @@ var asteroids = {
 
     // pain and death
     'lava': {pTop: 0, pBottom: 0, minDepth: 0}
-    }, 2.0)
-}
+    }, 2.0),
+
+    "Lavaroid": new Asteroid({
+    'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
+    'dregsite': {pTop: 0.1, pBottom: 0.4, minDepth: 1},
+    'rubbishite': {pTop: 0.01, pBottom: 0.2, minDepth: 1},
+    'imperviousite': {pTop: 100, pBottom: 0, minDepth: 25},
+    'paydirtium': {pTop: 0.4, pBottom: 0.4, minDepth: 1},
+    'cheddarium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
+    'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
+    'lava': {pTop:.1, pBottom: .3, minDepth:5}
+}, 2.5)
+};
