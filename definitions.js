@@ -9,7 +9,7 @@ var salvageValueMultiplier = 0.5;
 // Definitions of base-level robots - spawn using robotLevels, not robots
 var robots = {
     'squirrelBot': {
-        'uiName': 'Squirrel',
+        'uiName': '[S]quirrel',
         'description': 'SquirrelBot 1.0 - Scout',
         'hardness': 0.13,
         'baseEnergy': 2000,
@@ -26,7 +26,7 @@ var robots = {
         'exploreRadius' : 3
     },
     'bearBot': {
-        'uiName': 'Bear',
+        'uiName': '[B]ear',
         'description': 'BearBot 1.0 - All Around',
         'hardness': 0.25,
         'baseEnergy': 1200,
@@ -50,7 +50,7 @@ var robots = {
        'exploreRadius' : 1
     },
     'antBot': {
-        'uiName': 'Ant',
+        'uiName': '[A]nt',
         'description': 'AntBot 1000 - Harvester',
         'hardness': 0.35,
         'baseEnergy': 1000,
@@ -70,7 +70,7 @@ var robots = {
         'exploreRadius' : 1
     },
     'goatBot': {
-        'uiName': 'Goat',
+        'uiName': '[G]oat',
         'description': 'GoatBot 1000 - Smasher',
         'hardness': 0.55,
         'baseEnergy': 1000,
@@ -90,7 +90,7 @@ var robots = {
         'exploreRadius' : 1
     },
     'vultureBot': {
-        'uiName': 'Vulture',
+        'uiName': '[V]ulture',
         'description': 'VultureBot 1000 - Scavenger',
         'hardness': 0.01,
         'baseEnergy': 1500,

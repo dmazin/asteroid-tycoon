@@ -120,5 +120,19 @@ var playerState = (function() {
         'vultureBot': 0
     };
 
+    state.robotsKilled = {
+        'squirrelBot': 0,
+        'bearBot': 0,
+        'antBot': 0,
+        'goatBot': 0,
+        'vultureBot': 0
+    };
+
+    state.getTotalRobotsKilled = function () {
+        return _.reduce(state.robotsKilled, function(memo, num) {
+            return memo + num;
+        }, 0);
+    }
+
     return state;
 })();
