@@ -1,4 +1,5 @@
 var activeBots = [];
+var deadBots = [];
 
 var playerState = (function() {
     var robotLevels = {
@@ -12,6 +13,8 @@ var playerState = (function() {
     var resourceAmounts = {
         'money': 5000
     };
+
+    var currentAsteroid = null;
 
     state = {};
 
@@ -46,7 +49,7 @@ var playerState = (function() {
         }
 
         var statTemplate = _.template($('#mineral-stat-template').html());
-        
+
         if ($('.general-stats .' + resource).length > 0) {
             $('.general-stats .' + resource).html(statTemplate({
                 name: resource,
@@ -62,6 +65,22 @@ var playerState = (function() {
         if (resource === 'iron') {
             $('.notification.iron .amount').text(parseInt(resourceAmounts[resource]));
         }
+    };
+
+    state.addResources = function(resourceAmountsByType) {
+        for (var resourceType in resourceAmountsByType) {
+            var resourceAmount = resourceAmountsByType[resourceType];
+            state.changeResource(resourceType, resourceAmount);
+            state.changeResource('money', resources[resourceType].value * resourceAmount);
+        }
+    };
+
+    state.getAsteroid = function() {
+        return currentAsteroid;
+    };
+
+    state.setAsteroid = function(asteroid) {
+        currentAsteroid = asteroid;
     };
 
     return state;

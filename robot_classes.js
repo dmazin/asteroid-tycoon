@@ -20,9 +20,10 @@ BearBot.defaultBehavior = function(_this) {
 //Sseeks out nearest minerals to harvest
 AntBot.defaultBehavior = function(_this) {
 	var harvestableSelectionCallback = function(tile) {
-		return resources[tile.getType()].harvestable === true;
+		return resources[tile.getType()].harvestable
+			&& resources[tile.getType()].hardness < _this.baseAttrs.hardness;
 	};
-	var dest = findNearestResource(_this.position, harvestableSelectionCallback);
+	var dest = findNearestResource(_this.position, _this.getGrid(), harvestableSelectionCallback);
 	if(dest) {
 		_this.goToward(dest.x, dest.y);
 	} else {
@@ -33,9 +34,13 @@ AntBot.defaultBehavior = function(_this) {
 //seeks out nearest hard rocks to smash
 GoatBot.defaultBehavior = function(_this) {
 	var rockSelectionCallback = function(tile) {
-		return tile.getType() === 'rock';
+		return !resources[tile.getType()].harvestable
+			&& tile.getType() != 'backfill'
+			&& tile.getType() != 'dirtite'
+			&& tile.getType() != 'dregsite'
+			&& resources[tile.getType()].hardness < _this.baseAttrs.hardness;
 	};
-	var dest = findNearestResource(_this.position, rockSelectionCallback);
+	var dest = findNearestResource(_this.position, _this.getGrid(), rockSelectionCallback);
 	if(dest) {
 		_this.goToward(dest.x, dest.y);
 	} else {
@@ -53,11 +58,15 @@ VultureBot.defaultBehavior = function(_this) {
 	}
 };
 
-//activeBots for vulture
+// nearest deadBot for vulture
 var findNearestBot = function(position) {
+	if (deadBots.length == 0) {
+		return false;
+	}
+
 	var currDiff = 1000;
-	var nearestBot = activeBots[0];
-	activeBots.forEach(function(bot) {
+	var nearestBot = deadBots[0];
+	deadBots.forEach(function(bot) {
 		var diffX = Math.abs(bot.position.x - position.x);
 		var diffY = Math.abs(bot.position.y - position.y);
 		if((diffX + diffY) < currDiff) {
@@ -65,6 +74,7 @@ var findNearestBot = function(position) {
 			nearestBot = bot;
 		}
 	});
+
 	return nearestBot.position;
 };
 
@@ -82,7 +92,7 @@ var findNearestItem = function(position, itemPositionArray) {
 	return nearestPosition;
 };
 
-var findNearestResource = function(position, resourceSelectionCallback) {
+var findNearestResource = function(position, grid, resourceSelectionCallback) {
 	var resourcePositions = [];
 	grid.forEach(function(row, x) {
 		row.forEach(function(val, y) {

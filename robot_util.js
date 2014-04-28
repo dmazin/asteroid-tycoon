@@ -1,4 +1,6 @@
 Robot.prototype.render = function() {
+    var _this = this;
+
     if (this.energy <= 0) {
         this.animation.stop();
     }
@@ -37,8 +39,8 @@ Robot.prototype.render = function() {
     var p = this.position;
     [p.x-1, p.x, p.x+1].forEach(function (x) {
         [p.y-1, p.y, p.y+1].forEach(function (y) {
-            if (grid[x] && grid[x][y]) {
-                grid[x][y].setExplored();
+            if (_this.getGrid()[x] && _this.getGrid()[x][y]) {
+                _this.getGrid()[x][y].setExplored();
             }
         });
     });
@@ -74,7 +76,7 @@ var spawnBot = function(type, startX) {
         // Make a new bot based on the position.
         var destX = parseInt(e.stageX / 40);
         var destY = parseInt(e.stageY / 40);
-        var bot = new Robot(robotAttrs, startX, destX, destY);
+        var bot = new Robot(robotAttrs, startX, destX, destY, playerState.getAsteroid());
         activeBots.push(bot);
         return bot;
     }, null, true);

@@ -86,28 +86,22 @@
 
 <link href='http://fonts.googleapis.com/css?family=VT323|Roboto:400,100,300' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="style.css">
+
 <script src='lib/jquery.js'></script>
 <script src='lib/underscore.js'></script>
 <script src='lib/easeljs-0.7.1.min.js'></script>
 <script src='lib/astar.js'></script>
+
 <script src='robot_classes.js'></script>
+<script src='asteroid.js'></script>
 <script src='definitions.js'></script>
+
 <script src='game.js'></script>
 <script src='state.js'></script>
 <script src='robot.js'></script>
 <script src='robot_util.js'></script>
 
-<script>
-    $('.robot').click(function() {
-        var $this = $(this);
-        var robotType = $this.data('robot');
+<script src='launcher.js'></script>
 
-        var money = playerState.getResource('money');
-
-        if (money > robots[robotType].cost) {
-            spawnBot(robotType, Math.floor(spawn.shape.x/grid_size));
-        }
-    });
-</script>
 </body>
 </html>
