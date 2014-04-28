@@ -46,10 +46,14 @@ Robot.prototype.render = function() {
     });
 };
 
+var canUpgrade = function(type, level) {
+    return playerState.getResource('money') < cost;
+};
+
 var upgradeBot = function(type, level) {
     var cost = upgradeCosts[type][level];
 
-    if (playerState.getResource('money') < cost) {
+    if (!canUpgrade(type, level)) {
         return;
     }
 
