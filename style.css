@@ -396,3 +396,11 @@ body {
 #modalyesno a:hover {
     text-decoration: none;
 }
+
+.robot-container div.images.shrunk {
+    display : none;
+}
+
+.robot-container div.robot-button.shrunk {
+    top : -44px;
+}

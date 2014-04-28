@@ -495,7 +495,7 @@ var resources = {
         'image': loadImage('pics/tiles/dirt1.png'),
         'sprite': loadImageFromSpriteSheet('pics/other/artifact.png'),
         'text' : "I wonder what it is.",
-        'abbrev': 'ART'
+        'abbrev': 'ARTI'
     },
     'motherlodium': {
         'hardness': 0.99,
@@ -605,10 +605,10 @@ var asteroids = {
 
             // minerals and goodies
             'artifact': {pTop: 0, pBottom: 0.1, minDepth: 0},
-            'paydirtium':{pTop: 0.7, pBottom: 0, minDepth: 0},
+            'paydirtium':{pTop: 0.5, pBottom: 0, minDepth: 0},
             'cheddarium':{pTop: 1, pBottom: 0.1, minDepth: 0},
             'fatlootium': {pTop: 0.1, pBottom: 1, minDepth: 0},
-            'affluentium': {pTop: 0.3, pBottom: 0.5, minDepth: 0.8},
+            'affluentium': {pTop: 0.5, pBottom: 0.5, minDepth: 0.8},
             // 'cashmonium': {pTop: 0, pBottom: 0, minDepth: 0},
 
             // pain and death
@@ -628,7 +628,7 @@ var asteroids = {
             'junkite': {pTop: 0.5, pBottom: 0, minDepth: 0},
             'scrapite': {pTop: 1, pBottom: 0, minDepth: 0},
             'crapite': {pTop: 0.8, pBottom: 0.8, minDepth: 0},
-            'densite': {pTop: 0.3, pBottom: .7, minDepth: 0.3},
+            'densite': {pTop: 0.3, pBottom: 0.7, minDepth: 0.3},
             'rigidite': {pTop: 0.2, pBottom: 0.5, minDepth: 0.5},
             // 'toughite': {pTop: 0, pBottom: 0, minDepth: 0},
             // 'unyieldite': {pTop: 0, pBottom: 0, minDepth: 0},
@@ -638,8 +638,8 @@ var asteroids = {
             // 'paydirtium':{pTop: 0, pBottom: 0, minDepth: 0},
             // 'cheddarium':{pTop: 0, pBottom: 0, minDepth: 0},
             'fatlootium': {pTop: 0.8, pBottom: 0, minDepth: 0},
-            'affluentium': {pTop: 0.5, pBottom: 1, minDepth: 0},
-            'cashmonium': {pTop: 0.3, pBottom: 0.5, minDepth: 0.8},
+            'affluentium': {pTop: 0.1, pBottom: 1, minDepth: 0},
+            'cashmonium': {pTop: 0.5, pBottom: 0.5, minDepth: 0.8},
 
             // pain and death
             // 'lava': {pTop: 0, pBottom: 0, minDepth: 0}

@@ -1,5 +1,6 @@
 // Is there a robot currently being placed?
-var robotSelectionActive = false;
+var robotSelectionActive = false,
+    menuIsShrunk         = false;
 
 $(document).ready(function () {
     init_ui();
@@ -68,58 +69,69 @@ $(document).ready(function () {
 });
 
 var updateTopMenuSize = function() {
-        if($(document).scrollTop() > 0) {
-            $('#asteroidButton, #messages').hide();
-            if($('.title-container').data('size') == 'big') {
-                $('.title-container').data('size','small');
-                $('.title-container').stop().animate({
-                    height:'0px',
-                }, 600);
-                $('#menu').stop().animate({
-                    height:'133px',
-                }, 600);
-                $(".robot-shop .robot-container:not(.disabled) img")
-                    .animate({height : 0}, 660, function () {
+    var options = { duration : 660, queue : false };
+
+    if($(document).scrollTop() > 0) {
+        menuIsShrunk = true;
+
+        $('#asteroidButton, #messages').hide();
+        if($('.title-container').data('size') == 'big') {
+            $('.title-container').data('size','small');
+            $('.title-container').stop().animate({
+                height:'0px',
+            }, options);
+            $('#menu').stop().animate({
+                height:'190px',
+            }, options);
+            $(".robot-shop .robot-container:not(.disabled) img")
+                .animate({height : 0}, {
+                    duration : 660,
+                    queue : false,
+                    complete : function () {
                         $(".robot-shop .robot-container:not(.disabled) img").hide();
-                    });
-                $(".robot-shop").animate({height : 22}, 660);
-                $(".robot-container:not(.disabled) .robot-button")
-                    .animate({top : -44}, 660);
-                $(".robot-container.disabled")
-                    .animate({ paddingTop : 0, paddingBottom : 0, top : -42 }, 660);
-                setTimeout(function () {
-                    $('.title').hide();
-                    $('#menu').addClass('shrunk');
-                }, 600);
-                $('#game').click();
-            }
+                    }
+                });
+            $(".robot-shop").animate({height : 22}, options);
+            $(".robot-container:not(.disabled) .robot-button")
+                .animate({top : -44}, options);
+            $(".robot-container.disabled *").addClass("shrunk");
+            $(".robot-container.disabled")
+                .animate({ paddingTop : 0, paddingBottom : 0, top : -42 }, options);
+            setTimeout(function () {
+                $('.title').hide();
+                $('#menu').addClass('shrunk');
+            }, 600);
+            $('#game').click();
         }
-        else {
-            $('.title').show();
-            $('#menu').removeClass('shrunk');
-            if($('.title-container').data('size') == 'small') {
-                $('.title-container').data('size','big');
-                $('.title-container').show().stop().animate({
-                    height:'100px'
-                }, 600);
-                $('#menu').stop().animate({
-                    height:'290px',
-                }, 600);
-                $(".robot-shop .robot-container:not(.disabled) img").show();
-                $(".robot-shop .robot-container:not(.disabled) img")
-                    .animate({height : 46}, 660);
-                $(".robot-shop").animate({height : 77}, 660);
-                $(".robot-container:not(.disabled) .robot-button")
-                    .animate({top : -88}, 660);
-                $(".robot-container.disabled")
-                    .animate({ paddingTop : 15, paddingBottom : 15, top : -62 }, 660);
-                setTimeout(function () {
-                    $('#asteroidButton, #messages').show();
-                }, 600);
-                $('#game').click();
-            }
+    } else {
+        menuIsShrunk = false;
+
+        $('.title').show();
+        $('#menu').removeClass('shrunk');
+        if($('.title-container').data('size') == 'small') {
+            $('.title-container').data('size','big');
+            $('.title-container').show().stop().animate({
+                height:'100px'
+            }, options);
+            $('#menu').stop().animate({
+                height:'290px',
+            }, options);
+            $(".robot-shop .robot-container:not(.disabled) img").show();
+            $(".robot-shop .robot-container:not(.disabled) img")
+                .animate({height : 40}, options);
+            $(".robot-shop").animate({height : 77}, options);
+            $(".robot-container:not(.disabled) .robot-button")
+                .animate({top : -88}, options);
+            $(".robot-container *").removeClass("shrunk");
+            $(".robot-container.disabled")
+                .animate({ paddingTop : 15, paddingBottom : 15, top : -62 }, options);
+            setTimeout(function () {
+                $('#asteroidButton, #messages').show();
+            }, 600);
+            $('#game').click();
         }
     }
+}
 
 var updateRobotShop = function() {
     _.each(robots, function(val, key) {
@@ -132,6 +144,10 @@ var updateRobotShop = function() {
                 $(".robot-container." + key).append(robotButton(key));
             }
             $('.robot-container.' + key).removeClass('disabled');
+            $('.robot-container.' + key).css({
+                paddingTop : 0,
+                paddingBottom : 0
+            });
         } else {
             $('.robot-container.' + key).addClass('disabled');
         }
