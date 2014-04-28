@@ -14,7 +14,7 @@ $(document).ready(function () {
         $('.controls .robot-shop').append(rendered);
     });
 
-    $('.robot-shop').on('click', '.robot', function() {
+    $('.robot-shop').on('click', '.robot, img.current', function() {
         var $this = $(this);
         var robotType = $this.data('robot');
 
@@ -86,15 +86,35 @@ var updateRobotShop = function() {
             $('.robot-container.' + key).addClass('disabled');
         }
 
-        $('.robot-container.' + key + ' img').removeClass('unused');
-        if (level != 1) {
+        // image warblegarb starts here
+
+        $('.robot-container.' + key + ' img').removeClass('current').removeClass('unused');
+
+        if (level == 1) {
+            $('.robot-container.' + key + ' img.lvl1').addClass('current');
+        } else {
             $('.robot-container.' + key + ' img.lvl1').addClass('unused');
         }
-        if (level != 2) {
+
+        if (level == 2) {
+            $('.robot-container.' + key + ' img.lvl2').addClass('current');
+        } else {
             $('.robot-container.' + key + ' img.lvl2').addClass('unused');
         }
-        if (level != 3) {
+
+        if (level == 3) {
+            $('.robot-container.' + key + ' img.lvl3').addClass('current');
+        } else {
             $('.robot-container.' + key + ' img.lvl3').addClass('unused');
+        }
+
+        var pathPrefix = 'pics/2x_gifs/' + data['gifName'];
+        if (upgradeUnlocked(key, 1)) {
+            $('.robot-container.' + key + ' img.lvl2').attr('src', pathPrefix + '1.gif');
+        }
+
+        if (upgradeUnlocked(key, 2)) {
+            $('.robot-container.' + key + ' img.lvl3').attr('src', pathPrefix + '2.gif');
         }
     });
 };
