@@ -256,3 +256,25 @@ body {
 .title .title-text {
     margin: 0;
 }
+
+.printer {
+    width: 700px;
+    height: 5px;
+    background-color: #7A7575;
+    box-shadow: inset 1px 1px 1px #575757;
+    border-radius: 5px;
+    margin: 7px auto 0px;
+}
+
+.printout {
+    border-top: 2px solid #92ADB8;
+    top: 128px;
+    color: #4D4D4D;
+    position: absolute;
+    background-color: #FFF;
+    width: 670px;
+    left: 50%;
+    margin-left: -335px;
+    z-index: 1000;
+    display: none;
+}

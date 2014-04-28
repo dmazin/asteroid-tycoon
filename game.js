@@ -105,8 +105,12 @@ function init_stage() {
     createjs.Ticker.setFPS(FPS);
 
     stage.enableMouseOver(10);
+}
 
+function setup_stage_event_handler() {
     stage.on('stagemouseup', function(e) {
+        hidePrintout();
+
         if ($('canvas').hasClass('botSpawner')) {
             // Change canvas back
             $('canvas').removeClass('botSpawner');
@@ -127,4 +131,51 @@ function init_stage() {
             popupClickOnStage(e);
         }
     });
+}
+
+document.onkeydown = checkKey;
+
+function moveSpawn(direction){
+  if (direction=="left"){
+    spawn.shape.x = spawn.shape.x - grid_size;
+
+  }
+  else if (direction=="right"){
+    spawn.shape.x = spawn.shape.x + grid_size;
+
+  }
+}
+
+function checkKey(key) {
+
+    key = key || window.event;
+
+    if (key.keyCode == '83') { 
+        // s
+        robotType = 'squirrelBot';
+    }
+    else if (key.keyCode == '66') {
+        // b
+        robotType = 'bearBot';
+    }
+    else if (key.keyCode == '65') {
+        // a
+        robotType = 'antBot';
+    }    
+    else if (key.keyCode == '71') {
+        // g
+        robotType = 'goatBot';
+    }    
+    else if (key.keyCode == '86') {
+        // v
+        robotType = 'vultureBot';
+    }
+    else{
+        return;
+    }
+
+    var money = playerState.getResource('money');
+    if (money > robots[robotType].cost && Robot.unlocked(robotType)) {
+        spawnBot(robotType, Math.floor(spawner.x/grid_size + 3));
+    }
 }

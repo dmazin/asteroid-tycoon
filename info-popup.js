@@ -53,13 +53,15 @@ function tileInfo(type) {
     type = type || 'unexplored';
 
     var stats = resources[type];
+    if (type == 'artifact') type = 'alien artifact';
 
     switch (type) {
     case 'unexplored':
-    case 'artifact':
+    case 'alien artifact':
         return {
             name     : type,
             image    : stats.imagePath,
+            text     : stats.text,
             hardness : "??",
             value    : "??"
         }
@@ -67,6 +69,7 @@ function tileInfo(type) {
         return {
             name     : type,
             image    : stats.imagePath,
+            text     : stats.text,
             hardness : stats.hardness,
             value    : "$" + stats.value
         };

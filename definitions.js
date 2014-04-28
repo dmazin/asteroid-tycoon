@@ -318,7 +318,7 @@ var resources = {
         'value': 0,
         'imagePath' : 'pics/tiles/backfill.png',
         'image': loadImage('pics/tiles/backfill.png'),
-        'text': "Backfill from mining operation"
+        'text': "Backfill from mining operation."
     },
     'dirtite': {
         'hardness': 0.04,
@@ -326,21 +326,23 @@ var resources = {
         'value': 0,
         'imagePath' : 'pics/tiles/dirt1.png',
         'image': loadImage('pics/tiles/dirt1.png'),
-        'text': "Dirtite: \nAsteroids are made\nof dirt. You schmuck."
+        'text': "It's just dirt."
     },
     'dregsite': {
         'hardness': 0.14,
         'harvestable': false,
         'value': 0,
         'imagePath' : 'pics/tiles/dirt2.png',
-        'image': loadImage('pics/tiles/dirt2.png')
+        'image': loadImage('pics/tiles/dirt2.png'),
+        'text' : 'The very dregs of an alien society.'
     },
     'rubbishite': {
         'hardness': 0.24,
         'harvestable': false,
         'value': 0,
         'imagePath' : 'pics/tiles/dirt3.png',
-        'image': loadImage('pics/tiles/dirt3.png')
+        'image': loadImage('pics/tiles/dirt3.png'),
+        'text' : 'Down in the dumps.'
     },
     'junkite': {
         'hardness': 0.34,
@@ -361,7 +363,8 @@ var resources = {
         'harvestable': false,
         'value': 0,
         'imagePath' : 'pics/tiles/dirt6.png',
-        'image': loadImage('pics/tiles/dirt6.png')
+        'image': loadImage('pics/tiles/dirt6.png'),
+        'text' : "Oh, crap!"
     },
     'densite': {
         'hardness': 0.64,
@@ -403,7 +406,8 @@ var resources = {
         'harvestable': true,
         'value': 20,
         'imagePath' : 'pics/tiles/mineral1.png',
-        'image': loadImage('pics/tiles/mineral1.png')
+        'image': loadImage('pics/tiles/mineral1.png'),
+        'text' : "It's just dirt. Or is it?"
     },
     'cheddarium': {
         'hardness': 0.3,
@@ -437,8 +441,10 @@ var resources = {
         'hardness': 0,
         'harvestable': true,
         'value': null,
+        'imagePath' : 'pics/other/artifact.png',
         'image': loadImage('pics/tiles/dirt1.png'),
-        'sprite': loadImageFromSpriteSheet('pics/other/artifact.png')
+        'sprite': loadImageFromSpriteSheet('pics/other/artifact.png'),
+        'text' : "I wonder what it is."
     },
     'unexplored': {
         'hardness': 0,
