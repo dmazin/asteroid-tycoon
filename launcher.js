@@ -38,6 +38,9 @@ var updateRobotShop = function() {
         } else {
             $('.controls .robot-shop .robot-container.' + key + ' .upgrade').removeClass('enabled');
         }
+
+        var robotGif = robotLevels[key][playerState.getRobotLevel(key)].gif;
+        $('.robot[data-robot=' + key + '] img').attr('src', robotGif);
     });
 };
 

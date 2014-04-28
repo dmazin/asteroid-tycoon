@@ -83,7 +83,7 @@ var robots = {
         'baseEnergy': 1500,
         'storage': 0,
         'wobble': 0.1,
-        'harvestEfficiency': 0.7,
+        'harvestEfficiency': 0.2,
         'cost': 650,
         'affinity': {},
         'klass': VultureBot,
@@ -95,10 +95,6 @@ var robots = {
 	'exploreRadius' : 1
     }
 };
-
-// constants for scaling robot attributes for balancing purposes
-var energy_scale = 0.1;
-var WobbleConstant = 0.2;
 
 var upgrades = {
     'squirrelBot': {
@@ -226,7 +222,7 @@ var robotLevels = {
         _.extend(_.clone(robots['vultureBot']), {
             'baseEnergy': 1750,
             'storage': 250,
-            'harvestEfficiency': 0.85,
+            'harvestEfficiency': 0.4,
             'spriteSheet': 'pics/bots/scavenger1.png',
             'spriteSpeed': 0.6,
             'gif': 'pics/bots/scavenger1.gif'
@@ -234,7 +230,7 @@ var robotLevels = {
         _.extend(_.clone(robots['vultureBot']), {
             'baseEnergy': 2000,
             'storage': 300,
-            'harvestEfficiency': 1.0,
+            'harvestEfficiency': 0.6,
             'spriteSheet': 'pics/bots/scavenger2.png',
             'spriteSpeed': 1.0,
             'gif': 'pics/bots/scavenger2.gif'
