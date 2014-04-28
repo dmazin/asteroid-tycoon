@@ -3,7 +3,7 @@ var energy_scale = 0.1;
 var WobbleConstant = 0.4;
 
 // other constants
-var explorationBonus = 1;
+var explorationBonus = 10;
 var salvageValueMultiplier = 0.5;
 
 // Definitions of base-level robots - spawn using robotLevels, not robots
@@ -349,6 +349,7 @@ var asteroids = {
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
         'dregsite': {pTop: 0.1, pBottom: 0.4, minDepth: 1},
         'rubbishite': {pTop: 0.01, pBottom: 0.2, minDepth: 1},
+        'imperviousite': {pTop: 0.3, pBottom: 0.3, minDepth: 25},
         'paydirtium': {pTop: 0.4, pBottom: 0.4, minDepth: 1},
         'cheddarium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
         'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 10}
@@ -363,5 +364,49 @@ var asteroids = {
         'paydirtium': {pTop: 0.1, pBottom: 0.05, minDepth: 1},
         'cheddarium': {pTop: 0.1, pBottom: 0.5, minDepth: 1},
         'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 5}
+    }),
+    "Fatlooteroid": new Asteroid({
+        'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
+        'dregsite': {pTop: 0.2, pBottom: 0.4, minDepth: 1},
+        'rubbishite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
+        'junkite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
+        'scrapite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
+        'crapite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
+        'densite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
+        'rigidite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
+        'paydirtium': {pTop: 0.05, pBottom: 0.05, minDepth: 1},
+        'cheddarium': {pTop: 0.05, pBottom: 0.1, minDepth: 1},
+        'fatlootium': {pTop: 0.3, pBottom: 0.5, minDepth: 10},
+        'affluentium': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
+    }),
+    "Affluoid": new Asteroid({
+        'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
+        'dregsite': {pTop: 0.2, pBottom: 0.4, minDepth: 1},
+        'rubbishite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
+        'junkite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
+        'scrapite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
+        'crapite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
+        'densite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
+        'rigidite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
+        'toughite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
+        'paydirtium': {pTop: 0.02, pBottom: 0.05, minDepth: 1},
+        'cheddarium': {pTop: 0.02, pBottom: 0.1, minDepth: 1},
+        'fatlootium': {pTop: 0.05, pBottom: 0.1, minDepth: 10},
+        'affluentium': {pTop: 0.3, pBottom: 0.5, minDepth: 15},
+        'cashmonium': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
+    }),
+    "Cashmonoid": new Asteroid({
+        'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
+        'dregsite': {pTop: 0.2, pBottom: 0.4, minDepth: 1},
+        'rubbishite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
+        'junkite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
+        'scrapite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
+        'crapite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
+        'toughite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
+        'unyieldite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
+        'cheddarium': {pTop: 0.02, pBottom: 0.3, minDepth: 1},
+        'fatlootium': {pTop: 0.05, pBottom: 0.3, minDepth: 10},
+        'affluentium': {pTop: 0.05, pBottom: 0.3, minDepth: 15},
+        'cashmonium': {pTop: 0.2, pBottom: 0.5, minDepth: 15}
     })
 };
