@@ -17,6 +17,14 @@ Robot.prototype.render = function() {
     this.healthbar.y = grid_size*y + surface_height - grid_size / 3;
     this.healthbar.gotoAndStop(Math.floor(this.energy / this.baseEnergy * 20));
 
+    this.capacitybar.x = grid_size*x;
+    this.capacitybar.y = grid_size*y + surface_height - grid_size / 3 + 6;
+    if (this.storage == 0) {
+        this.capacitybar.visible = false;
+    } else {
+        this.capacitybar.gotoAndStop(Math.floor(this.currentCapacity() / this.storage * 20));
+    }
+
     this.animation.rotation = 0;
     this.animation.scaleX = 1;
     if (this.direction == 'down') {
@@ -46,10 +54,14 @@ Robot.prototype.render = function() {
     });
 };
 
+var canUpgrade = function(type, level) {
+    return playerState.getResource('money') < cost;
+};
+
 var upgradeBot = function(type, level) {
     var cost = upgradeCosts[type][level];
 
-    if (playerState.getResource('money') < cost) {
+    if (!canUpgrade(type, level)) {
         return;
     }
 

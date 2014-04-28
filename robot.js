@@ -35,6 +35,14 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         this.healthbar.gotoAndStop(19);
         stage.addChild(this.healthbar);
 
+        var capacitybarSpriteSheet = new createjs.SpriteSheet({
+            images: ["pics/other/capacitybar.png"],
+            frames: {width:40, height:4}
+        });
+        this.capacitybar = new createjs.Sprite(capacitybarSpriteSheet);
+        this.capacitybar.gotoAndStop(0);
+        stage.addChild(this.capacitybar);
+
         this.render();
     };
 
@@ -255,8 +263,12 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         if (baseAttrs.canSalvage) {
             deadBots.forEach(function (bot, i) {
                 if (bot.position.x == newX && bot.position.y == newY) {
-                    bot.getSalvaged();
-                    deadBots.splice(i, 1); // remove from array
+                    if (bot.getSalvaged()) { // are we done vacuuming this bot?
+                        _this.currentlyVacuuming = false;
+                        deadBots.splice(i, 1); // remove from array
+                    } else {
+                        _this.currentlyVacuuming = true;
+                    }
                 }
             });
         }
@@ -275,10 +287,28 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
         //Can you move if you can't pick up stuff on a tile.
     };
 
+    // returns if the dead robot has been fully vacuumed up
     this.getSalvaged = function () {
-        playerState.changeResource('money', this.salvageValue);
-        this.animation.visible = false;
-    }
+        if (!this.vacuumState) {
+            this.vacuumState = 1.0;
+        }
+        if (this.vacuumState <= 0) {
+            playerState.changeResource('money', this.salvageValue);
+            this.animation.visible = false;
+            return true;
+        } else {
+            this.vacuumState -= 0.1;
+            return false;
+        }
+    };
+
+    this.currentCapacity = function () {
+        var capacity = 0;
+        for (var type in this.resourceAmountByType) {
+            capacity += this.resourceAmountByType[type];
+        }
+        return capacity;
+    };
 
     // This gets called as part of the hit function.
     // It is used to update the tile's amount given
@@ -328,6 +358,7 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
     var handleDeath = function() {
         _this.animation.gotoAndPlay('explode');
         _this.healthbar.visible = false;
+        _this.capacitybar.visible = false;
         _this.salvageValue = baseAttrs.cost * salvageValueMultiplier;
         _this.dead = true;
         deadBots.push(_this);

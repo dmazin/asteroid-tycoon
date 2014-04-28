@@ -48,18 +48,13 @@ var playerState = (function() {
             return;
         }
 
-        var statTemplate = _.template($('#mineral-stat-template').html());
+        $('.general-stats .' + resource).html(statTemplate({
+            name: resource,
+            amount: parseInt(resourceAmounts[resource])
+        }));
 
-        if ($('.general-stats .' + resource).length > 0) {
-            $('.general-stats .' + resource).html(statTemplate({
-                name: resource,
-                amount: parseInt(resourceAmounts[resource])
-            }));
-        } else {
-            $('.general-stats').append(statTemplate({
-                name: resource,
-                amount: parseInt(resourceAmounts[resource])
-            }));
+        if (resource === 'fatlootium') {
+            $('.notification.fatlootium .amount').text(parseInt(resourceAmounts[resource]));
         }
 
         if (resource === 'iron') {
@@ -81,6 +76,15 @@ var playerState = (function() {
 
     state.setAsteroid = function(asteroid) {
         currentAsteroid = asteroid;
+        activeBots = [];
+        deadBots = [];
+
+        if (stage) {
+            stage.removeAllChildren();
+            stage.clear();
+        }
+        init_stage();
+        currentAsteroid.refresh();
     };
 
     return state;

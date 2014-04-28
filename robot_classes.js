@@ -50,11 +50,15 @@ GoatBot.defaultBehavior = function(_this) {
 
 //seeks out rubble to suck up
 VultureBot.defaultBehavior = function(_this) {
-	var dest = findNearestBot(_this.position);  // TODO: find nearest rubble vs. nearest bot?
-	if(dest) {
-		_this.goToward(dest.x, dest.y);
+	if (_this.currentlyVacuuming) {
+		_this.moveTo(_this.position.x, _this.position.y) // stay in place
 	} else {
-		_this.makeRandomMove();
+		var dest = findNearestBot(_this.position);  // TODO: find nearest rubble vs. nearest bot?
+		if(dest) {
+			_this.goToward(dest.x, dest.y);
+		} else {
+			_this.makeRandomMove();
+		}
 	}
 };
 
