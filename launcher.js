@@ -43,6 +43,19 @@ $(document).ready(function () {
 
     updateRobotShop();
     setInterval(updateRobotShop, 1000);
+
+    var lines = $('#first-email').text().split('\n');
+
+    $('.printout').fadeIn(100);
+    var i = 0;
+    var interval = setInterval(function() {
+        $('.printout').prepend(lines[lines.length - i - 1] + '\n');
+        $('.printout').css('clip', 'rect(0, 670px, ' + i * 20 + 'px, 0)');
+        i++;
+        if (i === lines.length) {
+            clearInterval(interval);
+        }
+    }, 50);
 });
 
 var updateRobotShop = function() {

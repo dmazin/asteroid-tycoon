@@ -107,6 +107,8 @@ function init_stage() {
     stage.enableMouseOver(10);
 
     stage.on('stagemouseup', function(e) {
+        $('.printout').fadeOut();
+
         if ($('canvas').hasClass('botSpawner')) {
             // Change canvas back
             $('canvas').removeClass('botSpawner');
