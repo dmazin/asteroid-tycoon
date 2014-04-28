@@ -137,7 +137,8 @@ var robotLevels = {
             'hardness': 0.25,
             'spriteSheet': 'pics/bots/scout1.png',
             'spriteSpeed': 0.6,
-            'gif': 'pics/bots/scout1.gif'
+            'gif': 'pics/bots/scout1.gif',
+	    'exploreRadius' : 4
         }),
         _.extend(_.clone(robots['squirrelBot']), {
             'baseEnergy': 3000,
@@ -145,7 +146,8 @@ var robotLevels = {
             'hardness': 0.35,
             'spriteSheet': 'pics/bots/scout2.png',
             'spriteSpeed': 1.0,
-            'gif': 'pics/bots/scout2.gif'
+            'gif': 'pics/bots/scout2.gif',
+	    'exploreRadius' : 5
         }),
     ],
     'bearBot': [
