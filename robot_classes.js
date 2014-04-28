@@ -25,7 +25,7 @@ AntBot.defaultBehavior = function(_this) {
 	};
 	var dest = findNearestResource(_this.position, _this.getGrid(), harvestableSelectionCallback);
 	if(dest) {
-		_this.goToward(dest.x, dest.y);
+		_this.moveTowardDestination(dest.x, dest.y);
 	} else {
 		_this.makeRandomMove();
 	}
@@ -42,7 +42,7 @@ GoatBot.defaultBehavior = function(_this) {
 	};
 	var dest = findNearestResource(_this.position, _this.getGrid(), rockSelectionCallback);
 	if(dest) {
-		_this.goToward(dest.x, dest.y);
+		_this.moveTowardDestination(dest.x, dest.y);
 	} else {
 		_this.makeRandomMove();
 	}
@@ -51,11 +51,11 @@ GoatBot.defaultBehavior = function(_this) {
 //seeks out rubble to suck up
 VultureBot.defaultBehavior = function(_this) {
 	if (_this.currentlyVacuuming) {
-		_this.moveTo(_this.position.x, _this.position.y) // stay in place
+		_this.moveTo(_this.position.x, _this.position.y); // stay in place
 	} else {
 		var dest = findNearestBot(_this.position);  // TODO: find nearest rubble vs. nearest bot?
 		if(dest) {
-			_this.goToward(dest.x, dest.y);
+			_this.moveTowardDestination(dest.x, dest.y);
 		} else {
 			_this.makeRandomMove();
 		}
@@ -64,7 +64,7 @@ VultureBot.defaultBehavior = function(_this) {
 
 // nearest deadBot for vulture
 var findNearestBot = function(position) {
-	if (deadBots.length == 0) {
+	if (deadBots.length === 0) {
 		return false;
 	}
 
