@@ -285,11 +285,15 @@ body {
     background-color: #996161;
     border-radius: 5px;
     padding: 3px;
+    height: 46px;
+    width: 46px;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
 }
 
 .robot-shop img.current:hover, .robot-shop img.upgradeEnabled:hover {
     border: 2px solid white;
-    margin: -2px 0;
     cursor: pointer;
 }
 
