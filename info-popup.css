@@ -49,7 +49,10 @@
 }
 
 .robot-button {
-    position : absolute;
+    position : relative;
+    margin-right : -4px;
+    margin-left : auto;
+    top : -87px;
 
     cursor : pointer;
     

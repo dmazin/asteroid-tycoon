@@ -19,15 +19,18 @@ function infoPopupClickOnStage(e) {
     }
 }
 
-function robotPopupClick(robot) {
+function robotPopupClick(robot, button) {
     return function (e) {
         if (!infoPopupActive) {
-            var x = e.offsetX,
-                y = e.offsetY,
+            var x = button.offset().left,
+                y = button.offset().top,
                 popup = robotPopup(robots[robot]);
 
-            popup.offset({left : x, right : y});
+            console.log(x, y);
+            popup.offset({left : x, top : y});
             popup.appendTo($('#game'));
+
+            $("body").one("click", hidePopups);
 
             infoPopupActive = true;
             return false;
@@ -40,7 +43,7 @@ function robotPopupClick(robot) {
 function robotButton(robot) {
     var button = $("<div class='robot-button'>?</div>");
 
-    button.click(robotPopupClick(robot));
+    button.click(robotPopupClick(robot, button));
 
     return button;
 }

@@ -43,6 +43,8 @@ $(document).ready(function () {
         event.preventDefault();
     });
 
+    robotButton('squirrelBot').appendTo($(".robot-container.squirrelBot"));
+
     updateRobotShop();
     setInterval(updateRobotShop, 1000);
 
@@ -56,6 +58,9 @@ var updateRobotShop = function() {
         var level = playerState.getRobotLevel(key) + 1;
 
         if (Robot.unlocked(key)) {
+            if ($('.robot-container.' + key).hasClass('disabled')) {
+                $(".robot-container." + key).append(robotButton(key));
+            }
             $('.robot-container.' + key).removeClass('disabled');
         } else {
             $('.robot-container.' + key).addClass('disabled');
