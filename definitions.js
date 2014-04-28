@@ -1,6 +1,6 @@
 // constants for scaling robot attributes for balancing purposes
 var energy_scale = 0.1;
-var WobbleConstant = 0.75;
+var WobbleConstant = 0.4;
 
 // other constants
 var explorationBonus = 1;
@@ -82,7 +82,7 @@ var robots = {
         'affinity': {},
         'klass': VultureBot,
         'canSalvage': true,
-        'spriteSheet': 'pics/bots/vulture0.png',
+        'spriteSheet': 'pics/bots/scavenger0.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/bots/scavenger0.gif'
     }
@@ -100,89 +100,101 @@ var robotLevels = {
     'squirrelBot': [
         robots['squirrelBot'],
         _.extend(_.clone(robots['squirrelBot']), {
-            baseEnergy: 2500,
-            wobble: 0.75,
+            'baseEnergy': 2500,
+            'wobble': 0.75,
+            'hardness': 0.25,
             'spriteSheet': 'pics/bots/scout1.png',
-            'spriteSpeed': 0.6
+            'spriteSpeed': 0.6,
+            'gif': 'pics/bots/scout1.gif'
         }),
         _.extend(_.clone(robots['squirrelBot']), {
-            baseEnergy: 3000,
-            wobble: 0.6,
+            'baseEnergy': 3000,
+            'wobble': 0.6,
+            'hardness': 0.35,
             'spriteSheet': 'pics/bots/scout2.png',
-            'spriteSpeed': 1.0
+            'spriteSpeed': 1.0,
+            'gif': 'pics/bots/scout2.gif'
         }),
     ],
     'bearBot': [
         robots['bearBot'],
         _.extend(_.clone(robots['bearBot']), {
-            baseEnergy: 1400,
-            storage: 125,
-            wobble: 0.65,
-            harvestEfficiency: 0.7,
-            hardness: 0.45,
+            'baseEnergy': 1400,
+            'storage': 125,
+            'wobble': 0.65,
+            'harvestEfficiency': 0.7,
+            'hardness': 0.45,
             'spriteSheet': 'pics/bots/allaround1.png',
-            'spriteSpeed': 0.6
+            'spriteSpeed': 0.6,
+            'gif': 'pics/bots/allaround1.gif'
         }),
         _.extend(_.clone(robots['bearBot']), {
-            baseEnergy: 1600,
-            storage: 150,
-            wobble: 0.6,
-            harvestEfficiency: 0.8,
-            hardness: 0.65,
+            'baseEnergy': 1600,
+            'storage': 150,
+            'wobble': 0.6,
+            'harvestEfficiency': 0.8,
+            'hardness': 0.65,
             'spriteSheet': 'pics/bots/allaround2.png',
-            'spriteSpeed': 1.0
+            'spriteSpeed': 1.0,
+            'gif': 'pics/bots/allaround2.gif'
         }),
     ],
     'antBot': [
         robots['antBot'],
         _.extend(_.clone(robots['antBot']), {
-            baseEnergy: 1250,
-            storage: 300,
-            harvestEfficiency: 0.9,
-            hardness: 0.65,
-            'spriteSheet': 'pics/bots/harvester0.png',
-            'spriteSpeed': 0.6
+            'baseEnergy': 1250,
+            'storage': 300,
+            'harvestEfficiency': 0.9,
+            'hardness': 0.65,
+            'spriteSheet': 'pics/bots/harvester1.png',
+            'spriteSpeed': 0.6,
+            'gif': 'pics/bots/harvester1.gif'
         }),
         _.extend(_.clone(robots['antBot']), {
-            baseEnergy: 1500,
-            storage: 400,
-            harvestEfficiency: 1.0,
-            hardness: 0.85,
-            'spriteSheet': 'pics/bots/harvester0.png',
-            'spriteSpeed': 1.0
+            'baseEnergy': 1500,
+            'storage': 400,
+            'harvestEfficiency': 1.0,
+            'hardness': 0.85,
+            'spriteSheet': 'pics/bots/harvester2.png',
+            'spriteSpeed': 1.0,
+            'gif': 'pics/bots/harvester2.gif'
         }),
     ],
     'goatBot': [
         robots['goatBot'],
         _.extend(_.clone(robots['goatBot']), {
-            baseEnergy: 1100,
-            hardness: 0.75,
+            'baseEnergy': 1100,
+            'hardness': 0.75,
             'spriteSheet': 'pics/bots/smasher1.png',
-            'spriteSpeed': 0.6
+            'spriteSpeed': 0.6,
+            'gif': 'pics/bots/smasher1.gif'
         }),
         _.extend(_.clone(robots['goatBot']), {
-            baseEnergy: 1200,
-            hardness: 0.95,
+            'baseEnergy': 1200,
+            'hardness': 0.95,
             'spriteSheet': 'pics/bots/smasher2.png',
-            'spriteSpeed': 1.0
+            'spriteSpeed': 1.0,
+            'gif': 'pics/bots/smasher2.gif'
 
         }),
     ],
     'vultureBot': [
         robots['vultureBot'],
         _.extend(_.clone(robots['vultureBot']), {
-            baseEnergy: 1750,
-            storage: 250,
-            harvestEfficiency: 0.85,
-            'spriteSheet': 'pics/bots/vulture1.png',
-            'spriteSpeed': 0.6
+            'baseEnergy': 1750,
+            'storage': 250,
+            'harvestEfficiency': 0.85,
+            'spriteSheet': 'pics/bots/scavenger1.png',
+            'spriteSpeed': 0.6,
+            'gif': 'pics/bots/scavenger1.gif'
         }),
         _.extend(_.clone(robots['vultureBot']), {
-            baseEnergy: 2000,
-            storage: 300,
-            harvestEfficiency: 1.0,
-            'spriteSheet': 'pics/bots/vulture2.png',
-            'spriteSpeed': 1.0
+            'baseEnergy': 2000,
+            'storage': 300,
+            'harvestEfficiency': 1.0,
+            'spriteSheet': 'pics/bots/scavenger2.png',
+            'spriteSpeed': 1.0,
+            'gif': 'pics/bots/scavenger2.gif'
         }),
     ]
 };
