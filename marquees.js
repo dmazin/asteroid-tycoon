@@ -15,10 +15,24 @@ var marqueeMessages = [
 		}
 	},
 	{
+		'html': "HEY YOU, STOP STARING AT THIS MARQUEE AND GET BACK TO WORK!",
+		'class': 'alert',
+		'condition': function () {
+			return true;
+		}
+	},
+	{
 		'html': "<span class='amount'>0</span> ROBOTS HAVE DIED AT YOUR HANDS. HOW MANY MORE MUST SUFFER?",
 		'class': 'killed',
 		'condition': function () {
 			return playerState.getTotalRobotsKilled() > 0;
+		}
+	},
+	{
+		'html': "GRUMBLING IS HEARD AMONG THE ROBOT RANKS. THERE IS TALK OF STARTING A UNION.",
+		'class': 'alert',
+		'condition': function () {
+			return playerState.getTotalRobotsKilled() > 10;
 		}
 	},
 	{
@@ -57,14 +71,14 @@ var marqueeMessages = [
 		}
 	},
 	{
-		'html': "YOU HAVE DISCOVERED <span class='amount'>0</span> ALIEN ARTIFACTS. WHAT PURPOSE DO THEY HOLD?",
-		'class': 'resource artifacts',
+		'html': "YOU HAVE DISCOVERED <span class='amount'>0</span> ALIEN ARTIFACTS. WHAT SECRETS DO THEY HOLD?",
+		'class': 'resource artifact',
 		'condition': function () {
-			return playerState.getResource('artifacts') > 0;
+			return playerState.getResource('artifact') > 0;
 		}
 	},
 	{
-		'html': "4 OUT OF 5 ASTEROID MINERS RECOMMEND TERRAFORMING. ASK YOUR MINING PROFESSIONAL ABOUT TERRAFORMING TODAY!",
+		'html': "4 OUT OF 5 ASTEROID MINERS RECOMMEND TERRAFORMING",
 		'class': 'ad',
 		'condition': function () {
 			return true;
@@ -74,15 +88,21 @@ var marqueeMessages = [
 
 function addToMarquee() {
 	var possibleMessages = marqueeMessages.filter(function (msg) {
-		return msg.condition();
+		return msg.condition()
+			&& ('notification ') + msg.class != $('marquee').children().last().attr('class');
 	});
-	console.log(possibleMessages);
 	var msg = possibleMessages[_.random(possibleMessages.length - 1)];
-	if (msg.condition() === true) {
-		$('<span class="notification">').addClass(msg.class)
-			.html(msg.html)
-			.appendTo($('marquee'));
-	}
+	$('<span class="notification">').addClass(msg.class)
+		.html(msg.html)
+		.appendTo($('marquee'));
+	updateNotifications();
+}
+
+function updateNotifications() {
+	_.each(playerState.getResources(), function (amount, resource) {
+		$('.notification.' + resource + ' .amount').text(parseInt(amount));
+	});
+	$('.notification.killed .amount').text(playerState.getTotalRobotsKilled());
 }
 
 addToMarquee();

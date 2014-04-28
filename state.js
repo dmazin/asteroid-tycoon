@@ -32,6 +32,10 @@ var playerState = (function() {
         robotLevels[robotType] = level;
     };
 
+    state.getResources = function() {
+        return resourceAmounts;
+    };
+
     state.getResource = function(resource) {
         return resourceAmounts[resource] || 0;
     };
