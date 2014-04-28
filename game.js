@@ -78,6 +78,8 @@ function init_ui() {
 }
 
 function init_stage() {
+    $('canvas')[0].height = game_height * grid_size + surface_height;
+
     stage.backdrop = new createjs.Bitmap(playerState.getAsteroid().bgImage);
     stage.backdrop.x = 0;
     stage.backdrop.y = 0;
