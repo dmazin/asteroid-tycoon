@@ -7,7 +7,7 @@
 <body>
 
 <script id="robot-buy-button-template" type="text/html">
-    <span class='robot-container <%= name %>'>
+    <div class='robot-container <%= name %>'>
         <div class='robot' data-robot='<%= name %>'>
             <img src="<%= gif %>"><%= uiName %> $<%= cost %>
         </div>
@@ -16,7 +16,7 @@
         	<span class="upgradeCost">locked</span>
         </div>
         <div class='unlockMessage' data-robot='<%= name %>'>unavailable</div>
-    </span>
+    </div>
 </script>
 
 <script id="mineral-stat-template" type="text/html">
