@@ -66,6 +66,15 @@ var updateTopMenuSize = function() {
                 $('#menu').stop().animate({
                     height:'190px',
                 }, 600);
+                $(".robot-shop .robot-container:not(.disabled) img")
+                    .animate({height : 0}, 660, function () {
+                        $(".robot-shop .robot-container:not(.disabled) img").hide();
+                    });
+                $(".robot-shop").animate({height : 22}, 660);
+                $(".robot-container:not(.disabled) .robot-button")
+                    .animate({top : -44}, 660);
+                $(".robot-container.disabled")
+                    .animate({ paddingTop : 0, paddingBottom : 0, top : -42 }, 660);
                 setTimeout(function () {
                     $('.title').hide();
                     $('#menu').addClass('shrunk');
@@ -84,6 +93,14 @@ var updateTopMenuSize = function() {
                 $('#menu').stop().animate({
                     height:'290px',
                 }, 600);
+                $(".robot-shop .robot-container:not(.disabled) img").show();
+                $(".robot-shop .robot-container:not(.disabled) img")
+                    .animate({height : 40}, 660);
+                $(".robot-shop").animate({height : 77}, 660);
+                $(".robot-container:not(.disabled) .robot-button")
+                    .animate({top : -88}, 660);
+                $(".robot-container.disabled")
+                    .animate({ paddingTop : 15, paddingBottom : 15, top : -62 }, 660);
                 setTimeout(function () {
                     $('#asteroidButton, #messages').show();
                 }, 600);
