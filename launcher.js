@@ -69,10 +69,14 @@ var hidePrintout = function () {
                             'width' : 15,
                             'height' : 15,
                             'opacity': 0},
-                           1000);
+                           1000,
+                           function () {
+                               $('.printout').hide();
+                           });
 }
 
 var showPrintout = function () {
+    $('.printout').show();
     $(".printout").animate({'top' : 128,
                             'left' : '50%',
                             'width' : 670,
