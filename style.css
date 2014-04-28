@@ -413,6 +413,14 @@ body {
     display: none !important;
 }
 
+.robot-shop.with-badger .badgerBot.lvl1 {
+    display: inline-block !important;
+}
+
+.robot-shop.with-badger .badgerBot.lvl3 {
+    display: none !important;
+}
+
 .robot-shop.with-badger .robot-container {
     width: 140px;
     max-width: 140px;

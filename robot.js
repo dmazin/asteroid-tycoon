@@ -358,6 +358,7 @@ var Robot = function(type, baseAttrs, startX, destX, destY, asteroid) {
     var addResources = function(amountMined, resourceType) {
         var amountHarvested = Math.min(amountMined, _this.storage);
         _this.storage -= amountHarvested;
+        console.log(_this.storage);
         var resourceAmount = _this.resourceAmountByType[resourceType] || 0;
         //Store the resources we've collected by the name to amount.
         //i.e { name: amount }
