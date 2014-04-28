@@ -44,7 +44,7 @@
 
 .stats {
     width: 200px;
-    font-size: 13px;
+    font-size: 16px;
     border-radius: 3px;
     padding: 7px;
     margin-right: 10px;
@@ -185,11 +185,15 @@ body {
 
 .robot-shop {
     border: 4px inset #FFF;
-    background-color: #7660BD;
+    background-color: #40536B;
     border-radius: 9px;
-    width: 540px;
+    width: 625px;
     padding: 3px;
+    color: #FFF;
+    font-size: 19px;
     display: inline-block;
+    height: 100px;
+    vertical-align: top;
 }
 
 
@@ -207,6 +211,9 @@ body {
 .robot-shop img {
     vertical-align: bottom;
     margin-right: 3px;
+    background-color: #996161;
+    border-radius: 5px;
+    padding: 3px;
 }
 
 .title .title-text {
