@@ -415,7 +415,7 @@ var asteroids = {
     // 'rigidite': {pTop: 0, pBottom: 0, minDepth: 0},
     // 'toughite': {pTop: 0, pBottom: 0, minDepth: 0},
     // 'unyieldite': {pTop: 0, pBottom: 0, minDepth: 0},
-    'imperviousite': {pTop: 1, pBottom: 0,.7 minDepth: 0.9},
+    'imperviousite': {pTop: 1, pBottom: 0.7, minDepth: 0.9},
 
     // minerals and goodies
     'artifact': {pTop: 0.4, pBottom: 0.4, minDepth: .3},
@@ -437,11 +437,11 @@ var asteroids = {
     'junkite': {pTop: 1, pBottom: 0.1, minDepth: 0},
     'scrapite': {pTop: 0.1, pBottom: 1, minDepth: 0},
     'crapite': {pTop: 0.3, pBottom: 0.6, minDepth: 0.6},
-    'densite': {pTop: 0, pBottom: 0, minDepth: 0},
-    'rigidite': {pTop: 0, pBottom: 0, minDepth: 0},
-    'toughite': {pTop: 0, pBottom: 0, minDepth: 0},
-    'unyieldite': {pTop: 0, pBottom: 0, minDepth: 0},
-        'imperviousite': {pTop: 0, pBottom: 0, minDepth: 0},
+    // 'densite': {pTop: 0, pBottom: 0, minDepth: 0},
+    // 'rigidite': {pTop: 0, pBottom: 0, minDepth: 0},
+    // 'toughite': {pTop: 0, pBottom: 0, minDepth: 0},
+    // 'unyieldite': {pTop: 0, pBottom: 0, minDepth: 0},
+    'imperviousite': {pTop: 1, pBottom: 0.7, minDepth: 0.9},
 
     // minerals and goodies
     'artifact': {pTop: 0.4, pBottom: 0.4, minDepth: .3},
@@ -449,40 +449,61 @@ var asteroids = {
     'cheddarium':{pTop: 1, pBottom: 0.1, minDepth: 0},
     'fatlootium': {pTop: 0.1, pBottom: 1, minDepth: 0},
     'affluentium': {pTop: 0.3, pBottom: 0.5, minDepth: 0.8},
-    'cashmonium': {pTop: 0, pBottom: 0, minDepth: 0},
+    // 'cashmonium': {pTop: 0, pBottom: 0, minDepth: 0},
+
+    // pain and death
+    // 'lava': {pTop: 0, pBottom: 0, minDepth: 0}
+    }, 1.25),
+
+    "Affluoid": new Asteroid("Affluoid", {
+        //dirt and rocks
+    'dirtite': {pTop: 0, pBottom: 0, minDepth: 0},
+    'dregsite': {pTop: 0, pBottom: 0, minDepth: 0},
+    'rubbishite': {pTop: 0, pBottom: 0, minDepth: 0},
+    'junkite': {pTop: 0, pBottom: 0, minDepth: 0},
+    'scrapite': {pTop: 1, pBottom: 0, minDepth: 0},
+    'crapite': {pTop: 0.8, pBottom: 0.8, minDepth: 0},
+    'densite': {pTop: 0.3, pBottom: .7, minDepth: 0.3},
+    'rigidite': {pTop: 0.2, pBottom: 0.5, minDepth: 0.5},
+    // 'toughite': {pTop: 0, pBottom: 0, minDepth: 0},
+    // 'unyieldite': {pTop: 0, pBottom: 0, minDepth: 0},
+    'imperviousite': {pTop: 1, pBottom: 0.7, minDepth: 0.9},
+
+    // minerals and goodies
+    'artifact': {pTop: 0.4, pBottom: 0.4, minDepth: .3},
+    // 'paydirtium':{pTop: 0, pBottom: 0, minDepth: 0},
+    // 'cheddarium':{pTop: 0, pBottom: 0, minDepth: 0},
+    'fatlootium': {pTop: 0.8, pBottom: 0, minDepth: 0},
+    'affluentium': {pTop: 0.5, pBottom: 1, minDepth: 0},
+    'cashmonium': {pTop: 0.3, pBottom: 0.5, minDepth: 0.8},
+
+    // pain and death
+    // 'lava': {pTop: 0, pBottom: 0, minDepth: 0}
+    }, 1.5),
+    
+    "Cashmonoid": new Asteroid("Cashmonoid", {
+        //dirt and rocks
+    'dirtite': {pTop: 0, pBottom: 0, minDepth: 0},
+    'dregsite': {pTop: 0, pBottom: 0, minDepth: 0},
+    'rubbishite': {pTop: 0, pBottom: 0, minDepth: 0},
+    'junkite': {pTop: 0, pBottom: 0, minDepth: 0},
+    'scrapite': {pTop: 0, pBottom: 0, minDepth: 0},
+    'crapite': {pTop: 0, pBottom: 0, minDepth: 0},
+    'densite': {pTop: 0.6, pBottom: 0.2, minDepth: 0},
+    'rigidite': {pTop: 0.5, pBottom: 0.01, minDepth: 0},
+    'toughite': {pTop: 0.4, pBottom: 0.4, minDepth: 0.2},
+    'unyieldite': {pTop: 0.01, pBottom: 1, minDepth: 0},
+    'imperviousite': {pTop: 1, pBottom: 0.7, minDepth: 0.9},
+
+    // minerals and goodies
+    'artifact': {pTop: 0.4, pBottom: 0.4, minDepth: .3},
+    'paydirtium':{pTop: 0, pBottom: 0, minDepth: 0},
+    'cheddarium':{pTop: 0, pBottom: 0, minDepth: 0},
+    'fatlootium': {pTop: 0, pBottom: 0, minDepth: 0},
+    'affluentium': {pTop: 0.8, pBottom: 0.01, minDepth: 0},
+    'cashmonium': {pTop: 0.1, pBottom: 1, minDepth: 0},
 
     // pain and death
     'lava': {pTop: 0, pBottom: 0, minDepth: 0}
-    }, 1.25),
-    
-    "Affluoid": new Asteroid("Affluoid", {
-        'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
-        'dregsite': {pTop: 0.2, pBottom: 0.4, minDepth: 1},
-        'rubbishite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
-        'junkite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
-        'scrapite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
-        'crapite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
-        'densite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
-        'rigidite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
-        'toughite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
-        'paydirtium': {pTop: 0.02, pBottom: 0.05, minDepth: 1},
-        'cheddarium': {pTop: 0.02, pBottom: 0.1, minDepth: 1},
-        'fatlootium': {pTop: 0.05, pBottom: 0.1, minDepth: 10},
-        'affluentium': {pTop: 0.3, pBottom: 0.5, minDepth: 15},
-        'cashmonium': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
-    }, 1.5),
-    "Cashmonoid": new Asteroid("Cashmonoid", {
-        'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
-        'dregsite': {pTop: 0.2, pBottom: 0.4, minDepth: 1},
-        'rubbishite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
-        'junkite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
-        'scrapite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
-        'crapite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
-        'toughite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
-        'unyieldite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
-        'cheddarium': {pTop: 0.02, pBottom: 0.3, minDepth: 1},
-        'fatlootium': {pTop: 0.05, pBottom: 0.3, minDepth: 10},
-        'affluentium': {pTop: 0.05, pBottom: 0.3, minDepth: 15},
-        'cashmonium': {pTop: 0.2, pBottom: 0.5, minDepth: 15}
     }, 2.0)
 }
