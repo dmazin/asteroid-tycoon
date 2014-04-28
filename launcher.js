@@ -81,7 +81,7 @@ var updateTopMenuSize = function() {
                 height:'0px',
             }, options);
             $('#menu').stop().animate({
-                height:'190px',
+                height:'136px',
             }, options);
             $(".robot-shop .robot-container:not(.disabled) img")
                 .animate({height : 0}, {
@@ -118,7 +118,7 @@ var updateTopMenuSize = function() {
             }, options);
             $(".robot-shop .robot-container:not(.disabled) img").show();
             $(".robot-shop .robot-container:not(.disabled) img")
-                .animate({height : 40}, options);
+                .animate({height : 46}, options);
             $(".robot-shop").animate({height : 77}, options);
             $(".robot-container:not(.disabled) .robot-button")
                 .animate({top : -88}, options);
