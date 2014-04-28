@@ -46,54 +46,8 @@ $(document).ready(function () {
     updateRobotShop();
     setInterval(updateRobotShop, 1000);
 
-    displayPrintout('#first-email');
+    printout($('#first-email').text());
 });
-
-var displayPrintout = function (msg) {
-    var lines = $(msg).text().split('\n');
-
-    $('.printout').fadeIn(100);
-    $("#game").one('click', hidePrintout);
-    var i = 0;
-    var interval = setInterval(function() {
-        $('.printout').prepend(lines[lines.length - i - 1] + '\n');
-        $('.printout').css('clip', 'rect(0, 670px, ' + i * 20 + 'px, 0)');
-        i++;
-        if (i === lines.length) {
-            clearInterval(interval);
-        }
-    }, 50);
-}
-
-var hidePrintout = function () {
-    $('.printout').css('cursor', 'default');
-    $("#messages").fadeIn(1000);
-    $('.printout').animate({'top': 110,
-                            'left' : 350,
-                            'width' : 15,
-                            'height' : 15,
-                            'opacity': 0},
-                           1000,
-                           function () {
-                               $('.printout').hide();
-                           });
-}
-
-var showPrintout = function () {
-    $('.printout').show();
-    $(".printout").animate({'top' : 128,
-                            'left' : '50%',
-                            'width' : 670,
-                            'height' : '390',
-                            'opacity' : 100 },
-                           1000);
-
-    $("#messages").fadeOut(600);
-
-    setTimeout(function () {$("#game").one('click', hidePrintout);}, 0);
-}
-
-$("#messages").click(showPrintout);
 
 var updateRobotShop = function() {
     _.each(robots, function(val, key) {
