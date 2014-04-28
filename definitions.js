@@ -607,7 +607,7 @@ var asteroids = {
         'lava': {pTop: 0, pBottom: 0, minDepth: 0}
     }, 2.0),
 
-    "Lavaroid": new Asteroid({
+    /*"Lavaroid": new Asteroid({
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
         'dregsite': {pTop: 0.1, pBottom: 0.4, minDepth: 1},
         'rubbishite': {pTop: 0.01, pBottom: 0.2, minDepth: 1},
@@ -616,5 +616,5 @@ var asteroids = {
         'cheddarium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
         'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
         'lava': {pTop:.1, pBottom: .3, minDepth:5}
-    }, 2.5)
+    }, 2.5)*/
 };

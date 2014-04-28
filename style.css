@@ -109,6 +109,7 @@ body {
     width: 850px;
     margin: 0 auto;
     font-size: 11px;
+    padding-bottom: 8px;
 }
 
 #game {
@@ -118,11 +119,9 @@ body {
 
 #messages {
     position : absolute;
-    bottom : 180px;
+    bottom : 207px;
     left : 25px;
-
     width : 25px;
-
     cursor : pointer;
 }
 
@@ -303,7 +302,7 @@ body {
 
 .printout {
     border-top: 2px solid #92ADB8;
-    top: 128px;
+    top: 100px;
     color: #4D4D4D;
     position: absolute;
     background-color: #FFF;

@@ -52,11 +52,13 @@ function tick() {
         bot.handleMove(bot.destX, bot.destY);
     });
 
-    var gs = grid_size;
-    stage.destTile.x = Math.round((stage.mouseX - gs / 2) / gs) * gs - 2;
-    stage.destTile.y = Math.round(((stage.mouseY + 20) - gs / 2) / gs) * gs - 22;
-    stage.destTile.visible = $('canvas').hasClass('botSpawner')
-        && stage.mouseInBounds && stage.destTile.y >= surface_height - 10;
+    if (stage.destTile) {
+        var gs = grid_size;
+        stage.destTile.x = Math.round((stage.mouseX - gs / 2) / gs) * gs - 2;
+        stage.destTile.y = Math.round(((stage.mouseY + 20) - gs / 2) / gs) * gs - 22;
+        stage.destTile.visible = $('canvas').hasClass('botSpawner')
+            && stage.mouseInBounds && stage.destTile.y >= surface_height - 10;
+    }
 
     stage.update();
 }
@@ -90,14 +92,14 @@ function init_stage() {
     stage.destTile = new createjs.Sprite(reticuleSpritesheet);
     stage.destTile.gotoAndStop(0);
     $('canvas').on("mousedown", function() {
-        if (robotSelectionActive) {
-            setTimeout(function () {robotSelectionActive = false}, 0);
+        if (stage.destTile) {
+            stage.destTile.gotoAndStop(1);
         }
-
-        stage.destTile.gotoAndStop(1);
     });
     $('canvas').on("mouseup", function() {
-        stage.destTile.gotoAndStop(0);
+        if (stage.destTile) {
+            stage.destTile.gotoAndStop(0);
+        }
     });
     stage.addChild(stage.destTile);
 
@@ -109,7 +111,9 @@ function init_stage() {
 
 function setup_stage_event_handler() {
     stage.on('stagemouseup', function(e) {
-        if ($('canvas').hasClass('botSpawner')) {
+        if ($('canvas').hasClass('asteroidSelect')) {
+            return;
+        } else if ($('canvas').hasClass('botSpawner')) {
             hidePopups();
 
             // Change canvas back
