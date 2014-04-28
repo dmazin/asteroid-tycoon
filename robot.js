@@ -131,8 +131,9 @@ var Robot = function(baseAttrs, startX, destX, destY, asteroid) {
                 // destination either already reached or unreachable
                 this.reachedDestination = true;
             }
-        } else {
+        } else { // The destination is clearly set wrong
             // console.log('making random move');
+            this.reachedDestination = true;
             this.makeRandomMove();
         }
     };
