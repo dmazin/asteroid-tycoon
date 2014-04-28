@@ -12,7 +12,7 @@
 }
 
 .display {
-    font-family: 'VT323', '';
+    font-family: 'VT323', 'Arial', 'sans-serif';
     text-transform: uppercase;
     text-shadow: 1px 1px 1px #4A5E47;
 }
