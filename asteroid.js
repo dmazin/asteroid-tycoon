@@ -1,4 +1,4 @@
-var Asteroid = function (terrainParameters) {
+var Asteroid = function (name, terrainParameters) {
     var grid = [];
     var initialized = false;
     var startSeed = Math.random();
@@ -22,6 +22,15 @@ var Asteroid = function (terrainParameters) {
                 grid[i][j].addToStage();
             }
         }
+    }
+
+    this.reachLine = function (lineNum) {
+        _.each(robots, function (robot, key) {
+            if (robot.lockedTil && robot.lockedTil.asteroid == name
+                    && robot.lockedTil.row <= lineNum) {
+                Robot.unlock(key);
+            }
+        });
     }
 
     function initialize_grid() {

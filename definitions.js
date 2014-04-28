@@ -41,7 +41,10 @@ var robots = {
         'spriteSheet': 'pics/bots/allaround0.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/bots/allaround0.gif',
-        'lockedTil': null,
+        'lockedTil': {
+            asteroid: 'Paydirteroid',
+            row: 5
+        },
        'exploreRadius' : 1
     },
     'antBot': {
@@ -58,7 +61,10 @@ var robots = {
         'spriteSheet': 'pics/bots/harvester0.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/bots/harvester0.gif',
-        'lockedTil': 'paydirtium',
+        'lockedTil': {
+            asteroid: 'Cheddaroid',
+            row: 14
+        },
         'exploreRadius' : 1
     },
     'goatBot': {
@@ -75,7 +81,10 @@ var robots = {
         'spriteSheet': 'pics/bots/smasher0.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/bots/smasher0.gif',
-        'lockedTil': 'cheddarium',
+        'lockedTil': {
+            asteroid: 'Fatlooteroid',
+            row: 14
+        },
         'exploreRadius' : 1
     },
     'vultureBot': {
@@ -93,7 +102,10 @@ var robots = {
         'spriteSheet': 'pics/bots/scavenger0.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/bots/scavenger0.gif',
-        'lockedTil': 'fatlootium',
+        'lockedTil': {
+            asteroid: 'Paydirteroid',
+            row: 14
+        },
         'exploreRadius' : 1
     }
 };
@@ -359,7 +371,7 @@ var resources = {
 
 
 var asteroids = {
-    "Paydirteroid": new Asteroid({
+    "Paydirteroid": new Asteroid("Paydirteroid", {
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
         'dregsite': {pTop: 0.1, pBottom: 0.4, minDepth: 1},
         'rubbishite': {pTop: 0.01, pBottom: 0.2, minDepth: 1},
@@ -368,7 +380,7 @@ var asteroids = {
         'cheddarium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
         'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 10}
     }),
-    "Cheddaroid": new Asteroid({
+    "Cheddaroid": new Asteroid("Cheddaroid", {
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
         'dregsite': {pTop: 0.2, pBottom: 0.4, minDepth: 1},
         'rubbishite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
@@ -379,7 +391,7 @@ var asteroids = {
         'cheddarium': {pTop: 0.1, pBottom: 0.5, minDepth: 1},
         'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 5}
     }),
-    "Fatlooteroid": new Asteroid({
+    "Fatlooteroid": new Asteroid("Fatlooteroid", {
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
         'dregsite': {pTop: 0.2, pBottom: 0.4, minDepth: 1},
         'rubbishite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
@@ -393,7 +405,7 @@ var asteroids = {
         'fatlootium': {pTop: 0.3, pBottom: 0.5, minDepth: 10},
         'affluentium': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
     }),
-    "Affluoid": new Asteroid({
+    "Affluoid": new Asteroid("Affluoid", {
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
         'dregsite': {pTop: 0.2, pBottom: 0.4, minDepth: 1},
         'rubbishite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
@@ -409,7 +421,7 @@ var asteroids = {
         'affluentium': {pTop: 0.3, pBottom: 0.5, minDepth: 15},
         'cashmonium': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
     }),
-    "Cashmonoid": new Asteroid({
+    "Cashmonoid": new Asteroid("Cashmonoid", {
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
         'dregsite': {pTop: 0.2, pBottom: 0.4, minDepth: 1},
         'rubbishite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},

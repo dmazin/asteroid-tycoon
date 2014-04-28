@@ -92,5 +92,7 @@ var playerState = (function() {
         init_stage();
     };
 
+    state.unlockedRobots = ['squirrelBot'];
+
     return state;
 })();
