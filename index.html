@@ -11,14 +11,12 @@
         <div class='robot' data-robot='<%= name %>'>
             <%= uiName %> $<%= cost %>
         </div>
-        <div class='upgrade' data-robot='<%= name %>'>
-        	Upgrade
-        	<span class="upgradeCost">locked</span>
-        </div>
         <div class='images'>
         	<img src="pics/2x_gifs/<%= gifName %>0.gif" data-robot='<%= name %>' class="lvl1">
         	<img src="pics/other/closedlock.png" data-robot='<%= name %>' class="lvl2 unused">
+        	<div class="upgradeCost lvl2"></div>
         	<img src="pics/other/closedlock.png" data-robot='<%= name %>' class="lvl3 unused">
+        	<div class="upgradeCost lvl3"></div>
         </div>
         <div class='unlockMessage' data-robot='<%= name %>'>unavailable</div>
     </div>
