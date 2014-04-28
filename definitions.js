@@ -342,20 +342,23 @@ var resources = {
 
 
 var asteroids = {
-    "Bananasteroid": new Asteroid({
+    "Paydirteroid": new Asteroid({
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
         'dregsite': {pTop: 0.1, pBottom: 0.4, minDepth: 1},
         'rubbishite': {pTop: 0.01, pBottom: 0.2, minDepth: 1},
         'paydirtium': {pTop: 0.4, pBottom: 0.4, minDepth: 1},
-        'cheddarium': {pTop: 0.01, pBottom: 0.05, minDepth: 15},
-        'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
+        'cheddarium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
+        'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 10}
     }),
-    "Dumbteroid": new Asteroid({
-        'dirtite': {pTop: 0.5, pBottom: 1, minDepth: 0},
-        'dregsite': {pTop: 0.1, pBottom: 0.4, minDepth: 1},
-        'rubbishite': {pTop: 0.5, pBottom: 0.2, minDepth: 1},
-        'paydirtium': {pTop: 0.5, pBottom: 0.4, minDepth: 1},
-        'cheddarium': {pTop: 0.5, pBottom: 0.05, minDepth: 15},
-        'fatlootium': {pTop: 0.5, pBottom: 0.05, minDepth: 15}
+    "Cheddaroid": new Asteroid({
+        'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
+        'dregsite': {pTop: 0.2, pBottom: 0.4, minDepth: 1},
+        'rubbishite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
+        'junkite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
+        'scrapite': {pTop: 0.2, pBottom: 0.2, minDepth: 1},
+        'crapite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
+        'paydirtium': {pTop: 0.1, pBottom: 0.05, minDepth: 1},
+        'cheddarium': {pTop: 0.1, pBottom: 0.5, minDepth: 1},
+        'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 5}
     })
 };

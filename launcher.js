@@ -1,7 +1,7 @@
 $(document).ready(function () {
     init_ui();
 
-    playerState.setAsteroid(asteroids['Bananasteroid']);
+    playerState.setAsteroid(asteroids['Paydirteroid']);
 
     _.each(robots, function(val, key) {
         var data = _.extend(val, {'name': key});
@@ -18,6 +18,11 @@ $(document).ready(function () {
         if (money > robots[robotType].cost) {
             spawnBot(robotType, Math.floor(spawner.x/grid_size));
         }
+    });
+
+    $('.level').click(function() {
+        var asteroidName = $(this).attr('id');
+        playerState.setAsteroid(asteroids[asteroidName]);
     });
 });
 
