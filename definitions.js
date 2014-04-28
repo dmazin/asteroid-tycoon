@@ -361,6 +361,12 @@ var resources = {
         'value': 60,
         'image': loadImage('pics/tiles/mineral5.png')
     },
+    'artifact': {
+        'hardness': 0,
+        'harvestable': true,
+        'value': null,
+        'image': loadImage('pics/tiles/artifact.png')
+    },
     'unexplored': {
         'hardness': 0,
         'harvestable': false,
@@ -378,7 +384,8 @@ var asteroids = {
         'imperviousite': {pTop: 100, pBottom: 0, minDepth: 25},
         'paydirtium': {pTop: 0.4, pBottom: 0.4, minDepth: 1},
         'cheddarium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
-        'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 10}
+        'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 10},
+        'artifact': {pTop: 0.1, pBottom: 0.5, minDepth: 1}
     }),
     "Cheddaroid": new Asteroid("Cheddaroid", {
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
@@ -389,7 +396,8 @@ var asteroids = {
         'crapite': {pTop: 0.1, pBottom: 0.2, minDepth: 1},
         'paydirtium': {pTop: 0.1, pBottom: 0.05, minDepth: 1},
         'cheddarium': {pTop: 0.1, pBottom: 0.5, minDepth: 1},
-        'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 5}
+        'fatlootium': {pTop: 0.01, pBottom: 0.05, minDepth: 5},
+        'artifact': {pTop: 0.01, pBottom: 0.05, minDepth: 10}
     }),
     "Fatlooteroid": new Asteroid("Fatlooteroid", {
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
@@ -403,7 +411,8 @@ var asteroids = {
         'paydirtium': {pTop: 0.05, pBottom: 0.05, minDepth: 1},
         'cheddarium': {pTop: 0.05, pBottom: 0.1, minDepth: 1},
         'fatlootium': {pTop: 0.3, pBottom: 0.5, minDepth: 10},
-        'affluentium': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
+        'affluentium': {pTop: 0.01, pBottom: 0.05, minDepth: 15},
+        'artifact': {pTop: 0.01, pBottom: 0.05, minDepth: 10}
     }),
     "Affluoid": new Asteroid("Affluoid", {
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
@@ -419,7 +428,8 @@ var asteroids = {
         'cheddarium': {pTop: 0.02, pBottom: 0.1, minDepth: 1},
         'fatlootium': {pTop: 0.05, pBottom: 0.1, minDepth: 10},
         'affluentium': {pTop: 0.3, pBottom: 0.5, minDepth: 15},
-        'cashmonium': {pTop: 0.01, pBottom: 0.05, minDepth: 15}
+        'cashmonium': {pTop: 0.01, pBottom: 0.05, minDepth: 15},
+        'artifact': {pTop: 0.01, pBottom: 0.05, minDepth: 10}
     }),
     "Cashmonoid": new Asteroid("Cashmonoid", {
         'dirtite': {pTop: 1, pBottom: 1, minDepth: 0},
@@ -433,6 +443,7 @@ var asteroids = {
         'cheddarium': {pTop: 0.02, pBottom: 0.3, minDepth: 1},
         'fatlootium': {pTop: 0.05, pBottom: 0.3, minDepth: 10},
         'affluentium': {pTop: 0.05, pBottom: 0.3, minDepth: 15},
-        'cashmonium': {pTop: 0.2, pBottom: 0.5, minDepth: 15}
+        'cashmonium': {pTop: 0.2, pBottom: 0.5, minDepth: 15},
+        'artifact': {pTop: 0.01, pBottom: 0.05, minDepth: 10}
     })
 };
