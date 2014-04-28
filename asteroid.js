@@ -1,11 +1,14 @@
-var Asteroid = function (name, terrainParameters, artifactValueScale) {
+var Asteroid = function (params) {
+    var name = params.name;
+
     var grid = [];
     var deadBots = [];
     var initialized = false;
     var startSeed = Math.random();
     var seed;
 
-    this.artifactValueScale = artifactValueScale;
+    this.bgImage = params.bgImage;
+    this.artifactValueScale = params.artifactValueScale;
 
     this.init = function () {
         seed = startSeed;
@@ -13,6 +16,10 @@ var Asteroid = function (name, terrainParameters, artifactValueScale) {
             initialized = true;
             initialize_grid();
         }
+    }
+
+    this.getName = function () {
+        return name;
     }
 
     this.getGrid = function () {
@@ -71,18 +78,12 @@ var Asteroid = function (name, terrainParameters, artifactValueScale) {
     }
 
     function generate_terrain(depth) {
-        function random () {
-            var x = Math.sin(seed++) * 10000;
-            return x - Math.floor(x);
-        }
-
         function normalize(array) {
             var total = _.reduce(array,
                     function(m, n) { return m + n;},
                     0);
             return _.map(array, function(x) { return x / total; });
         }
-
 
         var resources = [];
         var maxDepth = game_height;
@@ -92,7 +93,7 @@ var Asteroid = function (name, terrainParameters, artifactValueScale) {
             return 'imperviousite';
         }
 
-        var probs = _.map(terrainParameters, function(x, r) {
+        var probs = _.map(params.terrainParameters, function(x, r) {
             var minDepth = Math.round(x.minDepth * maxDepth); // % -> row #
             resources.push(r);
             if (depth < minDepth) {
@@ -112,5 +113,232 @@ var Asteroid = function (name, terrainParameters, artifactValueScale) {
                 return resources[i];
             }
         }
+    }
+}
+
+function drawAsteroidSelectionScreen() {
+    $('canvas').addClass('asteroidSelect');
+    $('canvas')[0].height = 600;
+
+    var asteroidCoords;
+    var currentAsteroid = playerState.getAsteroid().getName();
+    if (currentAsteroid == "Paydirteroid") {
+        asteroidCoords = {
+            "Paydirteroid": {
+                x: 100,
+                y: 300,
+                src: "pics/asteroids/paydirteroidbig.png",
+                width: 778,
+                height: 486
+            },
+            "Cheddaroid": {
+                x: 730,
+                y: 130,
+                src: "pics/asteroids/cheddaroid.png",
+                width: 389,
+                height: 243
+            },
+            "Fatlooteroid": {
+                x: 580,
+                y: 25,
+                src: "pics/asteroids/fatlootoidsmall.png",
+                width: 195,
+                height: 122
+            },
+            "Affluoid": {
+                x: 300,
+                y: 0,
+                src: "pics/asteroids/affluoidsmall.png",
+                width: 195,
+                height: 122
+            },
+            "Cashmonoid": {
+                x: -35,
+                y:  95,
+                src: "pics/asteroids/cashmoniod.png",
+                width: 389,
+                height: 243
+            }
+        };
+    } else if (currentAsteroid == "Cheddaroid") {
+        asteroidCoords = {
+            "Cheddaroid": {
+                x: 100,
+                y: 300,
+                src: "pics/asteroids/cheddaroidbig.png",
+                width: 778,
+                height: 486
+            },
+            "Fatlooteroid": {
+                x: 730,
+                y: 130,
+                src: "pics/asteroids/fatlootoid.png",
+                width: 389,
+                height: 243
+            },
+            "Affluoid": {
+                x: 580,
+                y: 25,
+                src: "pics/asteroids/affluoidsmall.png",
+                width: 195,
+                height: 122
+            },
+            "Cashmonoid": {
+                x: 300,
+                y: 0,
+                src: "pics/asteroids/cashmoniodsmall.png",
+                width: 195,
+                height: 122
+            },
+            "Paydirteroid": {
+                x: -35,
+                y:  95,
+                src: "pics/asteroids/paydirteroid.png",
+                width: 389,
+                height: 243
+            }
+        };
+    } else if (currentAsteroid == "Fatlooteroid") {
+        asteroidCoords = {
+            "Fatlooteroid": {
+                x: 100,
+                y: 300,
+                src: "pics/asteroids/fatlootoidbig.png",
+                width: 778,
+                height: 486
+            },
+            "Affluoid": {
+                x: 730,
+                y: 130,
+                src: "pics/asteroids/affluoid.png",
+                width: 389,
+                height: 243
+            },
+            "Cashmonoid": {
+                x: 580,
+                y: 25,
+                src: "pics/asteroids/cashmoniodsmall.png",
+                width: 195,
+                height: 122
+            },
+            "Paydirteroid": {
+                x: 300,
+                y: 0,
+                src: "pics/asteroids/paydirteroidsmall.png",
+                width: 195,
+                height: 122
+            },
+            "Cheddaroid": {
+                x: -35,
+                y:  95,
+                src: "pics/asteroids/cheddaroid.png",
+                width: 389,
+                height: 243
+            }
+        };
+    } else if (currentAsteroid == "Affluoid") {
+        asteroidCoords = {
+            "Affluoid": {
+                x: 100,
+                y: 300,
+                src: "pics/asteroids/affluoidbig.png",
+                width: 778,
+                height: 486
+            },
+            "Cashmonoid": {
+                x: 730,
+                y: 130,
+                src: "pics/asteroids/cashmoniod.png",
+                width: 389,
+                height: 243
+            },
+            "Paydirteroid": {
+                x: 580,
+                y: 25,
+                src: "pics/asteroids/paydirteroidsmall.png",
+                width: 195,
+                height: 122
+            },
+            "Cheddaroid": {
+                x: 300,
+                y: 0,
+                src: "pics/asteroids/cheddaroidsmall.png",
+                width: 195,
+                height: 122
+            },
+            "Fatlooteroid": {
+                x: -35,
+                y:  95,
+                src: "pics/asteroids/fatlootoid.png",
+                width: 389,
+                height: 243
+            }
+        };
+    } else if (currentAsteroid == "Cashmonoid") {
+        asteroidCoords = {
+            "Cashmonoid": {
+                x: 100,
+                y: 300,
+                src: "pics/asteroids/cashmoniodbig.png",
+                width: 778,
+                height: 486
+            },
+            "Paydirteroid": {
+                x: 730,
+                y: 130,
+                src: "pics/asteroids/paydirteroid.png",
+                width: 389,
+                height: 243
+            },
+            "Cheddaroid": {
+                x: 580,
+                y: 25,
+                src: "pics/asteroids/cheddaroidsmall.png",
+                width: 195,
+                height: 122
+            },
+            "Fatlooteroid": {
+                x: 300,
+                y: 0,
+                src: "pics/asteroids/fatlootoidsmall.png",
+                width: 195,
+                height: 122
+            },
+            "Affluoid": {
+                x: -35,
+                y:  95,
+                src: "pics/asteroids/affluoid.png",
+                width: 389,
+                height: 243
+            }
+        };
+    } else
+
+    stage.removeAllChildren();
+    stage.clear();
+
+    stage = new createjs.Stage("mainCanvas");
+
+    stage.backdrop = new createjs.Bitmap('pics/asteroids/asteroidscreenbg.png');
+    stage.backdrop.x = 0;
+    stage.backdrop.y = 0;
+    stage.addChild(stage.backdrop);
+
+    for (asteroid in asteroidCoords) {
+        var asteroidShape = new createjs.Bitmap(asteroidCoords[asteroid].src);
+        asteroidShape.x = asteroidCoords[asteroid].x;
+        asteroidShape.y = asteroidCoords[asteroid].y;
+        stage.addChild(asteroidShape);
+
+        asteroidHitbox = new createjs.Shape();
+        asteroidHitbox.graphics.beginFill('blue')
+            .drawEllipse(0, 0, asteroidCoords[asteroid].width, asteroidCoords[asteroid].height);
+        asteroidHitbox.x = asteroidCoords[asteroid].x;
+        asteroidHitbox.y = asteroidCoords[asteroid].y;
+        asteroidHitbox.alpha = 0.01;
+        asteroidHitbox.on('click', function (e, data) {
+            playerState.setAsteroid(asteroids[data.asteroid]);
+        }, {}, false, {asteroid: asteroid});
+        stage.addChild(asteroidHitbox);
     }
 }
