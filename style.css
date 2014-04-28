@@ -162,3 +162,53 @@ body {
 .robot-container:hover {
     opacity: 1;
 }
+
+.level-select {
+    text-align: center;
+    background-color: #3A4F6B;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-top: 12px;
+    padding: 5px 0 5px 10px;
+    font-size: 14px;
+}
+
+.level-select .level {
+    padding: 3px;
+}
+
+.level-select .level:hover {
+    cursor: pointer;
+    background-color: #757D9B;
+    border-radius: 3px;
+}
+
+.robot-shop {
+    border: 4px inset #FFF;
+    background-color: #7660BD;
+    border-radius: 9px;
+    width: 540px;
+    padding: 3px;
+    display: inline-block;
+}
+
+
+.robot-shop .robot {
+    padding: 3px;
+    height: 24px;
+    display: inline-block;
+}
+
+.robot-shop .robot:hover {
+    cursor: pointer;
+    background-color: #FFF;
+}
+
+.robot-shop img {
+    vertical-align: bottom;
+    margin-right: 3px;
+}
+
+.title .title-text {
+    margin: 0;
+}
