@@ -62,3 +62,8 @@
     width : 20px;
     height : 20px;
 }
+
+.robot-button:hover {
+    background-color: #ccc;
+    color: #666;
+}
