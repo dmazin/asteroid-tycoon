@@ -144,7 +144,7 @@ body {
 }
 
 #menu {
-    position: relative;
+    position: fixed;
     font-weight: 300;
     width: 980px;
     height: 290px;
@@ -155,6 +155,7 @@ body {
 }
 
 #mainCanvas {
+    margin-top: 310px;
     background-color: #060D22;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
