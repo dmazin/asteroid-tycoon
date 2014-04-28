@@ -12,7 +12,6 @@ function cycle(envelope, k) {
 
         e.css({'opacity' : opacity - 0.2});
         e.currOpacity = opacity - 0.2;
-        console.log(top);
         e.animate({'top' : top - 25}, 500);
     });
 
@@ -25,7 +24,9 @@ function printout(text) {
     var lines    = text.split(/\n/),
         printout = $("<pre class='printout'>"),
         envelope  = $("<img src='pics/other/envelope.png' alt='envelope' />");
-    
+
+    var height = 0;
+
     envelope.currOpacity = 1;
 
     envelope.css({'opacity' : 0});
@@ -33,7 +34,7 @@ function printout(text) {
     printout.insertAfter("div.title");
 
     insert();
-    
+
     function hideFirst() {
         cycle(envelope, function () {
             $("#messages").append(envelope);
@@ -43,7 +44,7 @@ function printout(text) {
 
     function insert() {
         var i = 0;
-        
+
         printout.fadeIn(100);
         $("#game").one('click', hideFirst);
 
@@ -58,6 +59,7 @@ function printout(text) {
     }
 
     function hide() {
+        height = $('.printout').css('height');
         printout.css('cursor', 'default');
         envelope.animate({'opacity' : envelope.currOpacity}, 600);
         printout.animate({'top': 110,
@@ -76,7 +78,7 @@ function printout(text) {
         printout.animate({'top' : 128,
                           'left' : '50%',
                           'width' : 670,
-                          'height' : '390',
+                          'height' : height,
                           'opacity' : 1 },
                          1000);
 
