@@ -8,7 +8,7 @@
 }
 
 .credits {
-    width:470px;
+    width: 414px;
     color: #fff;
     margin: 0 auto;
     margin-bottom: 10px;
@@ -362,12 +362,43 @@ body {
     top: 25px;
 }
 
+#asteroidButton:hover, #messages img:hover {
+    opacity: 0.5 !important;
+}
+
 #menu.shrunk .printer {
     margin-top: -3px;
 }
 
 #menu.shrunk .printout {
     top: 2px !important;
+}
+
+#menu.shrunk #modalyesno {
+    margin-top: -100px;
+}
+
+#modalyesno {
+    position: absolute;
+    font-family: monospace;
+    color: #4D4D4D;
+    background-color: #FFF;
+    width: 670px;
+    left: 50%;
+    margin-left: -335px;
+    z-index: 1000;
+    display: none;
+    text-align: center;
+}
+
+#modalyesno a {
+    margin: 0 100px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#modalyesno a:hover {
+    text-decoration: none;
 }
 
 .robot-container div.images.shrunk {
@@ -377,4 +408,3 @@ body {
 .robot-container div.robot-button.shrunk {
     top : -44px;
 }
-

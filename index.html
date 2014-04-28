@@ -23,7 +23,7 @@
 </script>
 
 <script id="mineral-stat-template" type="text/html">
-    <span class='stat <%= name %>'>
+    <span class='stat <%= name %>' title='<%= name %>'>
         <%= abbrev %> <span class='amount'><%= amount %></span>
     </span>
 </script>
@@ -73,6 +73,10 @@
 </pre>
             </div>
             <div class='printer'></div>
+        	<div id='modalyesno' style="display: none;">
+        		<a id='yes'>yes</a>
+        		<a id='no'>no</a>
+        	</div>
         </div>
         <pre class='printout'></pre>
         <marquee behavior='alternate'>
@@ -94,7 +98,7 @@
 </div>
 
 <div class='credits'>
-  Made by Alex, <a href='https://twitter.com/thelobsterclub'>Dmitry</a>, Greg, <a href='https://github.com/extrajordanary'>Jordan</a>, Jimmy, Natasha, and <a href="http://jelv.is">Tikhon</a>
+    By <a href="http://alex.nisnevich.com">Alex</a>, <a href='https://twitter.com/thelobsterclub'>Dmitry</a>, Greg, <a href='https://github.com/extrajordanary'>Jordan</a>, Jimmy, Natasha, and <a href="http://jelv.is">Tikhon</a>
 </div>
 
 <div class='sound'>
@@ -180,7 +184,8 @@
 
     And you do realize that this isn't the only asteroid you're supposed to deal
     with, right? There are four more waiting for your attention. We do hope that
-    we don't have to remind you about the [BUTTON DESCRIPTION].
+    we don't have to remind you about the Asteroid Field button on the top-right
+    corner of this panel.
 
     - Corporate
 </script>
@@ -209,6 +214,18 @@
     be consequences.
 
     - Corporate
+</script>
+<script id='nobotleftbehind' type='text'>
+    EMAIL PRINTOUT
+    --------------------------------------------------
+
+    Bear in mind that jumping out into the asteroid field now will mean the
+    destruction of all of our robots on this asteroid. Are you sure you want to
+    do this?
+
+    - Corporate
+
+
 </script>
 </body>
 </html>

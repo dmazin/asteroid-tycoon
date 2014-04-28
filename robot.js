@@ -435,10 +435,15 @@ var Robot = function(type, baseAttrs, startX, destX, destY, asteroid) {
             deathString = "a fiery death";
         }
 
-        setTimeout(function () {
-            displayDeathText(deathString, 20);
-        }, 750);
+        if (deathType === 'abandonment') {
+            _this.animation.gotoAndStop('rubble');
+        } else {
+            setTimeout(function () {
+                displayDeathText(deathString, 20);
+            }, 750);
+        }
     };
+    this.handleDeath = handleDeath;
 
     var updateDirection = function(newX, newY) {
         if (newY > _this.position.y) {
