@@ -308,13 +308,15 @@ var resources = {
         'hardness': 0,
         'harvestable': false,
         'value': 0,
-        'image': loadImage('pics/tiles/backfill.png')
+        'image': loadImage('pics/tiles/backfill.png'),
+        'text': "Backfill from mining operation"
     },
     'dirtite': {
         'hardness': 0.04,
         'harvestable': false,
         'value': 0,
-        'image': loadImage('pics/tiles/dirt1.png')
+        'image': loadImage('pics/tiles/dirt1.png'),
+        'text': "Dirtite: \nAsteroids are made\nof dirt. You schmuck."
     },
     'dregsite': {
         'hardness': 0.14,
