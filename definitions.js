@@ -22,7 +22,8 @@ var robots = {
         'spriteSheet': 'pics/bots/scout0.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/bots/scout0.gif',
-	'exploreRadius' : 3
+        'lockedTil': null,
+        'exploreRadius' : 3
     },
     'bearBot': {
         'uiName': 'Bear',
@@ -40,7 +41,8 @@ var robots = {
         'spriteSheet': 'pics/bots/allaround0.png',
         'spriteSpeed': 0.3,
         'gif': 'pics/bots/allaround0.gif',
-	'exploreRadius' : 1
+        'lockedTil': null,
+       'exploreRadius' : 1
     },
     'antBot': {
         'uiName': 'Ant',
@@ -57,7 +59,7 @@ var robots = {
         'spriteSpeed': 0.3,
         'gif': 'pics/bots/harvester0.gif',
         'lockedTil': 'paydirtium',
-	'exploreRadius' : 1
+        'exploreRadius' : 1
     },
     'goatBot': {
         'uiName': 'Goat',
@@ -74,7 +76,7 @@ var robots = {
         'spriteSpeed': 0.3,
         'gif': 'pics/bots/smasher0.gif',
         'lockedTil': 'cheddarium',
-	'exploreRadius' : 1
+        'exploreRadius' : 1
     },
     'vultureBot': {
         'uiName': 'Vulture',
@@ -92,7 +94,7 @@ var robots = {
         'spriteSpeed': 0.3,
         'gif': 'pics/bots/scavenger0.gif',
         'lockedTil': 'fatlootium',
-	'exploreRadius' : 1
+        'exploreRadius' : 1
     }
 };
 
@@ -134,7 +136,7 @@ var robotLevels = {
             'spriteSheet': 'pics/bots/scout1.png',
             'spriteSpeed': 0.6,
             'gif': 'pics/bots/scout1.gif',
-	    'exploreRadius' : 4
+        'exploreRadius' : 4
         }),
         _.extend(_.clone(robots['squirrelBot']), {
             'baseEnergy': 3000,
@@ -143,7 +145,7 @@ var robotLevels = {
             'spriteSheet': 'pics/bots/scout2.png',
             'spriteSpeed': 1.0,
             'gif': 'pics/bots/scout2.gif',
-	    'exploreRadius' : 5
+        'exploreRadius' : 5
         }),
     ],
     'bearBot': [

@@ -20,10 +20,19 @@ $(document).ready(function () {
         }
     });
 
+    $('.robot-shop').on('click', '.upgrade.enabled', function() {
+        var robot = $(this).data('robot');
+        var nextLevel = playerState.getRobotLevel(robot) + 1;
+        upgradeBot(robot, nextLevel);
+    });
+
     $('.level').click(function() {
         var asteroidName = $(this).attr('id');
         playerState.setAsteroid(asteroids[asteroidName]);
     });
+
+    updateRobotShop();
+    setInterval(updateRobotShop, 1000);
 });
 
 var updateRobotShop = function() {
@@ -39,15 +48,13 @@ var updateRobotShop = function() {
             $('.controls .robot-shop .robot-container.' + key + ' .upgrade').removeClass('enabled');
         }
 
+        if (Robot.unlocked(key)) {
+            $('.robot-container.' + key).removeClass('disabled');
+        } else {
+            $('.robot-container.' + key).addClass('disabled');
+        }
+
         var robotGif = robotLevels[key][playerState.getRobotLevel(key)].gif;
         $('.robot[data-robot=' + key + '] img').attr('src', robotGif);
     });
 };
-
-setInterval(updateRobotShop, 1000);
-
-$('.robot-shop').on('click', '.upgrade.enabled', function() {
-    var robot = $(this).data('robot');
-    var nextLevel = playerState.getRobotLevel(robot) + 1;
-    upgradeBot(robot, nextLevel);
-});
