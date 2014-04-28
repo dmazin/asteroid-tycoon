@@ -3,14 +3,13 @@ $(document).ready(function () {
 
     playerState.setAsteroid(asteroids['Bananasteroid']);
 
-    var buy_button_template = _.template($('#robot-buy-button-template').html());
     _.each(robots, function(val, key) {
         var data = _.extend(val, {'name': key});
         var rendered = buy_button_template(data);
         $('.controls .robot-shop').append(rendered);
     });
 
-    $('.robot').click(function() {
+    $('.robot-shop').on('click', '.robot', function() {
         var $this = $(this);
         var robotType = $this.data('robot');
 
@@ -21,3 +20,13 @@ $(document).ready(function () {
         }
     });
 });
+
+var updateRobotShop = function() {
+    _.each(robots, function(val, key) {
+        var data = _.extend(val, {'name': key});
+        var rendered = buy_button_template(data);
+        $('.controls .robot-shop .robot-container.' + key).replaceWith(rendered);
+    });
+};
+
+setInterval(updateRobotShop, 5000);

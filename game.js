@@ -50,6 +50,7 @@ function tick() {
 
 function init_ui() {
     window.statTemplate = _.template($('#mineral-stat-template').html());
+    window.buy_button_template = _.template($('#robot-buy-button-template').html());
 
     _.each(resources, function(val, key) {
         if (val.harvestable) {
