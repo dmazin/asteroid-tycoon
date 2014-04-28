@@ -22,11 +22,10 @@ function infoPopupClickOnStage(e) {
 function robotPopupClick(robot, button) {
     return function (e) {
         if (!infoPopupActive) {
-            var x = button.offset().left,
+            var x = button.offset().left - 100,
                 y = button.offset().top,
                 popup = robotPopup(robots[robot]);
 
-            console.log(x, y);
             popup.offset({left : x, top : y});
             popup.appendTo($('#game'));
 
