@@ -42,7 +42,7 @@ var playerState = (function() {
     };
 
     state.changeResource = function(resource, amount) {
-        if (resource == 'motherloadium' && state.getMotherLoadiumRemainingCount() < 0) {
+        if (resource == 'motherlodium' && state.getMotherLodiumRemainingCount() < 0) {
             // we have mined all of the motherloadium!
             printout($('#theEnd').text());
         }
@@ -153,7 +153,7 @@ var playerState = (function() {
         }, 0);
     }
 
-    state.getMotherLoadiumRemainingCount = function () {
+    state.getMotherLodiumRemainingCount = function () {
         return _(_(_(asteroids).map(function (a) {return a.getGrid().map(function (row) {return row[29].amount})})).flatten()).reduce(function(x,y) {return x+y})
     }
 
