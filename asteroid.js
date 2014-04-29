@@ -47,6 +47,7 @@ var Asteroid = function (params) {
                     if (playerState.totalUpgradesReceived == 10) {
                         Robot.unlock(robotType);
                         $('.robot-shop').addClass('with-badger');
+                        $('.stat.motherlodium').addClass('uncovered');
                     } else {
                         playerState.badgerFound = true;
                     }
@@ -64,7 +65,7 @@ var Asteroid = function (params) {
             });
         });
 
-        if (lineNum == 27 && state.eventsTriggered['motherlodium-one']) {
+        if (lineNum == 27 && !state.eventsTriggered['motherlodium-one']) {
             printout($('#motherlodium-one').text());
             state.eventsTriggered['motherlodium-one'] = true;
         }
