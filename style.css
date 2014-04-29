@@ -435,3 +435,10 @@ body {
     position: absolute;
     bottom: 16px;
 }
+
+#muteButton {
+    position: absolute;
+    right: -9px;
+    top: 9px;
+    cursor: pointer;
+}
