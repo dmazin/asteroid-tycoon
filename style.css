@@ -236,10 +236,12 @@ body {
 }
 
 .robot-shop .robot {
-    padding: 3px 0;
+    padding: 1px 3px;
+    margin: 1px 1px;
     margin-right: 15px;
     height: 20px;
     display: inline-block;
+    border-radius : 6px;
 }
 
 .robot-shop .robot:hover {

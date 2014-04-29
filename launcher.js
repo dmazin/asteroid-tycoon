@@ -161,6 +161,12 @@ var updateRobotShop = function() {
             $('.robot-container.' + key).addClass('disabled');
         }
 
+        if (playerState.unlockedUpgrades[key] > playerState.getRobotLevel(key)) {
+            $(".robot-container." + key + " .robot").css('background', '#60738B');
+        } else {
+            $(".robot-container." + key + " .robot").css('background', '');
+        }
+
         // image warblegarb starts here
 
         $('.robot-container.' + key + ' img').removeClass('current').removeClass('unused');
