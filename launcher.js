@@ -96,6 +96,8 @@ $(document).ready(function () {
         $('#muteButton').attr('src', 'pics/other/mute-on.png');
         document.getElementById('audio').pause();
     });
+
+    $('.money-stats .amount').css('right','10px'); // just in case
 });
 
 var updateTopMenuSize = function() {
