@@ -450,7 +450,8 @@ body {
 
 #muteButton {
     position: absolute;
-    right: -18px;
-    top: 9px;
+    right: 5px;
+    top: 5px;
     cursor: pointer;
+    opacity: .8;
 }
