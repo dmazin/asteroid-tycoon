@@ -120,7 +120,7 @@ var robots = {
         'gifName': 'scavenger',
         'lockedTil': {
             asteroid: 'Paydirteroid',
-            row: 25
+            row: 20
         },
         'exploreRadius' : 1,
         'level' : 0

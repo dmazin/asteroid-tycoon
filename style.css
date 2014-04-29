@@ -79,6 +79,10 @@
     visibility: hidden;
 }
 
+.general-stats .stat.motherlodium.uncovered {
+    visibility: visible;
+}
+
 body {
     font-family: 'Roboto', 'sans-serif';
     background-color: #000;

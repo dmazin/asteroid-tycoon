@@ -124,6 +124,7 @@ var upgradeBot = function(type, level) {
     if (playerState.totalUpgradesReceived == 10 && playerState.badgerFound) {
         Robot.unlock('badgerBot');
         $('.robot-shop').addClass('with-badger');
+        $('.stat.motherlodium').addClass('uncovered');
     }
 };
 
