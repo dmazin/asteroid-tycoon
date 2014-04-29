@@ -217,6 +217,20 @@ var updateRobotShop = function() {
     });
 };
 
+var muted = false;
 var playSound = function(snd) {
-    document.getElementById('sfx_' + snd).play();
+    if (!muted) {
+        document.getElementById('sfx_' + snd).play();
+    }
 }
+$('#muteButton').click(function () {
+    if (muted) {
+        muted = false;
+        $('#muteButton').attr('src', 'pics/other/mute-off.png');
+        document.getElementById('audio').play();
+    } else {
+        muted = true;
+        $('#muteButton').attr('src', 'pics/other/mute-on.png');
+        document.getElementById('audio').pause();
+    }
+});

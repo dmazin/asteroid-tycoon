@@ -389,6 +389,7 @@ function drawAsteroidSelectionScreen() {
         }, {}, false, {shape: asteroidShape, text: text});
 
         asteroidHitbox.on('click', function (e, data) {
+            playSound('travel');
             playerState.setAsteroid(asteroids[data.asteroid]);
         }, {}, false, {asteroid: asteroid});
 
