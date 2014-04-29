@@ -50,12 +50,17 @@ $(document).ready(function () {
     printout($('#first-email').text());
 
     $('#asteroidButton').click(function () {
+        if ($('canvas').hasClass('asteroidSelect')) {
+            return;
+        }
+
         if (_(activeBots).some(function (b) { return !b.dead })) {
             printout($('#nobotleftbehind').text(), 'modalyesno');
             $('#modalyesno #yes').click(function () {
                 drawAsteroidSelectionScreen();
             });
         } else {
+            playSound('blip');
             drawAsteroidSelectionScreen();
         }
     });

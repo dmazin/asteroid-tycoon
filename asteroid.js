@@ -137,11 +137,11 @@ var Asteroid = function (params) {
 }
 
 function drawAsteroidSelectionScreen() {
-    playSound('blip');
-
     // first kill all current bots
     activeBots.forEach(function (bot) {
-        bot.handleDeath('abandonment');
+        if (!bot.dead) {
+            bot.handleDeath('abandonment');
+        }
     });
 
     $('canvas').addClass('asteroidSelect');
@@ -397,6 +397,7 @@ function drawAsteroidSelectionScreen() {
         asteroidHitbox.on('click', function (e, data) {
             playSound('travel');
             playerState.setAsteroid(asteroids[data.asteroid]);
+            console.log(data.asteroid);
         }, {}, false, {asteroid: asteroid});
 
 

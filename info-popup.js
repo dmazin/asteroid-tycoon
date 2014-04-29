@@ -6,11 +6,11 @@ function infoPopupClickOnStage(e) {
             y = e.stageY,
             top = $("body").scrollTop();
 
-        console.log("Top", top);
-        console.log("SY", y);
+        //console.log("Top", top);
+        //console.log("SY", y);
 
         if (y >= surface_height && (y - top + surface_height) > 70) {
-            console.log("Popping");
+            // console.log("Popping");
             var popup = infoPopup(tileInfo(tileTypeAt(x, y)));
             popup.offset({left : x, top : y + 200});
             popup.appendTo($('#game'));
@@ -49,7 +49,7 @@ function robotButton(robot) {
     var button = $("<div class='robot-button'>?</div>");
 
     button.click(robotPopupClick(robot, button));
-    
+
     if (menuIsShrunk) button.addClass ("shrunk");
 
     return button;
