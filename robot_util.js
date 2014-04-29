@@ -79,6 +79,13 @@ var unlockUpgrade = function (type, level) {
     if (!upgradeUnlocked(type, level)) {
         playerState.unlockedUpgrades[type] = level;
         updateRobotShop();
+        if (type == 'bearBot' && level == 1) {
+            printout($('#upgrade1').text());
+        } else if (type == 'antBot' && level == 1) {
+            printout($('#motherlodium-two').text());
+        } else if (level == 2) {
+            printout($('#upgrade3').text());
+        }
     }
 };
 

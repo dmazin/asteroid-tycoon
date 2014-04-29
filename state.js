@@ -42,6 +42,16 @@ var playerState = (function() {
     };
 
     state.changeResource = function(resource, amount) {
+        if (resource == 'motherloadium' && state.getMotherLoadiumRemainingCount() == 0) {
+            // we have mined all of the motherloadium!
+            printout($('#theEnd').text());
+        }
+
+        if (resource == 'artifact' && amount > 0 && state.getResource('artifact') == 0) {
+            // first artifact found?
+            printout($('#alienArtifacts').text());
+        }
+
         resourceAmounts[resource] = resourceAmounts[resource] || 0;
         resourceAmounts[resource] += amount;
 
@@ -133,10 +143,18 @@ var playerState = (function() {
         'vultureBot': 0
     };
 
+    state.eventsTriggered = {
+        'motherlodium-one': false
+    }
+
     state.getTotalRobotsKilled = function () {
         return _.reduce(state.robotsKilled, function(memo, num) {
             return memo + num;
         }, 0);
+    }
+
+    state.getMotherLoadiumRemainingCount = function () {
+        _(_(_(asteroids).map(function (a) {return a.getGrid().map(function (row) {return row[29].amount})})).flatten()).reduce(function(x,y) {return x+y})
     }
 
     return state;

@@ -63,6 +63,11 @@ var Asteroid = function (params) {
                 }
             });
         });
+
+        if (lineNum == 27 && state.eventsTriggered['motherlodium-one']) {
+            printout($('#motherlodium-one').text());
+            state.eventsTriggered['motherlodium-one'] = true;
+        }
     }
 
     function initialize_grid() {
