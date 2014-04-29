@@ -258,6 +258,10 @@ body {
     color: yellow;
 }
 
+.badgerBot .robot::first-letter {
+    color: #fff;
+}
+
 .robot-shop .robot:hover::first-letter {
     color: #222;
 }
