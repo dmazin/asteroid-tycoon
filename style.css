@@ -146,6 +146,7 @@ body {
 }
 
 #game {
+    border-radius: 10px;
     background: #021E2D;
     width: 1000px;
     margin: 0 auto;

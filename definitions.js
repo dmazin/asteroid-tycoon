@@ -96,7 +96,7 @@ var robots = {
         'gifName': 'smasher',
         'lockedTil': {
             asteroid: 'Fatlooteroid',
-            row: 20
+            row: 15
         },
         'exploreRadius' : 1,
         'level' : 0
