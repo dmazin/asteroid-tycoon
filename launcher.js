@@ -79,25 +79,33 @@ $(document).ready(function () {
         if (muted) {
             muted = false;
             $('#muteButton').attr('src', 'pics/other/mute-off.png');
-            document.getElementById('audio').play();
         } else {
             muted = true;
             $('#muteButton').attr('src', 'pics/other/mute-on.png');
+        }
+    });
+
+    $('#musicMuteButton').click(function () {
+        if (musicMuted) {
+            musicMuted = false;
+            document.getElementById('audio').play();
+            $('#musicMuteButton').attr('src', 'pics/other/music-mute-off.png');
+        } else {
+            musicMuted = true;
             document.getElementById('audio').pause();
+            $('#musicMuteButton').attr('src', 'pics/other/music-mute-on.png');
         }
     });
 
     $(window).focus(function () {
-        if (!muted) {
-            $('#muteButton').attr('src', 'pics/other/mute-off.png');
+        if (!musicMuted) {
             document.getElementById('audio').play();
         }
     }).blur(function () {
-        $('#muteButton').attr('src', 'pics/other/mute-on.png');
         document.getElementById('audio').pause();
     });
 
-    $('.money-stats .amount').css('right','10px'); // just in case
+    $('.money-stats .amount').css('right','9px'); // just in case
 });
 
 var updateTopMenuSize = function() {
@@ -247,6 +255,7 @@ var updateRobotShop = function() {
 };
 
 var muted = false;
+var musicMuted = false;
 var playSound = function(snd) {
     if (!muted) {
         document.getElementById('sfx_' + snd).play();

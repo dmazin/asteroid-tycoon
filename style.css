@@ -456,3 +456,11 @@ body {
     cursor: pointer;
     opacity: .8;
 }
+
+#musicMuteButton {
+    position: absolute;
+    right: 5px;
+    top: 25px;
+    cursor: pointer;
+    opacity: .8;
+}
