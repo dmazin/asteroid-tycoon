@@ -50,12 +50,17 @@ $(document).ready(function () {
     printout($('#first-email').text());
 
     $('#asteroidButton').click(function () {
+        if ($('canvas').hasClass('asteroidSelect')) {
+            return;
+        }
+
         if (_(activeBots).some(function (b) { return !b.dead })) {
             printout($('#nobotleftbehind').text(), 'modalyesno');
             $('#modalyesno #yes').click(function () {
                 drawAsteroidSelectionScreen();
             });
         } else {
+            playSound('blip');
             drawAsteroidSelectionScreen();
         }
     });
@@ -69,6 +74,38 @@ $(document).ready(function () {
 
     $(window).scroll(updateTopMenuSize);
     setInterval(updateTopMenuSize, 1000);
+
+    $('#muteButton').click(function () {
+        if (muted) {
+            muted = false;
+            $('#muteButton').attr('src', 'pics/other/mute-off.png');
+        } else {
+            muted = true;
+            $('#muteButton').attr('src', 'pics/other/mute-on.png');
+        }
+    });
+
+    $('#musicMuteButton').click(function () {
+        if (musicMuted) {
+            musicMuted = false;
+            document.getElementById('audio').play();
+            $('#musicMuteButton').attr('src', 'pics/other/music-mute-off.png');
+        } else {
+            musicMuted = true;
+            document.getElementById('audio').pause();
+            $('#musicMuteButton').attr('src', 'pics/other/music-mute-on.png');
+        }
+    });
+
+    $(window).focus(function () {
+        if (!musicMuted) {
+            document.getElementById('audio').play();
+        }
+    }).blur(function () {
+        document.getElementById('audio').pause();
+    });
+
+    $('.money-stats .amount').css('right','9px'); // just in case
 });
 
 var updateTopMenuSize = function() {
@@ -218,19 +255,9 @@ var updateRobotShop = function() {
 };
 
 var muted = false;
+var musicMuted = false;
 var playSound = function(snd) {
     if (!muted) {
         document.getElementById('sfx_' + snd).play();
     }
 }
-$('#muteButton').click(function () {
-    if (muted) {
-        muted = false;
-        $('#muteButton').attr('src', 'pics/other/mute-off.png');
-        document.getElementById('audio').play();
-    } else {
-        muted = true;
-        $('#muteButton').attr('src', 'pics/other/mute-on.png');
-        document.getElementById('audio').pause();
-    }
-});

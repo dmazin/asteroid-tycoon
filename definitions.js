@@ -96,7 +96,7 @@ var robots = {
         'gifName': 'smasher',
         'lockedTil': {
             asteroid: 'Fatlooteroid',
-            row: 20
+            row: 15
         },
         'exploreRadius' : 1,
         'level' : 0
@@ -525,7 +525,7 @@ var resources = {
         'value': 1000,
         'imagePath' : 'pics/tiles/mineral6.png',
         'image': loadImage('pics/tiles/mineral6.png'),
-        'text' : 'Weapons grade motherlodium... we\re gonna be rich!',
+        'text' : 'Mmm, weapons grade...',
         'abbrev': 'MOTH'
     },
     'unexplored': {

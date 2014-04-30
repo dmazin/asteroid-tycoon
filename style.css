@@ -33,11 +33,12 @@
     font-size: 12px;
     position: relative;
     top: -1px;
-    width: 124px;
+    width: 114px;
     display: inline-block;
 }
 
 .money-stats {
+    position: relative;
     color: #191F18;
     background-color: #008000;
     border: 1px inset #83AF83;
@@ -45,7 +46,8 @@
 }
 
 .money-stats .amount {
-    float: right;
+    position: absolute;
+    right: 10px;
     font-size: 25px;
 }
 
@@ -144,6 +146,7 @@ body {
 }
 
 #game {
+    border-radius: 10px;
     background: #021E2D;
     width: 1000px;
     margin: 0 auto;
@@ -448,7 +451,16 @@ body {
 
 #muteButton {
     position: absolute;
-    right: -18px;
-    top: 9px;
+    right: 5px;
+    top: 5px;
     cursor: pointer;
+    opacity: .8;
+}
+
+#musicMuteButton {
+    position: absolute;
+    right: 5px;
+    top: 25px;
+    cursor: pointer;
+    opacity: .8;
 }
